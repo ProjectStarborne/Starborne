@@ -1,2 +1,2 @@
-﻿61303
-E:/Godot_v4.3-stable_mono_win64/Godot_v4.3-stable_mono_win64.exe
+﻿53356
+C:/Users/imzuk/Desktop/game/Godot_v4.3-stable_mono_win64/Godot_v4.3-stable_mono_win64.exe
