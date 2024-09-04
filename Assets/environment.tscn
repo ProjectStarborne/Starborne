@@ -16,7 +16,6 @@ offset_bottom = 2105.0
 texture = ExtResource("1_3bj6g")
 
 [node name="Player" parent="." instance=ExtResource("1_cbyr6")]
-position = Vector2(10, 0)
 
 [node name="Anchor2D" parent="Player" instance=ExtResource("2_uj1sq")]
 
