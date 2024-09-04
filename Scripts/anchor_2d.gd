@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var zoom_level = 1.0
+@export var zoom_level = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
