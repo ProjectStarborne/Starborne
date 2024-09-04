@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var speed = 500
+@export var speed = 650
 @export var rotation_speed = 2.5
-@export var friction = 0.15
+@export var friction = 0.05
 
 func _physics_process(delta: float) -> void:
 	var rotation_direction = Input.get_axis("left", "right")
