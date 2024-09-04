@@ -21,7 +21,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	update_zoom()
-	
 	# The camera's target position is either the anchor_position if the value isn't Vector2.ZERO or the owner's position. The owner is the root node of the scene in which the camera is instanced.
 	var target_position: Vector2 = (
 		owner.global_position

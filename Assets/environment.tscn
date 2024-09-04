@@ -15,7 +15,8 @@ texture = ExtResource("1_hf3wi")
 
 [node name="Player" parent="." instance=ExtResource("1_cbyr6")]
 
-[node name="Anchor2D" parent="Player" instance=ExtResource("2_uj1sq")]
-
-[node name="Anchor2D" parent="." instance=ExtResource("2_uj1sq")]
+[node name="hipp_face" parent="." instance=ExtResource("2_uj1sq")]
 position = Vector2(1584, 0)
+
+[node name="lower_test" parent="." instance=ExtResource("2_uj1sq")]
+position = Vector2(873, 1018)
