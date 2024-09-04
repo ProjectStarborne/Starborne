@@ -1,29 +1,18 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
-@export var friction = 500
+@export var speed = 650
+@export var rotation_speed = 2.5
+@export var friction = 0.05
 
 func _physics_process(delta: float) -> void:
-	var direction = Vector2.ZERO
+	var rotation_direction = Input.get_axis("left", "right")
+	var direction = Input.get_axis("down", "up")
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	if Input.is_action_pressed("up"):
-		direction.y = -1
-	if Input.is_action_pressed("down"):
-		direction.y = 1
-	if Input.is_action_pressed("left"):
-		direction.x = -1
-	if Input.is_action_pressed("right"):
-		direction.x = 1
+	# Calculations for friction 
+	var target_velocity = transform.y * -direction * speed
+	velocity += (target_velocity - velocity) * friction
 	
-	if direction != Vector2.ZERO:
-		direction = direction.normalized()
-		
-	velocity.x = direction.x * SPEED
-	velocity.y = direction.y * SPEED
-
-		
+	rotation += rotation_direction * rotation_speed * delta
+	
 	#print("x: ", velocity.x, " y: ", velocity.y)
 	move_and_slide()

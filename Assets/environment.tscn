@@ -1,17 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://pewylh8ghso2"]
 
+[ext_resource type="Texture2D" uid="uid://b0o36gxumoctv" path="res://Assets/images/tempbg.png" id="1_3bj6g"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Assets/player.tscn" id="1_cbyr6"]
-[ext_resource type="Texture2D" uid="uid://bqgckrcvbmco7" path="res://Assets/images/DreamShaper_v5_A_Hippo_that_has_trained_to_be_a_samurai_posing_0.jpg" id="1_hf3wi"]
 [ext_resource type="PackedScene" uid="uid://cgrjsyyihe7on" path="res://Assets/anchor_2d.tscn" id="2_uj1sq"]
 
 [node name="Environment" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -41.0
-offset_top = -484.0
-offset_right = 3567.0
-offset_bottom = 1418.0
-texture = ExtResource("1_hf3wi")
+texture_filter = 1
+texture_repeat = 1
+offset_left = -1024.0
+offset_top = -1100.0
+offset_right = 3450.0
+offset_bottom = 2105.0
+texture = ExtResource("1_3bj6g")
 
 [node name="Player" parent="." instance=ExtResource("1_cbyr6")]
 
