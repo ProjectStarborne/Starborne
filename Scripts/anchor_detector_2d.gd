@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	emit_signal("anchor_detected", area)
+	print("Anchor Detected!")
 
 # When exiting an area, ensure we're not entering another
 func _on_area_exited(area: Area2D) -> void:
@@ -25,3 +26,4 @@ func _on_area_exited(area: Area2D) -> void:
 	# Check that there is but one overlapping area left and that it's the one passed to this callback function.
 	if get_overlapping_areas().size() == 1 and area == areas[0]:
 		emit_signal("anchor_detached")
+		print("Anchor Detached!")

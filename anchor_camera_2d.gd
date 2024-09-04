@@ -4,6 +4,7 @@ extends Camera2D
 const SLOWDOWN_RADIUS = 300.0
 
 @export var max_speed = 2000.0
+# Mass to slow down the camera movement
 @export var mass = 2.0
 
 var _velocity = Vector2.ZERO
