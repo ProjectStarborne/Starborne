@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://pewylh8ghso2"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_3v8i2"]
+[ext_resource type="Texture2D" uid="uid://bqgckrcvbmco7" path="res://Assets/images/DreamShaper_v5_A_Hippo_that_has_trained_to_be_a_samurai_posing_0.jpg" id="2_i76cq"]
+[ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="3_36mgh"]
+[ext_resource type="PackedScene" uid="uid://cgrjsyyihe7on" path="res://Scenes/anchor_2d.tscn" id="4_r6552"]
+[ext_resource type="PackedScene" uid="uid://di035nk3qvrhb" path="res://Scenes/pause_menu.tscn" id="5_r1uxu"]
+[ext_resource type="PackedScene" uid="uid://biqlqo5jd25fu" path="res://Scenes/ui_video_settings.tscn" id="6_n7a12"]
+
+[node name="Environment" type="Node2D"]
+script = ExtResource("1_3v8i2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -41.0
+offset_top = -484.0
+offset_right = 3567.0
+offset_bottom = 1418.0
+texture = ExtResource("2_i76cq")
+
+[node name="Player" parent="." instance=ExtResource("3_36mgh")]
+
+[node name="hipp_face" parent="." instance=ExtResource("4_r6552")]
+position = Vector2(1584, 0)
+
+[node name="lower_test" parent="." instance=ExtResource("4_r6552")]
+position = Vector2(873, 1018)
+
+[node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("5_r1uxu")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Settings" parent="UI" instance=ExtResource("6_n7a12")]
+unique_name_in_owner = true
+visible = false

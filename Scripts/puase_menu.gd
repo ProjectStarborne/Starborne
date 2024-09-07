@@ -7,7 +7,7 @@ func _on_resume_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	pass # Replace with function body.
+	main.settingsMenu()
 
 
 func _on_quit_pressed() -> void:

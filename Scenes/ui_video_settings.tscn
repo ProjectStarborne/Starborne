@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://biqlqo5jd25fu"]
+
+[ext_resource type="Script" path="res://Scripts/ui_video_settings.gd" id="1_md8qj"]
+[ext_resource type="PackedScene" uid="uid://dhvgds28igerw" path="res://Scenes/ui_resolution_selector.tscn" id="1_mrfdo"]
+[ext_resource type="PackedScene" uid="uid://byemvsjlgnfp1" path="res://Scenes/UISettingCheckbox.tscn" id="2_lass2"]
+
+[node name="UIVideoSettings" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_md8qj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="UIResolutionSelector" parent="VBoxContainer" instance=ExtResource("1_mrfdo")]
+layout_mode = 2
+
+[node name="UIFullScreenCheckbox" parent="VBoxContainer" instance=ExtResource("2_lass2")]
+layout_mode = 2
+title = "Full Screen"
+
+[node name="UIVSyncCheckbox" parent="VBoxContainer" instance=ExtResource("2_lass2")]
+layout_mode = 2
+title = "VSync"
+
+[node name="ApplyButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Apply"
+
+[connection signal="resolution_changed" from="VBoxContainer/UIResolutionSelector" to="." method="_on_UIResolutionSelector_resolution_changed"]
+[connection signal="toggled" from="VBoxContainer/UIFullScreenCheckbox" to="." method="_on_UIFullscreenCheckbox_toggled"]
+[connection signal="toggled" from="VBoxContainer/UIVSyncCheckbox" to="." method="_on_UIVsyncCheckbox_toggled"]
+[connection signal="pressed" from="VBoxContainer/ApplyButton" to="." method="_on_ApplyButton_pressed"]
