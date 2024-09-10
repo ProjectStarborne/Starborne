@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pewylh8ghso2"]
 
-[ext_resource type="Texture2D" uid="uid://2eg5jtvjh7l8" path="res://Assets/images/tempbg.png" id="1_p4joc"]
+[ext_resource type="Texture2D" uid="uid://bmihcemu0akoh" path="res://Assets/images/tempbg.png" id="1_p4joc"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="3_36mgh"]
 
 [node name="Environment" type="Node2D"]

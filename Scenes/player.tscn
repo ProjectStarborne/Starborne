@@ -1,15 +1,46 @@
 [gd_scene load_steps=6 format=3 uid="uid://cg1n3hs12k8ko"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_bxdsg"]
-[ext_resource type="Texture2D" uid="uid://bpw1xcswxxxxh" path="res://Assets/images/icon.svg" id="2_88qrq"]
+[ext_resource type="Texture2D" uid="uid://dynxb8jv2o7tb" path="res://Assets/images/icon.svg" id="2_88qrq"]
 [ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/anchor_camera_2d.tscn" id="3_wfdif"]
 [ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/anchor_detector_2d.tscn" id="4_cvytj"]
+
+[sub_resource type="GDScript" id="GDScript_fb15e"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+@export var friction = 500
+
+func _physics_process(delta: float) -> void:
+	var direction = Vector2.ZERO
+	
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	if Input.is_action_pressed(\"up\"):
+		direction.y = -1
+	if Input.is_action_pressed(\"down\"):
+		direction.y = 1
+	if Input.is_action_pressed(\"left\"):
+		direction.x = -1
+	if Input.is_action_pressed(\"right\"):
+		direction.x = 1
+	
+	if direction != Vector2.ZERO:
+		direction = direction.normalized()
+		
+	velocity.x = direction.x * SPEED
+	velocity.y = direction.y * SPEED
+
+		
+	#print(\"x: \", velocity.x, \" y: \", velocity.y)
+	move_and_slide()
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knndq"]
 size = Vector2(128, 128)
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_bxdsg")
+script = SubResource("GDScript_fb15e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_88qrq")
