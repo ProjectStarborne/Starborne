@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg1n3hs12k8ko"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_bxdsg"]
+[ext_resource type="Texture2D" uid="uid://dvbgfcpg5rkgj" path="res://Assets/images/tempship.png" id="2_upsx7"]
+[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Assets/anchor_camera_2d.tscn" id="3_wfdif"]
+[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Assets/anchor_detector_2d.tscn" id="4_cvytj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knndq"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_bxdsg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5.125, 5.625)
+texture = ExtResource("2_upsx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_knndq")
+
+[node name="AnchorCamera2D" parent="." instance=ExtResource("3_wfdif")]
+
+[node name="AnchorDetector2D" parent="." instance=ExtResource("4_cvytj")]
+
+[connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
+[connection signal="anchor_detected" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detected"]
