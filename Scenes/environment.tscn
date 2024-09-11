@@ -13,3 +13,10 @@ offset_bottom = 1418.0
 texture = ExtResource("1_p4joc")
 
 [node name="Player" parent="." instance=ExtResource("3_36mgh")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 50.0
