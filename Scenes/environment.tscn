@@ -16,6 +16,7 @@ texture = ExtResource("1_p4joc")
 [node name="Player" parent="." instance=ExtResource("3_36mgh")]
 script = ExtResource("3_vfilr")
 max_health = 100
+max_oxygen = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -23,3 +24,21 @@ max_health = 100
 offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 50.0
+
+[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer"]
+offset_top = 70.0
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer"]
+offset_left = 70.0
+offset_right = 122.0
+offset_bottom = 23.0
+text = "Health"
+
+[node name="OxygenLabel" type="Label" parent="CanvasLayer"]
+offset_left = 85.0
+offset_top = 50.0
+offset_right = 125.0
+offset_bottom = 73.0
+text = "O2"

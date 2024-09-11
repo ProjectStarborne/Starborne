@@ -26,20 +26,22 @@ func _physics_process(delta: float) -> void:
 		
 	#print("x: ", velocity.x, " y: ", velocity.y)
 	move_and_slide()
+	deplete_oxygen(delta)
+
 
 ####### HEALTH #######
 # Health Variables
+@onready var health_bar = get_node("/root/Environment/CanvasLayer/HealthBar")
 @export var max_health = 100  # Maximum health for the player
 var current_health = max_health  # Current health of the player
-var health_bar  # Variable to store the health bar reference
 var is_dead = false  # Player starts alive
 
 
-func _ready() -> void:
-	# Get the health bar node (adjust the path if necessary)
-	health_bar = get_node("/root/Environment/CanvasLayer/HealthBar")  
+func _ready() -> void: 
 	health_bar.max_value = max_health
 	health_bar.value = current_health
+	oxygen_bar.max_value = max_oxygen
+	oxygen_bar.value = current_oxygen
 
 
 func take_damage(damage: int) -> void:
@@ -58,7 +60,7 @@ func update_health_bar() -> void:
 func game_over() -> void:
 	print("Game Over!")
 	is_dead = true
-	# Respawn after 2 seconds
+	# respawn after 2 seconds
 	await get_tree().create_timer(2.0).timeout  # wait 2 sec before respawning
 	respawn()
 
@@ -70,8 +72,43 @@ func _input(event: InputEvent) -> void:
 	
 	
 func respawn() -> void:
-	current_health = max_health  # Reset health
-	update_health_bar()  # Update the health bar back to full
-	is_dead = false  # Allow the player to move again
-	global_position = Vector2(100, 100)  # Respawn at a specific position
+	current_health = max_health  # reset the health
+	update_health_bar()  # update the health bar back to full
+	current_oxygen = max_oxygen  # reset oxygen level
+	update_oxygen_bar()
+	is_dead = false  # allow the player to move again
+	global_position = Vector2(100, 100)  #respawn at  100 100 
 	print("Respawning...")
+
+
+####### OXYGEN #######
+
+# Oxygen Variables
+@onready var oxygen_bar  = get_node("/root/Environment/CanvasLayer/OxygenBar")
+@export var max_oxygen = 100  # Maximum oxygen level
+var current_oxygen = max_oxygen  # Current oxygen level
+var oxygen_depleting = false  # Track whether oxygen is being depleted
+# Function to deplete oxygen over time
+var health_chip_delay = 1.0  # Delay in seconds between health reductions
+var time_since_last_health_chip = 0.0  # Tracks time since last health reduction
+
+
+func update_oxygen_bar() -> void:
+	oxygen_bar.value = current_oxygen
+	
+	
+# Function to deplete oxygen over time
+func deplete_oxygen(delta: float) -> void:
+	if current_oxygen > 0:
+		current_oxygen -= (5 / 2) * delta  # Oxygen depletes twice as slow
+		if current_oxygen <= 0:
+			current_oxygen = 0
+			oxygen_depleting = true  # Start damaging health once oxygen is depleted
+	else:
+		# If oxygen is depleted, start affecting health
+		if oxygen_depleting:
+			time_since_last_health_chip += delta
+			if time_since_last_health_chip >= health_chip_delay:
+				take_damage(15)  # Chip away at health
+				time_since_last_health_chip = 0.0  # Reset timer after health damage
+	update_oxygen_bar()
