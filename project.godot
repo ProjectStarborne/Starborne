@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/environment.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Assets/images/icon.svg"
 
+[autoload]
+
+TransitionManager="*res://Scenes/Managers/transition_manager.tscn"
+
 [dotnet]
 
 project/assembly_name="Starborne"
