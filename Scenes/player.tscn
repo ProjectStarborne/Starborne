@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cg1n3hs12k8ko"]
 
-[ext_resource type="Texture2D" uid="uid://dynxb8jv2o7tb" path="res://Assets/images/icon.svg" id="2_88qrq"]
+[ext_resource type="Texture2D" uid="uid://dxqb1uqp11mm7" path="res://Assets/images/astronaut_spritesheet.png" id="3_jmo0b"]
 [ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/anchor_camera_2d.tscn" id="3_wfdif"]
 [ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/anchor_detector_2d.tscn" id="4_cvytj"]
 
@@ -42,15 +42,18 @@ size = Vector2(128, 128)
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_fb15e")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_88qrq")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_knndq")
 
 [node name="AnchorCamera2D" parent="." instance=ExtResource("3_wfdif")]
 
 [node name="AnchorDetector2D" parent="." instance=ExtResource("4_cvytj")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_jmo0b")
+hframes = 5
+vframes = 3
+frame = 1
 
 [connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
 [connection signal="anchor_detected" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detected"]
