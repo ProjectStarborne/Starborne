@@ -37,12 +37,15 @@ var current_health = max_health  # Current health of the player
 var is_dead = false  # Player starts alive
 
 
+
 func _ready() -> void: 
 	health_bar.max_value = max_health
 	health_bar.value = current_health
 	oxygen_bar.max_value = max_oxygen
 	oxygen_bar.value = current_oxygen
-
+	update_health_color()
+	update_oxygen_color()
+	
 
 func take_damage(damage: int) -> void:
 	current_health -= damage
@@ -51,6 +54,7 @@ func take_damage(damage: int) -> void:
 		game_over()  #calls a game over function when health reaches 0
 		print("Current Health:", current_health)  
 	update_health_bar()  #update the health bar whenever health changes
+	update_health_color()  # Update color after taking damage
 
 
 func update_health_bar() -> void:
@@ -74,11 +78,41 @@ func _input(event: InputEvent) -> void:
 func respawn() -> void:
 	current_health = max_health  # reset the health
 	update_health_bar()  # update the health bar back to full
+	update_health_color()
 	current_oxygen = max_oxygen  # reset oxygen level
 	update_oxygen_bar()
+	update_oxygen_color()
 	is_dead = false  # allow the player to move again
 	global_position = Vector2(100, 100)  #respawn at  100 100 
 	print("Respawning...")
+
+
+func update_health_color() -> void:
+	var health_percentage = float(current_health) / float(max_health)  # Health as a percentage (0 to 1)
+
+	var fill_stylebox = health_bar.get("theme_override_styles/fill")
+	if fill_stylebox == null:
+		# If there's no existing style, create one
+		fill_stylebox = StyleBoxFlat.new()
+		health_bar.set("theme_override_styles/fill", fill_stylebox)
+
+	# Set the color based on health percentage thresholds
+	if health_percentage > 0.75:
+		fill_stylebox.bg_color = Color(0.0, 0.7, 0.0)  # Green for health > 75%
+	elif health_percentage > 0.5:
+		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for health between 50% and 75%
+	elif health_percentage > 0.25:
+		fill_stylebox.bg_color = Color(1.0, 0.65, 0.0)  # Orange for health between 25% and 50%
+	else:
+		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for health below 25%
+
+
+
+
+
+
+
+
 
 
 ####### OXYGEN #######
@@ -97,18 +131,43 @@ func update_oxygen_bar() -> void:
 	oxygen_bar.value = current_oxygen
 	
 	
-# Function to deplete oxygen over time
+# function to deplete oxygen over time
 func deplete_oxygen(delta: float) -> void:
+	var oxygenDrainRate = 12 * delta # change these two variables to control the drainage rate
+	var healthDrainRate = 15
+	
 	if current_oxygen > 0:
-		current_oxygen -= (5 / 2) * delta  # Oxygen depletes twice as slow
+		current_oxygen -= oxygenDrainRate 
 		if current_oxygen <= 0:
 			current_oxygen = 0
-			oxygen_depleting = true  # Start damaging health once oxygen is depleted
+			oxygen_depleting = true  # start damaging health once oxygen is depleted
 	else:
-		# If oxygen is depleted, start affecting health
+		# if oxygen is depleted, start affecting health
 		if oxygen_depleting:
 			time_since_last_health_chip += delta
 			if time_since_last_health_chip >= health_chip_delay:
-				take_damage(15)  # Chip away at health
-				time_since_last_health_chip = 0.0  # Reset timer after health damage
+				take_damage(healthDrainRate)  # chip away at health at 15 per sec
+				time_since_last_health_chip = 0.0  # reset timer after health damage
 	update_oxygen_bar()
+	update_oxygen_color()
+	
+
+
+func update_oxygen_color() -> void:
+	var oxygen_percentage = float(current_oxygen) / float(max_oxygen)  # Oxygen as a percentage (0 to 1)
+
+	var fill_stylebox = oxygen_bar.get("theme_override_styles/fill")
+	if fill_stylebox == null:
+		# If there's no existing style, create one
+		fill_stylebox = StyleBoxFlat.new()
+		oxygen_bar.set("theme_override_styles/fill", fill_stylebox)
+
+	# Set the color based on oxygen percentage thresholds
+	if oxygen_percentage > 0.75:
+		fill_stylebox.bg_color = Color(0.0, 0.5, 1.0)  # Blue for oxygen > 75%
+	elif oxygen_percentage > 0.5:
+		fill_stylebox.bg_color = Color(0.0, 1.0, 1.0)  # Cyan for oxygen between 50% and 75%
+	elif oxygen_percentage > 0.25:
+		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for oxygen between 25% and 50%
+	else:
+		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for oxygen below 25%

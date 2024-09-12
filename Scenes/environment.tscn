@@ -23,12 +23,14 @@ max_oxygen = 100
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 offset_top = 20.0
 offset_right = 200.0
-offset_bottom = 50.0
+offset_bottom = 47.0
+show_percentage = false
 
 [node name="OxygenBar" type="ProgressBar" parent="CanvasLayer"]
 offset_top = 70.0
 offset_right = 200.0
-offset_bottom = 100.0
+offset_bottom = 97.0
+show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer"]
 offset_left = 70.0
