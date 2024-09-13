@@ -38,7 +38,7 @@ func _on_AnchorDetector2D_anchor_detected(anchor: Area2D) -> void:
 # Leaving the anchor the zoom return to 1.0 and the camera's center to the player
 func _on_AnchorDetector2D_anchor_detached() -> void:
 	anchor_position = Vector2.ZERO
-	target_zoom = 1.0
+	target_zoom = 3.0
 
 # Smoothly update the zoom level using a linear interpolation (lerp)
 func update_zoom() -> void:

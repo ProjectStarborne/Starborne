@@ -11,13 +11,22 @@ config_version=5
 [application]
 
 config/name="Starborne"
-run/main_scene="res://Scenes/environment.tscn"
+run/main_scene="res://Scenes/world_space.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Assets/images/icon.svg"
+
+[autoload]
+
+TransitionManager="*res://Scenes/Managers/transition_manager.tscn"
+NavigationManager="*res://Scripts/Managers Scripts/navigation_manager.gd"
 
 [dotnet]
 
 project/assembly_name="Starborne"
+
+[global_group]
+
+Player=""
 
 [input]
 

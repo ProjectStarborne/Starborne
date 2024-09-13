@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name PlayerShip
+
 @export var speed = 650
 @export var rotation_speed = 2.5
 @export var friction = 0.05
