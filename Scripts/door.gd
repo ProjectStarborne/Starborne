@@ -9,5 +9,6 @@ class_name Door
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is PlayerShip: # or Player
-		pass
+	if body is PlayerShip: # TODO: or Player
+		body.velocity = lerp(body.velocity, Vector2.ZERO, 0.8)
+		NavigationManager.go_to_level(destination_level, destination_door)
