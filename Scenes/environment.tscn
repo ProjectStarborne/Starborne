@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://pewylh8ghso2"]
+[gd_scene load_steps=6 format=3 uid="uid://pewylh8ghso2"]
 
 [ext_resource type="Texture2D" uid="uid://bmihcemu0akoh" path="res://Assets/images/tempbg.png" id="1_p4joc"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="3_36mgh"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="3_vfilr"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_f7k6m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4doei"]
@@ -31,9 +30,6 @@ offset_bottom = 1418.0
 texture = ExtResource("1_p4joc")
 
 [node name="Player" parent="." instance=ExtResource("3_36mgh")]
-script = ExtResource("3_vfilr")
-max_health = 100
-max_oxygen = 100
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
