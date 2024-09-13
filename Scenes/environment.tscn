@@ -1,25 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://pewylh8ghso2"]
+[gd_scene load_steps=10 format=3 uid="uid://pewylh8ghso2"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_mom8o"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_my6jo"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="3_36mgh"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_f7k6m"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4doei"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 2
-anti_aliasing_size = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwxlt"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 2
-anti_aliasing_size = 3.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_mom8o")
@@ -203,6 +187,22 @@ texture = ExtResource("2_my6jo")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1wdpt")
 sources/2 = SubResource("TileSetAtlasSource_wb46f")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4doei"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+anti_aliasing_size = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwxlt"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+anti_aliasing_size = 3.0
 
 [node name="Environment" type="Node2D"]
 
