@@ -10,7 +10,7 @@ const SLOWDOWN_RADIUS = 300.0
 var _velocity = Vector2.ZERO
 # Global position of an anchor area. If it's equal to Vector2.ZERO, camera has no anchor point and follows owner.
 var anchor_position := Vector2.ZERO
-var target_zoom = 4.0
+var target_zoom = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
