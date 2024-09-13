@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cg1n3hs12k8ko"]
 
 [ext_resource type="Texture2D" uid="uid://plulppedwtw4" path="res://Assets/images/tempship.png" id="1_gxj0h"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ybtu2"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_ybtu2"]
 [ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/Camera/anchor_camera_2d.tscn" id="3_wfdif"]
 [ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/anchor_detector_2d.tscn" id="4_cvytj"]
 
