@@ -14,11 +14,11 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_pressed("up"):
 		direction.y -= 1
-	elif Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down"):
 		direction.y += 1
-	elif Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left"):
 		direction.x -= 1
-	elif Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right"):
 		direction.x += 1
 	
 	direction = direction.normalized()
@@ -134,7 +134,7 @@ func update_oxygen_bar() -> void:
 	
 # function to deplete oxygen over time
 func deplete_oxygen(delta: float) -> void:
-	var oxygenDrainRate = 12 * delta # change these two variables to control the drainage rate
+	var oxygenDrainRate = 2 * delta # change these two variables to control the drainage rate
 	var healthDrainRate = 15
 	
 	if current_oxygen > 0:
