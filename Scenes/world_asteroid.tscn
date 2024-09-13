@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvgqaw6ccrlpc"]
+
+[ext_resource type="Texture2D" uid="uid://dsb2b86opgwig" path="res://Assets/images/tempasteroid.png" id="1_xexcy"]
+[ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="2_cihn5"]
+
+[sub_resource type="GDScript" id="GDScript_fb15e"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+@export var friction = 500
+
+func _physics_process(delta: float) -> void:
+	var direction = Vector2.ZERO
+	
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	if Input.is_action_pressed(\"up\"):
+		direction.y = -1
+	if Input.is_action_pressed(\"down\"):
+		direction.y = 1
+	if Input.is_action_pressed(\"left\"):
+		direction.x = -1
+	if Input.is_action_pressed(\"right\"):
+		direction.x = 1
+	
+	if direction != Vector2.ZERO:
+		direction = direction.normalized()
+		
+	velocity.x = direction.x * SPEED
+	velocity.y = direction.y * SPEED
+
+		
+	#print(\"x: \", velocity.x, \" y: \", velocity.y)
+	move_and_slide()
+"
+
+[node name="WorldAsteroid" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -13418.0
+offset_top = -8191.0
+offset_right = 20261.0
+offset_bottom = 8548.0
+color = Color(0.0173897, 1.19921e-05, 0.0401102, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 5
+offset_left = -2811.0
+offset_top = -1868.0
+offset_right = 1761.0
+offset_bottom = 2704.0
+texture = ExtResource("1_xexcy")
+
+[node name="Player" parent="." instance=ExtResource("2_cihn5")]
+position = Vector2(11, 85)
+script = SubResource("GDScript_fb15e")
