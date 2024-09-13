@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=12 format=3 uid="uid://bvgqaw6ccrlpc"]
 
-[ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_8b2gw"]
-[ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="2_cihn5"]
-[ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_xhfhh"]
-[ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_0cd16"]
+[ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
+[ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
+[ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="3_lct7p"]
+[ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
+[ext_resource type="Script" path="res://Scripts/pickup.gd" id="5_0uii5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
-texture = ExtResource("1_8b2gw")
+texture = ExtResource("1_0xj0f")
 8:0/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -57,7 +58,7 @@ texture = ExtResource("1_8b2gw")
 8:5/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wb46f"]
-texture = ExtResource("2_xhfhh")
+texture = ExtResource("2_mpcfb")
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -204,6 +205,9 @@ corner_radius_bottom_left = 5
 shadow_size = 2
 anti_aliasing_size = 3.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8u8uh"]
+radius = 98.28
+
 [node name="Environment" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -216,9 +220,10 @@ layer_0/tile_data = PackedInt32Array(-65536, 458754, 15, -1, 983042, 3, 65535, 5
 layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-131078, 917506, 11, -65542, 917506, 12, -196613, 983042, 10, -131077, 983042, 11, -65541, 983042, 12, -262148, 1048578, 9, -196612, 1048578, 10, -131076, 1048578, 11, -65540, 1048578, 12, -196611, 1114114, 10, -131075, 1114114, 11, -65539, 1114114, 12, -131074, 1179650, 11, -65538, 1179650, 12, 458752, 1179650, 11, 524288, 1179650, 12, 458751, 1114114, 10, 524287, 1114114, 11, 589823, 1114114, 12, 393214, 1048578, 9, 458750, 1048578, 10, 524286, 1048578, 11, 589822, 1048578, 12, 458749, 983042, 10, 524285, 983042, 11, 589821, 983042, 12, 524284, 917506, 11, 589820, 917506, 12, -655347, 1179650, 11, -589811, 1179650, 12, -720884, 1114114, 10, -655348, 1114114, 11, -589812, 1114114, 12, -786421, 1048578, 9, -720885, 1048578, 10, -655349, 1048578, 11, -589813, 1048578, 12, -720886, 983042, 10, -655350, 983042, 11, -589814, 983042, 12, -655351, 917506, 11, -589815, 917506, 12, -131088, 524290, 8, -131087, 589826, 8, -131086, 655362, 8, -65550, 655362, 9, -65549, 720898, 9, -13, 720898, 10, 65523, 720898, 11, 65522, 655362, 11, 131058, 655362, 12, 131057, 589826, 12, 131056, 524290, 12, 65520, 524290, 11, 65519, 458754, 11, -17, 458754, 10, -65553, 458754, 9, -65552, 524290, 9)
 
-[node name="Player" parent="." instance=ExtResource("2_cihn5")]
+[node name="Player" parent="." instance=ExtResource("3_lct7p")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 offset_top = 20.0
@@ -238,7 +243,7 @@ show_percentage = false
 offset_left = 90.0
 offset_right = 149.0
 offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("4_0cd16")
+theme_override_fonts/font = ExtResource("4_w767y")
 text = "Health"
 
 [node name="OxygenLabel" type="Label" parent="CanvasLayer"]
@@ -246,5 +251,19 @@ offset_left = 105.0
 offset_top = 50.0
 offset_right = 145.0
 offset_bottom = 74.0
-theme_override_fonts/font = ExtResource("4_0cd16")
+theme_override_fonts/font = ExtResource("4_w767y")
 text = "O2"
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(361, -126)
+scale = Vector2(0.2, 0.2)
+script = ExtResource("5_0uii5")
+item_id = "resource"
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(-875, 300)
+shape = SubResource("CircleShape2D_8u8uh")
+
+[connection signal="body_entered" from="Node2D/Area2D" to="Node2D" method="_on_area_2d_body_entered"]

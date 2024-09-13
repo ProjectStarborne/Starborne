@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgrjsyyihe7on"]
 
-[ext_resource type="Script" path="res://Scripts/anchor_2d.gd" id="1_btjci"]
+[ext_resource type="Script" path="res://Scripts/Camera/anchor_2d.gd" id="1_5teqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcinr"]
 size = Vector2(960, 540)
@@ -9,7 +9,7 @@ size = Vector2(960, 540)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
-script = ExtResource("1_btjci")
+script = ExtResource("1_5teqp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bcinr")

@@ -172,3 +172,8 @@ func update_oxygen_color() -> void:
 		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for oxygen between 25% and 50%
 	else:
 		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for oxygen below 25%
+
+
+###### Resource Management System ######
+func on_item_picked_up(item:Item) -> void:
+	print("I got a ", item.name)

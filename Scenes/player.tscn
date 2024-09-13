@@ -2,11 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://plulppedwtw4" path="res://Assets/images/tempship.png" id="1_gxj0h"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ybtu2"]
-[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/anchor_camera_2d.tscn" id="3_wfdif"]
-[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/anchor_detector_2d.tscn" id="4_cvytj"]
+[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/Camera/anchor_camera_2d.tscn" id="3_wfdif"]
+[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/anchor_detector_2d.tscn" id="4_cvytj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_knndq"]
-size = Vector2(128, 128)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j1uxo"]
+radius = 336.62
+height = 743.85
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ybtu2")
@@ -18,19 +19,13 @@ texture = ExtResource("1_gxj0h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.125, 0.125)
-shape = SubResource("RectangleShape2D_knndq")
+shape = SubResource("CapsuleShape2D_j1uxo")
 
 [node name="AnchorCamera2D" parent="." instance=ExtResource("3_wfdif")]
 scale = Vector2(0.5, 0.5)
 
 [node name="AnchorDetector2D" parent="." instance=ExtResource("4_cvytj")]
 scale = Vector2(0.125, 0.125)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_jmo0b")
-hframes = 5
-vframes = 3
-frame = 1
 
 [connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
 [connection signal="anchor_detected" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detected"]
