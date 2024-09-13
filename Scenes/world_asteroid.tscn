@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=11 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_8b2gw"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="2_cihn5"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_xhfhh"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_0cd16"]
+[ext_resource type="PackedScene" uid="uid://dponnsom5m3oj" path="res://Scenes/pointy_rock.tscn" id="5_7ubw8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_8b2gw")
@@ -248,3 +249,6 @@ offset_right = 145.0
 offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("4_0cd16")
 text = "O2"
+
+[node name="PointyRock" parent="." instance=ExtResource("5_7ubw8")]
+position = Vector2(292, -168)
