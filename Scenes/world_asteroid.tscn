@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=13 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_8b2gw"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="2_cihn5"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_xhfhh"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_0cd16"]
 [ext_resource type="PackedScene" uid="uid://dponnsom5m3oj" path="res://Scenes/pointy_rock.tscn" id="5_7ubw8"]
+[ext_resource type="Script" path="res://Scripts/meteor_spawner.gd" id="6_pdfv4"]
+[ext_resource type="PackedScene" uid="uid://bxfswk2633o02" path="res://Scenes/falling_meteor.tscn" id="7_mer6q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_8b2gw")
@@ -222,33 +224,52 @@ layer_1/tile_data = PackedInt32Array(-131078, 917506, 11, -65542, 917506, 12, -1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 15.0
 offset_top = 20.0
-offset_right = 250.0
+offset_right = 265.0
 offset_bottom = 40.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_4doei")
 show_percentage = false
 
 [node name="OxygenBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 15.0
 offset_top = 70.0
-offset_right = 250.0
+offset_right = 265.0
 offset_bottom = 90.0
 theme_override_styles/background = SubResource("StyleBoxFlat_wwxlt")
 show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer"]
-offset_left = 90.0
-offset_right = 149.0
+offset_left = 110.0
+offset_right = 169.0
 offset_bottom = 24.0
 theme_override_fonts/font = ExtResource("4_0cd16")
 text = "Health"
 
 [node name="OxygenLabel" type="Label" parent="CanvasLayer"]
-offset_left = 105.0
+offset_left = 125.0
 offset_top = 50.0
-offset_right = 145.0
+offset_right = 165.0
 offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("4_0cd16")
 text = "O2"
 
 [node name="PointyRock" parent="." instance=ExtResource("5_7ubw8")]
-position = Vector2(292, -168)
+position = Vector2(507, 277)
+
+[node name="PointyRock2" parent="." instance=ExtResource("5_7ubw8")]
+position = Vector2(225, -457)
+
+[node name="PointyRock4" parent="." instance=ExtResource("5_7ubw8")]
+position = Vector2(-644, -66)
+
+[node name="PointyRock3" parent="." instance=ExtResource("5_7ubw8")]
+position = Vector2(1287, -762)
+
+[node name="MeteorSpawner" type="Node2D" parent="."]
+script = ExtResource("6_pdfv4")
+MeteorScene = ExtResource("7_mer6q")
+
+[node name="Timer" type="Timer" parent="MeteorSpawner"]
+wait_time = 2.0
+autostart = true

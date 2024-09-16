@@ -21,6 +21,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	update_zoom()
+	
+	# Screen shake logic for if you take damage
+	if shake_timer > 0:
+		shake_timer -= delta
+		var shake_offset = Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
+		position += shake_offset  # Add the shake offset to the camera's position
+		
 	# The camera's target position is either the anchor_position if the value isn't Vector2.ZERO or the owner's position. The owner is the root node of the scene in which the camera is instanced.
 	var target_position: Vector2 = (
 		owner.global_position
@@ -58,3 +65,16 @@ func arrive_to(target_position: Vector2) -> void:
 		
 	_velocity += (desired_velocity - _velocity) / mass
 	position += _velocity * get_physics_process_delta_time()
+
+
+##### CAMERA SCREEN SHAKE #####
+# Variables for screen shake
+var shake_duration = 0.0
+var shake_intensity = 0.0
+var shake_timer = 0.0
+
+# Call this function to start screen shake
+func start_screen_shake(duration: float, intensity: float) -> void:
+	shake_duration = duration
+	shake_intensity = intensity
+	shake_timer = duration

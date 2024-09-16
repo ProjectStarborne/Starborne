@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dponnsom5m3oj"]
+[gd_scene load_steps=4 format=3 uid="uid://dponnsom5m3oj"]
 
 [ext_resource type="Script" path="res://Scripts/rock.gd" id="1_opv14"]
-[ext_resource type="Texture2D" uid="uid://0qm26yy0bl53" path="res://Assets/images/pointyrocks.png" id="1_yb3tv"]
+[ext_resource type="Texture2D" uid="uid://bca44p3i5bo2" path="res://Assets/images/pointyrocks_dark.png" id="2_p50n8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7inlt"]
 
 [node name="PointyRock" type="Node2D"]
 
@@ -10,11 +12,25 @@ collision_mask = 3
 script = ExtResource("1_opv14")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(353, -83)
-texture = ExtResource("1_yb3tv")
+position = Vector2(175, -39)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_p50n8")
 offset = Vector2(-370, 72)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(-33, -75, 38, -146, 22, -83, 78, -102, 71, -70, 131, -97, 156, 101, 106, 105, 80, 85, 60, 106, 6, 111, -17, 84, -57, 123, -89, 123, -79, 78, -119, 97, -144, 95, -203, 90, -101, -25, -87, -27)
+visibility_layer = 3
+position = Vector2(-3, 3)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(134, -96, 154, 100, 103, 111, 78, 89, 54, 108, 13, 114, -1, 107, -10, 93, -60, 129, -86, 126, -85, 74, -111, 100, -204, 96, -199, 79, -103, -26, -84, -31, -38, -79, -24, -75, 37, -147, 27, -82, 72, -98, 70, -68)
 
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(298, -70)
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_7inlt")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-150, 39)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(-168, -27, -150, 167, -197, 173, -222, 158, -243, 170, -298, 181, -313, 158, -361, 197, -388, 192, -384, 143, -416, 166, -448, 168, -453, 156, -499, 160, -500, 144, -405, 44, -392, 41, -337, -10, -329, -3, -264, -80, -276, -19, -225, -32, -226, 1)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

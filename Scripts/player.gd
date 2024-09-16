@@ -3,31 +3,46 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 @export var friction = 500
+var knockback_velocity = Vector2.ZERO  # Holds the knockback force
+var knockback_timer = 0.0  # Timer for how long knockback lasts
+const KNOCKBACK_DURATION = 0.5  # Knockback effect lasts for 0.5 seconds
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	
-	if is_dead:
-		return  # Prevent movement if dead
+	# If player is in knockback state
+	if knockback_timer > 0:
+		# Apply knockback
+		velocity = knockback_velocity
+		knockback_timer -= delta
+	else:
+		# Reset knockback velocity once knockback time is over
+		knockback_velocity = Vector2.ZERO
 		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	if Input.is_action_pressed("up"):
-		direction.y -= 1
-	if Input.is_action_pressed("down"):
-		direction.y += 1
-	if Input.is_action_pressed("left"):
-		direction.x -= 1
-	if Input.is_action_pressed("right"):
-		direction.x += 1
+		if is_dead:
+			return  # Prevent movement if dead
+			
+		# Get the input direction and handle the movement/deceleration.
+		if Input.is_action_pressed("up"):
+			direction.y -= 1
+		if Input.is_action_pressed("down"):
+			direction.y += 1
+		if Input.is_action_pressed("left"):
+			direction.x -= 1
+		if Input.is_action_pressed("right"):
+			direction.x += 1
+		
+		direction = direction.normalized()
+		velocity = direction * SPEED
 	
-	direction = direction.normalized()
-	velocity = direction * SPEED
-
-		
-	#print("x: ", velocity.x, " y: ", velocity.y)
 	move_and_slide()
 	deplete_oxygen(delta)
+
+
+# Function to apply knockback
+func apply_knockback(force: Vector2) -> void:
+	knockback_velocity = force
+	knockback_timer = KNOCKBACK_DURATION  # Apply knockback for a fixed duration
 
 
 ####### HEALTH #######
