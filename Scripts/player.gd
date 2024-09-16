@@ -79,6 +79,13 @@ func update_health_bar() -> void:
 
 func game_over() -> void:
 	print("Game Over!")
+	
+	# play the lego_death.wav sound effect
+	var audio_player = get_node("AudioStreamPlayer2D")
+	if audio_player:
+		print("Audio player found!")
+		audio_player.play()
+	
 	is_dead = true
 	# respawn after 2 seconds
 	await get_tree().create_timer(2.0).timeout  # wait 2 sec before respawning

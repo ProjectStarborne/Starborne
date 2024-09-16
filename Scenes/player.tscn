@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg1n3hs12k8ko"]
+[gd_scene load_steps=7 format=3 uid="uid://cg1n3hs12k8ko"]
 
-[ext_resource type="Texture2D" uid="uid://plulppedwtw4" path="res://Assets/images/tempship.png" id="1_gxj0h"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ybtu2"]
+[ext_resource type="Texture2D" uid="uid://cvdwpkntjanyh" path="res://Assets/images/Astronaut.png" id="2_t1mp1"]
 [ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/anchor_camera_2d.tscn" id="3_wfdif"]
 [ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/anchor_detector_2d.tscn" id="4_cvytj"]
+[ext_resource type="AudioStream" uid="uid://bbye1uh0nyck8" path="res://Assets/sounds/lego_death.mp3" id="5_w2a5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knndq"]
 size = Vector2(128, 128)
@@ -13,8 +14,8 @@ script = ExtResource("1_ybtu2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 5
-scale = Vector2(5, 5)
-texture = ExtResource("1_gxj0h")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_t1mp1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.125, 0.125)
@@ -25,6 +26,9 @@ scale = Vector2(0.5, 0.5)
 
 [node name="AnchorDetector2D" parent="." instance=ExtResource("4_cvytj")]
 scale = Vector2(0.125, 0.125)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_w2a5j")
 
 [connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
 [connection signal="anchor_detected" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detected"]

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ckio8qbxh26wq"
-path="res://.godot/imported/meteor_impact.wav-b5cb4252ee22f69d3b046b8880be4781.sample"
+path="res://.godot/imported/meteor_impact.wav-94a4b2790535495068745d7275952d98.sample"
 
 [deps]
 
-source_file="res://Assets/meteor_impact.wav"
-dest_files=["res://.godot/imported/meteor_impact.wav-b5cb4252ee22f69d3b046b8880be4781.sample"]
+source_file="res://Assets/sounds/meteor_impact.wav"
+dest_files=["res://.godot/imported/meteor_impact.wav-94a4b2790535495068745d7275952d98.sample"]
 
 [params]
 

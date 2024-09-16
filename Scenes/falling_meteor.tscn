@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/falling_meteor.gd" id="1_5y271"]
 [ext_resource type="Texture2D" uid="uid://b88tiin84r8uf" path="res://Assets/images/asteroid_brown.png" id="2_lifo7"]
-[ext_resource type="AudioStream" uid="uid://ckio8qbxh26wq" path="res://Assets/meteor_impact.wav" id="3_32qcb"]
+[ext_resource type="AudioStream" uid="uid://ckio8qbxh26wq" path="res://Assets/sounds/meteor_impact.wav" id="3_32qcb"]
 
 [node name="FallingMeteor" type="Node2D"]
 
