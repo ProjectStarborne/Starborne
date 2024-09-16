@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=12 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://c4old2vixf83l" path="res://Scenes/Pickup/pickup.tscn" id="5_bl3rf"]
+[ext_resource type="Resource" uid="uid://brtl2p2f74n2x" path="res://data/items/item_test.tres" id="6_2uteu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_0xj0f")
@@ -251,4 +252,5 @@ theme_override_fonts/font = ExtResource("4_w767y")
 text = "O2"
 
 [node name="Pickup" parent="." instance=ExtResource("5_bl3rf")]
-position = Vector2(378, -124)
+position = Vector2(379, -131)
+item = ExtResource("6_2uteu")

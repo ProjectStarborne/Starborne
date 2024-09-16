@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 200.0
-@export var friction = 500
+@export var friction = .005
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
