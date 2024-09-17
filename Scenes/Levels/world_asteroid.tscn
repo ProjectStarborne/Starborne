@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://c4old2vixf83l" path="res://Scenes/Pickup/pickup.tscn" id="5_bl3rf"]
-[ext_resource type="Resource" uid="uid://brtl2p2f74n2x" path="res://data/items/item_test.tres" id="6_2uteu"]
+[ext_resource type="Resource" uid="uid://brtl2p2f74n2x" path="res://Data/Items/item_test.tres" id="6_2uteu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_0xj0f")

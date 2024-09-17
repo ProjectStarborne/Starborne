@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Usable" load_steps=2 format=3 uid="uid://be0l3lsipm0i1"]
+
+[ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_01wqb"]
+
+[resource]
+script = ExtResource("1_01wqb")
+effect = ""
+consumable = false
+name = ""
+price = 0
+weight = 0
+description = ""
+stackable = false

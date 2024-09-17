@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Usable" load_steps=2 format=3 uid="uid://cea8a0d0iq11e"]
+
+[ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_klx04"]
+
+[resource]
+script = ExtResource("1_klx04")
+effect = ""
+consumable = false
+name = ""
+price = 0
+weight = 0
+description = ""
+stackable = false

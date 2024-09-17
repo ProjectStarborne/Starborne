@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Mineral" load_steps=2 format=3 uid="uid://dk7t83v3c2i47"]
+
+[ext_resource type="Script" path="res://Scripts/Resource System/mineral.gd" id="1_nv073"]
+
+[resource]
+script = ExtResource("1_nv073")
+mineral_type = ""
+quantity = 0
+name = ""
+price = 0
+weight = 0
+description = ""
+stackable = false
