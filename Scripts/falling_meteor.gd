@@ -1,56 +1,51 @@
 extends Area2D
 
-@export var speed: float = 250.0  # Speed of the meteor falling
-@export var level_bottom: float = 3000.0 
+var target_position: Vector2 = Vector2.ZERO
+@export var speed: float = 1000.0
 var velocity: Vector2 = Vector2.ZERO
-
-# Knockback strength
-var knockback_strength = 300.0  # Adjust this for the amount of knockback
+@onready var ExplosionScene = preload("res://Scenes/explosion.tscn")
+var impact_sound = preload("res://Assets/sounds/meteor_impact.wav")
 
 func _ready() -> void:
-	# Set the initial velocity (falling downwards)
-	velocity = Vector2(0, speed)
-	# Optionally, add rotation or other effects here
+	print("Meteor ready at position:", global_position, " with target_position:", target_position)
+	if target_position == null or target_position == Vector2.ZERO:
+		print("Error: target_position not set for meteor at position:", global_position)
+		queue_free()
+		return
+	var direction = (target_position - global_position).normalized()
+	velocity = direction * speed
+	rotation = velocity.angle()
+
 
 func _physics_process(delta: float) -> void:
-	# Move the meteor downwards
 	position += velocity * delta
-	# Remove the meteor if it goes off-screen
-	if position.y > level_bottom:
-		queue_free()
+	# Check if the meteor has reached or passed the target position
+	if ((velocity.x >= 0 and position.x >= target_position.x) or (velocity.x < 0 and position.x <= target_position.x)) \
+	   and ((velocity.y >= 0 and position.y >= target_position.y) or (velocity.y < 0 and position.y <= target_position.y)):
+		impact()
 
+func impact():
+	# Create explosion effect
+	var explosion_instance = ExplosionScene.instantiate()
+	explosion_instance.global_position = target_position
+	get_tree().current_scene.add_child(explosion_instance)
 
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		body.take_damage(40)  # Adjust damage amount as needed
-		apply_knockback(body)
-		
-		# triggering the screen shake
-		# try to find the camera by traversing the scene tree from the Player node
-		var camera = body.get_node_or_null("AnchorCamera2D")
-		if camera != null:
-			camera.start_screen_shake(0.5, 20)  # shakeeeee for 0.5 seconds with intensity 20
-			
-		# optionally, we could create an explosion effect here
-		
-		# play the meteor_impact.wav sound effect
-		var audio_player = get_node("AudioStreamPlayer2D")
-		if audio_player:
-			print("Audio player found!")
-			audio_player.play()
+	# Play impact sound
+	var audio_player = AudioStreamPlayer2D.new()
+	audio_player.stream = impact_sound
+	audio_player.global_position = target_position
+	get_tree().current_scene.add_child(audio_player)
+	audio_player.play()
 
-			# detach the sound node from the meteor so it keeps playing even after the meteor is removed
-			#some dumb bug workaround, it works
-			audio_player.get_parent().remove_child(audio_player)
-			get_tree().root.add_child(audio_player)
+	# Damage the player if nearby
+	var player = get_tree().current_scene.get_node("Player")  # Adjust the path
+	var damage_radius = 100.0  # Adjust as needed
 
-		# stop the meteor's movement immediately and remove it
-		queue_free()  # remove the meteor after collision
+	if player:
+		var distance = player.global_position.distance_to(target_position)
+		if distance <= damage_radius:
+			player.take_damage(40)
+			# Apply knockback or other effects
 
-
-# function to apply knockback to the player
-func apply_knockback(player):
-	# valculate the direction from the rock to the player
-	var direction = (player.global_position - global_position).normalized()
-	# apply the knockback force
-	player.apply_knockback(direction * knockback_strength)
+	# Remove the meteor
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=14 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_8b2gw"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="2_cihn5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dponnsom5m3oj" path="res://Scenes/pointy_rock.tscn" id="5_7ubw8"]
 [ext_resource type="Script" path="res://Scripts/meteor_spawner.gd" id="6_pdfv4"]
 [ext_resource type="PackedScene" uid="uid://bxfswk2633o02" path="res://Scenes/falling_meteor.tscn" id="7_mer6q"]
+[ext_resource type="PackedScene" uid="uid://tqmhrntmvul4" path="res://Scenes/impact_indicator.tscn" id="8_qo45c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_8b2gw")
@@ -267,9 +268,11 @@ position = Vector2(-644, -66)
 position = Vector2(1287, -762)
 
 [node name="MeteorSpawner" type="Node2D" parent="."]
+position = Vector2(490, 110)
 script = ExtResource("6_pdfv4")
 MeteorScene = ExtResource("7_mer6q")
+ImpactIndicatorScene = ExtResource("8_qo45c")
 
 [node name="Timer" type="Timer" parent="MeteorSpawner"]
-wait_time = 2.0
+wait_time = 4.0
 autostart = true
