@@ -274,5 +274,5 @@ MeteorScene = ExtResource("7_mer6q")
 ImpactIndicatorScene = ExtResource("8_qo45c")
 
 [node name="Timer" type="Timer" parent="MeteorSpawner"]
-wait_time = 4.0
+wait_time = 0.2
 autostart = true

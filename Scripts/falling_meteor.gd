@@ -5,6 +5,8 @@ var target_position: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 @onready var ExplosionScene = preload("res://Scenes/explosion.tscn")
 var impact_sound = preload("res://Assets/sounds/meteor_impact.wav")
+var impact_indicator: Node = null 
+var knockback_strength: float = 300.0  # Adjust this for the meteor knockback strength
 
 func _ready() -> void:
 	print("Meteor ready at position:", global_position, " with target_position:", target_position)
@@ -36,6 +38,9 @@ func impact():
 	audio_player.global_position = target_position
 	get_tree().current_scene.add_child(audio_player)
 	audio_player.play()
+	
+	if impact_indicator:
+		impact_indicator.queue_free()
 
 	# Damage the player if nearby
 	var player = get_tree().current_scene.get_node("Player")  # Adjust the path
@@ -46,6 +51,22 @@ func impact():
 		if distance <= damage_radius:
 			player.take_damage(40)
 			# Apply knockback or other effects
+			# Apply knockback
+			apply_knockback(player)
+
+			# Trigger the screen shake
+			var camera = player.get_node_or_null("AnchorCamera2D")  # Adjust path to player's camera node
+			if camera != null:
+				camera.start_screen_shake(0.5, 2)  # Shake for 0.5 seconds with intensity 2
 
 	# Remove the meteor
 	queue_free()
+
+
+# Function to apply knockback to the player
+func apply_knockback(player):
+	# Calculate the direction from the meteor to the player
+	var direction = (player.global_position - target_position).normalized()
+
+	# Apply the knockback force to the player
+	player.apply_knockback(direction * knockback_strength)
