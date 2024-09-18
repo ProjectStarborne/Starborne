@@ -7,6 +7,7 @@ func _ready() -> void:
 	# Load scene from database (see items.gd)
 	var instance = item.scene.instantiate()
 	add_child(instance)
+	print("Item Position: ", instance.global_position)
 
 # If the player gets close enough, the item will be picked up and then removed from the scene
 func _on_area_2d_body_entered(body: Node2D) -> void:

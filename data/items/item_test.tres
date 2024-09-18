@@ -7,3 +7,7 @@
 script = ExtResource("1_ke8q3")
 name = "test item"
 scene = ExtResource("1_8ogop")
+price = 0
+weight = 0
+description = ""
+stackable = false
