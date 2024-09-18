@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Constant defining the player's movement speed
-const SPEED = 200.0
+const SPEED = 400.0
 # Exported variable for friction, which controls how quickly the player slows down after moving
 @export var friction = 500
 # Vector to hold the player's knockback velocity (force applied when hit)
@@ -241,4 +241,4 @@ func update_oxygen_color() -> void:
 	elif oxygen_percentage > 0.25:
 		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for oxygen between 25% and 50%
 	else:
-		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for oxygen below 25%
+		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for oxygen below 25% 
