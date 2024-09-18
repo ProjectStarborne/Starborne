@@ -1,125 +1,168 @@
 extends CharacterBody2D
 
-
+# Constant defining the player's movement speed
 const SPEED = 200.0
+# Exported variable for friction, which controls how quickly the player slows down after moving
 @export var friction = 500
-var knockback_velocity = Vector2.ZERO  # Holds the knockback force
-var knockback_timer = 0.0  # Timer for how long knockback lasts
-const KNOCKBACK_DURATION = 0.5  # Knockback effect lasts for 0.5 seconds
+# Vector to hold the player's knockback velocity (force applied when hit)
+var knockback_velocity = Vector2.ZERO
+# Timer to track how long the knockback effect lasts
+var knockback_timer = 0.0
+# Constant defining the duration of the knockback effect (0.5 seconds in this case)
+const KNOCKBACK_DURATION = 0.5
 
+
+# Called every frame to handle player movement and other physics-related calculations
 func _physics_process(delta: float) -> void:
+	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
 	
-	# If player is in knockback state
+	# Check if the player is currently in the knockback state (knockback_timer > 0)
 	if knockback_timer > 0:
-		# Apply knockback
+		# Apply the knockback force by setting the player's velocity to knockback_velocity
 		velocity = knockback_velocity
+		# Reduce the knockback timer as time progresses (delta is the time passed since the last frame)
 		knockback_timer -= delta
 	else:
-		# Reset knockback velocity once knockback time is over
+		# If the knockback timer is finished, reset the knockback velocity to zero
 		knockback_velocity = Vector2.ZERO
 		
+		# Prevent the player from moving if they are dead (assuming is_dead is defined elsewhere)
 		if is_dead:
-			return  # Prevent movement if dead
-			
-		# Get the input direction and handle the movement/deceleration.
-		if Input.is_action_pressed("up"):
-			direction.y -= 1
-		if Input.is_action_pressed("down"):
-			direction.y += 1
-		if Input.is_action_pressed("left"):
-			direction.x -= 1
-		if Input.is_action_pressed("right"):
-			direction.x += 1
+			return  # Early exit to stop further processing
 		
+		# Get player input and determine the direction of movement
+		if Input.is_action_pressed("up"):
+			direction.y -= 1  # Move up
+		if Input.is_action_pressed("down"):
+			direction.y += 1  # Move down
+		if Input.is_action_pressed("left"):
+			direction.x -= 1  # Move left
+		if Input.is_action_pressed("right"):
+			direction.x += 1  # Move right
+		
+		# Normalize the direction vector to ensure consistent movement speed in all directions
 		direction = direction.normalized()
+
+		# Set the player's velocity based on the direction and the defined speed
 		velocity = direction * SPEED
 	
+	# Move the player based on the current velocity (built-in Godot function)
 	move_and_slide()
+	# Deplete oxygen over time 
 	deplete_oxygen(delta)
 
 
-# Function to apply knockback
+# Function to apply knockback to the player
 func apply_knockback(force: Vector2) -> void:
+	# Set the knockback velocity to the given force (direction and strength of the knockback)
 	knockback_velocity = force
-	knockback_timer = KNOCKBACK_DURATION  # Apply knockback for a fixed duration
+
+	# Start the knockback timer, which lasts for the duration defined in KNOCKBACK_DURATION
+	knockback_timer = KNOCKBACK_DURATION
 
 
-####### HEALTH #######
+
+
+####### HEALTH SYSTEM #######
+
 # Health Variables
-@onready var health_bar = get_node("/root/Environment/CanvasLayer/HealthBar")
-@export var max_health = 100  # Maximum health for the player
-var current_health = max_health  # Current health of the player
-var is_dead = false  # Player starts alive
+@onready var health_bar = get_node("/root/Environment/CanvasLayer/HealthBar")  # Reference to the health bar node in the scene
+@export var max_health = 100  # Maximum health for the player (adjustable)
+var current_health = max_health  # Player's current health, initialized to the maximum
+var is_dead = false  # Boolean to track if the player is dead (starts alive)
 
 
-
+# Called when the node is added to the scene
 func _ready() -> void: 
+	# Set the health bar's maximum and current values to reflect the player's health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
+
+	# Set up the oxygen bar (assuming it is defined elsewhere)
 	oxygen_bar.max_value = max_oxygen
 	oxygen_bar.value = current_oxygen
+
+	# Update the health and oxygen bar colors to reflect current values
 	update_health_color()
 	update_oxygen_color()
-	
 
+
+# Function to handle when the player takes damage
 func take_damage(damage: int) -> void:
+	# Reduce the player's current health by the damage amount
 	current_health -= damage
+	
+	# If health drops to 0 or below, trigger game over
 	if current_health <= 0:
-		current_health = 0
-		game_over()  #calls a game over function when health reaches 0
-		print("Current Health:", current_health)  
-	update_health_bar()  #update the health bar whenever health changes
-	update_health_color()  # Update color after taking damage
+		current_health = 0  # Prevent health from going negative
+		game_over()  # Call the game over function
+		print("Current Health:", current_health)  # Output current health for debugging
+	
+	# Update the health bar and color after taking damage
+	update_health_bar()
+	update_health_color()
 
 
+# Function to update the health bar UI to reflect the current health
 func update_health_bar() -> void:
 	health_bar.value = current_health
 
 
+# Function to handle the game over state when the player's health reaches 0
 func game_over() -> void:
-	print("Game Over!")
+	print("Game Over!")  # Output "Game Over" for debugging purposes
 	
-	# play the lego_death.wav sound effect
+	# Play the game over sound (rn its "lego_death.wav" sound effect lmao)
 	var audio_player = get_node("AudioStreamPlayer2D")
 	if audio_player:
-		print("Audio player found!")
-		audio_player.play()
+		print("Audio player found!")  # Debugging statement
+		audio_player.play()  # Play the sound
 	
-	is_dead = true
-	# respawn after 2 seconds
-	await get_tree().create_timer(2.0).timeout  # wait 2 sec before respawning
-	respawn()
+	is_dead = true  # Set the player to dead, disabling further movement
+	# Wait 2 seconds before respawning the player
+	await get_tree().create_timer(2.0).timeout
+	respawn()  # Call the respawn function after the timer
 
-	
-# TESTING METHOD FOR HEALTH
+
+# Function to test health reduction (triggered by hitting spacebar/enter)
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"): 
-		take_damage(10)  #reduce health by 10 every time you press the enter key
-	
-	
+		take_damage(10)  # Reduce health by 10 whenever the enter key/space bar is pressed
+
+
+# Function to handle respawning the player
 func respawn() -> void:
-	current_health = max_health  # reset the health
-	update_health_bar()  # update the health bar back to full
-	update_health_color()
-	current_oxygen = max_oxygen  # reset oxygen level
-	update_oxygen_bar()
-	update_oxygen_color()
-	is_dead = false  # allow the player to move again
-	global_position = Vector2(100, 100)  #respawn at  100 100 
-	print("Respawning...")
+	# Reset the player's health, oxygen, and other stats upon respawn
+	current_health = max_health  # Reset health to full
+	update_health_bar()  # Update the health bar UI
+	update_health_color()  # Update the health bar color to green
+	
+	# Reset the player's oxygen levels 
+	current_oxygen = max_oxygen  
+	update_oxygen_bar()  # Update the oxygen bar UI
+	update_oxygen_color()  # Update the oxygen bar color to blue
+	
+	is_dead = false  # Allow the player to move again (remove the dead state)
+	
+	# Respawn the player at a predefined position (100, 100)
+	global_position = Vector2(100, 100)
+	print("Respawning...")  
 
 
+# Function to update the health bar's color based on the player's current health percentage
 func update_health_color() -> void:
-	var health_percentage = float(current_health) / float(max_health)  # Health as a percentage (0 to 1)
-
+	# Calculate the player's health as a percentage (between 0 and 1)
+	var health_percentage = float(current_health) / float(max_health)
+	
+	# Get the fill stylebox of the health bar to change its background color
 	var fill_stylebox = health_bar.get("theme_override_styles/fill")
 	if fill_stylebox == null:
-		# If there's no existing style, create one
+		# If there's no existing style, create a new one
 		fill_stylebox = StyleBoxFlat.new()
 		health_bar.set("theme_override_styles/fill", fill_stylebox)
 
-	# Set the color based on health percentage thresholds
+	# Set the color of the health bar based on the health percentage:
 	if health_percentage > 0.75:
 		fill_stylebox.bg_color = Color(0.0, 0.7, 0.0)  # Green for health > 75%
 	elif health_percentage > 0.5:
@@ -133,59 +176,64 @@ func update_health_color() -> void:
 
 
 
-
-
-
-
-
-####### OXYGEN #######
+####### OXYGEN SYSTEM #######
 
 # Oxygen Variables
-@onready var oxygen_bar  = get_node("/root/Environment/CanvasLayer/OxygenBar")
-@export var max_oxygen = 100  # Maximum oxygen level
-var current_oxygen = max_oxygen  # Current oxygen level
-var oxygen_depleting = false  # Track whether oxygen is being depleted
-# Function to deplete oxygen over time
-var health_chip_delay = 1.0  # Delay in seconds between health reductions
-var time_since_last_health_chip = 0.0  # Tracks time since last health reduction
+@onready var oxygen_bar = get_node("/root/Environment/CanvasLayer/OxygenBar")  # Reference to the oxygen bar node in the UI
+@export var max_oxygen = 100  # Maximum oxygen level for the player
+var current_oxygen = max_oxygen  # Player's current oxygen level, initialized to max
+var oxygen_depleting = false  # Boolean to track whether oxygen depletion has started. cant remember if we used this or not 
+
+# Variables for managing health reduction once oxygen is depleted
+var health_chip_delay = 1.0  # Delay in seconds between health reductions (when oxygen is depleted)
+var time_since_last_health_chip = 0.0  # Tracks time since the last health reduction
 
 
+# Function to update the oxygen bar UI when the oxygen level changes
 func update_oxygen_bar() -> void:
-	oxygen_bar.value = current_oxygen
-	
-	
-# function to deplete oxygen over time
+	oxygen_bar.value = current_oxygen  # Set the oxygen bar's value to the current oxygen level
+
+
+# Function to deplete oxygen over time (called every frame)
 func deplete_oxygen(delta: float) -> void:
-	var oxygenDrainRate = 2 * delta # change these two variables to control the drainage rate
-	var healthDrainRate = 15
+	var oxygenDrainRate = 2 * delta  # Controls how quickly oxygen drains over time (adjustable)
+	var healthDrainRate = 15  # Amount of health to reduce per "tick" when oxygen is depleted
 	
+	# If the player still has oxygen, continue to deplete it
 	if current_oxygen > 0:
-		current_oxygen -= oxygenDrainRate 
+		current_oxygen -= oxygenDrainRate  # Decrease oxygen based on the drain rate
+		
+		# If oxygen drops to 0 or below, trigger the start of health damage
 		if current_oxygen <= 0:
-			current_oxygen = 0
-			oxygen_depleting = true  # start damaging health once oxygen is depleted
+			current_oxygen = 0  # Ensure oxygen does not go below 0
+			oxygen_depleting = true  # Enable health depletion now that oxygen is gone
 	else:
-		# if oxygen is depleted, start affecting health
+		# Once oxygen is depleted, start affecting health
 		if oxygen_depleting:
+			# Track time since the last health chip and reduce health periodically
 			time_since_last_health_chip += delta
 			if time_since_last_health_chip >= health_chip_delay:
-				take_damage(healthDrainRate)  # chip away at health at 15 per sec
-				time_since_last_health_chip = 0.0  # reset timer after health damage
+				take_damage(healthDrainRate)  # Reduce player's health by a fixed amount (15)
+				time_since_last_health_chip = 0.0  # Reset the timer after each health reduction
+	
+	# Update the oxygen bar and its color to reflect the current oxygen level
 	update_oxygen_bar()
 	update_oxygen_color()
-	
 
 
+# Function to update the oxygen bar's color based on the player's current oxygen level
 func update_oxygen_color() -> void:
-	var oxygen_percentage = float(current_oxygen) / float(max_oxygen)  # Oxygen as a percentage (0 to 1)
+	# Calculate the oxygen as a percentage (between 0 and 1)
+	var oxygen_percentage = float(current_oxygen) / float(max_oxygen)
 
+	# Get the fill stylebox of the oxygen bar to modify its color
 	var fill_stylebox = oxygen_bar.get("theme_override_styles/fill")
 	if fill_stylebox == null:
-		# If there's no existing style, create one
+		# If there's no existing style, create a new one
 		fill_stylebox = StyleBoxFlat.new()
 		oxygen_bar.set("theme_override_styles/fill", fill_stylebox)
 
-	# Set the color based on oxygen percentage thresholds
+	# Set the color of the oxygen bar based on the oxygen percentage:
 	if oxygen_percentage > 0.75:
 		fill_stylebox.bg_color = Color(0.0, 0.5, 1.0)  # Blue for oxygen > 75%
 	elif oxygen_percentage > 0.5:
