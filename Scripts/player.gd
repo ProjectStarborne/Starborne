@@ -14,17 +14,27 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_pressed("up"):
 		direction.y -= 1
+		$Sprite2D/AnimationPlayer.play("walk_up")
 	if Input.is_action_pressed("down"):
 		direction.y += 1
+		$Sprite2D/AnimationPlayer.play("walk_down")
 	if Input.is_action_pressed("left"):
 		direction.x -= 1
+		
+		if direction.y == 0:
+			$Sprite2D/AnimationPlayer.play("walk_left")
 	if Input.is_action_pressed("right"):
 		direction.x += 1
+		
+		if direction.y == 0:
+			$Sprite2D/AnimationPlayer.play("walk_right")
 	
 	direction = direction.normalized()
 	velocity = direction * SPEED
-
-		
+	
+	if direction == Vector2.ZERO:
+		$Sprite2D/AnimationPlayer.stop()
+	
 	#print("x: ", velocity.x, " y: ", velocity.y)
 	move_and_slide()
 	deplete_oxygen(delta)
