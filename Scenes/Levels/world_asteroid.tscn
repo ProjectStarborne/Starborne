@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=14 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_it5gi"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
+[ext_resource type="PackedScene" uid="uid://c4old2vixf83l" path="res://Scenes/Pickup/pickup.tscn" id="2_u8uhb"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="6_xpaa1"]
 [ext_resource type="PackedScene" uid="uid://yuhkggwvkakl" path="res://Scenes/Pickup/pickup_oxygen.tscn" id="7_lyto1"]
-[ext_resource type="Script" path="res://Scripts/Managers Scripts/resource_spawn_manager.gd" id="7_sjm6w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_0xj0f")
@@ -208,6 +209,8 @@ shadow_size = 2
 anti_aliasing_size = 3.0
 
 [node name="Environment" type="Node2D"]
+script = ExtResource("1_it5gi")
+pickups = Array[PackedScene]([ExtResource("2_u8uhb"), ExtResource("6_xpaa1"), ExtResource("7_lyto1")])
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 5
@@ -252,15 +255,11 @@ offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("4_w767y")
 text = "O2"
 
-[node name="ResourceSpawner" type="Node" parent="CanvasLayer"]
-script = ExtResource("7_sjm6w")
-pickups = Array[PackedScene]([ExtResource("6_xpaa1"), ExtResource("7_lyto1")])
+[node name="Marker2D" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-269, -101)
 
-[node name="Marker2D" type="Marker2D" parent="CanvasLayer/ResourceSpawner" groups=["Resource_Spawn"]]
-position = Vector2(-262, -114)
+[node name="Marker2D2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-104, 712)
 
-[node name="Marker2D2" type="Marker2D" parent="CanvasLayer/ResourceSpawner" groups=["Resource_Spawn"]]
-position = Vector2(-109, 698)
-
-[node name="Marker2D3" type="Marker2D" parent="CanvasLayer/ResourceSpawner" groups=["Resource_Spawn"]]
-position = Vector2(940, -690)
+[node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(933, -644)

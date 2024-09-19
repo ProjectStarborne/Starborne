@@ -27,6 +27,7 @@ project/assembly_name="Starborne"
 [global_group]
 
 Player=""
+"Resource Spawn Marker"=""
 
 [input]
 
