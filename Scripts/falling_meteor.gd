@@ -19,7 +19,7 @@ var knockback_strength: float = 300.0
 # Called when the meteor node is added to the scene
 func _ready() -> void:
 	# Print the current meteor position and the target position (for debugging)
-	print("Meteor ready at position:", global_position, " with target_position:", target_position)
+	#print("Meteor ready at position:", global_position, " with target_position:", target_position)
 	
 	# Check if the target position is valid; if not, free the meteor node
 	if target_position == null or target_position == Vector2.ZERO:

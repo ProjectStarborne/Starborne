@@ -10,12 +10,17 @@ var knockback_velocity = Vector2.ZERO
 var knockback_timer = 0.0
 # Constant defining the duration of the knockback effect (0.5 seconds in this case)
 const KNOCKBACK_DURATION = 0.5
+#var default_friction = 500
+#var ice_friction = 100  # Adjust this to control how slippery the ice is
 
 
 # Called every frame to handle player movement and other physics-related calculations
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
+	
+	# Check if the player is standing on ice, and adjust friction accordingly
+	ice_check()
 	
 	# Check if the player is currently in the knockback state (knockback_timer > 0)
 	if knockback_timer > 0:
@@ -60,6 +65,32 @@ func apply_knockback(force: Vector2) -> void:
 
 	# Start the knockback timer, which lasts for the duration defined in KNOCKBACK_DURATION
 	knockback_timer = KNOCKBACK_DURATION
+
+
+#@onready var tile_map : TileMap = $TileMap
+@onready var tile_map = get_node("/root/Environment/TileMap")  # Reference to your TileMap node
+var ground_layer = 1
+var is_ice_custom_data = "is_ice"
+# Method to check if the tile under the player is ice
+func ice_check():
+	var player_pos : Vector2 = global_position  # Assuming this script is attached to the player node
+	var tile_pos : Vector2i = tile_map.local_to_map(player_pos)  # Convert player's position to tilemap grid position
+	
+	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
+
+	if tile_data:
+		var is_ice = tile_data.get_custom_data(is_ice_custom_data)
+		if is_ice == true:
+			print("This tile is ice!")
+		else:
+			print("This tile is not ice.")
+	else:
+		print("No tile data")
+
+
+
+
+
 
 
 

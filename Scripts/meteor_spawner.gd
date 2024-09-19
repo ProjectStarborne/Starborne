@@ -37,7 +37,7 @@ func start_event_timer():
 	add_child(event_timer)  # Add the timer to the scene
 	event_timer.start()  # Start the timer
 	
-	print("Next meteor event in ", time_until_next_event, " seconds.")
+	#print("Next meteor event in ", time_until_next_event, " seconds.")
 
 
 # Called when the event timer finishes, starting a new meteor event
@@ -74,7 +74,7 @@ func start_meteor_event():
 	add_child(event_end_timer)
 	event_end_timer.start()
 	
-	print("Meteor event will end in ", event_duration, " seconds.")
+	#print("Meteor event will end in ", event_duration, " seconds.")
 
 
 # Called when the meteor event ends, resetting the timer for the next event
@@ -109,7 +109,7 @@ func _spawn_meteor_warning(direction):
 
 # Function to spawn a meteor at the impact position
 func _spawn_meteor(impact_position, impact_indicator, direction):
-	print("Spawning meteor at impact_position:", impact_position)
+	#print("Spawning meteor at impact_position:", impact_position)
 	
 	# Instantiate the meteor and set its target and spawn positions
 	var meteor_instance = MeteorScene.instantiate()
