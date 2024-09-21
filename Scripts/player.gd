@@ -1,17 +1,19 @@
 extends CharacterBody2D
 
-# Constant defining the player's movement speed
-const SPEED = 400.0
+# Constants
+const SPEED = 300.0 # Normal speed of the player
+const NORMAL_FRICTION = 1500.0 
+const ICE_FRICTION = 100.0  # Low friction for sliding on ice
+
 # Exported variable for friction, which controls how quickly the player slows down after moving
-@export var friction = 500
+@export var friction = NORMAL_FRICTION
 # Vector to hold the player's knockback velocity (force applied when hit)
 var knockback_velocity = Vector2.ZERO
 # Timer to track how long the knockback effect lasts
 var knockback_timer = 0.0
 # Constant defining the duration of the knockback effect (0.5 seconds in this case)
 const KNOCKBACK_DURATION = 0.5
-#var default_friction = 500
-#var ice_friction = 100  # Adjust this to control how slippery the ice is
+
 
 
 # Called every frame to handle player movement and other physics-related calculations
@@ -49,8 +51,12 @@ func _physics_process(delta: float) -> void:
 		# Normalize the direction vector to ensure consistent movement speed in all directions
 		direction = direction.normalized()
 
-		# Set the player's velocity based on the direction and the defined speed
-		velocity = direction * SPEED
+		# Adjust velocity based on input and friction
+		if direction != Vector2.ZERO:
+			velocity = direction * SPEED
+		else:
+			# Apply friction to slow down when there's no input
+			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	
 	# Move the player based on the current velocity (built-in Godot function)
 	move_and_slide()
@@ -67,28 +73,30 @@ func apply_knockback(force: Vector2) -> void:
 	knockback_timer = KNOCKBACK_DURATION
 
 
-#@onready var tile_map : TileMap = $TileMap
 @onready var tile_map = get_node("/root/Environment/TileMap")  # Reference to your TileMap node
-var ground_layer = 1
+var ground_layer = 0
 var is_ice_custom_data = "is_ice"
+
+
 # Method to check if the tile under the player is ice
 func ice_check():
-	var player_pos : Vector2 = global_position  # Assuming this script is attached to the player node
-	var tile_pos : Vector2i = tile_map.local_to_map(player_pos)  # Convert player's position to tilemap grid position
-	
+	var player_pos : Vector2 = global_position  # player's global position
+	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
+	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
+	print(tile_pos)
 	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
 
 	if tile_data:
 		var is_ice = tile_data.get_custom_data(is_ice_custom_data)
 		if is_ice == true:
 			print("This tile is ice!")
+			friction = ICE_FRICTION  # Set friction to ice friction
 		else:
 			print("This tile is not ice.")
+			friction = NORMAL_FRICTION  # Default friction when not on ice
 	else:
 		print("No tile data")
-
-
-
+		friction = NORMAL_FRICTION  # Default friction when no tile data
 
 
 
