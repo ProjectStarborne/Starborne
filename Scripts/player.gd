@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 	velocity = direction * SPEED
 	
-	
+	flashlight.look_at(get_global_mouse_position())
 	
 	#print("x: ", velocity.x, " y: ", velocity.y)
 	move_and_slide()

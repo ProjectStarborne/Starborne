@@ -20,7 +20,7 @@ texture = ExtResource("1_gxj0h")
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 texture_filter = 2
-position = Vector2(3, 2.00001)
+position = Vector2(-2, -9)
 scale = Vector2(2.67977, 2.67977)
 shadow_enabled = true
 texture = ExtResource("5_cx5qx")
