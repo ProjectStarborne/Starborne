@@ -250,7 +250,7 @@ offset_left = -3606.0
 offset_top = -1574.0
 offset_right = 3883.0
 offset_bottom = 2370.0
-color = Color(0.00870841, 2.54642e-06, 0.0139732, 1)
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.92549)
 
 [node name="Fog" type="ParallaxBackground" parent="."]
 layer = 3
@@ -320,6 +320,7 @@ text = "O2"
 [node name="Headlight1" type="PointLight2D" parent="."]
 texture_filter = 2
 position = Vector2(-1110, -164)
+color = Color(1, 0.996078, 0.909804, 1)
 energy = 1.5
 blend_mode = 2
 range_item_cull_mask = 3
@@ -331,6 +332,7 @@ texture_scale = 2.5
 [node name="Headlight2" type="PointLight2D" parent="."]
 texture_filter = 2
 position = Vector2(-1110, 29)
+color = Color(1, 1, 0.901961, 1)
 energy = 1.5
 blend_mode = 2
 range_item_cull_mask = 3
