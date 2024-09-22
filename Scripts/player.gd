@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 @export var friction = 500
+@onready var flashlight: PointLight2D = $Flashlight
 
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -23,8 +24,9 @@ func _physics_process(delta: float) -> void:
 	
 	direction = direction.normalized()
 	velocity = direction * SPEED
-
-		
+	
+	
+	
 	#print("x: ", velocity.x, " y: ", velocity.y)
 	move_and_slide()
 	deplete_oxygen(delta)

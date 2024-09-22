@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://pewylh8ghso2"]
+[gd_scene load_steps=21 format=3 uid="uid://pewylh8ghso2"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_8b2gw"]
+[ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="1_bbcaq"]
 [ext_resource type="Shader" path="res://Scripts/fog.gdshader" id="1_um8kb"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/player.tscn" id="2_cihn5"]
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="2_kpe0u"]
@@ -64,6 +65,27 @@ texture = ExtResource("1_8b2gw")
 5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.625, -0.875, -2.125, 1.375, -5.25, 1.75, -7, 6.375, -8, 6.5, -3.125, 6.5, 1.125, 5.625, 4.625, 0.25, 6.5, -5.875, 6.75, -8, 6.5)
 8:5/0 = 0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hbojc"]
+polygon = PackedVector2Array(-1.25, -3.75, 8, -4.875, 8, 8, -1.25, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ua758"]
+polygon = PackedVector2Array(-3.75, -6.5, -0.353553, -8, 8, -8, 8, 8, -1.625, 6.5, -5.5, 3.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0noqe"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tnjy3"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_618g5"]
+polygon = PackedVector2Array(-6.25, 5.25, -3.25, 1.125, 5.875, 1, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nua6u"]
+polygon = PackedVector2Array(-8, -1.125, -5.125, -4.75, -2.125, -4.125, 1.5026, -8, 4.25, -4, 4.75, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dquok"]
+polygon = PackedVector2Array(-8, -8, 4.875, -8, 6.375, -4.125, 5.25, 3.75, -1.375, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wb46f"]
 texture = ExtResource("2_xhfhh")
 5:1/0 = 0
@@ -120,14 +142,18 @@ texture = ExtResource("2_xhfhh")
 10:9/0 = 0
 11:9/0 = 0
 16:9/0 = 0
+16:9/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_618g5")
 16:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.375, 8, -6.125, 6.125, -4.5, 5.875, -4.125, 3.375, -3.25, 3, -2.75, 1.25, 3.375, 1.25, 4.375, 2.125, 5.875, 3.25, 6.75, 4.375, 6.875, 8)
 7:10/0 = 0
 11:10/0 = 0
 15:10/0 = 0
+15:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_hbojc")
 15:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -5, 6.5, -4.25, 4.125, -3.625, 0.25, -4.125, -0.625, -2.75, -0.75, -0.125, -0.75, 5.375, -1, 8, 8, 8)
 16:10/0 = 0
+16:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_0noqe")
 16:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 17:10/0 = 0
+17:10/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_nua6u")
 17:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.625, -5.625, -3.75, -3.875, -3.75, -0.75, -4.625, 0.625, -6.75, 1.75, -6.5, 2.75, -5.375, 3.5, -2.625, 3.625, 2, 3.75, 8, -8, 8)
 7:11/0 = 0
 8:11/0 = 0
@@ -135,10 +161,13 @@ texture = ExtResource("2_xhfhh")
 11:11/0 = 0
 14:11/0 = 0
 15:11/0 = 0
+15:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_ua758")
 15:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.5, -8, -2.875, -6.625, -3.625, -5.25, -4.375, -3.125, -5.5, -1.25, -5.625, 2.5, -4.75, 4.125, -3.25, 5.125, -1.5, 6, 0.25, 6.625, 1.375, 8, 8, 8, 8, -8)
 16:11/0 = 0
+16:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_tnjy3")
 16:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 17:11/0 = 0
+17:11/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_dquok")
 17:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.25, -8, 5.625, -5.625, 5.625, -2.625, 5.5, 0.5, 4.875, 3.875, 2.875, 8, -8, 8, -8, -8)
 18:11/0 = 0
 8:12/0 = 0
@@ -192,6 +221,7 @@ texture = ExtResource("2_xhfhh")
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_1gcu8"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_1wdpt")
 sources/2 = SubResource("TileSetAtlasSource_wb46f")
@@ -214,13 +244,21 @@ anti_aliasing_size = 3.0
 
 [node name="Environment" type="Node2D"]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+texture_filter = 2
+offset_left = -3606.0
+offset_top = -1574.0
+offset_right = 3883.0
+offset_bottom = 2370.0
+color = Color(0.00870841, 2.54642e-06, 0.0139732, 1)
+
+[node name="Fog" type="ParallaxBackground" parent="."]
 layer = 3
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Fog"]
 motion_mirroring = Vector2(1152, 648)
 
-[node name="Fog" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Fog" type="ColorRect" parent="Fog/ParallaxLayer"]
 texture_filter = 4
 material = SubResource("ShaderMaterial_jtqv7")
 anchors_preset = 15
@@ -231,6 +269,11 @@ offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.405234, 0.395743, 0.381507, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(9.53674e-07, -2.38419e-07)
+scale = Vector2(1, 1)
+color = Color(0.46229, 0.462291, 0.46229, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 5
@@ -274,3 +317,25 @@ offset_right = 145.0
 offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("4_0cd16")
 text = "O2"
+
+[node name="Headlight1" type="PointLight2D" parent="."]
+texture_filter = 2
+position = Vector2(-1110, -164)
+energy = 1.5
+blend_mode = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = ExtResource("1_bbcaq")
+offset = Vector2(739, 0)
+texture_scale = 2.5
+
+[node name="Headlight2" type="PointLight2D" parent="."]
+texture_filter = 2
+position = Vector2(-1110, 29)
+energy = 1.5
+blend_mode = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+texture = ExtResource("1_bbcaq")
+offset = Vector2(739, 0)
+texture_scale = 2.5
