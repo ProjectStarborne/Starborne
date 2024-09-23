@@ -264,15 +264,3 @@ position = Vector2(-104, 712)
 
 [node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(933, -644)
-
-[node name="Pickup" parent="." instance=ExtResource("5_yj4bm")]
-position = Vector2(-158, 170)
-
-[node name="Pickup2" parent="." instance=ExtResource("6_xpaa1")]
-position = Vector2(211, 177)
-
-[node name="Pickup3" parent="." instance=ExtResource("4_ovma1")]
-position = Vector2(202, -112)
-
-[node name="Pickup4" parent="." instance=ExtResource("4_7lffv")]
-position = Vector2(-135, -117)
