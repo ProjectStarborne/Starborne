@@ -7,13 +7,12 @@
 radius = 11.0
 height = 22.0
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="CharacterBody2D"]
 script = ExtResource("1_s7b2o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_fsgpr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 3
 shape = SubResource("CapsuleShape2D_po8hp")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
