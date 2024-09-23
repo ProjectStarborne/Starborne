@@ -2,6 +2,9 @@ extends Area2D
 
 # Knockback strength
 var knockback_strength = 200.0  # Adjust this for the amount of knockback
+var oxygen_leak_triggered = false  # To track if the oxygen leak has been triggered
+var should_delete = false  # Tracks if the rock should be deleted after death
+
 		
 func _on_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
@@ -19,6 +22,11 @@ func _on_body_entered(body: Node) -> void:
 		
 		# Apply knockback
 		apply_knockback(body)
+		
+		# If the oxygen leak hasn't been triggered, start it
+		if not oxygen_leak_triggered:
+			body.start_oxygen_leak()  # Trigger the oxygen leak on the player
+			oxygen_leak_triggered = true
 		
 		# Trigger the screen shake
 		# Try to find the camera by traversing the scene tree from the Player node

@@ -6,7 +6,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7inlt"]
 
-[node name="PointyRock" type="Node2D"]
+[node name="PointyRock" type="Area2D"]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3
