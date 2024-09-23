@@ -5,7 +5,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u24pj"]
 
-[node name="Pickup" type="Node2D"]
+[node name="PickupIridium" type="Node2D"]
+scale = Vector2(1.31556, 1.12821)
 script = ExtResource("1_u2g0g")
 item = ExtResource("2_bwbp1")
 
