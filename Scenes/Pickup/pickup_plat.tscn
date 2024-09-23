@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://yuhkggwvkakl"]
+[gd_scene load_steps=4 format=3 uid="uid://cij22opdyf47o"]
 
-[ext_resource type="Script" path="res://Scripts/Resource System/pickup.gd" id="1_b0t8n"]
-[ext_resource type="Resource" uid="uid://brtl2p2f74n2x" path="res://Data/Items/item_test.tres" id="2_qwew7"]
+[ext_resource type="Script" path="res://Scripts/Resource System/pickup.gd" id="1_w6yln"]
+[ext_resource type="Resource" uid="uid://dk7t83v3c2i47" path="res://Data/Items/Minerals/platinum.tres" id="2_hx01d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u24pj"]
 
 [node name="Pickup" type="Node2D"]
-script = ExtResource("1_b0t8n")
-item = ExtResource("2_qwew7")
+script = ExtResource("1_w6yln")
+item = ExtResource("2_hx01d")
 
 [node name="Area2D" type="Area2D" parent="."]
 

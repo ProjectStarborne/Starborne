@@ -176,4 +176,4 @@ func update_oxygen_color() -> void:
 
 ###### Resource Management System ######
 func on_item_picked_up(item:Item) -> void:
-	print("I got a ", item.name)
+	print("I got ", item.name)

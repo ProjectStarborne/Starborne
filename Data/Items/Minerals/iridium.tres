@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="Mineral" load_steps=2 format=3 uid="uid://buvf1juvgp8pn"]
+[gd_resource type="Resource" script_class="Mineral" load_steps=4 format=3 uid="uid://buvf1juvgp8pn"]
 
+[ext_resource type="Texture2D" uid="uid://dsnqgt0xyay8v" path="res://Assets/Minerals/Background/Icon20.png" id="1_m5k6q"]
 [ext_resource type="Script" path="res://Scripts/Resource System/mineral.gd" id="1_mxn4e"]
+[ext_resource type="PackedScene" uid="uid://bxldqga8ngxe8" path="res://Scenes/Items/iridium.tscn" id="2_c8ew1"]
 
 [resource]
 script = ExtResource("1_mxn4e")
 mineral_type = ""
 quantity = 0
-name = ""
+name = "Iridium"
+scene = ExtResource("2_c8ew1")
+icon = ExtResource("1_m5k6q")
 price = 0
 weight = 0
 description = ""

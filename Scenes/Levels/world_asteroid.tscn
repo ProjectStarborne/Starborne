@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=15 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_it5gi"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
-[ext_resource type="PackedScene" uid="uid://c4old2vixf83l" path="res://Scenes/Pickup/pickup.tscn" id="2_u8uhb"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
+[ext_resource type="PackedScene" uid="uid://cij22opdyf47o" path="res://Scenes/Pickup/pickup_plat.tscn" id="4_7lffv"]
+[ext_resource type="PackedScene" uid="uid://ds0pb3ov2ha5x" path="res://Scenes/Pickup/pickup_nickel.tscn" id="4_ovma1"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
+[ext_resource type="PackedScene" uid="uid://cnlsqnr3h4ocb" path="res://Scenes/Pickup/pickup_iridium.tscn" id="5_yj4bm"]
 [ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="6_xpaa1"]
-[ext_resource type="PackedScene" uid="uid://yuhkggwvkakl" path="res://Scenes/Pickup/pickup_oxygen.tscn" id="7_lyto1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_0xj0f")
@@ -210,7 +211,7 @@ anti_aliasing_size = 3.0
 
 [node name="Environment" type="Node2D"]
 script = ExtResource("1_it5gi")
-pickups = Array[PackedScene]([ExtResource("2_u8uhb"), ExtResource("6_xpaa1"), ExtResource("7_lyto1")])
+pickups = Array[PackedScene]([ExtResource("6_xpaa1"), ExtResource("4_ovma1"), ExtResource("4_7lffv"), ExtResource("5_yj4bm")])
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 5
@@ -263,3 +264,15 @@ position = Vector2(-104, 712)
 
 [node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(933, -644)
+
+[node name="Pickup" parent="." instance=ExtResource("5_yj4bm")]
+position = Vector2(-158, 170)
+
+[node name="Pickup2" parent="." instance=ExtResource("6_xpaa1")]
+position = Vector2(211, 177)
+
+[node name="Pickup3" parent="." instance=ExtResource("4_ovma1")]
+position = Vector2(202, -112)
+
+[node name="Pickup4" parent="." instance=ExtResource("4_7lffv")]
+position = Vector2(-135, -117)
