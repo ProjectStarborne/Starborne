@@ -115,7 +115,7 @@ vframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_ssem5")
 }
-speed_scale = 0.572
+speed_scale = 0.617
 movie_quit_on_finish = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
