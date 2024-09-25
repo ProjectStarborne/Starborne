@@ -2,6 +2,8 @@ extends Node2D
 
 # Holds all the items ready to pickup
 @export var pickups : Array[PackedScene]
+@onready var player = %Player
+@onready var item_picked_up = get_node("CanvasLayer/ItemPickupNotification")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,3 +19,13 @@ func _ready() -> void:
 		var instance = pickups[random_number].instantiate()
 		add_child(instance)
 		instance.global_position = marker.global_position
+
+		player.connect("picked_up_item", on_picked_up_item)
+
+
+func on_picked_up_item(item : Item):
+	print("Sent to world.gd")
+	item_picked_up.visible = true
+	item_picked_up.text = "Picked up " + item.name + " x1"
+	var animation = item_picked_up.get_node("AnimationPlayer")
+	animation.play("fade_out")

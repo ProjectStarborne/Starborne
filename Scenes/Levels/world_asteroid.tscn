@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=18 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_it5gi"]
@@ -209,6 +209,67 @@ corner_radius_bottom_left = 5
 shadow_size = 2
 anti_aliasing_size = 3.0
 
+[sub_resource type="Animation" id="Animation_342be"]
+resource_name = "fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.03333, 5, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.03333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_x043f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h6sd"]
+_data = {
+"RESET": SubResource("Animation_x043f"),
+"fade_out": SubResource("Animation_342be")
+}
+
 [node name="Environment" type="Node2D"]
 script = ExtResource("1_it5gi")
 pickups = Array[PackedScene]([ExtResource("6_xpaa1"), ExtResource("4_ovma1"), ExtResource("4_7lffv"), ExtResource("5_yj4bm")])
@@ -224,6 +285,7 @@ layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-131078, 917506, 11, -65542, 917506, 12, -196613, 983042, 10, -131077, 983042, 11, -65541, 983042, 12, -262148, 1048578, 9, -196612, 1048578, 10, -131076, 1048578, 11, -65540, 1048578, 12, -196611, 1114114, 10, -131075, 1114114, 11, -65539, 1114114, 12, -131074, 1179650, 11, -65538, 1179650, 12, 458752, 1179650, 11, 524288, 1179650, 12, 458751, 1114114, 10, 524287, 1114114, 11, 589823, 1114114, 12, 393214, 1048578, 9, 458750, 1048578, 10, 524286, 1048578, 11, 589822, 1048578, 12, 458749, 983042, 10, 524285, 983042, 11, 589821, 983042, 12, 524284, 917506, 11, 589820, 917506, 12, -655347, 1179650, 11, -589811, 1179650, 12, -720884, 1114114, 10, -655348, 1114114, 11, -589812, 1114114, 12, -786421, 1048578, 9, -720885, 1048578, 10, -655349, 1048578, 11, -589813, 1048578, 12, -720886, 983042, 10, -655350, 983042, 11, -589814, 983042, 12, -655351, 917506, 11, -589815, 917506, 12, -131088, 524290, 8, -131087, 589826, 8, -131086, 655362, 8, -65550, 655362, 9, -65549, 720898, 9, -13, 720898, 10, 65523, 720898, 11, 65522, 655362, 11, 131058, 655362, 12, 131057, 589826, 12, 131056, 524290, 12, 65520, 524290, 11, 65519, 458754, 11, -17, 458754, 10, -65553, 458754, 9, -65552, 524290, 9)
 
 [node name="Player" parent="." instance=ExtResource("3_lct7p")]
+unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -255,6 +317,21 @@ offset_right = 145.0
 offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("4_w767y")
 text = "O2"
+
+[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
+visible = false
+offset_top = 492.0
+offset_right = 283.0
+offset_bottom = 532.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_w767y")
+text = "Hello World"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
+libraries = {
+"": SubResource("AnimationLibrary_6h6sd")
+}
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-269, -101)

@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 200.0
 @export var friction = .005
 
+signal picked_up_item(item : Item)
+
 func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	
@@ -177,3 +179,4 @@ func update_oxygen_color() -> void:
 ###### Resource Management System ######
 func on_item_picked_up(item:Item) -> void:
 	print("I got ", item.name)
+	picked_up_item.emit(item)

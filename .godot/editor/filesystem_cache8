@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1727119256
+::res://::1727292914
 ::res://Assets/::1727119703
 ::res://Assets/fonts/::1726784505
 SpaceMono-Regular.ttf::FontFile::3849590470850457597::1726246773::1726784505::1::::<><>::
@@ -121,13 +121,13 @@ item_test.tres::Resource/Item::3619571136053717673::1727119959::0::1::::<><>::re
 duct_tape.tres::Resource/Usable::8693231151732703814::1727119256::0::1::::<><>::res://Scripts/Resource System/usable_item.gd
 medkit.tres::Resource/Usable::2719503997193853534::1727119256::0::1::::<><>::res://Scripts/Resource System/usable_item.gd
 oxygen_tank.tres::Resource/Usable::5055601721565027904::1727119256::0::1::::<><>::res://Scripts/Resource System/usable_item.gd
-::res://Data/Items/Minerals/::1727124125
+::res://Data/Items/Minerals/::1727125305
 hydrogen.tres::Resource/Mineral::6386131865608670808::1727119256::0::1::::<><>::res://Scripts/Resource System/mineral.gd
-iridium.tres::Resource/Mineral::3833900009463393415::1727124765::0::1::::<><>::uid://dsnqgt0xyay8v::::res://Assets/Minerals/Background/Icon20.png<>res://Scripts/Resource System/mineral.gd
-iron.tres::Resource/Mineral::1550941971311023013::1727122174::0::1::::<><>::uid://dalabsumdtqh::::res://Assets/Minerals/Background/Icon43.png<>res://Scripts/Resource System/mineral.gd<>uid://bxhlh1m8rw85y::::res://Scenes/Items/iron.tscn
-nickel.tres::Resource/Mineral::606743455398312332::1727122174::0::1::::<><>::uid://d2tycirlxxf7f::::res://Assets/Minerals/Background/Icon24.png<>res://Scripts/Resource System/mineral.gd<>uid://btu1rumh3vcka::::res://Scenes/Items/nickel.tscn
+iridium.tres::Resource/Mineral::3833900009463393415::1727125280::0::1::::<><>::uid://dsnqgt0xyay8v::::res://Assets/Minerals/Background/Icon20.png<>res://Scripts/Resource System/mineral.gd<>uid://bxldqga8ngxe8::::res://Scenes/Items/iridium.tscn
+iron.tres::Resource/Mineral::1550941971311023013::1727125288::0::1::::<><>::uid://dalabsumdtqh::::res://Assets/Minerals/Background/Icon43.png<>res://Scripts/Resource System/mineral.gd<>uid://bxhlh1m8rw85y::::res://Scenes/Items/iron.tscn
+nickel.tres::Resource/Mineral::606743455398312332::1727125296::0::1::::<><>::uid://d2tycirlxxf7f::::res://Assets/Minerals/Background/Icon24.png<>res://Scripts/Resource System/mineral.gd<>uid://btu1rumh3vcka::::res://Scenes/Items/nickel.tscn
 oxygen.tres::Resource/Mineral::4211034098712786289::1727119256::0::1::::<><>::res://Scripts/Resource System/mineral.gd
-platinum.tres::Resource/Mineral::7928424634021597010::1727124125::0::1::::<><>::res://Scripts/Resource System/mineral.gd<>uid://b7l1il322tmlp::::res://Assets/Minerals/Transperent/Icon4.png<>uid://b5s1jhb4o568n::::res://Scenes/Items/platinum.tscn
+platinum.tres::Resource/Mineral::7928424634021597010::1727125305::0::1::::<><>::res://Scripts/Resource System/mineral.gd<>uid://b7l1il322tmlp::::res://Assets/Minerals/Transperent/Icon4.png<>uid://b5s1jhb4o568n::::res://Scenes/Items/platinum.tscn
 ::res://Data/Items/Tools/::1727119256
 drill.tres::Resource/Tool::6873314199597763049::1727119256::0::1::::<><>::res://Scripts/Resource System/tool.gd
 flashlight.tres::Resource/Tool::8902248848848881368::1727119256::0::1::::<><>::res://Scripts/Resource System/tool.gd
@@ -136,25 +136,25 @@ flashlight.tres::Resource/Tool::8902248848848881368::1727119256::0::1::::<><>::r
 anchor_2d.tscn::PackedScene::5229648746267340793::1727119256::0::1::::<><>::res://Scripts/Camera/anchor_2d.gd
 anchor_camera_2d.tscn::PackedScene::1998148716004381188::1727119256::0::1::::<><>::res://Scripts/Camera/anchor_camera_2d.gd
 anchor_detector_2d.tscn::PackedScene::8929823280458596202::1727119256::0::1::::<><>::res://Scripts/Camera/anchor_detector_2d.gd
-::res://Scenes/Items/::1727124281
-iridium.tscn::PackedScene::4023683283000385957::1727124765::0::1::::<><>::uid://dk4gpr3qc4ukg::::res://Assets/Minerals/Transperent/Icon20.png
+::res://Scenes/Items/::1727126825
+iridium.tscn::PackedScene::4023683283000385957::1727126825::0::1::::<><>::uid://dk4gpr3qc4ukg::::res://Assets/Minerals/Transperent/Icon20.png
 iron.tscn::PackedScene::4015896504791777016::1727123044::0::1::::<><>::uid://buf4sclbn6xq5::::res://Assets/Minerals/Transperent/Icon43.png
 item_test.tscn::PackedScene::3688863396036496922::1727123044::0::1::::<><>::uid://dynxb8jv2o7tb::::res://Assets/images/icon.svg
-nickel.tscn::PackedScene::3762906337566172452::1727123044::0::1::::<><>::uid://cdpl6prk8ge72::::res://Assets/Minerals/Transperent/Icon24.png
-platinum.tscn::PackedScene::4530839876910028187::1727124141::0::1::::<><>::uid://b7l1il322tmlp::::res://Assets/Minerals/Transperent/Icon4.png
-::res://Scenes/Levels/::1727124155
+nickel.tscn::PackedScene::3762906337566172452::1727126825::0::1::::<><>::uid://cdpl6prk8ge72::::res://Assets/Minerals/Transperent/Icon24.png
+platinum.tscn::PackedScene::4530839876910028187::1727126825::0::1::::<><>::uid://b7l1il322tmlp::::res://Assets/Minerals/Transperent/Icon4.png
+::res://Scenes/Levels/::1727127029
 environment.tscn::PackedScene::3892975634306063308::1727119256::0::1::::<><>::uid://dua43i7o37n72::::res://Assets/images/ground_texture-Sheet.png<>uid://lxxhhno105nc::::res://Assets/images/gtexture2-Sheet.png<>uid://cg1n3hs12k8ko::::res://Scenes/Player/player.tscn<>uid://bu31gsw3wcg8t::::res://Assets/fonts/SpaceMono-Regular.ttf
-world_asteroid.tscn::PackedScene::3873745341997268180::1727124155::0::1::::<><>::uid://dua43i7o37n72::::res://Assets/images/ground_texture-Sheet.png<>res://Scripts/world.gd<>uid://lxxhhno105nc::::res://Assets/images/gtexture2-Sheet.png<>uid://cg1n3hs12k8ko::::res://Scenes/Player/player.tscn<>uid://cij22opdyf47o::::res://Scenes/Pickup/pickup_plat.tscn<>uid://ds0pb3ov2ha5x::::res://Scenes/Pickup/pickup_nickel.tscn<>uid://bu31gsw3wcg8t::::res://Assets/fonts/SpaceMono-Regular.ttf<>uid://ckr4phswutb7y::::res://Scenes/Pickup/pickup_iron.tscn
+world_asteroid.tscn::PackedScene::3873745341997268180::1727127029::0::1::::<><>::uid://dua43i7o37n72::::res://Assets/images/ground_texture-Sheet.png<>res://Scripts/world.gd<>uid://lxxhhno105nc::::res://Assets/images/gtexture2-Sheet.png<>uid://cg1n3hs12k8ko::::res://Scenes/Player/player.tscn<>uid://cij22opdyf47o::::res://Scenes/Pickup/pickup_plat.tscn<>uid://ds0pb3ov2ha5x::::res://Scenes/Pickup/pickup_nickel.tscn<>uid://bu31gsw3wcg8t::::res://Assets/fonts/SpaceMono-Regular.ttf<>uid://cnlsqnr3h4ocb::::res://Scenes/Pickup/pickup_iridium.tscn<>uid://ckr4phswutb7y::::res://Scenes/Pickup/pickup_iron.tscn
 world_space.tscn::PackedScene::1927746729728694654::1727119256::0::1::::<><>::uid://dhpblh1nuy6gd::::res://Assets/images/bg.png<>uid://cjic4ql0a4u8g::::res://Scenes/Player/ship.tscn<>uid://dsb2b86opgwig::::res://Assets/images/tempasteroid.png<>uid://jddmg7s5g5ms::::res://Scenes/Managers/door.tscn<>res://Scripts/Managers Scripts/door.gd
 ::res://Scenes/Managers/::1727119256
 door.tscn::PackedScene::638096671941669746::1727119256::0::1::::<><>::res://Scripts/door.gd
 transition_manager.tscn::PackedScene::1954529865260067261::1726246773::0::1::::<><>::res://Scripts/Managers Scripts/fade_transition.gd
-::res://Scenes/Pickup/::1727124139
-pickup.tscn::PackedScene::6837893816713925279::1727123044::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://brtl2p2f74n2x::::res://Data/Items/item_test.tres
-pickup_iron.tscn::PackedScene::5511612201781328628::1727123044::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://wdj11swq4tbp::::res://Data/Items/Minerals/iron.tres
-pickup_nickel.tscn::PackedScene::8475184714372349339::1727123044::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://iv58glhtod3i::::res://Data/Items/Minerals/nickel.tres
-pickup_plat.tscn::PackedScene::5354619850184703626::1727124139::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://dk7t83v3c2i47::::res://Data/Items/Minerals/platinum.tres
-pickup_iridium.tscn::PackedScene::5709126678895484565::1727124973::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://brtl2p2f74n2x::::res://Data/Items/item_test.tres
+::res://Scenes/Pickup/::1727127001
+pickup.tscn::PackedScene::6837893816713925279::1727126825::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://brtl2p2f74n2x::::res://Data/Items/item_test.tres
+pickup_iridium.tscn::PackedScene::5709126678895484565::1727126989::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://buvf1juvgp8pn::::res://Data/Items/Minerals/iridium.tres
+pickup_iron.tscn::PackedScene::5511612201781328628::1727126992::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://wdj11swq4tbp::::res://Data/Items/Minerals/iron.tres
+pickup_nickel.tscn::PackedScene::8475184714372349339::1727126996::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://iv58glhtod3i::::res://Data/Items/Minerals/nickel.tres
+pickup_plat.tscn::PackedScene::5354619850184703626::1727127001::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://dk7t83v3c2i47::::res://Data/Items/Minerals/platinum.tres
 ::res://Scenes/Player/::1727119256
 player.tscn::PackedScene::5248487970643015846::1727119256::0::1::::<><>::uid://plulppedwtw4::::res://Assets/images/tempship.png<>res://Scripts/Player/player.gd<>uid://3p6hnlpnes2w::::res://Scenes/Camera/anchor_camera_2d.tscn<>uid://d0hw5c13gf403::::res://Scenes/Camera/anchor_detector_2d.tscn
 ship.tscn::PackedScene::5421230062673247232::1727119256::0::1::::<><>::res://Scripts/Player/ship.gd<>uid://plulppedwtw4::::res://Assets/images/tempship.png<>uid://3p6hnlpnes2w::::res://Scenes/Camera/anchor_camera_2d.tscn<>uid://d0hw5c13gf403::::res://Scenes/Camera/anchor_detector_2d.tscn
@@ -168,12 +168,12 @@ anchor_detector_2d.gd::GDScript::-1::1727119256::0::1::::<>Area2D<>::
 door.gd::GDScript::-1::1727119256::0::1::::Door<>Area2D<>::
 fade_transition.gd::GDScript::-1::1726246773::0::1::::<>CanvasLayer<>::
 navigation_manager.gd::GDScript::-1::1727119256::0::1::::<>Node<>::
-::res://Scripts/Player/::1727119256
-player.gd::GDScript::-1::1727119256::0::1::::<>CharacterBody2D<>::
+::res://Scripts/Player/::1727125313
+player.gd::GDScript::-1::1727125313::0::1::::<>CharacterBody2D<>::
 ship.gd::GDScript::-1::1727119256::0::1::::PlayerShip<>CharacterBody2D<>::
-::res://Scripts/Resource System/::1727119256
+::res://Scripts/Resource System/::1727126815
 item.gd::GDScript::-1::1727119256::0::1::::Item<>Resource<>::
 mineral.gd::GDScript::-1::1727119256::0::1::::Mineral<>Item<>::
-pickup.gd::GDScript::-1::1727119256::0::1::::<>Node2D<>::
+pickup.gd::GDScript::-1::1727126815::0::1::::<>Node2D<>::
 tool.gd::GDScript::-1::1727119256::0::1::::Tool<>Item<>::
 usable_item.gd::GDScript::-1::1727119256::0::1::::Usable<>Item<>::
