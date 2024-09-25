@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0qm26yy0bl53"
-path="res://.godot/imported/pointyrocks.png-9cc5d2bb63501b4266f7d44a5e908049.ctex"
+uid="uid://bus55ccqlyytt"
+path="res://.godot/imported/pointy_rocks.png-34abbbaa582c5214a081a5d439187e31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/images/pointyrocks.png"
-dest_files=["res://.godot/imported/pointyrocks.png-9cc5d2bb63501b4266f7d44a5e908049.ctex"]
+source_file="res://Assets/images/pointy_rocks.png"
+dest_files=["res://.godot/imported/pointy_rocks.png-34abbbaa582c5214a081a5d439187e31.ctex"]
 
 [params]
 

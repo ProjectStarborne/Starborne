@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dponnsom5m3oj"]
+[gd_scene load_steps=5 format=3 uid="uid://dak03dy570kis"]
 
 [ext_resource type="Script" path="res://Scripts/rock.gd" id="1_opv14"]
-[ext_resource type="Texture2D" uid="uid://bca44p3i5bo2" path="res://Assets/images/pointyrocks_dark.png" id="2_p50n8"]
+[ext_resource type="Texture2D" uid="uid://bus55ccqlyytt" path="res://Assets/images/pointy_rocks.png" id="2_ptwfq"]
 [ext_resource type="AudioStream" uid="uid://c4c4pgmufkuf6" path="res://Assets/sounds/ouch.mp3" id="3_yu2kr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7inlt"]
@@ -13,10 +13,12 @@ collision_mask = 3
 script = ExtResource("1_opv14")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture_filter = 1
 position = Vector2(175, -39)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_p50n8")
-offset = Vector2(-370, 72)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ptwfq")
+centered = false
+offset = Vector2(-200, -120)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 visibility_layer = 3
