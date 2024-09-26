@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgnevenukd6v6"]
 
 [ext_resource type="Texture2D" uid="uid://evoqyktpr8u7" path="res://Assets/images/sea_mine_01.png" id="1_a4r8l"]
-[ext_resource type="Script" path="res://Scripts/mine.gd" id="1_ufgka"]
+[ext_resource type="Script" path="res://Scripts/Environmental/Mines/mine.gd" id="1_ufgka"]
 [ext_resource type="AudioStream" uid="uid://ckphr0dum1ucr" path="res://Assets/sounds/explosion_mine.wav" id="3_7ho8y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05mqj"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxfswk2633o02"]
 
-[ext_resource type="Script" path="res://Scripts/falling_meteor.gd" id="1_5y271"]
+[ext_resource type="Script" path="res://Scripts/Environmental/Meteor/falling_meteor.gd" id="1_5y271"]
 [ext_resource type="Texture2D" uid="uid://ddjoat3x82s2g" path="res://Assets/images/asteroid_grey.png" id="2_kmps7"]
 [ext_resource type="AudioStream" uid="uid://ckio8qbxh26wq" path="res://Assets/sounds/meteor_impact.wav" id="3_32qcb"]
 

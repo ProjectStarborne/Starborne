@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var projectile_scene = preload("res://Scenes/projectile.tscn")  # path to our projectile scene
+@export var projectile_scene = preload("res://Scenes/Environmental/Turret/projectile.tscn")  # path to our projectile scene
 @onready var gunshot_sound = preload("res://Assets/sounds/gunshot.wav")
 @export var shoot_interval = 2.0  # time between shots
 @export var projectile_speed = 800.0  # speed of the projectile

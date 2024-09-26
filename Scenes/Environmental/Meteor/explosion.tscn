@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://467cj57noras"]
 
-[ext_resource type="Script" path="res://Scripts/Explosion.gd" id="1_p743s"]
+[ext_resource type="Script" path="res://Scripts/Environmental/Meteor/Explosion.gd" id="1_p743s"]
 [ext_resource type="Texture2D" uid="uid://cvgsdct841uh3" path="res://Assets/images/explosion.png" id="2_cot34"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_me8bd"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://cg1n3hs12k8ko"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ybtu2"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_ybtu2"]
 [ext_resource type="Texture2D" uid="uid://cvdwpkntjanyh" path="res://Assets/images/Astronaut.png" id="2_t1mp1"]
-[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/anchor_camera_2d.tscn" id="3_wfdif"]
-[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/anchor_detector_2d.tscn" id="4_cvytj"]
+[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/Camera/anchor_camera_2d.tscn" id="3_wfdif"]
+[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/anchor_detector_2d.tscn" id="4_cvytj"]
 [ext_resource type="AudioStream" uid="uid://bbye1uh0nyck8" path="res://Assets/sounds/lego_death.mp3" id="5_w2a5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knndq"]

@@ -122,7 +122,7 @@ func _spawn_meteor(impact_position, impact_indicator, direction):
 # Function to calculate the meteor's starting position based on the impact point and direction
 func get_meteor_start_position(impact_position, direction):
 	# Offset the meteor's starting position far off-screen (adjustable distance)
-	var offset_distance = 1500  
+	var offset_distance = 2000  
 	var start_position = impact_position
 
 	# Adjust the starting position based on the direction the meteors are coming from

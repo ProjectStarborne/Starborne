@@ -7,7 +7,7 @@ var target_position: Vector2 = Vector2.ZERO
 # Velocity vector to store the current speed and direction of the meteor
 var velocity: Vector2 = Vector2.ZERO
 # Preload the explosion scene that will be instantiated when the meteor hits the target
-@onready var ExplosionScene = preload("res://Scenes/explosion.tscn")
+@onready var ExplosionScene = preload("res://Scenes/Environmental/Meteor/explosion.tscn")
 # Preload the sound effect for the meteor impact
 var impact_sound = preload("res://Assets/sounds/meteor_impact.wav")
 # Variable to store the impact indicator instance (optional)
@@ -64,8 +64,10 @@ func impact():
 	audio_player.play()
 
 	# Remove the impact indicator (if it exists) once the meteor hits
-	if impact_indicator:
+	if is_instance_valid(impact_indicator):
 		impact_indicator.queue_free()
+		impact_indicator = null
+
 
 	# Damage the player if they are within the blast radius
 	var player = get_tree().current_scene.get_node("Player")  # Adjust the path to the Player node as needed

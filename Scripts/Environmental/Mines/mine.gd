@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var explosion_scene = preload("res://Scenes/explosion.tscn")  # Preload your explosion scene
+@onready var explosion_scene = preload("res://Scenes/Environmental/Meteor/explosion.tscn")  # Preload your explosion scene
 @onready var explosion_sound = preload("res://Assets/sounds/explosion_mine.wav")  # Preload your explosion sound
 var explosion_delay = 1.5  # Delay in seconds for the explosion (adjust based on audio length)
 var damage_radius = 150.0  # Explosion damage radius
