@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://du6qu3i71pa5v"]
+
+[ext_resource type="Script" path="res://Scripts/Environmental/Turret/projectile.gd" id="1_qrxa3"]
+[ext_resource type="Texture2D" uid="uid://7t4g6sq5wqnl" path="res://Assets/images/bullet.png" id="2_nr8w1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85hjd"]
+radius = 9.0
+height = 18.0
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_qrxa3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nr8w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_85hjd")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://chabragb6rc5h"]
+
+[ext_resource type="Script" path="res://Scripts/Environmental/Turret/turret.gd" id="1_soy81"]
+[ext_resource type="Texture2D" uid="uid://bxfem2mnm6sjv" path="res://Assets/images/turret.png" id="2_a5c63"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shgfo"]
+radius = 420.058
+
+[node name="Turret" type="Area2D"]
+script = ExtResource("1_soy81")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_a5c63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(383, 4)
+shape = SubResource("CircleShape2D_shgfo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

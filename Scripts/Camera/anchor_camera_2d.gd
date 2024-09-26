@@ -58,3 +58,16 @@ func arrive_to(target_position: Vector2) -> void:
 		
 	_velocity += (desired_velocity - _velocity) / mass
 	position += _velocity * get_physics_process_delta_time()
+
+
+##### CAMERA SCREEN SHAKE #####
+# Variables for screen shake
+var shake_duration = 0.0
+var shake_intensity = 0.0
+var shake_timer = 0.0
+
+# Call this function to start screen shake
+func start_screen_shake(duration: float, intensity: float) -> void:
+	shake_duration = duration
+	shake_intensity = intensity
+	shake_timer = duration
