@@ -7,12 +7,12 @@
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_0cd16"]
 [ext_resource type="PackedScene" uid="uid://dak03dy570kis" path="res://Scenes/pointy_rock.tscn" id="5_7ubw8"]
 [ext_resource type="Script" path="res://Scripts/meteor_spawner.gd" id="6_pdfv4"]
-[ext_resource type="PackedScene" path="res://Scenes/falling_meteor.tscn" id="7_mer6q"]
+[ext_resource type="PackedScene" uid="uid://bxfswk2633o02" path="res://Scenes/falling_meteor.tscn" id="7_mer6q"]
 [ext_resource type="Script" path="res://Scripts/rock.gd" id="7_uqbde"]
-[ext_resource type="PackedScene" path="res://Scenes/impact_indicator.tscn" id="8_qo45c"]
+[ext_resource type="PackedScene" uid="uid://tqmhrntmvul4" path="res://Scenes/impact_indicator.tscn" id="8_qo45c"]
 [ext_resource type="AudioStream" uid="uid://b65qrqviftda2" path="res://Assets/sounds/oxygen_warning.ogg" id="10_acmcu"]
-[ext_resource type="PackedScene" path="res://Scenes/mine.tscn" id="12_bta36"]
-[ext_resource type="PackedScene" path="res://Scenes/turret.tscn" id="13_bkqj1"]
+[ext_resource type="PackedScene" uid="uid://bgnevenukd6v6" path="res://Scenes/mine.tscn" id="12_bta36"]
+[ext_resource type="PackedScene" uid="uid://bfekruag7beic" path="res://Scenes/turret.tscn" id="13_bkqj1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25u4g"]
 texture = ExtResource("1_j7cgl")
