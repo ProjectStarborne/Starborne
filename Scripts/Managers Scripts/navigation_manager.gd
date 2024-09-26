@@ -3,8 +3,8 @@ extends Node
 # TODO: Create a less manual labor method for adding scenes
 # - maybe check some other projects for inspiration?
 
-const scene_space = preload("res://Scenes/world_space.tscn")
-const scene_asteroid = preload("res://Scenes/world_asteroid.tscn")
+const scene_space = preload("res://Scenes/Levels/world_space.tscn")
+const scene_asteroid = preload("res://Scenes/Levels/world_asteroid.tscn")
 
 var spawn_door_tag
 

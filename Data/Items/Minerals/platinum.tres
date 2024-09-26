@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Mineral" load_steps=4 format=3 uid="uid://dk7t83v3c2i47"]
+
+[ext_resource type="Script" path="res://Scripts/Resource System/mineral.gd" id="1_nv073"]
+[ext_resource type="Texture2D" uid="uid://b7l1il322tmlp" path="res://Assets/Minerals/Transperent/Icon4.png" id="1_ueu4h"]
+[ext_resource type="PackedScene" uid="uid://b5s1jhb4o568n" path="res://Scenes/Items/platinum.tscn" id="2_q3sxs"]
+
+[resource]
+script = ExtResource("1_nv073")
+mineral_type = ""
+quantity = 0
+name = "Platinum"
+scene = ExtResource("2_q3sxs")
+icon = ExtResource("1_ueu4h")
+price = 0
+weight = 0
+description = ""
+stackable = false

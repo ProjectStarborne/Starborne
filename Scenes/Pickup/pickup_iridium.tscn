@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnlsqnr3h4ocb"]
+
+[ext_resource type="Script" path="res://Scripts/Resource System/pickup.gd" id="1_u2g0g"]
+[ext_resource type="Resource" uid="uid://buvf1juvgp8pn" path="res://Data/Items/Minerals/iridium.tres" id="2_bwbp1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u24pj"]
+
+[node name="PickupIridium" type="Node2D"]
+scale = Vector2(1.31556, 1.12821)
+script = ExtResource("1_u2g0g")
+item = ExtResource("2_bwbp1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_u24pj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
