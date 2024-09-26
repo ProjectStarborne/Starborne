@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5s1jhb4o568n"]
+
+[ext_resource type="Texture2D" uid="uid://b7l1il322tmlp" path="res://Assets/Minerals/Transperent/Icon4.png" id="1_er4jh"]
+
+[node name="Item_test" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_er4jh")

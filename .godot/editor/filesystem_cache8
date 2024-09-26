@@ -1,0 +1,181 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1727371932
+::res://Assets/::1727371623
+::res://Assets/fonts/::1727371908
+SpaceMono-Regular.ttf::FontFile::3849590470850457597::1726199648::1727371908::1::::<><>::
+::res://Assets/images/::1727371909
+astronaut_character1.png::CompressedTexture2D::1409906955042769888::1727371540::1727371908::1::::<><>::
+astronaut_spritesheet.png::CompressedTexture2D::8806743722354484024::1727371623::1727371909::1::::<><>::
+bg.png::CompressedTexture2D::7681630392028879211::1726199648::1727371908::1::::<><>::
+DreamShaper_v5_A_Hippo_that_has_trained_to_be_a_samurai_posing_0.jpg::CompressedTexture2D::3521968637293075732::1725422310::1727371908::1::::<><>::
+ground_texture2-Sheet.png::CompressedTexture2D::5899758466978786401::1726199738::1727371908::1::::<><>::
+ground_texture-Sheet.png::CompressedTexture2D::8564850189154845071::1726199738::1727371908::1::::<><>::
+gtexture2-Sheet.png::CompressedTexture2D::820967348170460828::1727371540::1727371908::1::::<><>::
+Ice_Paths.png::CompressedTexture2D::7484202713174386264::1727371540::1727371908::1::::<><>::
+icon.svg::CompressedTexture2D::8872031233986998407::1726090199::1727371908::1::::<><>::
+Landing_Pad.png::CompressedTexture2D::6916112636570806155::1727371540::1727371908::1::::<><>::
+tempasteroid.png::CompressedTexture2D::8426368540732439438::1726199648::1727371908::1::::<><>::
+tempbg.png::CompressedTexture2D::3245630649492325403::1725488008::1727371908::1::::<><>::
+tempship.png::CompressedTexture2D::1076775604662382965::1725488008::1727371908::1::::<><>::
+::res://Assets/Minerals/::1727371623
+::res://Assets/Minerals/Background/::1727371908
+Icon1.png::CompressedTexture2D::8287311260396321805::1727371623::1727371908::1::::<><>::
+Icon2.png::CompressedTexture2D::2570793505515332348::1727371623::1727371908::1::::<><>::
+Icon3.png::CompressedTexture2D::6181532438437193315::1727371623::1727371908::1::::<><>::
+Icon4.png::CompressedTexture2D::8777780660135576181::1727371623::1727371908::1::::<><>::
+Icon5.png::CompressedTexture2D::1075899379455070192::1727371623::1727371908::1::::<><>::
+Icon6.png::CompressedTexture2D::7790717225883145624::1727371623::1727371908::1::::<><>::
+Icon7.png::CompressedTexture2D::2347958701838787511::1727371623::1727371908::1::::<><>::
+Icon8.png::CompressedTexture2D::5865723346088393268::1727371623::1727371908::1::::<><>::
+Icon9.png::CompressedTexture2D::6698520827044172591::1727371623::1727371908::1::::<><>::
+Icon10.png::CompressedTexture2D::2777885241910359412::1727371623::1727371908::1::::<><>::
+Icon11.png::CompressedTexture2D::2000867757741154293::1727371623::1727371908::1::::<><>::
+Icon12.png::CompressedTexture2D::7876361045060542492::1727371623::1727371908::1::::<><>::
+Icon13.png::CompressedTexture2D::2454945705875272196::1727371623::1727371908::1::::<><>::
+Icon14.png::CompressedTexture2D::4338297832242248296::1727371623::1727371908::1::::<><>::
+Icon15.png::CompressedTexture2D::1272598600579842267::1727371623::1727371908::1::::<><>::
+Icon16.png::CompressedTexture2D::7513681645698028778::1727371623::1727371908::1::::<><>::
+Icon17.png::CompressedTexture2D::5626526122231532514::1727371623::1727371908::1::::<><>::
+Icon18.png::CompressedTexture2D::4726224255631928583::1727371623::1727371908::1::::<><>::
+Icon19.png::CompressedTexture2D::5913614976054322571::1727371623::1727371908::1::::<><>::
+Icon20.png::CompressedTexture2D::8450481371655234807::1727371623::1727371908::1::::<><>::
+Icon21.png::CompressedTexture2D::8823953316719681748::1727371623::1727371908::1::::<><>::
+Icon22.png::CompressedTexture2D::3382520676290326363::1727371623::1727371908::1::::<><>::
+Icon23.png::CompressedTexture2D::1187922717816833056::1727371623::1727371908::1::::<><>::
+Icon24.png::CompressedTexture2D::9095045233027430689::1727371623::1727371908::1::::<><>::
+Icon25.png::CompressedTexture2D::3999823782334216076::1727371623::1727371908::1::::<><>::
+Icon26.png::CompressedTexture2D::4719533150198929854::1727371623::1727371908::1::::<><>::
+Icon27.png::CompressedTexture2D::2038322588492764919::1727371623::1727371908::1::::<><>::
+Icon28.png::CompressedTexture2D::4528156627246913961::1727371623::1727371908::1::::<><>::
+Icon29.png::CompressedTexture2D::4082636446514704325::1727371623::1727371908::1::::<><>::
+Icon30.png::CompressedTexture2D::1329471182318511093::1727371623::1727371908::1::::<><>::
+Icon31.png::CompressedTexture2D::28233546608909766::1727371623::1727371908::1::::<><>::
+Icon32.png::CompressedTexture2D::1343852220480935744::1727371623::1727371908::1::::<><>::
+Icon33.png::CompressedTexture2D::9176773437039767965::1727371623::1727371908::1::::<><>::
+Icon34.png::CompressedTexture2D::8582303833890037584::1727371623::1727371908::1::::<><>::
+Icon35.png::CompressedTexture2D::7288532231493637157::1727371623::1727371908::1::::<><>::
+Icon36.png::CompressedTexture2D::8138046535994896105::1727371623::1727371908::1::::<><>::
+Icon37.png::CompressedTexture2D::9163959309525522968::1727371623::1727371908::1::::<><>::
+Icon38.png::CompressedTexture2D::4084297779406767236::1727371623::1727371908::1::::<><>::
+Icon39.png::CompressedTexture2D::90037038832144775::1727371623::1727371908::1::::<><>::
+Icon40.png::CompressedTexture2D::5600324321242638535::1727371623::1727371908::1::::<><>::
+Icon41.png::CompressedTexture2D::4359534012014296091::1727371623::1727371908::1::::<><>::
+Icon42.png::CompressedTexture2D::5820013471753792231::1727371623::1727371908::1::::<><>::
+Icon43.png::CompressedTexture2D::211234499089242827::1727371623::1727371908::1::::<><>::
+Icon44.png::CompressedTexture2D::3576911284954062024::1727371623::1727371908::1::::<><>::
+Icon45.png::CompressedTexture2D::6388098142654358923::1727371623::1727371908::1::::<><>::
+Icon46.png::CompressedTexture2D::1422791123821936239::1727371623::1727371908::1::::<><>::
+Icon47.png::CompressedTexture2D::1930899120989815310::1727371623::1727371908::1::::<><>::
+Icon48.png::CompressedTexture2D::1131015612890370527::1727371623::1727371908::1::::<><>::
+::res://Assets/Minerals/Transperent/::1727371908
+Icon1.png::CompressedTexture2D::2775202950385745126::1727371623::1727371908::1::::<><>::
+Icon2.png::CompressedTexture2D::6283324140496451173::1727371623::1727371908::1::::<><>::
+Icon3.png::CompressedTexture2D::623985747782582273::1727371623::1727371908::1::::<><>::
+Icon4.png::CompressedTexture2D::4656765385842935901::1727371623::1727371908::1::::<><>::
+Icon5.png::CompressedTexture2D::3691170254568184468::1727371623::1727371908::1::::<><>::
+Icon6.png::CompressedTexture2D::2848805897014021812::1727371623::1727371908::1::::<><>::
+Icon7.png::CompressedTexture2D::671920496507368446::1727371623::1727371908::1::::<><>::
+Icon8.png::CompressedTexture2D::4347854428548306046::1727371623::1727371908::1::::<><>::
+Icon9.png::CompressedTexture2D::4771554907141183408::1727371623::1727371908::1::::<><>::
+Icon10.png::CompressedTexture2D::3344872206491478694::1727371623::1727371908::1::::<><>::
+Icon11.png::CompressedTexture2D::2295916279086725832::1727371623::1727371908::1::::<><>::
+Icon12.png::CompressedTexture2D::2653902491369131637::1727371623::1727371908::1::::<><>::
+Icon13.png::CompressedTexture2D::7808154677332210061::1727371623::1727371908::1::::<><>::
+Icon14.png::CompressedTexture2D::713962741144052050::1727371623::1727371908::1::::<><>::
+Icon15.png::CompressedTexture2D::672161462080602393::1727371623::1727371908::1::::<><>::
+Icon16.png::CompressedTexture2D::5570528522671568544::1727371623::1727371908::1::::<><>::
+Icon17.png::CompressedTexture2D::2890571999913199028::1727371623::1727371908::1::::<><>::
+Icon18.png::CompressedTexture2D::3454188272101409334::1727371623::1727371908::1::::<><>::
+Icon19.png::CompressedTexture2D::8332938482189586332::1727371623::1727371908::1::::<><>::
+Icon20.png::CompressedTexture2D::7921409468074811570::1727371623::1727371908::1::::<><>::
+Icon21.png::CompressedTexture2D::6955641946605770664::1727371623::1727371908::1::::<><>::
+Icon22.png::CompressedTexture2D::7418695703295868724::1727371623::1727371908::1::::<><>::
+Icon23.png::CompressedTexture2D::7021629231398125224::1727371623::1727371908::1::::<><>::
+Icon24.png::CompressedTexture2D::5015097625753300907::1727371623::1727371908::1::::<><>::
+Icon25.png::CompressedTexture2D::7556463316626975368::1727371623::1727371908::1::::<><>::
+Icon26.png::CompressedTexture2D::5556230196417579147::1727371623::1727371908::1::::<><>::
+Icon27.png::CompressedTexture2D::6146396218074776898::1727371623::1727371908::1::::<><>::
+Icon28.png::CompressedTexture2D::204925107868084206::1727371623::1727371908::1::::<><>::
+Icon29.png::CompressedTexture2D::8154500775708595277::1727371623::1727371908::1::::<><>::
+Icon30.png::CompressedTexture2D::1166566334882929847::1727371623::1727371908::1::::<><>::
+Icon31.png::CompressedTexture2D::8938881251606644112::1727371623::1727371908::1::::<><>::
+Icon32.png::CompressedTexture2D::7313632683729691589::1727371623::1727371908::1::::<><>::
+Icon33.png::CompressedTexture2D::2360808267588412059::1727371623::1727371908::1::::<><>::
+Icon34.png::CompressedTexture2D::1449303700931596173::1727371623::1727371908::1::::<><>::
+Icon35.png::CompressedTexture2D::9109368005763856291::1727371623::1727371908::1::::<><>::
+Icon36.png::CompressedTexture2D::856956947673940548::1727371623::1727371908::1::::<><>::
+Icon37.png::CompressedTexture2D::5932628959716255529::1727371623::1727371908::1::::<><>::
+Icon38.png::CompressedTexture2D::4436820510410958793::1727371623::1727371908::1::::<><>::
+Icon39.png::CompressedTexture2D::2587165636539966429::1727371623::1727371908::1::::<><>::
+Icon40.png::CompressedTexture2D::7639610853435496705::1727371623::1727371908::1::::<><>::
+Icon41.png::CompressedTexture2D::6105337649374676660::1727371623::1727371908::1::::<><>::
+Icon42.png::CompressedTexture2D::3885368768175310751::1727371623::1727371908::1::::<><>::
+Icon43.png::CompressedTexture2D::3802312504408165442::1727371623::1727371908::1::::<><>::
+Icon44.png::CompressedTexture2D::7682627255986590443::1727371623::1727371908::1::::<><>::
+Icon45.png::CompressedTexture2D::5742081408328267312::1727371623::1727371908::1::::<><>::
+Icon46.png::CompressedTexture2D::7379136574535482798::1727371623::1727371908::1::::<><>::
+Icon47.png::CompressedTexture2D::4836308091904234728::1727371623::1727371908::1::::<><>::
+Icon48.png::CompressedTexture2D::4194507322257954174::1727371623::1727371908::1::::<><>::
+::res://Data/::1727371623
+::res://Data/Items/::1727371623
+item_test.tres::Resource/Item::3619571136053717673::1727371623::0::1::::<><>::res://Scripts/Resource System/item.gd<>uid://bxhlh1m8rw85y::::res://Scenes/Items/iron.tscn
+::res://Data/Items/Consumables/::1727371623
+duct_tape.tres::Resource/Usable::8693231151732703814::1727371623::0::1::::<><>::res://Scripts/Resource System/usable_item.gd
+medkit.tres::Resource/Usable::2719503997193853534::1727371623::0::1::::<><>::res://Scripts/Resource System/usable_item.gd
+oxygen_tank.tres::Resource/Usable::5055601721565027904::1727371623::0::1::::<><>::res://Scripts/Resource System/usable_item.gd
+::res://Data/Items/Minerals/::1727371623
+hydrogen.tres::Resource/Mineral::6386131865608670808::1727371623::0::1::::<><>::res://Scripts/Resource System/mineral.gd
+iridium.tres::Resource/Mineral::3833900009463393415::1727371623::0::1::::<><>::uid://dsnqgt0xyay8v::::res://Assets/Minerals/Background/Icon20.png<>res://Scripts/Resource System/mineral.gd<>uid://bxldqga8ngxe8::::res://Scenes/Items/iridium.tscn
+iron.tres::Resource/Mineral::1550941971311023013::1727371623::0::1::::<><>::uid://dalabsumdtqh::::res://Assets/Minerals/Background/Icon43.png<>res://Scripts/Resource System/mineral.gd<>uid://bxhlh1m8rw85y::::res://Scenes/Items/iron.tscn
+nickel.tres::Resource/Mineral::606743455398312332::1727371623::0::1::::<><>::uid://d2tycirlxxf7f::::res://Assets/Minerals/Background/Icon24.png<>res://Scripts/Resource System/mineral.gd<>uid://btu1rumh3vcka::::res://Scenes/Items/nickel.tscn
+oxygen.tres::Resource/Mineral::4211034098712786289::1727371623::0::1::::<><>::res://Scripts/Resource System/mineral.gd
+platinum.tres::Resource/Mineral::7928424634021597010::1727371623::0::1::::<><>::res://Scripts/Resource System/mineral.gd<>uid://b7l1il322tmlp::::res://Assets/Minerals/Transperent/Icon4.png<>uid://b5s1jhb4o568n::::res://Scenes/Items/platinum.tscn
+::res://Data/Items/Tools/::1727371623
+drill.tres::Resource/Tool::6873314199597763049::1727371623::0::1::::<><>::res://Scripts/Resource System/tool.gd
+flashlight.tres::Resource/Tool::8902248848848881368::1727371623::0::1::::<><>::res://Scripts/Resource System/tool.gd
+::res://Scenes/::1727371623
+::res://Scenes/Camera/::1727371623
+anchor_2d.tscn::PackedScene::5229648746267340793::1727371623::0::1::::<><>::res://Scripts/Camera/anchor_2d.gd
+anchor_camera_2d.tscn::PackedScene::1998148716004381188::1727371623::0::1::::<><>::res://Scripts/Camera/anchor_camera_2d.gd
+anchor_detector_2d.tscn::PackedScene::8929823280458596202::1727371623::0::1::::<><>::res://Scripts/Camera/anchor_detector_2d.gd
+::res://Scenes/Items/::1727371623
+iridium.tscn::PackedScene::4023683283000385957::1727371623::0::1::::<><>::uid://dk4gpr3qc4ukg::::res://Assets/Minerals/Transperent/Icon20.png
+iron.tscn::PackedScene::4015896504791777016::1727371623::0::1::::<><>::uid://buf4sclbn6xq5::::res://Assets/Minerals/Transperent/Icon43.png
+item_test.tscn::PackedScene::3688863396036496922::1727371623::0::1::::<><>::uid://dynxb8jv2o7tb::::res://Assets/images/icon.svg
+nickel.tscn::PackedScene::3762906337566172452::1727371623::0::1::::<><>::uid://cdpl6prk8ge72::::res://Assets/Minerals/Transperent/Icon24.png
+platinum.tscn::PackedScene::4530839876910028187::1727371623::0::1::::<><>::uid://b7l1il322tmlp::::res://Assets/Minerals/Transperent/Icon4.png
+::res://Scenes/Levels/::1727371623
+environment.tscn::PackedScene::3892975634306063308::1727371623::0::1::::<><>::uid://dua43i7o37n72::::res://Assets/images/ground_texture-Sheet.png<>uid://lxxhhno105nc::::res://Assets/images/gtexture2-Sheet.png<>uid://cg1n3hs12k8ko::::res://Scenes/Player/player.tscn<>uid://bu31gsw3wcg8t::::res://Assets/fonts/SpaceMono-Regular.ttf
+world_asteroid.tscn::PackedScene::3873745341997268180::1727371873::0::1::::<><>::uid://devnywmplk6sy::::res://Assets/images/Ice_Paths.png<>uid://c5shmns5p5mnb::::res://Assets/images/Landing_Pad.png
+world_space.tscn::PackedScene::1927746729728694654::1727371623::0::1::::<><>::uid://dhpblh1nuy6gd::::res://Assets/images/bg.png<>uid://cjic4ql0a4u8g::::res://Scenes/Player/ship.tscn<>uid://dsb2b86opgwig::::res://Assets/images/tempasteroid.png<>uid://jddmg7s5g5ms::::res://Scenes/Managers/door.tscn<>res://Scripts/Managers Scripts/door.gd
+::res://Scenes/Managers/::1727371623
+door.tscn::PackedScene::638096671941669746::1727371623::0::1::::<><>::res://Scripts/door.gd
+transition_manager.tscn::PackedScene::1954529865260067261::1726199648::0::1::::<><>::res://Scripts/Managers Scripts/fade_transition.gd
+::res://Scenes/Pickup/::1727371623
+pickup.tscn::PackedScene::6837893816713925279::1727371623::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://brtl2p2f74n2x::::res://Data/Items/item_test.tres
+pickup_iridium.tscn::PackedScene::5709126678895484565::1727371623::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://buvf1juvgp8pn::::res://Data/Items/Minerals/iridium.tres
+pickup_iron.tscn::PackedScene::5511612201781328628::1727371623::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://wdj11swq4tbp::::res://Data/Items/Minerals/iron.tres
+pickup_nickel.tscn::PackedScene::8475184714372349339::1727371623::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://iv58glhtod3i::::res://Data/Items/Minerals/nickel.tres
+pickup_plat.tscn::PackedScene::5354619850184703626::1727371623::0::1::::<><>::res://Scripts/Resource System/pickup.gd<>uid://dk7t83v3c2i47::::res://Data/Items/Minerals/platinum.tres
+::res://Scenes/Player/::1727371623
+player.tscn::PackedScene::5248487970643015846::1727371754::0::1::::<><>::uid://uc77xtew1qmy::::res://Assets/images/astronaut_character1.png
+ship.tscn::PackedScene::5421230062673247232::1727371623::0::1::::<><>::res://Scripts/Player/ship.gd<>uid://plulppedwtw4::::res://Assets/images/tempship.png<>uid://3p6hnlpnes2w::::res://Scenes/Camera/anchor_camera_2d.tscn<>uid://d0hw5c13gf403::::res://Scenes/Camera/anchor_detector_2d.tscn
+::res://Scripts/::1727371623
+world.gd::GDScript::-1::1727371623::0::1::::<>Node2D<>::
+::res://Scripts/Camera/::1727371623
+anchor_2d.gd::GDScript::-1::1727371623::0::1::::<>Area2D<>::
+anchor_camera_2d.gd::GDScript::-1::1727371623::0::1::::<>Camera2D<>::
+anchor_detector_2d.gd::GDScript::-1::1727371623::0::1::::<>Area2D<>::
+::res://Scripts/Managers Scripts/::1727371623
+door.gd::GDScript::-1::1727371623::0::1::::Door<>Area2D<>::
+fade_transition.gd::GDScript::-1::1726199648::0::1::::<>CanvasLayer<>::
+navigation_manager.gd::GDScript::-1::1727371623::0::1::::<>Node<>::
+::res://Scripts/Player/::1727371623
+player.gd::GDScript::-1::1727371623::0::1::::<>CharacterBody2D<>::
+ship.gd::GDScript::-1::1727371623::0::1::::PlayerShip<>CharacterBody2D<>::
+::res://Scripts/Resource System/::1727371623
+item.gd::GDScript::-1::1727371623::0::1::::Item<>Resource<>::
+mineral.gd::GDScript::-1::1727371623::0::1::::Mineral<>Item<>::
+pickup.gd::GDScript::-1::1727371623::0::1::::<>Node2D<>::
+tool.gd::GDScript::-1::1727371623::0::1::::Tool<>Item<>::
+usable_item.gd::GDScript::-1::1727371623::0::1::::Usable<>Item<>::
