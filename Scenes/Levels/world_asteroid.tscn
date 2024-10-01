@@ -9,6 +9,130 @@
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://cnlsqnr3h4ocb" path="res://Scenes/Pickup/pickup_iridium.tscn" id="5_yj4bm"]
 [ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="6_xpaa1"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]
+[ext_resource type="PackedScene" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="15_aj44i"]
+[ext_resource type="PackedScene" path="res://Scenes/Environmental/Turret/turret.tscn" id="16_ocvle"]
+[ext_resource type="Script" path="res://Scripts/Environmental/Meteor/meteor_spawner.gd" id="17_bxqg6"]
+[ext_resource type="PackedScene" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="18_aly4v"]
+[ext_resource type="PackedScene" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="19_nm2tu"]
+[ext_resource type="PackedScene" path="res://Scenes/Environmental/Mines/mine.tscn" id="20_140il"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtqv7"]
+shader = ExtResource("1_um8kb")
+shader_parameter/density = 0.45
+shader_parameter/speed = Vector2(0.01, 0.02)
+shader_parameter/noise_texture = ExtResource("2_kpe0u")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gjls7"]
+texture = ExtResource("1_404wo")
+7:11/0 = 0
+7:11/0/custom_data_0 = true
+8:11/0 = 0
+8:11/0/custom_data_0 = true
+9:11/0 = 0
+9:11/0/custom_data_0 = true
+10:11/0 = 0
+10:11/0/custom_data_0 = true
+11:11/0 = 0
+11:11/0/custom_data_0 = true
+6:12/0 = 0
+6:12/0/custom_data_0 = true
+7:12/0 = 0
+7:12/0/custom_data_0 = true
+8:12/0 = 0
+8:12/0/custom_data_0 = true
+9:12/0 = 0
+9:12/0/custom_data_0 = true
+10:12/0 = 0
+10:12/0/custom_data_0 = true
+11:12/0 = 0
+11:12/0/custom_data_0 = true
+12:12/0 = 0
+12:12/0/custom_data_0 = true
+6:13/0 = 0
+6:13/0/custom_data_0 = true
+7:13/0 = 0
+7:13/0/custom_data_0 = true
+8:13/0 = 0
+8:13/0/custom_data_0 = true
+9:13/0 = 0
+9:13/0/custom_data_0 = true
+10:13/0 = 0
+10:13/0/custom_data_0 = true
+11:13/0 = 0
+11:13/0/custom_data_0 = true
+12:13/0 = 0
+12:13/0/custom_data_0 = true
+6:14/0 = 0
+6:14/0/custom_data_0 = true
+7:14/0 = 0
+7:14/0/custom_data_0 = true
+8:14/0 = 0
+8:14/0/custom_data_0 = true
+9:14/0 = 0
+9:14/0/custom_data_0 = true
+10:14/0 = 0
+10:14/0/custom_data_0 = true
+11:14/0 = 0
+11:14/0/custom_data_0 = true
+12:14/0 = 0
+12:14/0/custom_data_0 = true
+6:15/0 = 0
+6:15/0/custom_data_0 = true
+7:15/0 = 0
+7:15/0/custom_data_0 = true
+8:15/0 = 0
+8:15/0/custom_data_0 = true
+9:15/0 = 0
+9:15/0/custom_data_0 = true
+10:15/0 = 0
+10:15/0/custom_data_0 = true
+11:15/0 = 0
+11:15/0/custom_data_0 = true
+12:15/0 = 0
+12:15/0/custom_data_0 = true
+6:16/0 = 0
+6:16/0/custom_data_0 = true
+7:16/0 = 0
+7:16/0/custom_data_0 = true
+8:16/0 = 0
+8:16/0/custom_data_0 = true
+9:16/0 = 0
+9:16/0/custom_data_0 = true
+10:16/0 = 0
+10:16/0/custom_data_0 = true
+11:16/0 = 0
+11:16/0/custom_data_0 = true
+12:16/0 = 0
+12:16/0/custom_data_0 = true
+7:17/0 = 0
+7:17/0/custom_data_0 = true
+8:17/0 = 0
+8:17/0/custom_data_0 = true
+9:17/0 = 0
+9:17/0/custom_data_0 = true
+10:17/0 = 0
+10:17/0/custom_data_0 = true
+11:17/0 = 0
+11:17/0/custom_data_0 = true
+2:14/0 = 0
+3:14/0 = 0
+3:14/0/custom_data_0 = true
+2:13/0 = 0
+3:13/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+3:11/0 = 0
+2:11/0 = 0
+2:10/0 = 0
+2:9/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wdpt"]
 texture = ExtResource("1_0xj0f")
