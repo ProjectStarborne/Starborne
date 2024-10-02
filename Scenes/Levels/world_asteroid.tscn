@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=43 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="15_aj44i"]
 [ext_resource type="PackedScene" uid="uid://cie5bf6jws1py" path="res://Scenes/UI/inventory_ui.tscn" id="15_ie1be"]
+[ext_resource type="PackedScene" uid="uid://xvd4qmndtd1j" path="res://Scenes/UI/pause_menu.tscn" id="16_ftpte"]
 [ext_resource type="PackedScene" uid="uid://chabragb6rc5h" path="res://Scenes/Environmental/Turret/turret.tscn" id="16_ocvle"]
 [ext_resource type="Script" path="res://Scripts/Environmental/Meteor/meteor_spawner.gd" id="17_bxqg6"]
 [ext_resource type="PackedScene" uid="uid://chdv7oq5t6ggr" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="18_aly4v"]
@@ -624,6 +625,9 @@ libraries = {
 }
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("15_ie1be")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("16_ftpte")]
 visible = false
 
 [node name="Headlight1" type="PointLight2D" parent="."]
