@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ykg6fs1mac27"]
+
+[ext_resource type="Script" path="res://Scripts/Environmental/Mines/mine.gd" id="1_v4ex4"]
+[ext_resource type="Texture2D" uid="uid://bryu6k6lauqul" path="res://Assets/images/sea_mine_01.png" id="2_lkkp2"]
+[ext_resource type="AudioStream" uid="uid://iiv1alnfnd4p" path="res://Assets/sounds/explosion_mine.wav" id="3_ks5op"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uss71"]
+radius = 42.4264
+
+[node name="Mine" type="Area2D"]
+script = ExtResource("1_v4ex4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_lkkp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uss71")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ks5op")
+volume_db = -50.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
