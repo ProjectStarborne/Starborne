@@ -22,12 +22,14 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_label = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning")  # Reference to warning label in UI
 @onready var warning_audio = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning/Oxygen_Warning")  # Warning sound player
 
-
 @onready var flashlight: PointLight2D = $Flashlight
 signal picked_up_item(item : Item)
 
 # Inventory
 var inventory : Inventory = Inventory.new()
+
+# World Variable
+@onready var world = get_parent()
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input

@@ -11,6 +11,8 @@ extends Node2D
 # Label for pickups
 @onready var item_picked_up = $CanvasLayer/ItemPickupNotification
 
+var paused : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Gets all markers in the level
@@ -32,8 +34,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("inventory"):
 		inventory.open(player.inventory)
-	if Input.is_action_pressed("pause"):
-		pause_menu.open()
+	
+	if Input.is_action_just_pressed("pause") and !paused:
+		pause_menu.pause()
+		paused = !paused
+	elif Input.is_action_just_pressed("pause") and paused:
+		pause_menu.resume()
+		paused = !paused
+	
 
 # Displays what is picked up to the screen
 func on_picked_up_item(item : Item):
