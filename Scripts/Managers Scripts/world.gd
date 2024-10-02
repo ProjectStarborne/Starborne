@@ -4,6 +4,8 @@ extends Node2D
 @export var pickups : Array[PackedScene]
 # Player variable for all things player related
 @onready var player = %Player
+# Inventory variable
+@onready var inventory = $CanvasLayer/InventoryUI
 # Label for pickups
 @onready var item_picked_up = get_node("CanvasLayer/ItemPickupNotification")
 
@@ -24,6 +26,10 @@ func _ready() -> void:
 	
 	# Connect the emitted signal to this script manually
 	player.connect("picked_up_item", on_picked_up_item)
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("inventory"):
+		inventory.open(player.inventory)
 
 # Displays what is picked up to the screen
 func on_picked_up_item(item : Item):

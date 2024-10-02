@@ -26,6 +26,9 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var flashlight: PointLight2D = $Flashlight
 signal picked_up_item(item : Item)
 
+# Inventory
+var inventory : Inventory = Inventory.new()
+
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
@@ -350,7 +353,9 @@ func update_oxygen_color() -> void:
 		
 
 
-###### Resource Management System ######
+####### Resource Management System #######
+
 func on_item_picked_up(item:Item) -> void:
 	print("I got ", item.name)
+	inventory.add_item(item)
 	picked_up_item.emit(item)
