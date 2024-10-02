@@ -634,6 +634,7 @@ libraries = {
 visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("16_ftpte")]
+process_mode = 2
 visible = false
 
 [node name="Headlight1" type="PointLight2D" parent="."]
