@@ -17,6 +17,7 @@ func open(inventory:Inventory):
 			var image = item.icon
 			var texture = slots[slot_num].get_children()
 			texture[0].set_texture(image)
+		slot_num += 1
 
 func _on_close_button_pressed() -> void:
 	hide()
