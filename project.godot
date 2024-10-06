@@ -20,6 +20,12 @@ config/icon="res://Assets/images/icon.svg"
 TransitionManager="*res://Scenes/Managers/transition_manager.tscn"
 NavigationManager="*res://Scripts/Managers Scripts/navigation_manager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Starborne"
