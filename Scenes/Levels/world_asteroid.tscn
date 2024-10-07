@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
 [ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="1_bbcaq"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_it5gi"]
-[ext_resource type="Shader" path="res://Scripts/fog.gdshader" id="1_um8kb"]
+[ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_um8kb"]
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="2_kpe0u"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]

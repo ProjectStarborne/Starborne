@@ -1,11 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://cjdoj0coq1a48"]
+[gd_scene load_steps=38 format=3 uid="uid://cjdoj0coq1a48"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_drjbs"]
 [ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="2_dt2re"]
 [ext_resource type="PackedScene" uid="uid://ds0pb3ov2ha5x" path="res://Scenes/Pickup/pickup_nickel.tscn" id="3_acqmx"]
 [ext_resource type="PackedScene" uid="uid://cij22opdyf47o" path="res://Scenes/Pickup/pickup_plat.tscn" id="4_eefmp"]
 [ext_resource type="PackedScene" uid="uid://cnlsqnr3h4ocb" path="res://Scenes/Pickup/pickup_iridium.tscn" id="5_8ulod"]
-[ext_resource type="Shader" path="res://Scripts/fog.gdshader" id="6_4navx"]
+[ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="6_4navx"]
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="7_y5gi7"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="8_maxky"]
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="9_1tqio"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_yg3w1"]
 [ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="15_kh3yc"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="16_7imqp"]
+[ext_resource type="Script" path="res://Scenes/Test/fog_o_war.gd" id="17_klwff"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtqv7"]
 shader = ExtResource("6_4navx")
@@ -514,6 +515,9 @@ _data = {
 "fade_out": SubResource("Animation_342be")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e6r08"]
+blend_mode = 3
+
 [node name="Environment" type="Node2D"]
 script = ExtResource("1_drjbs")
 pickups = Array[PackedScene]([ExtResource("2_dt2re"), ExtResource("3_acqmx"), ExtResource("4_eefmp"), ExtResource("5_8ulod")])
@@ -663,3 +667,11 @@ position = Vector2(-630, 259)
 [node name="PointyRock2" parent="." instance=ExtResource("16_7imqp")]
 texture_filter = 1
 position = Vector2(1297, -390)
+
+[node name="FoW" type="Node2D" parent="."]
+position = Vector2(-2218, -1482)
+script = ExtResource("17_klwff")
+
+[node name="FoW Sprite" type="Sprite2D" parent="FoW"]
+material = SubResource("CanvasItemMaterial_e6r08")
+centered = false
