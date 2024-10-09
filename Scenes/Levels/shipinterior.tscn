@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dodup57vhs4n4"]
+[gd_scene load_steps=5 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
-[ext_resource type="PackedScene" uid="uid://cc27e2xjnyb86" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
+[ext_resource type="PackedScene" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn26q"]
 texture = ExtResource("1_yce60")
