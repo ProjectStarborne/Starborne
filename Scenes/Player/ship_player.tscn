@@ -1,0 +1,136 @@
+[gd_scene load_steps=15 format=3 uid="uid://cc27e2xjnyb86"]
+
+[ext_resource type="Script" path="res://Scripts/Player/ship_player.gd" id="1_gut10"]
+[ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="2_ts4vt"]
+[ext_resource type="PackedScene" path="res://Scenes/Camera/ship_anchor_camera.tscn" id="5_ayufh"]
+[ext_resource type="PackedScene" path="res://Scenes/Camera/ship_anchor_detector.tscn" id="6_31l6x"]
+[ext_resource type="Script" path="res://Scripts/Camera/ship_anchor_camera.gd" id="6_mpc02"]
+[ext_resource type="AudioStream" uid="uid://dbekjhlgw6nd0" path="res://Assets/sounds/lego_death.mp3" id="6_tv2j8"]
+[ext_resource type="Script" path="res://Scripts/Camera/ship_anchor_detector.gd" id="8_u77jm"]
+
+[sub_resource type="Animation" id="Animation_ji7po"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_buua6"]
+resource_name = "walk_down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_l4o41"]
+resource_name = "walk_left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 4]
+}
+
+[sub_resource type="Animation" id="Animation_t0srk"]
+resource_name = "walk_right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [9, 8, 11, 10]
+}
+
+[sub_resource type="Animation" id="Animation_5vbl0"]
+resource_name = "walk_up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [13, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssem5"]
+_data = {
+"RESET": SubResource("Animation_ji7po"),
+"walk_down": SubResource("Animation_buua6"),
+"walk_left": SubResource("Animation_l4o41"),
+"walk_right": SubResource("Animation_t0srk"),
+"walk_up": SubResource("Animation_5vbl0")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j1uxo"]
+radius = 336.62
+height = 743.85
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_gut10")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+texture_filter = 5
+position = Vector2(0, 2)
+texture = ExtResource("2_ts4vt")
+hframes = 4
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ssem5")
+}
+speed_scale = 0.617
+movie_quit_on_finish = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.125, 0.125)
+shape = SubResource("CapsuleShape2D_j1uxo")
+
+[node name="Death_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tv2j8")
+
+[node name="AnchorCamera2D" parent="." instance=ExtResource("5_ayufh")]
+script = ExtResource("6_mpc02")
+
+[node name="AnchorDetector2D" parent="." instance=ExtResource("6_31l6x")]
+script = ExtResource("8_u77jm")
