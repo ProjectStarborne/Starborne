@@ -14,7 +14,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect2:material:shader_parameter/lod")
+tracks/0/path = NodePath("Blur:material:shader_parameter/lod")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,7 +41,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect2:material:shader_parameter/lod")
+tracks/0/path = NodePath("Blur:material:shader_parameter/lod")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -82,7 +82,7 @@ size_flags_vertical = 4
 script = ExtResource("1_53p1s")
 metadata/_edit_group_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Blur" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_r3eve")
 layout_mode = 1
 anchors_preset = 15
@@ -122,19 +122,19 @@ theme_override_constants/v_separation = 8
 [node name="ResumeButton" type="Button" parent="PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3rfwv")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3rfwv")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_3rfwv")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 50
 text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
