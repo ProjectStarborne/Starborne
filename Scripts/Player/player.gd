@@ -28,6 +28,9 @@ signal picked_up_item(item : Item)
 # Inventory
 var inventory : Inventory = Inventory.new()
 
+# Upgrade Level
+var upgrade_level = 0
+
 # World Variable
 @onready var world = get_parent()
 

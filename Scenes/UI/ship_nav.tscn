@@ -1,9 +1,50 @@
-[gd_scene format=3 uid="uid://b324425sw884v"]
+[gd_scene load_steps=4 format=3 uid="uid://b324425sw884v"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ship_nav.gd" id="1_4kr01"]
+[ext_resource type="Texture2D" uid="uid://dhpblh1nuy6gd" path="res://Assets/images/bg.png" id="2_mwf0m"]
+[ext_resource type="Texture2D" uid="uid://dnt2iq63sf73p" path="res://Assets/images/asteroid_grey.png" id="3_ckr4d"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4kr01")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mwf0m")
+
+[node name="Asteroid Level" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatButton"
+text = "Asteroid Test Level"
+icon = ExtResource("3_ckr4d")
+autowrap_mode = 3
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="Asteroid Level"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
