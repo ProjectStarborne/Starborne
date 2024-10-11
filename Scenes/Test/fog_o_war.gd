@@ -1,9 +1,9 @@
 extends Node2D
 
 const LightTexture = preload("res://Assets/images/Light.png")
-const GRID_SIZE = 64
+const GRID_SIZE = 32
 
-@export var Player: Player
+@onready var player: Player = %"Player"
 @onready var fog: Sprite2D = $"FoW Sprite"
 
 var d_width = ProjectSettings.get("display/window/size/viewport_width")
@@ -35,5 +35,6 @@ func update_fog_image_texture():
 	fogTexture = ImageTexture.create_from_image(fogImage)
 	fog.texture = fogTexture
 
-func _input(event):
-	update_fog(get_local_mouse_position() / GRID_SIZE)
+func _process(event):
+	update_fog(to_local(player.position) / GRID_SIZE)
+	

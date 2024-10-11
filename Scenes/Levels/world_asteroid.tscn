@@ -673,7 +673,7 @@ process_mode = 1
 layer = 3
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Fog"]
-motion_mirroring = Vector2(1152, 648)
+motion_mirroring = Vector2(1280, 720)
 
 [node name="Fog" type="ColorRect" parent="Fog/ParallaxLayer"]
 texture_filter = 4
@@ -681,8 +681,8 @@ material = SubResource("ShaderMaterial_jtqv7")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1280.0
+offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.405234, 0.395743, 0.381507, 1)
