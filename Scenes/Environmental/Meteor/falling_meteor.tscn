@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://baalka180ivjc" path="res://Assets/sounds/meteor_impact.wav" id="3_n0qog"]
 
 [node name="FallingMeteor" type="Area2D"]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_4ihe8")
 
 [node name="Area2D" type="Area2D" parent="."]

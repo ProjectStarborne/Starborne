@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://1vslsh0xa5hf"]
+
+[ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="2_k0t8b"]
+
+[sub_resource type="GDScript" id="GDScript_l0xyo"]
+script/source = "# GameOver.gd - Attach this script to the root node of the GameOver scene
+extends CanvasLayer
+
+# Define the signal
+signal respawn_requested
+
+func _on_respawn_button_pressed() -> void:
+	emit_signal(\"respawn_requested\")  # Emit the respawn signal
+	queue_free()  # Remove the GameOver screen from the scene
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryji0"]
+bg_color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[node name="GameOver" type="CanvasLayer"]
+script = SubResource("GDScript_l0xyo")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 1.0
+offset_top = 29.0
+offset_right = 79.0
+offset_bottom = 60.0
+text = "Respawn"
+icon_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1112.0
+offset_bottom = 608.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ryji0")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_k0t8b")
+text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="RespawnButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_k0t8b")
+text = " Respawn "
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_k0t8b")
+text = " Quit "
+
+[connection signal="pressed" from="Button" to="." method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/RespawnButton" to="." method="_on_respawn_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

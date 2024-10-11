@@ -6,6 +6,7 @@ class_name Player
 const SPEED = 300.0 # Normal speed of the player
 const NORMAL_FRICTION = 1500.0 
 const ICE_FRICTION = 100.0  # Low friction for sliding on ice
+#const LAVA_FRICTION = 100.0  # Low friction for sliding on ice
 
 # Exported variable for friction, which controls how quickly the player slows down after moving
 @export var friction = NORMAL_FRICTION
@@ -24,9 +25,17 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_label = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning")  # Reference to warning label in UI
 @onready var warning_audio = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning/Oxygen_Warning")  # Warning sound player
 
-
 @onready var flashlight: PointLight2D = $Flashlight
 signal picked_up_item(item : Item)
+
+# Inventory
+var inventory : Inventory = Inventory.new()
+
+# Upgrade Level
+var upgrade_level = 0
+
+# World Variable
+@onready var world = get_parent()
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
@@ -34,6 +43,8 @@ func _physics_process(delta: float) -> void:
 
 	# Check if the player is standing on ice, and adjust friction accordingly
 	ice_check()
+	# Check if the player is standing on lava, and slow player down and take damage if so
+	lava_check()
 
 	# Check if the player is dead, and prevent movement if so
 	if is_dead:
@@ -70,7 +81,7 @@ func _physics_process(delta: float) -> void:
 
 		# Update velocity based on direction and apply friction when there's no input
 		if direction != Vector2.ZERO:
-			velocity = direction * SPEED
+			velocity = direction * current_speed
 		else:
 			# Apply friction to slow down when there's no input
 			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
@@ -129,6 +140,75 @@ func ice_check():
 	else:
 		#print("No tile data")
 		friction = NORMAL_FRICTION  # Default friction when no tile data
+
+
+####### LAVA SYSTEM ######
+
+# Reference to the fire effect AnimatedSprite2D
+@onready var fire_sprite = $Fire
+@onready var fire_light = $Fire/PointLight2D 
+
+var is_lava_custom_data = "is_lava"
+var LAVA_SPEED_FACTOR = 0.5  # Factor to slow down the player on lava (50% slower)
+var LAVA_DAMAGE = 10  # Amount of damage to apply while on lava
+var damage_interval = 1.0  # Time in seconds between each damage tick
+var last_damage_time = 0.0  # Keeps track of the last time damage was applied
+# Color for the firelight effect (warm orange)
+var fire_color = Color(1.0, 0.5, 0.1)  # RGB values for orange
+
+# Variable to hold the current speed, initially set to normal speed
+var current_speed = SPEED  # Initialize with the constant SPEED value
+
+# Method to check if the tile under the player is lava
+# Reference to the fire animation and light nodes
+
+
+func lava_check():
+	var player_pos : Vector2 = global_position  # Player's global position
+	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # Convert to local position relative to TileMap
+	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # Convert local position to TileMap grid position
+	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
+
+	if tile_data:
+		var is_lava = tile_data.get_custom_data(is_lava_custom_data)
+		if is_lava == true:
+			# Slow down the player's speed by reducing the current_speed
+			current_speed = SPEED * LAVA_SPEED_FACTOR  # Adjust the player's current speed when on lava
+
+			# Check if enough time has passed since last damage
+			if Time.get_ticks_msec() / 1000.0 - last_damage_time >= damage_interval:
+				take_damage(LAVA_DAMAGE)  # Apply damage to the player
+				last_damage_time = Time.get_ticks_msec() / 1000.0  # Update last damage time
+
+			# Play fire animation
+			if fire_sprite.animation != "on_fire":
+				fire_sprite.animation = "on_fire"  # Set the animation to "on_fire"
+			fire_sprite.play("on_fire")  # Start the fire animation if not already playing
+			fire_sprite.visible = true  # Make sure the fire animation is visible
+
+			# Enable the light and set properties
+			fire_light.visible = true
+			fire_light.color = fire_color  # Set the light to a warm orange color
+			fire_light.energy = 0.8  # Adjust energy level as needed
+		else:
+			# Reset speed and stop fire animation when not on lava
+			current_speed = SPEED
+			fire_sprite.stop()  # Stop the fire animation
+			fire_sprite.visible = false  # Hide the fire animation when not on lava
+
+			# Disable the light
+			fire_light.visible = false
+			fire_light.energy = 0.0  # Reset energy when not on lava
+	else:
+		current_speed = SPEED  # Reset speed when no tile data found
+		fire_sprite.stop()  # Stop the fire animation
+		fire_sprite.visible = false  # Hide the fire animation
+		fire_light.visible = false  # Disable the light
+		fire_light.energy = 0.0  # Reset energy when not on lava
+
+
+
+
 
 
 
@@ -211,8 +291,6 @@ func take_damage(damage: int) -> void:
 # Function to update the health bar UI to reflect the current health
 func update_health_bar() -> void:
 	health_bar.value = current_health
-
-
 # Function to handle the game over state when the player's health reaches 0
 func game_over() -> void:
 	print("Game Over!")  # Output "Game Over" for debugging purposes
@@ -352,7 +430,9 @@ func update_oxygen_color() -> void:
 		
 
 
-###### Resource Management System ######
+####### Resource Management System #######
+
 func on_item_picked_up(item:Item) -> void:
 	print("I got ", item.name)
+	inventory.add_item(item)
 	picked_up_item.emit(item)
