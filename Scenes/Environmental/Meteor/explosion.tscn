@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpmy13lydbij4"]
+[gd_scene load_steps=14 format=3 uid="uid://dpmy13lydbij4"]
 
 [ext_resource type="Script" path="res://Scripts/Environmental/Meteor/explosion.gd" id="1_o44lc"]
 [ext_resource type="Texture2D" uid="uid://d1mebk1gepk2u" path="res://Assets/images/explosion.png" id="2_qiacm"]
+[ext_resource type="Texture2D" uid="uid://ci36fqjtkdcvo" path="res://Assets/images/circle_light2.png" id="3_hoot7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gojw0"]
 atlas = ExtResource("2_qiacm")
@@ -53,9 +54,112 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_iy2wa"]
+resource_name = "ExplosionLight"
+length = 1.2
+loop_mode = 1
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 6.0, 7.5, 4.0, 1.5, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:range_z_min")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [-100, -300, -500, -400, -200, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:range_z_max")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [100, 300, 500, 400, 200, 0]
+}
+
+[sub_resource type="Animation" id="Animation_sd0s6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.94691]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:range_z_min")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-100]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:range_z_max")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [100]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m28od"]
+_data = {
+"ExplosionLight": SubResource("Animation_iy2wa"),
+"RESET": SubResource("Animation_sd0s6")
+}
+
 [node name="Explosion" type="Node2D"]
+scale = Vector2(1.4, 1.4)
 script = ExtResource("1_o44lc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_6t48g")
+frame = 5
+frame_progress = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.5, 0, 1)
+energy = 2.94691
+range_z_min = -100
+range_z_max = 100
+range_item_cull_mask = 7
+texture = ExtResource("3_hoot7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m28od")
+}

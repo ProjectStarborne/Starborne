@@ -4,8 +4,14 @@ extends Node2D
 @export var pickups : Array[PackedScene]
 # Player variable for all things player related
 @onready var player = %Player
+# Inventory variable
+@onready var inventory = $CanvasLayer/InventoryUI
+# Pause Menu variable
+@onready var pause_menu = $CanvasLayer/PauseMenu
 # Label for pickups
-@onready var item_picked_up = get_node("CanvasLayer/ItemPickupNotification")
+@onready var item_picked_up = $CanvasLayer/ItemPickupNotification
+
+var paused : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +30,18 @@ func _ready() -> void:
 	
 	# Connect the emitted signal to this script manually
 	player.connect("picked_up_item", on_picked_up_item)
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("inventory"):
+		inventory.open(player.inventory)
+	
+	if Input.is_action_just_pressed("pause") and !paused:
+		pause_menu.pause()
+		paused = !paused
+	elif Input.is_action_just_pressed("pause") and paused:
+		pause_menu.resume()
+		paused = !paused
+	
 
 # Displays what is picked up to the screen
 func on_picked_up_item(item : Item):
