@@ -55,6 +55,7 @@ func impact():
 	var explosion_instance = ExplosionScene.instantiate()
 	explosion_instance.global_position = target_position
 	get_tree().current_scene.add_child(explosion_instance)  # Add the explosion to the current scene
+	print("Explosion at:", explosion_instance.global_position)
 
 	# Create and play the impact sound at the target position
 	var audio_player = AudioStreamPlayer2D.new()

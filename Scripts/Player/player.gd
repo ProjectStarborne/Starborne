@@ -4,7 +4,8 @@ extends CharacterBody2D
 const SPEED = 300.0 # Normal speed of the player
 const NORMAL_FRICTION = 1500.0 
 const ICE_FRICTION = 100.0  # Low friction for sliding on ice
-#const LAVA_FRICTION = 100.0  # Low friction for sliding on ice
+const ICE_ACCELERATION = 300.0  # How fast the player can change direction on ice
+const NORMAL_ACCELERATION = 10000.0  # Normal acceleration (for immediate directional change)
 
 # Exported variable for friction, which controls how quickly the player slows down after moving
 @export var friction = NORMAL_FRICTION
@@ -37,7 +38,7 @@ var upgrade_level = 0
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
-	var direction = Vector2.ZERO
+	var input_direction = Vector2.ZERO
 
 	# Check if the player is standing on ice, and adjust friction accordingly
 	ice_check()
@@ -60,35 +61,40 @@ func _physics_process(delta: float) -> void:
 
 		# Get the player input for movement
 		if Input.is_action_pressed("up"):
-			direction.y -= 1  # Move up
+			input_direction.y -= 1  # Move up
 			$Sprite2D/AnimationPlayer.play("walk_up")
 		if Input.is_action_pressed("down"):
-			direction.y += 1  # Move down
+			input_direction.y += 1  # Move down
 			$Sprite2D/AnimationPlayer.play("walk_down")
 		if Input.is_action_pressed("left"):
-			direction.x -= 1  # Move left
-			if direction.y == 0:
+			input_direction.x -= 1  # Move left
+			if input_direction.y == 0:
 				$Sprite2D/AnimationPlayer.play("walk_left")
 		if Input.is_action_pressed("right"):
-			direction.x += 1  # Move right
-			if direction.y == 0:
+			input_direction.x += 1  # Move right
+			if input_direction.y == 0:
 				$Sprite2D/AnimationPlayer.play("walk_right")
 
 		# Normalize the direction vector for consistent movement speed
-		direction = direction.normalized()
+		input_direction = input_direction.normalized()
 
-		# Update velocity based on direction and apply friction when there's no input
-		if direction != Vector2.ZERO:
-			velocity = direction * current_speed
+		# Handle velocity updates based on whether the player is on ice or not
+		if is_on_ice:
+			# Gradually move towards the new direction to simulate sliding and momentum on ice
+			velocity = velocity.move_toward(input_direction * current_speed, ICE_ACCELERATION * delta)
 		else:
-			# Apply friction to slow down when there's no input
-			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+			# Regular movement (non-ice)
+			if input_direction != Vector2.ZERO:
+				velocity = input_direction * current_speed
+			else:
+				# Apply friction to slow down when there's no input
+				velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 	# Handle flashlight aiming at the mouse position
 	flashlight.look_at(get_global_mouse_position())
 
-	# Stop animations if there's no movement
-	if direction == Vector2.ZERO:
+	# Stop animations if there's no movement and player is not on ice
+	if input_direction == Vector2.ZERO and !is_on_ice:
 		$Sprite2D/AnimationPlayer.stop()
 
 	# Flicker warning text if oxygen is leaking
@@ -100,6 +106,7 @@ func _physics_process(delta: float) -> void:
 
 	# Deplete oxygen over time
 	deplete_oxygen(delta)
+
 
 
 
@@ -119,6 +126,7 @@ func apply_knockback(force: Vector2) -> void:
 @onready var tile_map = get_node("/root/Environment/TileMap")  # Reference to your TileMap node
 var ground_layer = 0
 var is_ice_custom_data = "is_ice"
+var is_on_ice = false  # A flag to track if the player is on ice
 
 # Method to check if the tile under the player is ice
 func ice_check():
@@ -130,13 +138,13 @@ func ice_check():
 	if tile_data:
 		var is_ice = tile_data.get_custom_data(is_ice_custom_data)
 		if is_ice == true:
-			#print("This tile is ice!")
+			is_on_ice = true
 			friction = ICE_FRICTION  # Set friction to ice friction
 		else:
-			#print("This tile is not ice.")
+			is_on_ice = false
 			friction = NORMAL_FRICTION  # Default friction when not on ice
 	else:
-		#print("No tile data")
+		is_on_ice = false
 		friction = NORMAL_FRICTION  # Default friction when no tile data
 
 
@@ -249,7 +257,7 @@ func fix_oxygen_leak() -> void:
 ####### HEALTH SYSTEM #######
 
 # Health Variables
-@onready var health_bar = get_node("/root/Environment/CanvasLayer/HealthBar")  # Reference to the health bar node in the scene
+@onready var health_bar = get_node("/root/Environment/CanvasLayer/HBoxContainer/ControlHealth/HealthBar")  # Reference to the health bar node in the scene
 @export var max_health = 100  # Maximum health for the player (adjustable)
 var current_health = max_health  # Player's current health, initialized to the maximum
 var is_dead = false  # Boolean to track if the player is dead (starts alive)
@@ -345,20 +353,21 @@ func update_health_color() -> void:
 
 	# Set the color of the health bar based on the health percentage:
 	if health_percentage > 0.75:
-		fill_stylebox.bg_color = Color(0.0, 0.7, 0.0)  # Green for health > 75%
+		fill_stylebox.bg_color = Color(0.0, 0.5, 0.0)  # Dark green for health > 75%
 	elif health_percentage > 0.5:
-		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for health between 50% and 75%
+		fill_stylebox.bg_color = Color(0.7, 0.7, 0.0)  # Muted yellow for health between 50% and 75%
 	elif health_percentage > 0.25:
-		fill_stylebox.bg_color = Color(1.0, 0.65, 0.0)  # Orange for health between 25% and 50%
+		fill_stylebox.bg_color = Color(0.8, 0.5, 0.0)  # Muted orange for health between 25% and 50%
 	else:
-		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for health below 25%
+		fill_stylebox.bg_color = Color(0.5, 0.0, 0.0)  # Dark red for health below 25%
+
 
 
 
 ####### OXYGEN SYSTEM #######
 
 # Oxygen Variables
-@onready var oxygen_bar = get_node("/root/Environment/CanvasLayer/OxygenBar")  # Reference to the oxygen bar node in the UI
+@onready var oxygen_bar = get_node("/root/Environment/CanvasLayer/HBoxContainer/ControlOxygen/OxygenBar")  # Reference to the oxygen bar node in the UI
 @export var max_oxygen = 100  # Maximum oxygen level for the player
 var current_oxygen = max_oxygen  # Player's current oxygen level, initialized to max
 var oxygen_gone = false  # Boolean to track whether oxygen depletion has started. cant remember if we used this or not 

@@ -152,11 +152,14 @@ frame = 5
 frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 1048575
+visibility_layer = 1048575
+z_index = 100
 color = Color(1, 0.5, 0, 1)
 energy = 2.94691
 range_z_min = -100
 range_z_max = 100
-range_item_cull_mask = 7
+range_item_cull_mask = 1048575
 texture = ExtResource("3_hoot7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
