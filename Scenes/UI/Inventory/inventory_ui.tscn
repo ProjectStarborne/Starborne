@@ -65,133 +65,213 @@ theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 12
 columns = 4
 
-[node name="ColorRect" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Slot1" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot1"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_cusom")
 
-[node name="ColorRect13" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot1"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot2" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect13"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot2"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_f4txo")
 
-[node name="ColorRect14" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot3" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect14"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot3"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_pnn44")
 
-[node name="ColorRect15" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot3"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot4" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect15"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot4"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect16" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot4"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot5" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect16"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot5"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect2" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot5"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot6" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect2"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot6"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect3" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot6"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot7" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect3"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot7"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect4" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot7"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot8" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect4"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot8"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect5" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot8"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot9" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect5"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot9"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect6" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot9"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot10" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect6"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot10"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect7" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot10"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot11" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect7"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot11"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect8" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot11"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot12" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect8"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot12"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect9" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot12"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot13" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect9"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot13"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect10" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot13"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot14" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect10"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot14"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect11" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot14"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot15" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect11"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot15"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
 
-[node name="ColorRect12" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot15"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Slot16" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect12"]
+[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/Slot16"]
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_iyrld")
+
+[node name="Label" type="Label" parent="InventoryControl/VBoxContainer/GridContainer/Slot16"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 
 [node name="DescriptionControl" type="Control" parent="."]
 layout_mode = 1

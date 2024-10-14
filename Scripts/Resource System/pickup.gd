@@ -1,5 +1,6 @@
 extends Node2D
 
+## This is the parent class for all pickupable items in the game. This includes: Minerals, consumables, and tools
 @export var item:Item
 
 # Loads items into the scene and instantiates them on startup

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://xvd4qmndtd1j"]
 
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="1_3rfwv"]
-[ext_resource type="Script" path="res://Scripts/UI/pause_menu.gd" id="1_53p1s"]
-[ext_resource type="Shader" path="res://Scripts/UI/pause_menu.gdshader" id="2_qpede"]
+[ext_resource type="Script" path="res://Scripts/UI/Pause Menu/pause_menu.gd" id="1_53p1s"]
+[ext_resource type="Shader" path="res://Scripts/UI/Pause Menu/pause_menu.gdshader" id="2_qpede"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r3eve"]
 shader = ExtResource("2_qpede")

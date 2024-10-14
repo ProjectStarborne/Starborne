@@ -6,7 +6,6 @@ extends Control
 
 func open(inventory:Inventory):
 	show()
-	animation_player.play("Scaling")
 	
 	
 	var slots = get_tree().get_nodes_in_group("Inventory Slot")
@@ -17,14 +16,18 @@ func open(inventory:Inventory):
 	for item in inventory.get_items():
 		if slot_num != slots.size() - 1:
 			var image = item.icon
-			var texture = slots[slot_num].get_children()
-			texture[0].set_texture(image)
+			var children = slots[slot_num].get_children()
+			children[0].set_texture(image)
+			# Update the stack labels to show the proper amount of items in inventory
+			if item.quantity > 1:
+				children[1].text = str(item.quantity)
 		slot_num += 1
 
-func _on_close_button_pressed() -> void:
-	animation_player.play_backwards("Scaling")
-	await animation_player.animation_finished
+func close():
 	hide()
+
+func _on_close_button_pressed() -> void:
+	close()
 
 # Check to make sure inventory is getting data
 func debug_inventory(inventory : Array, slots : Array):
@@ -32,6 +35,3 @@ func debug_inventory(inventory : Array, slots : Array):
 	for item in inventory:
 		print(counter, ": ", item.name)
 		counter += 1
-	
-	for slot in slots:
-		print(slot)
