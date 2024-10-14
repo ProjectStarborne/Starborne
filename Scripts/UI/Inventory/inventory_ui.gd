@@ -2,9 +2,11 @@ extends Control
 
 # Gives access to grid container manipulation
 @onready var grid_container : GridContainer = %GridContainer
+@onready var animation_player = $AnimationPlayer
 
 func open(inventory:Inventory):
 	show()
+	animation_player.play("Scaling")
 	
 	
 	var slots = get_tree().get_nodes_in_group("Inventory Slot")
@@ -20,6 +22,8 @@ func open(inventory:Inventory):
 		slot_num += 1
 
 func _on_close_button_pressed() -> void:
+	animation_player.play_backwards("Scaling")
+	await animation_player.animation_finished
 	hide()
 
 # Check to make sure inventory is getting data

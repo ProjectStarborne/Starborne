@@ -9,5 +9,5 @@ name = "test item"
 scene = ExtResource("1_kqym3")
 price = 0
 weight = 0
-description = ""
+description = "This is a test item."
 stackable = false

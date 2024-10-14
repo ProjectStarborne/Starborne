@@ -6,12 +6,12 @@
 
 [resource]
 script = ExtResource("1_ye4pq")
-mineral_type = ""
+mineral_type = "Common"
 quantity = 0
 name = "Iron"
 scene = ExtResource("2_w5rsd")
 icon = ExtResource("1_3jk1e")
 price = 0
 weight = 0
-description = ""
+description = "A sturdy and versatile metal, Iron is one of the most abundant minerals found on asteroids. Essential for crafting basic tools and constructing foundational structures, Iron is a staple resource for every explorer’s inventory."
 stackable = false

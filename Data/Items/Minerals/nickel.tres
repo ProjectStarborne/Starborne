@@ -6,12 +6,12 @@
 
 [resource]
 script = ExtResource("1_dxelw")
-mineral_type = ""
+mineral_type = "Common"
 quantity = 0
 name = "Nickel"
 scene = ExtResource("2_3x3t2")
 icon = ExtResource("1_2b308")
 price = 0
 weight = 0
-description = ""
+description = "Nickel is a reliable metal known for its resistance to corrosion and high-temperature stability. Frequently mined alongside Iron, Nickel is crucial for manufacturing durable equipment and advanced machinery components."
 stackable = false
