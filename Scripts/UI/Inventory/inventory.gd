@@ -25,3 +25,7 @@ func get_items() -> Array[Item]:
 	for value in _content.values():
 		items.append(value as Item)
 	return items
+
+# Check if the item exists in the inventory
+func has_item(item: Item) -> bool:
+	return item.name in _content and _content[item.name].quantity > 0

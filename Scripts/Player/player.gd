@@ -109,6 +109,22 @@ func _physics_process(delta: float) -> void:
 
 
 
+####### CURRENCY SYSTEM #######
+# Exported credits variable to track the player's credits
+@export var credits: int = 100
+
+# Function to update player's credits (optional)
+func add_credits(amount: int) -> void:
+	credits += amount
+	print("Credits added: ", amount, " Total credits: ", credits)
+
+func remove_credits(amount: int) -> void:
+	credits = max(0, credits - amount)  # Prevent going below 0
+	print("Credits removed: ", amount, " Remaining credits: ", credits)
+
+func get_credits() -> int:
+	return credits
+
 
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
@@ -265,6 +281,8 @@ var is_dead = false  # Boolean to track if the player is dead (starts alive)
 
 # Called when the node is added to the scene
 func _ready() -> void: 
+	# Set the player's starting position to the spawn marker's position
+	global_position = spawn_marker.global_position
 	# Set the health bar's maximum and current values to reflect the player's health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
@@ -314,9 +332,12 @@ func game_over() -> void:
 	print("Oxygen leaking state after respawn: ", oxygen_leaking)
 
 
+@onready var spawn_marker = get_node("/root/Environment/SpawnPoint")  # Reference to the Marker2D node
 
 # Function to handle respawning the player
 func respawn() -> void:
+	# Respawn the player at the spawn marker's position
+	global_position = spawn_marker.global_position
 	#Deactivate oxygen leak, if present upon death
 	fix_oxygen_leak()
 	#Bug fix workaround. The same rock cannot trigger oxygen drain twice cause its fuked
@@ -334,8 +355,6 @@ func respawn() -> void:
 	
 	is_dead = false  # Allow the player to move again (remove the dead state)
 	
-	# Respawn the player at a predefined position (100, 100)
-	global_position = Vector2(100, 100)
 	print("Respawning...")  
 
 

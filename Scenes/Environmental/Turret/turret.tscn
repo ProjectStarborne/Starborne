@@ -8,7 +8,7 @@
 script = ExtResource("1_soy81")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_gxt2c")
 
 [node name="Barrel" type="Area2D" parent="."]

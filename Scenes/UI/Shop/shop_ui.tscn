@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjm27ftv60peu"]
+[gd_scene load_steps=26 format=3 uid="uid://bjm27ftv60peu"]
 
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="1_8ov1t"]
 [ext_resource type="Script" path="res://Scripts/UI/Shop/shop_ui.gd" id="1_vkafb"]
@@ -71,6 +71,58 @@ _data = {
 "shrink_on_exit": SubResource("Animation_b5tdl")
 }
 
+[sub_resource type="Animation" id="Animation_s2tr3"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_ttk46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_0s6dt"]
+resource_name = "shrink_on_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 48), Vector2(100, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvjyt"]
+_data = {
+"RESET": SubResource("Animation_ttk46"),
+"enlarge_on_hover": SubResource("Animation_s2tr3"),
+"shrink_on_exit": SubResource("Animation_0s6dt")
+}
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mbag3"]
 
 [sub_resource type="Animation" id="Animation_ax545"]
@@ -125,6 +177,58 @@ _data = {
 "shrink_on_exit": SubResource("Animation_c186l")
 }
 
+[sub_resource type="Animation" id="Animation_snvl1"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_l8cxr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_5hppv"]
+resource_name = "shrink_on_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 48), Vector2(100, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phneg"]
+_data = {
+"RESET": SubResource("Animation_l8cxr"),
+"enlarge_on_hover": SubResource("Animation_snvl1"),
+"shrink_on_exit": SubResource("Animation_5hppv")
+}
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kr1rb"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f63jw"]
@@ -177,7 +281,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 32
-text = "Trade"
+text = "Shop"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -218,16 +322,27 @@ theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
 text = "placeholder"
 
-[node name="TradeButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("1_8ov1t")
-text = "Trade"
+text = "Buy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/TradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/BuyButton"]
 libraries = {
 "": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
 }
 
 [node name="Item 2 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
@@ -255,16 +370,27 @@ theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
 text = "placeholder"
 
-[node name="TradeButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
 custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("1_8ov1t")
-text = "Trade"
+text = "Buy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/TradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/BuyButton"]
 libraries = {
 "": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
 }
 
 [node name="Item 3 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
@@ -292,16 +418,27 @@ theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
 text = "placeholder"
 
-[node name="TradeButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
 custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("1_8ov1t")
-text = "Trade"
+text = "Buy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/TradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton"]
 libraries = {
 "": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
 }
 
 [node name="Item 4 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
@@ -329,16 +466,27 @@ theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
 text = "placeholder"
 
-[node name="TradeButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
 custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("1_8ov1t")
-text = "Trade"
+text = "Buy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/TradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton"]
 libraries = {
 "": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
 }
 
 [node name="Item 5 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
@@ -366,16 +514,27 @@ theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
 text = "placeholder"
 
-[node name="TradeButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
 custom_minimum_size = Vector2(120, 48)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("1_8ov1t")
-text = "Trade"
+text = "Buy"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/TradeButton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton"]
 libraries = {
 "": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
 }
 
 [node name="CloseButton" type="Button" parent="."]
@@ -390,9 +549,9 @@ grow_horizontal = 0
 theme_override_fonts/font = ExtResource("1_8ov1t")
 text = "X"
 
-[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/TradeButton" to="." method="_on_trade_button_pressed"]
-[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/TradeButton" to="." method="_on_trade_button_pressed"]
-[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/TradeButton" to="." method="_on_trade_button_pressed"]
-[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/TradeButton" to="." method="_on_trade_button_pressed"]
-[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/TradeButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

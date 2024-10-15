@@ -3,28 +3,22 @@ extends Control
 
 # Access the GridContainer where items will be displayed
 @onready var grid_container = $ShopControl/VBoxContainer/ScrollContainer/GridContainer
-
+# store the player node
+var player 
 # Shop inventory, this is separate from the player's inventory
 var shop_inventory: Inventory = Inventory.new()
 # Optionally, if you have a player's inventory for trading or purchasing
 var player_inventory: Inventory = Inventory.new()  # Player's inventory (to handle trading)
 
-# Trade requirements, e.g., 3 Iron for 1 Platinum, 2 Iron for 1 Iridium, etc.
-var trade_requirements = {
-	"Iron": { "Iron": 2 },    # Trade 1 Iron for 2 Iron
-	"Platinum": { "Iron": 3 },  # Trade 3 Iron for 1 Platinum
-	"Iridium": { "Iron": 2 },   # Trade 2 Iron for 1 Iridium
-	"Nickel": { "Iron": 1 },    # Trade 1 Iron for 1 Nickel
-}
+var mineral_names = ["Iron", "Iridium", "Platinum", "Nickel", "Hydrogen"]  # Add all mineral names here
 
 
 func _ready():
 	# Access the world scene
 	var world = get_tree().current_scene
-	#print("World scene: ", world)
 
 	# Access the player node by its path or search for it in the scene tree
-	var player = world.get_node_or_null("Player")  # Adjust "Player" if the actual path or name differs
+	player = world.get_node_or_null("Player")  # Adjust "Player" if the actual path or name differs
 
 	# If the player isn't a direct child, try using find_node()
 	if player == null:
@@ -39,32 +33,24 @@ func _ready():
 	# Now assign the player's inventory to player_inventory
 	if player != null:
 		player_inventory = player.inventory
-		#print("Player inventory: ", player_inventory)
-		
+
 	# Initialize player with some test inventory items for the shop trade
 	var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
 	var iron_item_2 = iron_item_1.duplicate()  # Create a duplicate of the first iron item
 	player.inventory.add_item(iron_item_1)
 	player.inventory.add_item(iron_item_2)
 
-
-	
 	# Manually add items to the shop inventory
 	var iron_item = load("res://Data/Items/Minerals/iron.tres") as Item
 	var iridium_item = load("res://Data/Items/Minerals/iridium.tres") as Item
 	var platinum_item = load("res://Data/Items/Minerals/platinum.tres") as Item
 	var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
-	
-	# Debug to check loaded items
-	#print("Loaded Items: ", iron_item, iridium_item, platinum_item, nickel_item)
 
 	# Add the items to the shop's inventory
 	shop_inventory.add_item(iron_item)
 	shop_inventory.add_item(iridium_item)
 	shop_inventory.add_item(platinum_item)
 	shop_inventory.add_item(nickel_item)
-	
-	#print("Items added to shop inventory: ", shop_inventory.get_items())
 
 	# Populate the shop UI with these manually added items
 	populate_shop(shop_inventory.get_items())
@@ -79,33 +65,53 @@ func populate_shop(items: Array[Item]):
 			# Set the item icon and name
 			var texture_rect = item_box.get_node("Item " + str(slot_num + 1)) as TextureRect
 			texture_rect.texture = item.icon
-			print("TextureRect for Item ", item.name, " at slot ", slot_num, ": ", texture_rect)
 
 			var description_vbox = item_box.get_node("DescriptionVBox" + str(slot_num + 1)) as VBoxContainer
 			var item_name_label = description_vbox.get_node("ItemNameLabel") as Label
 			var cost_label = description_vbox.get_node("CostLabel") as Label
 			item_name_label.text = item.name
-			
-			# Set the cost label
-			var cost_string = get_cost_string(item)
-			cost_label.text = "Trade: " + cost_string
 
-			# Set up the trade button
-			var trade_button = item_box.get_node("TradeButton") as Button
-			if trade_button != null:
+			# Set the cost label from the item's price in the .tres file
+			cost_label.text = "Price: " + str(item.price) + " credits"
+
+			# Set up the buy button
+			var buy_button = item_box.get_node("BuyButton") as Button
+			if buy_button != null:
+				# Disable the button if the item is a mineral
+				if item.name in mineral_names:
+					buy_button.disabled = true
+				else:
+					buy_button.disabled = false  # Ensure it's enabled for non-minerals
 				# Safely disconnect the pressed signal, if it was connected
-				var callable_signal = Callable(self, "_on_trade_button_pressed_with_item")
-				if trade_button.is_connected("pressed", callable_signal):
-					trade_button.disconnect("pressed", callable_signal)
+				var buy_signal = Callable(self, "_on_buy_button_pressed_with_item")
+				if buy_button.is_connected("pressed", buy_signal):
+					buy_button.disconnect("pressed", buy_signal)
 
 				# Reconnect the signal using the updated item
-				trade_button.set_meta("item", item)
-				trade_button.set_meta("animation_player", item_box.get_node("TradeButton/AnimationPlayer"))  # Set the AnimationPlayer metadata
-				trade_button.pressed.connect(callable_signal.bind(item))
-				
-				# Connect the mouse_entered and mouse_exited signals manually
-				trade_button.connect("mouse_entered", Callable(self, "_on_trade_button_mouse_entered").bind(trade_button))
-				trade_button.connect("mouse_exited", Callable(self, "_on_trade_button_mouse_exited").bind(trade_button))
+				buy_button.set_meta("item", item)
+				buy_button.set_meta("animation_player", item_box.get_node("BuyButton/AnimationPlayer"))  # Set the AnimationPlayer metadata
+				buy_button.pressed.connect(buy_signal.bind(item))
+
+				# Connect the mouse_entered and mouse_exited signals manually for buy button
+				buy_button.connect("mouse_entered", Callable(self, "_on_buy_button_mouse_entered").bind(buy_button))
+				buy_button.connect("mouse_exited", Callable(self, "_on_buy_button_mouse_exited").bind(buy_button))
+
+			# Set up the sell button
+			var sell_button = item_box.get_node("SellButton") as Button
+			if sell_button != null:
+				# Safely disconnect the pressed signal, if it was connected
+				var sell_signal = Callable(self, "_on_sell_button_pressed_with_item")
+				if sell_button.is_connected("pressed", sell_signal):
+					sell_button.disconnect("pressed", sell_signal)
+
+				# Reconnect the signal using the updated item
+				sell_button.set_meta("item", item)
+				sell_button.set_meta("animation_player", item_box.get_node("SellButton/AnimationPlayer"))  # Set the AnimationPlayer metadata
+				sell_button.pressed.connect(sell_signal.bind(item))
+
+				# Connect the mouse_entered and mouse_exited signals manually for sell button
+				sell_button.connect("mouse_entered", Callable(self, "_on_sell_button_mouse_entered").bind(sell_button))
+				sell_button.connect("mouse_exited", Callable(self, "_on_sell_button_mouse_exited").bind(sell_button))
 
 		slot_num += 1
 
@@ -115,87 +121,70 @@ func populate_shop(items: Array[Item]):
 		unused_item_box.visible = false
 
 
-
-func _on_trade_button_pressed_with_item(item: Item) -> void:
-	if player_can_trade(item):
-		print("Traded for ", item.name)
-		execute_trade(item)
+# Handle buy logic when the buy button is pressed
+func _on_buy_button_pressed_with_item(item: Item) -> void:
+	if player_can_afford(item):
+		print("Purchased ", item.name, " for ", item.price, " credits")
+		execute_purchase(item)
 		update_shop_ui()
 		update_inventory_ui()
 	else:
-		#print("Not enough resources to trade for ", item.name)
-		pass
+		print("Not enough credits to purchase ", item.name)
 
 
-
-func get_cost_string(item: Item) -> String:
-	if trade_requirements.has(item.name):
-		var requirements = trade_requirements[item.name]
-		var cost_parts = []
-		for key in requirements.keys():
-			cost_parts.append(str(requirements[key]) + " " + key)
-		return ", ".join(cost_parts)
-	return "N/A"
-
-
-
-# Check if the player can trade for the selected item
-func player_can_trade(item: Item) -> bool:
-	if trade_requirements.has(item.name):
-		var required_items = trade_requirements[item.name]
-		for required_item_name in required_items:
-			var required_quantity = required_items[required_item_name]
-			var found_quantity = 0
-
-			# Check the player's inventory for the required item and its quantity
-			if required_item_name in player_inventory._content:
-				found_quantity = player_inventory._content[required_item_name].quantity
-			
-			if found_quantity < required_quantity:
-				# Print the correct requirement for the current item
-				print("Not enough ", required_item_name, " for trading ", item.name, ". Need: ", required_quantity, ", Have: ", found_quantity)
-				return false
-		# If the player has enough, return true
-		return true
-	return false
+# Handle sell logic when the sell button is pressed
+func _on_sell_button_pressed_with_item(item: Item) -> void:
+	if player_inventory.has_item(item):
+		print("Sold ", item.name, " for ", item.price, " credits")
+		execute_sale(item)
+		update_shop_ui()
+		update_inventory_ui()
+	else:
+		print("You do not have ", item.name, " to sell")
 
 
+# Check if the player can afford the selected item
+func player_can_afford(item: Item) -> bool:
+	return player.credits >= item.price
 
 
-# Execute the trade
-func execute_trade(item: Item):
-	var required_items = trade_requirements[item.name]
-	print("Executing trade for: ", item.name, " Requirements: ", required_items)  # Debugging print
-	
-	for required_item_name in required_items:
-		var required_quantity = required_items[required_item_name]
-		
-		var remaining_quantity_to_remove = required_quantity
-		for player_item in player_inventory.get_items():
-			if player_item.name == required_item_name:
-				if player_item.quantity >= remaining_quantity_to_remove:
-					player_item.quantity -= remaining_quantity_to_remove
-					remaining_quantity_to_remove = 0
-				else:
-					remaining_quantity_to_remove -= player_item.quantity
-					player_item.quantity = 0
+# Execute the purchase
+func execute_purchase(item: Item):
 
-				if player_item.quantity <= 0:
-					player_inventory.remove_item(player_item)
+	# Deduct the price from the player's credits
+	player.remove_credits(item.price)
 
-				if remaining_quantity_to_remove == 0:
-					break
-
+	# Add the item to the player's inventory
 	player_inventory.add_item(item)
 	print("Added ", item.name, " to player's inventory")
-	
+
+	# Remove the item from the shop inventory
 	shop_inventory.remove_item(item)
-	
-	# Refresh the UI after the trade
+
+	# Refresh the shop UI and player's inventory UI
 	update_shop_ui()
-	
-	# Refresh the player's inventory UI as well to reflect the changes
 	update_inventory_ui()
+	
+	print("Credits: ", player.get_credits)
+
+
+# Execute the sale
+func execute_sale(item: Item):
+	# Add the price to the player's credits (gain credits)
+	player.add_credits(item.price)
+
+	# Remove the item from the player's inventory
+	player_inventory.remove_item(item)
+	print("Removed ", item.name, " from player's inventory")
+
+	# Add the item to the shop's inventory (optional, depending on your logic)
+	shop_inventory.add_item(item)
+
+	# Refresh the shop UI and player's inventory UI
+	update_shop_ui()
+	update_inventory_ui()
+	
+	print("Credits: ", player.get_credits)
 
 
 func update_inventory_ui():
@@ -203,7 +192,6 @@ func update_inventory_ui():
 		var inventory_ui = get_tree().current_scene.get_node("CanvasLayer/InventoryUI") as Control
 		if inventory_ui and inventory_ui.visible:
 			inventory_ui.open(player_inventory)  # Only refresh if the inventory is already open
-
 
 
 # Update the shop UI (use this after an item is traded)
@@ -216,15 +204,36 @@ func _on_close_button_pressed():
 	hide()
 
 
-func _on_trade_button_mouse_entered(trade_button: Button) -> void:
-	print("mouse entered!")
-	var animation_player = trade_button.get_meta("animation_player") as AnimationPlayer
+# Mouse enter/exit handlers for buy button
+func _on_buy_button_mouse_entered(buy_button: Button) -> void:
+	if buy_button.disabled:
+		return  # Do nothing if the button is disabled
+
+	var animation_player = buy_button.get_meta("animation_player") as AnimationPlayer
 	if animation_player:
 		animation_player.play("enlarge_on_hover")
 
 
-func _on_trade_button_mouse_exited(trade_button: Button) -> void:
-	print("mouse exited!")
-	var animation_player = trade_button.get_meta("animation_player") as AnimationPlayer
+func _on_buy_button_mouse_exited(buy_button: Button) -> void:
+	if buy_button.disabled:
+		return  # Do nothing if the button is disabled
+	var animation_player = buy_button.get_meta("animation_player") as AnimationPlayer
+	if animation_player:
+		animation_player.play("shrink_on_exit")
+
+
+# Mouse enter/exit handlers for sell button
+func _on_sell_button_mouse_entered(sell_button: Button) -> void:
+	if sell_button.disabled:
+		return  # Do nothing if the button is disabled
+	var animation_player = sell_button.get_meta("animation_player") as AnimationPlayer
+	if animation_player:
+		animation_player.play("enlarge_on_hover")
+
+
+func _on_sell_button_mouse_exited(sell_button: Button) -> void:
+	if sell_button.disabled:
+		return  # Do nothing if the button is disabled
+	var animation_player = sell_button.get_meta("animation_player") as AnimationPlayer
 	if animation_player:
 		animation_player.play("shrink_on_exit")
