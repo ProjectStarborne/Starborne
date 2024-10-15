@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=48 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]

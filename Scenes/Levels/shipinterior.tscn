@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
+[ext_resource type="PackedScene" uid="uid://cc27e2xjnyb86" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn26q"]
 texture = ExtResource("1_yce60")
@@ -142,6 +142,5 @@ layer_0/tile_data = PackedInt32Array(-65536, 589824, 5, -1, 589824, 5, -2, 58982
 layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-655361, 720896, 10, -720896, 786432, 10, -720895, 851968, 10, -589825, 720896, 11, -524289, 720896, 12, -655360, 786432, 11, -655359, 851968, 11, -589824, 786432, 12, -589823, 851968, 12, -393221, 720896, 10, -393220, 786432, 10, -393219, 851968, 10, -327685, 720896, 11, -327684, 786432, 11, -327683, 851968, 11, -262149, 720896, 12, -262148, 786432, 12, -262147, 851968, 12, -458749, 720896, 10, -458748, 786432, 10, -458747, 851968, 10, -393213, 720896, 11, -327677, 720896, 12, -393212, 786432, 11, -393211, 851968, 11, -327675, 851968, 12, -327676, 786432, 12)
 layer_2/name = "Layer2"
-layer_2/tile_data = PackedInt32Array(-393217, 0, 14, -458753, 0, 13, -524288, 65536, 13, -524287, 131072, 13, -458751, 131072, 14, -589824, 65536, 12, -589823, 131072, 12, -524289, 0, 12)
 
 [node name="Player" parent="." instance=ExtResource("2_2fxea")]
