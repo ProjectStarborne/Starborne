@@ -537,6 +537,21 @@ libraries = {
 "": SubResource("AnimationLibrary_phneg")
 }
 
+[node name="BrokeAlert" type="Label" parent="ShopControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+
 [node name="CloseButton" type="Button" parent="."]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1

@@ -125,22 +125,27 @@ func populate_shop(items: Array[Item]):
 func _on_buy_button_pressed_with_item(item: Item) -> void:
 	if player_can_afford(item):
 		print("Purchased ", item.name, " for ", item.price, " credits")
+		display_popup_message(item.name + " purchased!")
 		execute_purchase(item)
 		update_shop_ui()
 		update_inventory_ui()
 	else:
 		print("Not enough credits to purchase ", item.name)
+		display_popup_message("Not enough credits to buy " + item.name)
 
 
 # Handle sell logic when the sell button is pressed
 func _on_sell_button_pressed_with_item(item: Item) -> void:
 	if player_inventory.has_item(item):
 		print("Sold ", item.name, " for ", item.price, " credits")
+		display_popup_message(item.name + " sold!")
 		execute_sale(item)
 		update_shop_ui()
 		update_inventory_ui()
 	else:
 		print("You do not have ", item.name, " to sell")
+		display_popup_message("You do not have " + item.name + " to sell")
+
 
 
 # Check if the player can afford the selected item
@@ -187,6 +192,15 @@ func execute_sale(item: Item):
 	print("Credits: ", player.get_credits)
 
 
+# Display a message in the popup label
+func display_popup_message(message: String):
+	var popup_label = $ShopControl/BrokeAlert  # Adjust the path to the label
+	popup_label.text = message
+	popup_label.visible = true
+	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds
+	popup_label.visible = false
+
+
 func update_inventory_ui():
 	if get_tree().current_scene.has_node("CanvasLayer/InventoryUI"):
 		var inventory_ui = get_tree().current_scene.get_node("CanvasLayer/InventoryUI") as Control
@@ -202,7 +216,6 @@ func update_shop_ui():
 # Function to close the shop when the close button is pressed
 func _on_close_button_pressed():
 	hide()
-
 
 # Mouse enter/exit handlers for buy button
 func _on_buy_button_mouse_entered(buy_button: Button) -> void:
