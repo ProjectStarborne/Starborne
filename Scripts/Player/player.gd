@@ -126,6 +126,15 @@ func get_credits() -> int:
 	return credits
 
 
+####### LEVEL TRACKING (For later on in the shop) #######
+
+var current_level = 1  # Starting level
+
+# Method to get the current level
+func get_level() -> int:
+	return current_level
+	
+	
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
 func apply_knockback(force: Vector2) -> void:

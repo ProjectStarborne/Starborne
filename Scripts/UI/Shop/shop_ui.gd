@@ -9,8 +9,8 @@ var player
 var shop_inventory: Inventory = Inventory.new()
 # Optionally, if you have a player's inventory for trading or purchasing
 var player_inventory: Inventory = Inventory.new()  # Player's inventory (to handle trading)
-
-var mineral_names = ["Iron", "Iridium", "Platinum", "Nickel", "Hydrogen"]  # Add all mineral names here
+# Add all mineral names to the array so we know when to disable the buy button 
+var mineral_names = ["Iron", "Iridium", "Platinum", "Nickel", "Hydrogen"] 
 
 
 func _ready():
@@ -40,20 +40,41 @@ func _ready():
 	player.inventory.add_item(iron_item_1)
 	player.inventory.add_item(iron_item_2)
 
-	# Manually add items to the shop inventory
-	var iron_item = load("res://Data/Items/Minerals/iron.tres") as Item
-	var iridium_item = load("res://Data/Items/Minerals/iridium.tres") as Item
-	var platinum_item = load("res://Data/Items/Minerals/platinum.tres") as Item
-	var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
+	# Get the current level (we will need to adjust this to wherever we store the level info)
+	var current_level = player.get_level()  # Call get_level() in player.gd
+	
+	# Get the shop items based on the current level
+	var shop_items = get_shop_items_for_level(current_level)
 
-	# Add the items to the shop's inventory
-	shop_inventory.add_item(iron_item)
-	shop_inventory.add_item(iridium_item)
-	shop_inventory.add_item(platinum_item)
-	shop_inventory.add_item(nickel_item)
+	# Populate the shop inventory with these items
+	for item in shop_items:
+		shop_inventory.add_item(item)
 
 	# Populate the shop UI with these manually added items
 	populate_shop(shop_inventory.get_items())
+
+
+func get_shop_items_for_level(level: int) -> Array[Item]:
+	var items_for_level: Array[Item] = []
+
+	# Define items for different levels
+	if level == 1 or level == 2:
+		# Load items for levels 1-2
+		items_for_level.append(load("res://Data/Items/Minerals/iron.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Minerals/nickel.tres") as Item)
+	elif level == 3 or level == 4:
+		# Load items for levels 3-4
+		items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Minerals/oxygen.tres") as Item)
+	else:
+		# Fallback for other levels or general items
+		items_for_level.append(load("res://Data/Items/Minerals/iron.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Minerals/nickel.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
+
+	return items_for_level
 
 
 func populate_shop(items: Array[Item]):
