@@ -3,7 +3,7 @@ extends Node2D
 const LightTexture = preload("res://Assets/images/Light.png")
 const GRID_SIZE = 32
 
-@onready var player: Player = %"Player"
+@onready var player = %"Player"
 @onready var fog: Sprite2D = $"FoW Sprite"
 
 var d_width = ProjectSettings.get("display/window/size/viewport_width")
