@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=9 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
 [ext_resource type="PackedScene" uid="uid://cc27e2xjnyb86" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
 [ext_resource type="PackedScene" uid="uid://bwrfpxkgve1q0" path="res://Scenes/Ship/navigation.tscn" id="3_0okt1"]
 [ext_resource type="PackedScene" uid="uid://c3u7ync2tln8v" path="res://Scenes/Ship/shop.tscn" id="4_13phx"]
 [ext_resource type="PackedScene" uid="uid://bf7kcsxpq6alv" path="res://Scenes/Ship/storage.tscn" id="5_2j5dh"]
+[ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="6_cygqa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn26q"]
 texture = ExtResource("1_yce60")
@@ -157,3 +158,9 @@ position = Vector2(-56, -70)
 
 [node name="Storage" parent="." instance=ExtResource("5_2j5dh")]
 position = Vector2(74, -67)
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door_S" parent="Doors" instance=ExtResource("6_cygqa")]
+position = Vector2(210, 32)
+destination_level = "world_asteroid"
