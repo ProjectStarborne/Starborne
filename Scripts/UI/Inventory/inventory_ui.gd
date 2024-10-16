@@ -2,7 +2,6 @@ extends Control
 
 # Gives access to grid container manipulation
 @onready var grid_container : GridContainer = %GridContainer
-@onready var animation_player = $AnimationPlayer
 
 func open(inventory:Inventory):
 	show()
