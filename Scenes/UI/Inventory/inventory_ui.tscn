@@ -160,4 +160,20 @@ theme_override_colors/font_color = Color(0.999688, 0.0434917, 0.0240812, 1)
 theme_override_fonts/font = ExtResource("2_mvtcr")
 text = "X"
 
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot2" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot3" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot4" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot5" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot6" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot7" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot8" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot9" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot10" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot11" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot12" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot13" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot14" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot15" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot16" to="." method="_on_item_swap"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

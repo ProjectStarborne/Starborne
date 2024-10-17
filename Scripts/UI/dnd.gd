@@ -6,7 +6,7 @@ extends PanelContainer
 @export var slot_num : int
 @export var is_hotbar_slot : bool
 
-signal item_swap(slot_num : int)
+signal item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool)
 
 # Returns texture for dragging
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -22,6 +22,8 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 func _drop_data(_pos: Vector2, data: Variant):
 	var temp = texture_rect.texture
 	var temp_text = label.text
+	
+	# Swap textures
 	texture_rect.texture = data.texture
 	data.texture = temp
 	
@@ -29,6 +31,10 @@ func _drop_data(_pos: Vector2, data: Variant):
 	var parent = data.get_parent()	
 	label.text = parent.label.text
 	parent.label.text = temp_text
+	
+	# Emit signal to update inventory
+	var to_slot = parent.slot_num
+	emit_signal("item_swap", slot_num, to_slot, parent.is_hotbar_slot)
 
 # Create drag and drop preview
 # Gives indication that the item in the slot has been clicked
