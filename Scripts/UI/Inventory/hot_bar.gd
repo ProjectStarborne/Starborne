@@ -1,7 +1,5 @@
 extends Control
-
 @onready var hotbar_slots : Array = get_tree().get_nodes_in_group("hb_slots")
-@onready var animation_player = $AnimationPlayer
 
 # Images for hotbar is loaded here
 var imgs = [Image.load_from_file("res://Assets/images/Hotbar/hotbar-0.jpeg"), Image.load_from_file("res://Assets/images/Hotbar/hotbar-1.jpeg")]
@@ -37,6 +35,14 @@ func _process(delta: float) -> void:
 		change_selected_slot_texture()
 		
 	#print("HotBar Slot: ", selected_slot_index)
+
+func update_hotbar_ui(inventory: Inventory):
+	var hotbar_items = inventory.get_hotbar_items()
+	for i in range(hotbar_slots.size()):
+		if hotbar_items[i] != null:
+			hotbar_slots[i].set_texture(hotbar_items[i].icon)
+		else:
+			hotbar_slots[i].set_texture(null)
 
 ## Changes the texture of a slot depending on if the user has selected that slot or not. If not selected, see hb_unsel. Otherwise, see hb_sel
 func change_selected_slot_texture():

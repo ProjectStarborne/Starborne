@@ -13,6 +13,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qumiy")
 script = ExtResource("2_dkjhh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 expand_mode = 1

@@ -31,6 +31,7 @@ expand_mode = 1
 [node name="Slot" parent="TextureRect" instance=ExtResource("2_jebjc")]
 z_index = -1
 layout_mode = 0
+is_hotbar_slot = true
 
 [node name="TextureRect2" type="TextureRect" parent="." groups=["hb_slots"]]
 custom_minimum_size = Vector2(64, 64)
@@ -51,6 +52,7 @@ texture = ExtResource("1_4t0vf")
 [node name="Slot" parent="TextureRect2" instance=ExtResource("2_jebjc")]
 z_index = -1
 layout_mode = 0
+is_hotbar_slot = true
 
 [node name="TextureRect3" type="TextureRect" parent="." groups=["hb_slots"]]
 custom_minimum_size = Vector2(64, 64)
@@ -70,3 +72,4 @@ texture = ExtResource("1_4t0vf")
 [node name="Slot" parent="TextureRect3" instance=ExtResource("2_jebjc")]
 z_index = -1
 layout_mode = 0
+is_hotbar_slot = true

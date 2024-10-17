@@ -778,6 +778,7 @@ process_mode = 2
 visible = false
 
 [node name="HotBar" parent="CanvasLayer" instance=ExtResource("20_xsg51")]
+unique_name_in_owner = true
 
 [node name="Headlight1" type="PointLight2D" parent="."]
 process_mode = 1

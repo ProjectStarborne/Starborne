@@ -3,6 +3,7 @@ extends Control
 # Gives access to grid container manipulation
 @onready var grid_container : GridContainer = %GridContainer
 @onready var inv : Inventory
+@onready var hotbar = %HotBar
 
 func open(inventory:Inventory):
 	inv = inventory
@@ -31,13 +32,25 @@ func _on_close_button_pressed() -> void:
 	close()
 
 # Connected to slot item swap signal
-func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool):
-	# Swap items in the inventory
-	if not is_to_hotbar:
-		inv.swap_items(from_slot, to_slot)
-	else:
-		# Handle hotbar logic here
+func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar : bool):
+	print("Item swapping...", "From Hotbar: ", is_from_hotbar, " To Hotbar: ", is_to_hotbar)
+	
+	# Determine the type of swap and update inventory or hotbar
+	if is_from_hotbar and is_to_hotbar:
+		# Swapping between hotbar slots
+		inv.swap_hotbar_items(from_slot, to_slot)
+	elif is_from_hotbar and not is_to_hotbar:
+		# Swapping from hotbar to inventory
 		pass
+	elif not is_from_hotbar and is_to_hotbar:
+		# Swapping from inventory to hotbar
+		pass
+	else:
+		# Swapping between inventory slots
+		inv.swap_items(from_slot, to_slot)
+		
+	hotbar.update_hotbar_ui(inv)
+	
 
 # Check to make sure inventory is getting data
 func debug_inventory(inventory : Array, slots : Array):
