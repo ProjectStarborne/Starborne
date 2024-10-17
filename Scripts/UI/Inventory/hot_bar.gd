@@ -42,8 +42,8 @@ func _process(delta: float) -> void:
 func change_selected_slot_texture():
 	for i in range(hotbar_slots.size()):
 		if i == selected_slot_index:
-			hotbar_slots[i].texture_normal = hb_sel
-			print(hotbar_slots[i].texture_normal)
+			hotbar_slots[i].texture = hb_sel
+			print(hotbar_slots[i].texture)
 		else:
-			hotbar_slots[i].texture_normal = hb_unsel
+			hotbar_slots[i].texture = hb_unsel
 			
