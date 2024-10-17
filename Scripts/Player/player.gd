@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 # Constants
 const SPEED = 300.0 # Normal speed of the player
 const NORMAL_FRICTION = 1500.0 
