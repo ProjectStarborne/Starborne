@@ -40,11 +40,16 @@ func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_
 		# Swapping between hotbar slots
 		inv.swap_hotbar_items(from_slot, to_slot)
 	elif is_from_hotbar and not is_to_hotbar:
+		var hotbar_items = inv.get_hotbar_items()
+		
 		# Swapping from hotbar to inventory
-		pass
+		inv.add_item_to_slot(hotbar_items[from_slot], to_slot)
+		inv.remove_from_hotbar(from_slot)
 	elif not is_from_hotbar and is_to_hotbar:
 		# Swapping from inventory to hotbar
-		pass
+		inv.add_to_hotbar(from_slot)
+		inv.remove_item(inv._content[from_slot])
+		
 	else:
 		# Swapping between inventory slots
 		inv.swap_items(from_slot, to_slot)

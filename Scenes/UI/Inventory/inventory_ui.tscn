@@ -6,9 +6,9 @@
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
-anchor_left = 0.1
+anchor_left = 0.3
 anchor_top = 0.1
-anchor_right = 0.9
+anchor_right = 0.7
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
@@ -26,7 +26,8 @@ color = Color(0.122252, 0.122252, 0.122252, 1)
 
 [node name="InventoryControl" type="Control" parent="."]
 layout_mode = 1
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -44,8 +45,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
 columns = 4
 
 [node name="Slot" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
@@ -111,42 +112,6 @@ slot_num = 14
 layout_mode = 2
 slot_num = 15
 
-[node name="DescriptionControl" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DescriptionControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="DescriptionControl/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="DescriptionControl/VBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = -32.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("2_mvtcr")
-theme_override_font_sizes/normal_font_size = 16
-text = "Item Description, flavor text, whatever the fuckkkkkk"
-
 [node name="CloseButton" type="Button" parent="."]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
@@ -159,6 +124,19 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0.999688, 0.0434917, 0.0240812, 1)
 theme_override_fonts/font = ExtResource("2_mvtcr")
 text = "X"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_right = 165.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_mvtcr")
+theme_override_font_sizes/font_size = 60
+text = "Inventory"
 
 [connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot" to="." method="_on_item_swap"]
 [connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot2" to="." method="_on_item_swap"]

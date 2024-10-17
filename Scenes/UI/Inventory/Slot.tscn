@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0uawvwmknsjj"]
 
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="2_7qoak"]
-[ext_resource type="Script" path="res://Scripts/UI/dnd.gd" id="2_dkjhh"]
+[ext_resource type="Script" path="res://Scripts/UI/Inventory/dnd.gd" id="2_dkjhh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qumiy"]
 bg_color = Color(0.454524, 0.454524, 0.454524, 1)

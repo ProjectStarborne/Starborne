@@ -7,6 +7,18 @@ var _content: Dictionary = {}
 var _hotbar: Dictionary = {}
 var size = 0
 
+func _ready():
+	# Initialize _content with null values for all slots
+	# TODO: make a function for this and inventory population
+	for i in range(MAX_SLOTS):
+		if not _content.has(i):
+			_content[i] = null
+	
+	for i in range(HOTBAR_SLOTS):
+		if not _hotbar.has(i):
+			_hotbar[i] = null
+			
+
 func add_item(item:Item) -> bool:
 	if size == MAX_SLOTS:
 			return false
@@ -29,7 +41,11 @@ func add_item(item:Item) -> bool:
 	
 	return false
 		
-	
+
+func add_item_to_slot(item:Item, slot_index : int):
+	_content[slot_index] = item
+	size += 1
+
 func remove_item(item:Item):
 	#if item.name in _content:
 		#_content[item.name].quantity -= 1

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Mineral" load_steps=4 format=3 uid="uid://wdj11swq4tbp"]
 
-[ext_resource type="Texture2D" uid="uid://dalabsumdtqh" path="res://Assets/Minerals/Background/Icon43.png" id="1_3jk1e"]
+[ext_resource type="Texture2D" uid="uid://buf4sclbn6xq5" path="res://Assets/Minerals/Transperent/Icon43.png" id="1_x6ik8"]
 [ext_resource type="Script" path="res://Scripts/Resource System/mineral.gd" id="1_ye4pq"]
 [ext_resource type="PackedScene" uid="uid://bxhlh1m8rw85y" path="res://Scenes/Items/iron.tscn" id="2_w5rsd"]
 
@@ -10,7 +10,7 @@ mineral_type = "Common"
 quantity = 0
 name = "Iron"
 scene = ExtResource("2_w5rsd")
-icon = ExtResource("1_3jk1e")
+icon = ExtResource("1_x6ik8")
 price = 0
 weight = 0
 description = "A sturdy and versatile metal, Iron is one of the most abundant minerals found on asteroids. Essential for crafting basic tools and constructing foundational structures, Iron is a staple resource for every explorer’s inventory."
