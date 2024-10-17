@@ -1,8 +1,10 @@
 class_name Inventory
 
 const MAX_SLOTS = 16
+const HOTBAR_SLOTS = 3
 
 var _content: Dictionary = {}
+var _hotbar: Dictionary = {}
 var size = 0
 
 func add_item(item:Item) -> bool:
@@ -42,7 +44,14 @@ func remove_item(item:Item):
 				_content.erase(slot_index)
 				size -= 1
 			return
+			
+	# Remove from hotbar if present
+	for slot_index in _hotbar.keys():
+		if _hotbar[slot_index] == item:
+			_hotbar.erase(slot_index)
+			return
 	
+# Get inventory items in the form of an array
 func get_items() -> Array[Item]:
 	var items: Array[Item] = []
 	for value in range(MAX_SLOTS):
@@ -52,6 +61,19 @@ func get_items() -> Array[Item]:
 			items.append(null)
 		
 	return items
+
+# Get hotbar items in the form of an array
+func get_hotbar_items() -> Array[Item]:
+	var hotbar_items: Array[Item] = []
+	for i in range(HOTBAR_SLOTS):
+		if _hotbar.has(i):
+			hotbar_items.append(_hotbar[i])
+		else:
+			hotbar_items.append(null)
+	return hotbar_items
+	
+func add_to_hotbar(slot_index: int): #-> bool:
+	pass
 
 # Check if the item exists in the inventory
 func has_item(item: Item) -> bool:
