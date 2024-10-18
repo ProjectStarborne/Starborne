@@ -1,6 +1,6 @@
 extends Node2D
 
-# Holds all the items ready to pickup
+## Holds all the items ready to pickup
 @export var pickups : Array[PackedScene]
 # Player variable for all things player related
 @onready var player = %Player
@@ -32,9 +32,14 @@ func _ready() -> void:
 	player.connect("picked_up_item", on_picked_up_item)
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("inventory"):
-		inventory.open(player.inventory)
+	# Handle Inventory UI
+	if Input.is_action_just_pressed("inventory"):
+		if inventory.visible:
+			inventory.close()
+		else:
+			inventory.open(player.inventory)
 	
+	# Handle Pause UI
 	if Input.is_action_just_pressed("pause") and !paused:
 		pause_menu.pause()
 		paused = !paused

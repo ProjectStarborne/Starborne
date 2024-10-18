@@ -1,21 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cie5bf6jws1py"]
+[gd_scene load_steps=4 format=3 uid="uid://cie5bf6jws1py"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Inventory/inventory_ui.gd" id="1_vkfny"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="2_mvtcr"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cusom"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f4txo"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pnn44"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iyrld"]
+[ext_resource type="PackedScene" uid="uid://0uawvwmknsjj" path="res://Scenes/UI/Inventory/Slot.tscn" id="3_cdxg3"]
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
-anchor_left = 0.1
+anchor_left = 0.3
 anchor_top = 0.1
-anchor_right = 0.9
+anchor_right = 0.7
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
@@ -33,7 +26,8 @@ color = Color(0.122252, 0.122252, 0.122252, 1)
 
 [node name="InventoryControl" type="Control" parent="."]
 layout_mode = 1
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -46,188 +40,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="InventoryControl/VBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("2_mvtcr")
-theme_override_font_sizes/font_size = 32
-text = "Inventory"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="GridContainer" type="GridContainer" parent="InventoryControl/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
 columns = 4
 
-[node name="ColorRect" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect"]
+[node name="Slot2" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_cusom")
+slot_num = 1
 
-[node name="ColorRect13" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot3" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 2
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect13"]
+[node name="Slot4" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_f4txo")
+slot_num = 3
 
-[node name="ColorRect14" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot5" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 4
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect14"]
+[node name="Slot6" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_pnn44")
+slot_num = 5
 
-[node name="ColorRect15" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot7" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 6
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect15"]
+[node name="Slot8" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
+slot_num = 7
 
-[node name="ColorRect16" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot9" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 8
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect16"]
+[node name="Slot10" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
+slot_num = 9
 
-[node name="ColorRect2" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot11" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 10
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect2"]
+[node name="Slot12" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
+slot_num = 11
 
-[node name="ColorRect3" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot13" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 12
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect3"]
+[node name="Slot14" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
+slot_num = 13
 
-[node name="ColorRect4" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
+[node name="Slot15" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
+slot_num = 14
 
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect4"]
+[node name="Slot16" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"] instance=ExtResource("3_cdxg3")]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect5" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect5"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect6" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect6"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect7" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect7"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect8" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect8"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect9" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect9"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect10" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect10"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect11" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect11"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="ColorRect12" type="PanelContainer" parent="InventoryControl/VBoxContainer/GridContainer" groups=["Inventory Slot"]]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-
-[node name="ColorRect" type="TextureRect" parent="InventoryControl/VBoxContainer/GridContainer/ColorRect12"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_iyrld")
-
-[node name="DescriptionControl" type="Control" parent="."]
-layout_mode = 1
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DescriptionControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 0.8
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="DescriptionControl/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="DescriptionControl/VBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = -32.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("2_mvtcr")
-theme_override_font_sizes/normal_font_size = 16
-text = "Item Description, flavor text, whatever the fuckkkkkk"
+slot_num = 15
 
 [node name="CloseButton" type="Button" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -242,4 +125,33 @@ theme_override_colors/font_color = Color(0.999688, 0.0434917, 0.0240812, 1)
 theme_override_fonts/font = ExtResource("2_mvtcr")
 text = "X"
 
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_right = 165.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_mvtcr")
+theme_override_font_sizes/font_size = 60
+text = "Inventory"
+
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot2" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot3" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot4" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot5" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot6" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot7" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot8" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot9" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot10" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot11" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot12" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot13" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot14" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot15" to="." method="_on_item_swap"]
+[connection signal="item_swap" from="InventoryControl/VBoxContainer/GridContainer/Slot16" to="." method="_on_item_swap"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

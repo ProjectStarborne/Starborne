@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=43 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="19_nm2tu"]
 [ext_resource type="PackedScene" uid="uid://ykg6fs1mac27" path="res://Scenes/Environmental/Mines/mine.tscn" id="20_140il"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="20_dm1r8"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="20_xsg51"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="27_f57vm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x8q4"]
@@ -769,12 +770,14 @@ visible = false
 process_mode = 2
 visible = false
 
+[node name="HotBar" parent="CanvasLayer" instance=ExtResource("20_xsg51")]
+unique_name_in_owner = true
+
 [node name="Glow" type="PointLight2D" parent="."]
 show_behind_parent = true
 texture_filter = 3
 position = Vector2(-1229, -74)
-energy = 0.75
-shadow_enabled = true
+energy = 0.8
 texture = ExtResource("20_dm1r8")
 texture_scale = 2.0
 
@@ -854,3 +857,12 @@ position = Vector2(-905, -391)
 [node name="Door_S" parent="Doors" instance=ExtResource("27_f57vm")]
 position = Vector2(-1225, -42)
 destination_level = "shipinterior"
+
+[node name="PickupIron" parent="." instance=ExtResource("6_xpaa1")]
+position = Vector2(191, 294)
+
+[node name="PickupIron2" parent="." instance=ExtResource("6_xpaa1")]
+position = Vector2(371, 137)
+
+[node name="PickupIron3" parent="." instance=ExtResource("6_xpaa1")]
+position = Vector2(365, 272)

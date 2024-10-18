@@ -5,8 +5,9 @@
 [resource]
 script = ExtResource("1_dutuq")
 charge = 0.0
-name = ""
+level = 0
+name = "Drill"
 price = 0
 weight = 0
-description = ""
+description = "Your primary instrument for extracting valuable minerals from asteroid surfaces, the Drill is indispensable for any miner. Equip and upgrade your Drill with new bits from the shop to increase efficiency and access a wider variety of resources."
 stackable = false

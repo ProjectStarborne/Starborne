@@ -26,7 +26,7 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_audio = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning/Oxygen_Warning")  # Warning sound player
 
 @onready var flashlight: PointLight2D = $Flashlight
-signal picked_up_item(item : Item)
+signal picked_up_item(item : Item, fail : bool)
 
 # Inventory
 var inventory : Inventory = Inventory.new()
@@ -433,6 +433,13 @@ func update_oxygen_color() -> void:
 ####### Resource Management System #######
 
 func on_item_picked_up(item:Item) -> void:
-	print("I got ", item.name)
-	inventory.add_item(item)
-	picked_up_item.emit(item)
+	# Check first to see if the inventory is full
+	# If inventory is full, do not pickup item and emit failure
+	# Otherwise pickup item and emit success
+	
+	if !inventory.add_item(item):
+		print("Inventory Full!")
+		picked_up_item.emit(item, false)
+	else:
+		print("I got ", item.name)
+		picked_up_item.emit(item, true)
