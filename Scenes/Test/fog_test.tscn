@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cjdoj0coq1a48"]
+[gd_scene load_steps=37 format=3 uid="uid://cjdoj0coq1a48"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_drjbs"]
 [ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="2_dt2re"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="12_q5c7f"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="13_x1mpd"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_yg3w1"]
-[ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="15_kh3yc"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="16_7imqp"]
 [ext_resource type="Script" path="res://Scenes/Test/fog_o_war.gd" id="17_klwff"]
 
@@ -551,6 +550,7 @@ offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.144063, 0.144063, 0.144063, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 5
@@ -629,33 +629,6 @@ text = "Hello World"
 libraries = {
 "": SubResource("AnimationLibrary_6h6sd")
 }
-
-[node name="Headlight1" type="PointLight2D" parent="."]
-visible = false
-texture_filter = 2
-position = Vector2(-1159, -112)
-scale = Vector2(1.00187, 1)
-color = Color(1, 0.996078, 0.909804, 1)
-energy = 1.5
-blend_mode = 2
-range_item_cull_mask = 3
-shadow_enabled = true
-texture = ExtResource("15_kh3yc")
-offset = Vector2(739, 0)
-texture_scale = 2.5
-
-[node name="Headlight2" type="PointLight2D" parent="."]
-visible = false
-texture_filter = 2
-position = Vector2(-1159, 108)
-color = Color(1, 1, 0.901961, 1)
-energy = 1.5
-blend_mode = 2
-range_item_cull_mask = 3
-shadow_enabled = true
-texture = ExtResource("15_kh3yc")
-offset = Vector2(739, 0)
-texture_scale = 2.5
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-269, -101)
