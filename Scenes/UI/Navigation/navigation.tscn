@@ -1,0 +1,377 @@
+[gd_scene load_steps=5 format=3 uid="uid://s1k8eca7eo75"]
+
+[ext_resource type="FontFile" uid="uid://chvv4jpnrktda" path="res://Assets/fonts/Terminal.ttf" id="1_1g7un"]
+[ext_resource type="Script" path="res://Scripts/UI/Navigation/navigation.gd" id="1_i81kw"]
+[ext_resource type="AudioStream" uid="uid://b67pbewtgrkwg" path="res://Assets/sounds/keyboard.wav" id="3_f6qfo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7ni5"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="Navigation" type="Control"]
+layout_mode = 3
+anchor_left = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.9
+offset_left = -89.0
+offset_top = 57.0
+offset_right = -89.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i81kw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7ni5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 32
+text = "Navigation System"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1228.8, 800)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 128
+theme_override_constants/v_separation = 48
+
+[node name="Level1" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level1"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 1"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level1"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level2"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 2"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level2"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level3" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level3"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 3"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level3"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level4" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level4"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 4"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level4"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level5" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level5"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 5"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level5"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch
+"
+
+[node name="Level6" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level6"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level6/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 6"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level6/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level6"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level7" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level7"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level7/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 7"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level7/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level7"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level8" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level8"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level8/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 8"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level8/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level8"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level9" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level9"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level9/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 9"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level9/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level9"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="Level10" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level10"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level10/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Level 10"
+
+[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level10/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Upgrade X Required"
+
+[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level10"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "Launch"
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "X"
+
+[node name="KeyboardClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_f6qfo")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
