@@ -23,19 +23,10 @@ func add_item(item:Item) -> bool:
 	if size == MAX_SLOTS:
 			return false
 	
-	#if item.name in _content:
-		## Increase the quantity if the item already exists in the inventory
-		#_content[item.name].quantity += 1
-	#else:
-		## Add the new item with quantity 1
-		#_content[item.name] = item
-		#_content[item.name].quantity += 1
-		#size += 1
-	#
-	#return true
 	for i in range(MAX_SLOTS):
 		if !_content.has(i):
 			_content[i] = item
+			_content[i].quantity += 1
 			size += 1
 			return true
 	
@@ -47,19 +38,12 @@ func add_item_to_slot(item:Item, slot_index : int):
 	size += 1
 
 func remove_item(item:Item):
-	#if item.name in _content:
-		#_content[item.name].quantity -= 1
-		#if _content[item.name].quantity <= 0:
-			#_content.erase(item.name)
-			#size -= 1
 	for slot_index in _content.keys():
-		if _content[slot_index] == item:
-			if _content[slot_index].quantity > 1:
-				_content[slot_index].quantity -= 1
-			else:
+		if _content[slot_index] == item and item != null:
+				_content[slot_index].quantity = 0
 				_content.erase(slot_index)
 				size -= 1
-			return
+		return
 	
 # Get inventory items in the form of an array
 func get_items() -> Array[Item]:
@@ -104,19 +88,6 @@ func has_item(item: Item) -> bool:
 	
 	
 func swap_items(slot_a : int, slot_b : int):
-	#var items = get_items()
-	#var temp = items[slot_a]
-	#items[slot_a] = items[slot_b]
-	#items[slot_b] = temp
-	#
-	## Update _content to reflect changes
-	#var new_dict : Dictionary = {}
-	#for item in items:
-		#if item != null and has_item(item):
-			#new_dict[item.name] = item
-			#new_dict[item.name].quantity = _content[item.name].quantity
-		#
-	#_content = new_dict
 	var item_a = _content.get(slot_a, null)
 	var item_b = _content.get(slot_b, null)
 	

@@ -465,7 +465,8 @@ func use_item(item : Item, index : int):
 		return
 	else:
 		print("Using ", item.name, "...")
-		
+
+	# Handle Item use and animations
 	match item.name:
 		"Drill":
 			pass
@@ -474,7 +475,7 @@ func use_item(item : Item, index : int):
 		"Medkit":
 			pass
 		"Oxygen Tank":
-			max_oxygen += item.effect
+			current_oxygen += item.effect
 	
 	if item.consumable:
 		inventory.remove_from_hotbar(index)
