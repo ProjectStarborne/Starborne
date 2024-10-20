@@ -17,6 +17,11 @@ var smooth_factor = 5.0  # Lower value = smoother rotation
 
 func _process(delta):
 	if player:
+		
+		# Check if the player is dead and stop targeting if they are
+		if player.is_dead:
+			return  # Player is dead, turret will ignore them
+			
 		# Convert the player's global position to the barrel's local coordinate system
 		var local_player_pos = barrel.to_local(player.global_position)
 		var angle_to_player = local_player_pos.angle()

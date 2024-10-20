@@ -71,21 +71,6 @@ _data = {
 "shrink_on_exit": SubResource("Animation_b5tdl")
 }
 
-[sub_resource type="Animation" id="Animation_s2tr3"]
-resource_name = "enlarge_on_hover"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:custom_minimum_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(100, 40), Vector2(120, 48)]
-}
-
 [sub_resource type="Animation" id="Animation_ttk46"]
 length = 0.001
 tracks/0/type = "value"
@@ -99,6 +84,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_s2tr3"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
 }
 
 [sub_resource type="Animation" id="Animation_0s6dt"]
@@ -177,21 +177,6 @@ _data = {
 "shrink_on_exit": SubResource("Animation_c186l")
 }
 
-[sub_resource type="Animation" id="Animation_snvl1"]
-resource_name = "enlarge_on_hover"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:custom_minimum_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(100, 40), Vector2(120, 48)]
-}
-
 [sub_resource type="Animation" id="Animation_l8cxr"]
 length = 0.001
 tracks/0/type = "value"
@@ -205,6 +190,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_snvl1"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
 }
 
 [sub_resource type="Animation" id="Animation_5hppv"]

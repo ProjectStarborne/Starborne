@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=50 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="19_nm2tu"]
 [ext_resource type="PackedScene" uid="uid://ykg6fs1mac27" path="res://Scenes/Environmental/Mines/mine.tscn" id="20_140il"]
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="20_brb3f"]
+[ext_resource type="PackedScene" uid="uid://b62von63lkl4a" path="res://Scenes/UI/GameOver/GameOver.tscn" id="21_pxx5l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtqv7"]
 shader = ExtResource("1_um8kb")
@@ -827,6 +828,9 @@ process_mode = 2
 visible = false
 
 [node name="ShopUI" parent="CanvasLayer" instance=ExtResource("20_brb3f")]
+visible = false
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("21_pxx5l")]
 visible = false
 
 [node name="Headlight1" type="PointLight2D" parent="."]

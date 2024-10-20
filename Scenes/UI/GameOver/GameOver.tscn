@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://b62von63lkl4a"]
+
+[ext_resource type="Script" path="res://Scripts/UI/GameOver/game_over.gd" id="1_4mopr"]
+[ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="2_bu1sb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtmkh"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4mopr")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtmkh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -46.5
+offset_right = 61.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="GameOver" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bu1sb")
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ReturnToShip" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bu1sb")
+theme_override_font_sizes/font_size = 22
+text = "Return To Ship"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bu1sb")
+theme_override_font_sizes/font_size = 22
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/ReturnToShip" to="." method="_on_return_to_ship_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -240,9 +240,6 @@ func lava_check():
 
 
 
-
-
-
 ####### OXYGEN LEAK SYSTEM ######
 
 # Start oxygen leak
@@ -303,6 +300,9 @@ func _ready() -> void:
 	# Update the health and oxygen bar colors to reflect current values
 	update_health_color()
 	update_oxygen_color()
+	
+	# Connect the respawn signal from the GameOver screen to the player
+	game_over_screen.connect("respawn_signal", Callable(self, "_on_respawn_signal"))
 
 
 # Function to handle when the player takes damage
@@ -324,47 +324,6 @@ func take_damage(damage: int) -> void:
 # Function to update the health bar UI to reflect the current health
 func update_health_bar() -> void:
 	health_bar.value = current_health
-# Function to handle the game over state when the player's health reaches 0
-func game_over() -> void:
-	print("Game Over!")  # Output "Game Over" for debugging purposes
-	
-	# Play the game over sound (rn its "lego_death.wav" sound effect lmao)
-	var audio_player = get_node("Death_Sound")
-	if audio_player:
-		print("Audio player found!")  # Debugging statement
-		#audio_player.play()  # Play the sound
-	
-	is_dead = true  # Set the player to dead, disabling further movement
-	# Wait 2 seconds before respawning the player
-	await get_tree().create_timer(2.0).timeout
-	respawn()  # Call the respawn function after the timer
-	print("Oxygen leaking state after respawn: ", oxygen_leaking)
-
-
-@onready var spawn_marker = get_node("/root/Environment/SpawnPoint")  # Reference to the Marker2D node
-
-# Function to handle respawning the player
-func respawn() -> void:
-	# Respawn the player at the spawn marker's position
-	global_position = spawn_marker.global_position
-	#Deactivate oxygen leak, if present upon death
-	fix_oxygen_leak()
-	#Bug fix workaround. The same rock cannot trigger oxygen drain twice cause its fuked
-	get_tree().reload_current_scene()
-	
-	# Reset the player's health, oxygen, and other stats upon respawn
-	current_health = max_health  # Reset health to full
-	update_health_bar()  # Update the health bar UI
-	update_health_color()  # Update the health bar color to green
-	
-	# Reset the player's oxygen levels 
-	current_oxygen = max_oxygen  
-	update_oxygen_bar()  # Update the oxygen bar UI
-	update_oxygen_color()  # Update the oxygen bar color to blue
-	
-	is_dead = false  # Allow the player to move again (remove the dead state)
-	
-	print("Respawning...")  
 
 
 # Function to update the health bar's color based on the player's current health percentage
@@ -388,6 +347,67 @@ func update_health_color() -> void:
 		fill_stylebox.bg_color = Color(0.8, 0.5, 0.0)  # Muted orange for health between 25% and 50%
 	else:
 		fill_stylebox.bg_color = Color(0.5, 0.0, 0.0)  # Dark red for health below 25%
+
+
+
+
+####### RESPAWN/DEATH SYSTEM #######
+
+@onready var spawn_marker = get_node("/root/Environment/SpawnPoint")  # Reference to the Marker2D node
+@onready var game_over_screen = get_node("/root/Environment/CanvasLayer/GameOver")  # Reference to the GameOver screen in the hierarchy
+
+# Function to handle respawning the player
+func respawn() -> void:
+	# Respawn the player at the spawn marker's position
+	global_position = spawn_marker.global_position
+	# Deactivate oxygen leak, if present upon death
+	fix_oxygen_leak()
+	# Bug fix workaround. The same rock cannot trigger oxygen drain twice
+	get_tree().reload_current_scene()
+
+	# Reset the player's health, oxygen, and other stats upon respawn
+	current_health = max_health  # Reset health to full
+	update_health_bar()  # Update the health bar UI
+	update_health_color()  # Update the health bar color to green
+	
+	# Reset the player's oxygen levels 
+	current_oxygen = max_oxygen  
+	update_oxygen_bar()  # Update the oxygen bar UI
+	update_oxygen_color()  # Update the oxygen bar color to blue
+	
+	is_dead = false  # Allow the player to move again
+	print("Respawning...")  
+
+
+# Function to handle the game over state when the player's health reaches 0
+func game_over() -> void:
+	print("Game Over!")  # Debugging message
+
+	# Play the game over sound ("lego_death.wav")
+	var audio_player = get_node("Death_Sound")
+	if audio_player:
+		#audio_player.play()  # Play the sound
+		pass
+	
+	is_dead = true  # Set the player to dead, disabling further movement
+	
+	# Show the game over screen by setting it to visible
+	game_over_screen.visible = true
+
+
+# Function to show the death screen (not needed anymore but keeping as a placeholder)
+func show_death_screen() -> void:
+	print("Showing the death screen...")
+	game_over_screen.visible = true  # Just ensure visibility if needed
+
+
+# Handle the signal from the death screen to respawn the player
+func _on_respawn_signal() -> void:
+	print("Respawn signal received!")  # Debugging message to ensure the signal works
+	# Hide the game over screen when respawning
+	game_over_screen.visible = false
+	# maybe unpause the game (if we plan on it) and respawn the player
+	respawn()
 
 
 
