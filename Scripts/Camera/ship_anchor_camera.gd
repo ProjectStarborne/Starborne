@@ -10,7 +10,7 @@ const SLOWDOWN_RADIUS = 300.0
 var _velocity = Vector2.ZERO
 # Global position of an anchor area. If it's equal to Vector2.ZERO, camera has no anchor point and follows owner.
 var anchor_position := Vector2.ZERO
-var target_zoom = 5.5
+var target_zoom = 5.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	arrive_to(target_position)
 	
-# Entering the Anchor we receive the anchor object and change our anchor_position and target_zoom
+# Entering the Anchor we receive the anchor object and change our anchor_position and target_zoom                    
 func _on_AnchorDetector2D_anchor_detected(anchor: Area2D) -> void:
 	anchor_position = anchor.global_position
 	target_zoom = anchor.zoom_level
@@ -38,7 +38,7 @@ func _on_AnchorDetector2D_anchor_detected(anchor: Area2D) -> void:
 # Leaving the anchor the zoom return to 1.0 and the camera's center to the player
 func _on_AnchorDetector2D_anchor_detached() -> void:
 	anchor_position = Vector2.ZERO
-	target_zoom = 3.0
+	target_zoom = 5.5
 
 # Smoothly update the zoom level using a linear interpolation (lerp)
 func update_zoom() -> void:
