@@ -26,7 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://chdv7oq5t6ggr" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="18_aly4v"]
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="19_nm2tu"]
 [ext_resource type="PackedScene" uid="uid://ykg6fs1mac27" path="res://Scenes/Environmental/Mines/mine.tscn" id="20_140il"]
+[ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="20_dm1r8"]
 [ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="20_xsg51"]
+[ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="27_f57vm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtqv7"]
 shader = ExtResource("1_um8kb")

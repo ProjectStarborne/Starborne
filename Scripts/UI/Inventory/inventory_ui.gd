@@ -9,7 +9,6 @@ func open(inventory:Inventory):
 	inv = inventory
 	show()
 	
-	
 	var slots = get_tree().get_nodes_in_group("Inventory Slot")
 	#debug_inventory(inventory.get_items(), slots)
 	

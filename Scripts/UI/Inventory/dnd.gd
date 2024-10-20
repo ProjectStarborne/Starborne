@@ -6,7 +6,7 @@ extends PanelContainer
 @export var slot_num : int
 @export var is_hotbar_slot : bool
 
-signal item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar)
+signal item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar : bool)
 
 # Returns texture for dragging
 func _get_drag_data(at_position: Vector2) -> Variant:
