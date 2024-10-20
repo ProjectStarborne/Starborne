@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_8yvsm")
-effect = ""
+effect = 0.0
 consumable = true
 name = "Duct Tape"
 scene = ExtResource("2_isu1q")
@@ -15,3 +15,4 @@ price = 0
 weight = 0
 description = "A versatile adhesive solution, Duct Tape is essential for emergency repairs. Whether patching up your suit to stop leaks or fixing damaged equipment on the fly, having Duct Tape in your inventory ensures you’re always prepared for unforeseen mishaps."
 stackable = false
+quantity = 0

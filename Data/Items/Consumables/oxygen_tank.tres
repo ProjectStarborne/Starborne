@@ -15,3 +15,4 @@ price = 0
 weight = 0
 description = "A lifeline for prolonged exploration, the Oxygen Tank is filled with compressed oxygen gas. Swapping out your current tank with a fresh one extends your exploration time, ensuring you have the breath needed to delve deeper into the asteroid’s mysteries."
 stackable = false
+quantity = 0

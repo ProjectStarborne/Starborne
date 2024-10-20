@@ -11,3 +11,4 @@ price = 0
 weight = 0
 description = "This is a test item."
 stackable = false
+quantity = 0

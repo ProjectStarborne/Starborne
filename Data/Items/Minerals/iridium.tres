@@ -7,7 +7,6 @@
 [resource]
 script = ExtResource("1_mxn4e")
 mineral_type = ""
-quantity = 0
 name = "Iridium"
 scene = ExtResource("2_c8ew1")
 icon = ExtResource("1_bs85k")
@@ -15,3 +14,4 @@ price = 0
 weight = 0
 description = ""
 stackable = false
+quantity = 0
