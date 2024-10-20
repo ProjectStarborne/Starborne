@@ -88,6 +88,9 @@ func _physics_process(delta: float) -> void:
 
 	# Handle flashlight aiming at the mouse position
 	flashlight.look_at(get_global_mouse_position())
+	
+	# Dynamic Footstep Caller
+	footstep_handler()
 
 	# Stop animations if there's no movement
 	if direction == Vector2.ZERO:
@@ -102,9 +105,6 @@ func _physics_process(delta: float) -> void:
 
 	# Deplete oxygen over time
 	deplete_oxygen(delta)
-
-func _input(event: InputEvent) -> void:
-	footstep_handler()
 
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
@@ -458,4 +458,4 @@ func footstep_handler() -> void:
 	if audio_timer.time_left <= 0:
 		footstep_player.pitch_scale = randf_range(0.8, 1.0)
 		footstep_player.play()
-		audio_timer.start(0.4)
+		audio_timer.start(0.3)
