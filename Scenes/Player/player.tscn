@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cg1n3hs12k8ko"]
+[gd_scene load_steps=39 format=3 uid="uid://cg1n3hs12k8ko"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_ybtu2"]
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="2_ts4vt"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dbekjhlgw6nd0" path="res://Assets/sounds/lego_death.mp3" id="6_tv2j8"]
 [ext_resource type="Texture2D" uid="uid://b0x3rmguinjac" path="res://Assets/images/Fire+Sparks-Sheet.png" id="7_yeksf"]
 [ext_resource type="Texture2D" uid="uid://ci36fqjtkdcvo" path="res://Assets/images/circle_light2.png" id="8_addg8"]
+[ext_resource type="AudioStream" uid="uid://dr101d5tc3yqa" path="res://Assets/sounds/01-footstep.ogg" id="9_ymawl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_61hrv"]
 
@@ -281,7 +282,7 @@ offset = Vector2(135, 0)
 texture_scale = 0.5
 
 [node name="Glow" type="PointLight2D" parent="."]
-energy = 0.75
+texture_filter = 5
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("4_2g6bi")
@@ -296,9 +297,6 @@ scale = Vector2(0.5, 0.5)
 [node name="AnchorDetector2D" parent="." instance=ExtResource("4_cvytj")]
 scale = Vector2(0.125, 0.125)
 
-[node name="Death_Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_tv2j8")
-
 [node name="Fire" type="AnimatedSprite2D" parent="."]
 show_behind_parent = true
 position = Vector2(-2, -124)
@@ -309,6 +307,18 @@ animation = &"on_fire"
 [node name="PointLight2D" type="PointLight2D" parent="Fire"]
 energy = 5.0
 texture = ExtResource("8_addg8")
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ymawl")
+volume_db = -5.0
+pitch_scale = 0.5
+
+[node name="Timer" type="Timer" parent="Footsteps"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Death_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tv2j8")
 
 [connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
 [connection signal="anchor_detected" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detected"]

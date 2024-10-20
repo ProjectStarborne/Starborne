@@ -93,6 +93,9 @@ func _physics_process(delta: float) -> void:
 
 	# Handle flashlight aiming at the mouse position
 	flashlight.look_at(get_global_mouse_position())
+	
+	# Dynamic Footstep Caller
+	footstep_handler()
 
 	# Stop animations if there's no movement
 	if direction == Vector2.ZERO:
@@ -115,8 +118,6 @@ func _physics_process(delta: float) -> void:
 		
 		use_item(hotbar_list[item_index], item_index)
 
-
-
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
 func apply_knockback(force: Vector2) -> void:
@@ -126,24 +127,20 @@ func apply_knockback(force: Vector2) -> void:
 	# Start the knockback timer, which lasts for the duration defined in KNOCKBACK_DURATION
 	knockback_timer = KNOCKBACK_DURATION
 
-
-
 ####### ICE SLIDING ######
 
 @onready var tile_map = get_node("/root/Environment/TileMap")  # Reference to your TileMap node
-var ground_layer = 0
-var is_ice_custom_data = "is_ice"
 
 # Method to check if the tile under the player is ice
 func ice_check():
 	var player_pos : Vector2 = global_position  # player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
-	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
+	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
 
 	if tile_data:
-		var is_ice = tile_data.get_custom_data(is_ice_custom_data)
-		if is_ice == true:
+		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+		if tile_id == TileDetector.TerrainType.ICE:
 			#print("This tile is ice!")
 			friction = ICE_FRICTION  # Set friction to ice friction
 		else:
@@ -179,11 +176,11 @@ func lava_check():
 	var player_pos : Vector2 = global_position  # Player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # Convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # Convert local position to TileMap grid position
-	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
+	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
 
 	if tile_data:
-		var is_lava = tile_data.get_custom_data(is_lava_custom_data)
-		if is_lava == true:
+		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+		if tile_id == TileDetector.TerrainType.LAVA:
 			# Slow down the player's speed by reducing the current_speed
 			current_speed = SPEED * LAVA_SPEED_FACTOR  # Adjust the player's current speed when on lava
 
@@ -217,12 +214,6 @@ func lava_check():
 		fire_sprite.visible = false  # Hide the fire animation
 		fire_light.visible = false  # Disable the light
 		fire_light.energy = 0.0  # Reset energy when not on lava
-
-
-
-
-
-
 
 ####### OXYGEN LEAK SYSTEM ######
 
@@ -481,3 +472,28 @@ func use_item(item : Item, index : int):
 		inventory.remove_from_hotbar(index)
 	
 	hotbar.update_hotbar_ui(inventory)
+		
+		
+####### Dynamic Footsteps #######
+func footstep_handler() -> void:
+	# Grabbing player's local tile information
+	var local_pos = tile_map.to_local(global_position)
+	var tile_pos = tile_map.local_to_map(local_pos)
+	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
+	
+	# If tile data doesn't exist or not moving, do nothing
+	if (!tile_data or velocity == Vector2.ZERO):
+		return
+	
+	var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+	var footstep_player : AudioStreamPlayer2D = $Footsteps
+	var audio_timer : Timer = $Footsteps/Timer
+	
+	match tile_id:
+		TileDetector.TerrainType.ROCK:
+			pass # set different audio here
+			
+	if audio_timer.time_left <= 0:
+		footstep_player.pitch_scale = randf_range(0.8, 1.0)
+		footstep_player.play()
+		audio_timer.start(0.3)
