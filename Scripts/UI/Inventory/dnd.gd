@@ -26,7 +26,6 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 # Swap the texture data
 func _drop_data(_pos: Vector2, data: Variant):
 	var temp = texture_rect.texture
-	var temp_text = label.text
 	
 	# Swap textures
 	texture_rect.texture = data.texture

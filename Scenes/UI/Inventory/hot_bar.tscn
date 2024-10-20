@@ -16,6 +16,7 @@ script = ExtResource("1_m3rnc")
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="." groups=["hb_slots"]]
+z_index = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 4
@@ -34,6 +35,7 @@ layout_mode = 0
 is_hotbar_slot = true
 
 [node name="TextureRect2" type="TextureRect" parent="." groups=["hb_slots"]]
+z_index = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 8
@@ -55,6 +57,7 @@ layout_mode = 0
 is_hotbar_slot = true
 
 [node name="TextureRect3" type="TextureRect" parent="." groups=["hb_slots"]]
+z_index = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 6

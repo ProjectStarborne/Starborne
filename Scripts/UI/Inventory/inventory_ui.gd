@@ -20,8 +20,6 @@ func open(inventory:Inventory):
 			var children = slots[slot_num].get_children()
 			children[0].set_texture(image)
 			# Update the stack labels to show the proper amount of items in inventory
-			if item.quantity > 1:
-				children[1].text = str(item.quantity)
 		slot_num += 1
 
 func close():
@@ -48,14 +46,13 @@ func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_
 		# Swapping from inventory to hotbar
 		if !inv.add_to_hotbar(from_slot):
 			print("Item not added to hotbar!")
-		inv.remove_item(inv._content[from_slot])
+		inv.remove_item(from_slot)
 		
 	else:
 		# Swapping between inventory slots
 		inv.swap_items(from_slot, to_slot)
 		
 	hotbar.update_hotbar_ui(inv)
-	
 
 # Check to make sure inventory is getting data
 func debug_inventory(inventory : Array, slots : Array):
@@ -63,4 +60,3 @@ func debug_inventory(inventory : Array, slots : Array):
 	for item in inventory:
 		print(counter, ": ", item.name)
 		counter += 1
-		

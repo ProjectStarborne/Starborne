@@ -37,13 +37,10 @@ func add_item_to_slot(item:Item, slot_index : int):
 	_content[slot_index] = item
 	size += 1
 
-func remove_item(item:Item):
-	for slot_index in _content.keys():
-		if _content[slot_index] == item and item != null:
-				_content[slot_index].quantity = 0
-				_content.erase(slot_index)
-				size -= 1
-		return
+func remove_item(index : int):
+	if _content[index] != null:
+		_content.erase(index)
+		size -= 1
 	
 # Get inventory items in the form of an array
 func get_items() -> Array[Item]:
