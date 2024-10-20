@@ -73,3 +73,7 @@ texture = ExtResource("1_4t0vf")
 z_index = -1
 layout_mode = 0
 is_hotbar_slot = true
+
+[connection signal="item_swap" from="TextureRect/Slot" to="." method="_on_slot_item_swap"]
+[connection signal="item_swap" from="TextureRect2/Slot" to="." method="_on_slot_item_swap"]
+[connection signal="item_swap" from="TextureRect3/Slot" to="." method="_on_slot_item_swap"]

@@ -46,7 +46,8 @@ func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_
 		inv.remove_from_hotbar(from_slot)
 	elif not is_from_hotbar and is_to_hotbar:
 		# Swapping from inventory to hotbar
-		inv.add_to_hotbar(from_slot)
+		if !inv.add_to_hotbar(from_slot):
+			print("Item not added to hotbar!")
 		inv.remove_item(inv._content[from_slot])
 		
 	else:
@@ -62,3 +63,4 @@ func debug_inventory(inventory : Array, slots : Array):
 	for item in inventory:
 		print(counter, ": ", item.name)
 		counter += 1
+		

@@ -26,10 +26,15 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_audio = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning/Oxygen_Warning")  # Warning sound player
 
 @onready var flashlight: PointLight2D = $Flashlight
+
 signal picked_up_item(item : Item, fail : bool)
 
 # Inventory
 var inventory : Inventory = Inventory.new()
+# Hotbar
+@onready var hotbar = %HotBar
+# Inventory UI
+@onready var inventory_ui: Control = $"../CanvasLayer/InventoryUI"
 
 # Upgrade Level
 var upgrade_level = 0
@@ -102,6 +107,13 @@ func _physics_process(delta: float) -> void:
 
 	# Deplete oxygen over time
 	deplete_oxygen(delta)
+	
+	# Handle input for using items
+	if Input.is_action_just_pressed("action") and not inventory_ui.visible:
+		var item_index = hotbar.get_selected_slot()
+		var hotbar_list = inventory.get_hotbar_items()
+		
+		use_item(hotbar_list[item_index], item_index)
 
 
 
@@ -443,3 +455,28 @@ func on_item_picked_up(item:Item) -> void:
 	else:
 		print("I got ", item.name)
 		picked_up_item.emit(item, true)
+
+
+####### HotBar/Item Use Handling #######
+
+func use_item(item : Item, index : int):
+	if item == null:
+		print("No item in hotbar!")
+		return
+	else:
+		print("Using ", item.name, "...")
+		
+	match item.name:
+		"Drill":
+			pass
+		"Duct Tape":
+			fix_oxygen_leak()
+		"Medkit":
+			pass
+		"Oxygen Tank":
+			max_oxygen += item.effect
+	
+	if item.consumable:
+		inventory.remove_from_hotbar(index)
+	
+	hotbar.update_hotbar_ui(inventory)

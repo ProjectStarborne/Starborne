@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="Usable" load_steps=2 format=3 uid="uid://cea8a0d0iq11e"]
+[gd_resource type="Resource" script_class="Usable" load_steps=4 format=3 uid="uid://cea8a0d0iq11e"]
 
+[ext_resource type="Texture2D" uid="uid://dc6f2k8v31dd0" path="res://Assets/Tools/Transparent/air_transparent.png" id="1_3spnl"]
 [ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_klx04"]
+[ext_resource type="PackedScene" uid="uid://jjomae6a36uf" path="res://Scenes/Items/Consumables/oxy_tank.tscn" id="2_7mikl"]
 
 [resource]
 script = ExtResource("1_klx04")
-effect = ""
+effect = 15.0
 consumable = true
 name = "Oxygen Tank"
+scene = ExtResource("2_7mikl")
+icon = ExtResource("1_3spnl")
 price = 0
 weight = 0
 description = "A lifeline for prolonged exploration, the Oxygen Tank is filled with compressed oxygen gas. Swapping out your current tank with a fresh one extends your exploration time, ensuring you have the breath needed to delve deeper into the asteroid’s mysteries."

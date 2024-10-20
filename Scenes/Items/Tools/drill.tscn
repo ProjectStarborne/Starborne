@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mg7e3os7r78u"]
+
+[ext_resource type="Texture2D" uid="uid://bwxqhg1ygqs8g" path="res://Assets/Tools/Transparent/drill_transparent.png" id="1_enrrf"]
+
+[node name="Drill" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_enrrf")

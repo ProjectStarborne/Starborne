@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="Usable" load_steps=2 format=3 uid="uid://dv4cinq8w1b4y"]
+[gd_resource type="Resource" script_class="Usable" load_steps=4 format=3 uid="uid://dv4cinq8w1b4y"]
 
 [ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_8yvsm"]
+[ext_resource type="Texture2D" uid="uid://c0dc222o1p5n1" path="res://Assets/Tools/Transparent/tape_transparent.png" id="1_53fux"]
+[ext_resource type="PackedScene" uid="uid://ccyi4b1183ues" path="res://Scenes/Items/Consumables/duct_tape.tscn" id="2_isu1q"]
 
 [resource]
 script = ExtResource("1_8yvsm")
 effect = ""
 consumable = true
 name = "Duct Tape"
+scene = ExtResource("2_isu1q")
+icon = ExtResource("1_53fux")
 price = 0
 weight = 0
 description = "A versatile adhesive solution, Duct Tape is essential for emergency repairs. Whether patching up your suit to stop leaks or fixing damaged equipment on the fly, having Duct Tape in your inventory ensures you’re always prepared for unforeseen mishaps."

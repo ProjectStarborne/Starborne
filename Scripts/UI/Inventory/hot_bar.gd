@@ -1,5 +1,7 @@
 extends Control
 @onready var hotbar_slots : Array = get_tree().get_nodes_in_group("hb_slots")
+@onready var inventory_ui: Control = $"../InventoryUI"
+
 
 # Images for hotbar is loaded here
 var imgs = [Image.load_from_file("res://Assets/images/Hotbar/hotbar-0.jpeg"), Image.load_from_file("res://Assets/images/Hotbar/hotbar-1.jpeg")]
@@ -36,6 +38,7 @@ func _process(delta: float) -> void:
 		
 	#print("HotBar Slot: ", selected_slot_index)
 
+# Refresh the UI to contain the current items in the hotbar
 func update_hotbar_ui(inventory: Inventory):
 	var hotbar_items = inventory.get_hotbar_items()
 	for i in range(hotbar_slots.size()):
@@ -52,4 +55,12 @@ func change_selected_slot_texture():
 			print(hotbar_slots[i].texture)
 		else:
 			hotbar_slots[i].texture = hb_unsel
-			
+
+
+# Get the current slot that is highlighted on screen
+func get_selected_slot() -> int:
+	return selected_slot_index
+
+
+func _on_slot_item_swap(from_slot: int, to_slot: int, is_to_hotbar: bool, is_from_hotbar: bool) -> void:
+	inventory_ui._on_item_swap(from_slot, to_slot, is_to_hotbar, is_from_hotbar)
