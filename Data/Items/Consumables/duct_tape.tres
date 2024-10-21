@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_8yvsm"]
 [ext_resource type="Texture2D" uid="uid://c0dc222o1p5n1" path="res://Assets/Tools/Transparent/tape_transparent.png" id="1_53fux"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Consumables/duct_tape.tscn" id="2_isu1q"]
+[ext_resource type="PackedScene" uid="uid://ccyi4b1183ues" path="res://Scenes/Items/Consumables/duct_tape.tscn" id="2_isu1q"]
 
 [resource]
 script = ExtResource("1_8yvsm")
