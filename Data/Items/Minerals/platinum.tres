@@ -15,3 +15,4 @@ weight = 0
 description = "Shimmering with a lustrous sheen, Platinum is a valuable mineral prized for its rarity and exceptional conductivity. Used in high-end technologies and specialized upgrades, Platinum enhances the quality and performance of your gear."
 stackable = false
 quantity = 0
+consumable = false
