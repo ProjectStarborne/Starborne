@@ -80,6 +80,16 @@ func get_shop_items_for_level(level: int) -> Array[Item]:
 func populate_shop(items: Array[Item]):
 	var slot_num = 0
 	for item in items:
+		if item == null:
+			print("Warning: Null item found")
+			continue  # Skip null items
+			
+		# Debug print to check if the item has a valid icon
+		if item.icon == null:
+			print("Warning: Item '" + item.name + "' has a null icon.")
+		else:
+			print("Item '" + item.name + "' has a valid icon: ", item.icon)
+			
 		if slot_num < grid_container.get_child_count():
 			var item_box = grid_container.get_child(slot_num) as HBoxContainer
 
@@ -176,7 +186,6 @@ func player_can_afford(item: Item) -> bool:
 
 # Execute the purchase
 func execute_purchase(item: Item):
-
 	# Deduct the price from the player's credits
 	player.remove_credits(item.price)
 
@@ -184,14 +193,20 @@ func execute_purchase(item: Item):
 	player_inventory.add_item(item)
 	print("Added ", item.name, " to player's inventory")
 
-	# Remove the item from the shop inventory
-	shop_inventory.remove_item(item)
+	# Find the item's index in the shop inventory
+	var index = shop_inventory.get_items().find(item)
+
+	if index != -1:
+		# Remove the item from the shop inventory by index
+		shop_inventory.remove_item(index)
 
 	# Refresh the shop UI and player's inventory UI
 	update_shop_ui()
 	update_inventory_ui()
 	
-	print("Credits: ", player.get_credits)
+	print("Credits: ", player.get_credits())
+
+
 
 
 # Execute the sale
@@ -199,9 +214,13 @@ func execute_sale(item: Item):
 	# Add the price to the player's credits (gain credits)
 	player.add_credits(item.price)
 
-	# Remove the item from the player's inventory
-	player_inventory.remove_item(item)
-	print("Removed ", item.name, " from player's inventory")
+	# Find the item's index in the player's inventory
+	var index = player_inventory.get_items().find(item)
+
+	if index != -1:
+		# Remove the item from the player's inventory by index
+		player_inventory.remove_item(index)
+		print("Removed ", item.name, " from player's inventory")
 
 	# Add the item to the shop's inventory (optional, depending on your logic)
 	shop_inventory.add_item(item)
@@ -210,7 +229,8 @@ func execute_sale(item: Item):
 	update_shop_ui()
 	update_inventory_ui()
 	
-	print("Credits: ", player.get_credits)
+	print("Credits: ", player.get_credits())
+
 
 
 # Display a message in the popup label
