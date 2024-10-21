@@ -1,6 +1,6 @@
 extends Node2D
 
-# Holds all the items ready to pickup
+## Holds all the items ready to pickup
 @export var pickups : Array[PackedScene]
 # Player variable for all things player related
 @onready var player = %Player
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	# Handle inventory opening and closing with "Tab" key
 	if Input.is_action_just_pressed("inventory"):
 		if inventory.visible:
-			inventory.hide()  # Close the inventory if it's already open
+			inventory.close()  # Close the inventory if it's already open
 		else:
 			close_shop()  # Ensure the shop is closed when opening inventory
 			inventory.open(player.inventory)  # Open inventory if it's not visible

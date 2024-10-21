@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 # Constants
 const SPEED = 300.0 # Normal speed of the player
 const NORMAL_FRICTION = 1500.0 
@@ -25,10 +27,15 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_audio = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning/Oxygen_Warning")  # Warning sound player
 
 @onready var flashlight: PointLight2D = $Flashlight
-signal picked_up_item(item : Item)
+
+signal picked_up_item(item : Item, fail : bool)
 
 # Inventory
 var inventory : Inventory = Inventory.new()
+# Hotbar
+@onready var hotbar = %HotBar
+# Inventory UI
+@onready var inventory_ui: Control = $"../CanvasLayer/InventoryUI"
 
 # Upgrade Level
 var upgrade_level = 0
@@ -92,6 +99,9 @@ func _physics_process(delta: float) -> void:
 
 	# Handle flashlight aiming at the mouse position
 	flashlight.look_at(get_global_mouse_position())
+	
+	# Dynamic Footstep Caller
+	footstep_handler()
 
 	# Stop animations if there's no movement and player is not on ice
 	if input_direction == Vector2.ZERO and !is_on_ice:
@@ -106,8 +116,13 @@ func _physics_process(delta: float) -> void:
 
 	# Deplete oxygen over time
 	deplete_oxygen(delta)
-
-
+	
+	# Handle input for using items
+	if Input.is_action_just_pressed("action") and not inventory_ui.visible:
+		var item_index = hotbar.get_selected_slot()
+		var hotbar_list = inventory.get_hotbar_items()
+		
+		use_item(hotbar_list[item_index], item_index)
 
 ####### CURRENCY SYSTEM #######
 # Exported credits variable to track the player's credits
@@ -144,8 +159,6 @@ func apply_knockback(force: Vector2) -> void:
 	# Start the knockback timer, which lasts for the duration defined in KNOCKBACK_DURATION
 	knockback_timer = KNOCKBACK_DURATION
 
-
-
 ####### ICE SLIDING ######
 
 @onready var tile_map = get_node("/root/Environment/TileMap")  # Reference to your TileMap node
@@ -158,12 +171,12 @@ func ice_check():
 	var player_pos : Vector2 = global_position  # player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
-	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
+	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
 
 	if tile_data:
-		var is_ice = tile_data.get_custom_data(is_ice_custom_data)
-		if is_ice == true:
-			is_on_ice = true
+		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+		if tile_id == TileDetector.TerrainType.ICE:
+			#print("This tile is ice!")
 			friction = ICE_FRICTION  # Set friction to ice friction
 		else:
 			is_on_ice = false
@@ -198,11 +211,11 @@ func lava_check():
 	var player_pos : Vector2 = global_position  # Player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # Convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # Convert local position to TileMap grid position
-	var tile_data : TileData = tile_map.get_cell_tile_data(ground_layer, tile_pos)
+	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
 
 	if tile_data:
-		var is_lava = tile_data.get_custom_data(is_lava_custom_data)
-		if is_lava == true:
+		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+		if tile_id == TileDetector.TerrainType.LAVA:
 			# Slow down the player's speed by reducing the current_speed
 			current_speed = SPEED * LAVA_SPEED_FACTOR  # Adjust the player's current speed when on lava
 
@@ -236,9 +249,6 @@ func lava_check():
 		fire_sprite.visible = false  # Hide the fire animation
 		fire_light.visible = false  # Disable the light
 		fire_light.energy = 0.0  # Reset energy when not on lava
-
-
-
 
 ####### OXYGEN LEAK SYSTEM ######
 
@@ -488,6 +498,64 @@ func update_oxygen_color() -> void:
 ####### Resource Management System #######
 
 func on_item_picked_up(item:Item) -> void:
-	print("I got ", item.name)
-	inventory.add_item(item)
-	picked_up_item.emit(item)
+	# Check first to see if the inventory is full
+	# If inventory is full, do not pickup item and emit failure
+	# Otherwise pickup item and emit success
+	
+	if !inventory.add_item(item):
+		print("Inventory Full!")
+		picked_up_item.emit(item, false)
+	else:
+		print("I got ", item.name)
+		picked_up_item.emit(item, true)
+
+
+####### HotBar/Item Use Handling #######
+
+func use_item(item : Item, index : int):
+	if item == null:
+		print("No item in hotbar!")
+		return
+	else:
+		print("Using ", item.name, "...")
+
+	# Handle Item use and animations
+	match item.name:
+		"Drill":
+			pass
+		"Duct Tape":
+			fix_oxygen_leak()
+		"Medkit":
+			pass
+		"Oxygen Tank":
+			current_oxygen += item.effect
+	
+	if item.consumable:
+		inventory.remove_from_hotbar(index)
+	
+	hotbar.update_hotbar_ui(inventory)
+		
+		
+####### Dynamic Footsteps #######
+func footstep_handler() -> void:
+	# Grabbing player's local tile information
+	var local_pos = tile_map.to_local(global_position)
+	var tile_pos = tile_map.local_to_map(local_pos)
+	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
+	
+	# If tile data doesn't exist or not moving, do nothing
+	if (!tile_data or velocity == Vector2.ZERO):
+		return
+	
+	var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+	var footstep_player : AudioStreamPlayer2D = $Footsteps
+	var audio_timer : Timer = $Footsteps/Timer
+	
+	match tile_id:
+		TileDetector.TerrainType.ROCK:
+			pass # set different audio here
+			
+	if audio_timer.time_left <= 0:
+		footstep_player.pitch_scale = randf_range(0.8, 1.0)
+		footstep_player.play()
+		audio_timer.start(0.3)

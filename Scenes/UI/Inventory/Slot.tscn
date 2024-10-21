@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://0uawvwmknsjj"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Inventory/dnd.gd" id="2_dkjhh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qumiy"]
+bg_color = Color(0.454524, 0.454524, 0.454524, 1)
+
+[node name="Slot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qumiy")
+script = ExtResource("2_dkjhh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1

@@ -2,35 +2,57 @@ extends Control
 
 # Gives access to grid container manipulation
 @onready var grid_container : GridContainer = %GridContainer
+@onready var inv : Inventory
+@onready var hotbar = %HotBar
 
-func open(inventory: Inventory):
+func open(inventory:Inventory):
+	inv = inventory
 	show()
 	
 	var slots = get_tree().get_nodes_in_group("Inventory Slot")
-	
-	# Clear all the slots before repopulating
-	for slot in slots:
-		var texture = slot.get_children()
-		texture[0].set_texture(null)  # Clear the slot
-	
-	debug_inventory(inventory.get_items(), slots)
+	#debug_inventory(inventory.get_items(), slots)
 	
 	var slot_num = 0
 	# Populate the inventory UI with item icons
 	for item in inventory.get_items():
-		for i in range(item.quantity):  # Display multiple icons based on quantity
-			if slot_num < slots.size():
-				var image = item.icon
-				var texture = slots[slot_num].get_children()
-				texture[0].set_texture(image)
-				slot_num += 1
-			else:
-				break  # Stop if no more slots are available
+		if slot_num != slots.size() - 1 and item:
+			var image = item.icon
+			var children = slots[slot_num].get_children()
+			children[0].set_texture(image)
+			# Update the stack labels to show the proper amount of items in inventory
+		slot_num += 1
 
-
+func close():
+	hide()
 
 func _on_close_button_pressed() -> void:
-	hide()
+	close()
+
+# Connected to slot item swap signal
+func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar : bool):
+	print("Item swapping...", "From Hotbar: ", is_from_hotbar, " To Hotbar: ", is_to_hotbar)
+	
+	# Determine the type of swap and update inventory or hotbar
+	if is_from_hotbar and is_to_hotbar:
+		# Swapping between hotbar slots
+		inv.swap_hotbar_items(from_slot, to_slot)
+	elif is_from_hotbar and not is_to_hotbar:
+		var hotbar_items = inv.get_hotbar_items()
+		
+		# Swapping from hotbar to inventory
+		inv.add_item_to_slot(hotbar_items[from_slot], to_slot)
+		inv.remove_from_hotbar(from_slot)
+	elif not is_from_hotbar and is_to_hotbar:
+		# Swapping from inventory to hotbar
+		if !inv.add_to_hotbar(from_slot):
+			print("Item not added to hotbar!")
+		inv.remove_item(from_slot)
+		
+	else:
+		# Swapping between inventory slots
+		inv.swap_items(from_slot, to_slot)
+		
+	hotbar.update_hotbar_ui(inv)
 
 # Check to make sure inventory is getting data
 func debug_inventory(inventory : Array, slots : Array):
@@ -38,6 +60,3 @@ func debug_inventory(inventory : Array, slots : Array):
 	for item in inventory:
 		#print(counter, ": ", item.name)
 		counter += 1
-	
-	for slot in slots:
-		print(slot)

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkp1llasnpsyl"]
+[gd_scene load_steps=5 format=3 uid="uid://dkp1llasnpsyl"]
 
 [ext_resource type="Script" path="res://Scripts/Environmental/Rocks/rock.gd" id="1_t42x0"]
 [ext_resource type="Texture2D" uid="uid://23mspliu8cff" path="res://Assets/images/pointy_rocks.png" id="2_uqbkh"]
 [ext_resource type="AudioStream" uid="uid://cnyy1eh5pk6k0" path="res://Assets/sounds/ouch.mp3" id="3_0momd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_75idh"]
+light_mode = 2
 
 [node name="PointyRock" type="Area2D"]
 
@@ -10,6 +13,7 @@
 script = ExtResource("1_t42x0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+material = SubResource("CanvasItemMaterial_75idh")
 position = Vector2(-2, 2)
 scale = Vector2(3, 3)
 texture = ExtResource("2_uqbkh")

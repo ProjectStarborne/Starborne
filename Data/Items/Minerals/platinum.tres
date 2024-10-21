@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" path="res://Scripts/Resource System/mineral.gd" id="1_nv073"]
 [ext_resource type="Texture2D" uid="uid://b7l1il322tmlp" path="res://Assets/Minerals/Transperent/Icon4.png" id="1_ueu4h"]
-[ext_resource type="PackedScene" uid="uid://b5s1jhb4o568n" path="res://Scenes/Items/platinum.tscn" id="2_q3sxs"]
+[ext_resource type="PackedScene" path="res://Scenes/Items/Minerals/platinum.tscn" id="2_q3sxs"]
 
 [resource]
 script = ExtResource("1_nv073")
-mineral_type = ""
-quantity = 0
+mineral_type = "Rare"
 name = "Platinum"
 scene = ExtResource("2_q3sxs")
 icon = ExtResource("1_ueu4h")
 price = 0
 weight = 0
-description = ""
+description = "Shimmering with a lustrous sheen, Platinum is a valuable mineral prized for its rarity and exceptional conductivity. Used in high-end technologies and specialized upgrades, Platinum enhances the quality and performance of your gear."
 stackable = false
+quantity = 0
+consumable = false

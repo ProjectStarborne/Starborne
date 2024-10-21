@@ -8,3 +8,5 @@ class_name Item extends Resource
 @export var weight : int
 @export var description : String
 @export var stackable : bool
+@export var quantity : int
+@export var consumable : bool

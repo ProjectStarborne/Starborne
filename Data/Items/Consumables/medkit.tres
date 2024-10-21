@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_01wqb")
 effect = ""
-consumable = false
-name = ""
+consumable = true
+name = "Medkit"
 price = 0
 weight = 0
-description = ""
+description = "Your personal first aid kit, the Medkit is vital for treating injuries sustained during exploration. Quickly restores health and keeps you in the game, allowing you to recover from booboos and continue your mission without delay."
 stackable = false

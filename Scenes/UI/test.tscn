@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://yodbr04p3yoo"]
+
+[ext_resource type="PackedScene" uid="uid://0uawvwmknsjj" path="res://Scenes/UI/Inventory/Slot.tscn" id="1_gpvdu"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Slot" parent="." instance=ExtResource("1_gpvdu")]
+
+[node name="Slot2" parent="." instance=ExtResource("1_gpvdu")]
+offset_left = 99.0
+offset_right = 139.0

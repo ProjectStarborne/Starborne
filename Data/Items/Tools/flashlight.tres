@@ -5,8 +5,9 @@
 [resource]
 script = ExtResource("1_7s2ep")
 charge = 0.0
-name = ""
+level = 0
+name = "Flashlight"
 price = 0
 weight = 0
-description = ""
+description = "Illuminate the darkest corners of the asteroid with your trusty Flashlight. Whether navigating through shadowy tunnels or working in low-light conditions, this tool ensures you maintain visibility and continue your exploration safely."
 stackable = false

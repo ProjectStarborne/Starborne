@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="Tool" load_steps=2 format=3 uid="uid://c46qqlwacuq4p"]
+[gd_resource type="Resource" script_class="Tool" load_steps=4 format=3 uid="uid://c46qqlwacuq4p"]
 
 [ext_resource type="Script" path="res://Scripts/Resource System/tool.gd" id="1_dutuq"]
+[ext_resource type="Texture2D" uid="uid://bwxqhg1ygqs8g" path="res://Assets/Tools/Transparent/drill_transparent.png" id="1_naw0x"]
+[ext_resource type="PackedScene" uid="uid://mg7e3os7r78u" path="res://Scenes/Items/Tools/drill.tscn" id="2_lyd1m"]
 
 [resource]
 script = ExtResource("1_dutuq")
 charge = 0.0
-name = ""
+level = 0
+name = "Drill"
+scene = ExtResource("2_lyd1m")
+icon = ExtResource("1_naw0x")
 price = 0
 weight = 0
-description = ""
+description = "Your primary instrument for extracting valuable minerals from asteroid surfaces, the Drill is indispensable for any miner. Equip and upgrade your Drill with new bits from the shop to increase efficiency and access a wider variety of resources."
 stackable = false
+quantity = 0
