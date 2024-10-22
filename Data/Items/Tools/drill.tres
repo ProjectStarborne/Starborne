@@ -16,3 +16,4 @@ weight = 0
 description = "Your primary instrument for extracting valuable minerals from asteroid surfaces, the Drill is indispensable for any miner. Equip and upgrade your Drill with new bits from the shop to increase efficiency and access a wider variety of resources."
 stackable = false
 quantity = 0
+consumable = false

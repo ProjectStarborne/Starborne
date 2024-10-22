@@ -36,6 +36,9 @@ var inventory : Inventory = Inventory.new()
 # Inventory UI
 @onready var inventory_ui: Control = $"../CanvasLayer/InventoryUI"
 
+var drilling = false
+var target_rock
+
 # Upgrade Level
 var upgrade_level = 0
 
@@ -117,6 +120,10 @@ func _physics_process(delta: float) -> void:
 		var hotbar_list = inventory.get_hotbar_items()
 		
 		use_item(hotbar_list[item_index], item_index)
+	if Input.is_action_just_released("action") and not inventory_ui.visible:
+		# Disable drilling
+		drilling = false
+		
 
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
@@ -460,7 +467,8 @@ func use_item(item : Item, index : int):
 	# Handle Item use and animations
 	match item.name:
 		"Drill":
-			pass
+			drilling = true
+			target_rock.mine()
 		"Duct Tape":
 			fix_oxygen_leak()
 		"Medkit":
@@ -472,8 +480,8 @@ func use_item(item : Item, index : int):
 		inventory.remove_from_hotbar(index)
 	
 	hotbar.update_hotbar_ui(inventory)
-		
-		
+
+
 ####### Dynamic Footsteps #######
 func footstep_handler() -> void:
 	# Grabbing player's local tile information
