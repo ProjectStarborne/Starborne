@@ -19,19 +19,19 @@ var size = 0
 			#_hotbar[i] = null
 			#
 
-func add_item(item:Item) -> bool:
+func add_item(item: Item) -> bool:
 	if size == MAX_SLOTS:
-			return false
+		return false
 	
 	for i in range(MAX_SLOTS):
 		if !_content.has(i):
 			_content[i] = item
-			_content[i].quantity += 1
+			# _content[i].quantity += 1  # Remove this line to prevent stacking
 			size += 1
 			return true
 	
 	return false
-		
+
 
 func add_item_to_slot(item:Item, slot_index : int):
 	_content[slot_index] = item
@@ -39,7 +39,7 @@ func add_item_to_slot(item:Item, slot_index : int):
 
 func remove_item(index : int):
 	if _content[index] != null:
-		_content.erase(index)
+		_content[index] = null
 		size -= 1
 	
 # Get inventory items in the form of an array
@@ -81,10 +81,15 @@ func remove_from_hotbar(hotbar_index: int):
 
 # Check if the item exists in the inventory
 func has_item(item: Item) -> bool:
-	return item.name in _content and _content[item.name].quantity > 0
+	for inv_item in _content.values():
+		if inv_item != null and inv_item.name == item.name:
+			return true
+	return false
+
+
 	
 	
-func swap_items(slot_a : int, slot_b : int):
+func swap_items(slot_a : int, slot_b : int): 	
 	var item_a = _content.get(slot_a, null)
 	var item_b = _content.get(slot_b, null)
 	

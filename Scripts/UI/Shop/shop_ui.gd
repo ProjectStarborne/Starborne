@@ -36,9 +36,11 @@ func _ready():
 
 	# Initialize player with some test inventory items for the shop trade
 	var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
+	var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
 	var iron_item_2 = iron_item_1.duplicate()  # Create a duplicate of the first iron item
 	player.inventory.add_item(iron_item_1)
 	player.inventory.add_item(iron_item_2)
+	player.inventory.add_item(nickel_item)
 
 	# Get the current level (we will need to adjust this to wherever we store the level info)
 	var current_level = player.get_level()  # Call get_level() in player.gd
@@ -81,7 +83,7 @@ func populate_shop(items: Array[Item]):
 	var slot_num = 0
 	for item in items:
 		if item == null:
-			print("Warning: Null item found")
+			#print("Warning: Null item found")
 			continue  # Skip null items
 			
 		# Debug print to check if the item has a valid icon
@@ -94,25 +96,39 @@ func populate_shop(items: Array[Item]):
 			var item_box = grid_container.get_child(slot_num) as HBoxContainer
 
 			# Set the item icon and name
-			var texture_rect = item_box.get_node("Item " + str(slot_num + 1)) as TextureRect
-			texture_rect.texture = item.icon
+			var texture_rect = item_box.get_node_or_null("Item " + str(slot_num + 1)) as TextureRect
+			if texture_rect != null:
+				texture_rect.texture = item.icon
+			else:
+				print("Error: TextureRect 'Item " + str(slot_num + 1) + "' not found in slot ", slot_num)
 
-			var description_vbox = item_box.get_node("DescriptionVBox" + str(slot_num + 1)) as VBoxContainer
-			var item_name_label = description_vbox.get_node("ItemNameLabel") as Label
-			var cost_label = description_vbox.get_node("CostLabel") as Label
-			item_name_label.text = item.name
-
-			# Set the cost label from the item's price in the .tres file
-			cost_label.text = "Price: " + str(item.price) + " credits"
+			var description_vbox = item_box.get_node_or_null("DescriptionVBox" + str(slot_num + 1)) as VBoxContainer
+			if description_vbox != null:
+				var item_name_label = description_vbox.get_node_or_null("ItemNameLabel") as Label
+				var cost_label = description_vbox.get_node_or_null("CostLabel") as Label
+				
+				if item_name_label != null:
+					item_name_label.text = item.name
+				else:
+					print("Error: 'ItemNameLabel' not found in DescriptionVBox" + str(slot_num + 1))
+				
+				if cost_label != null:
+					cost_label.text = "Price: " + str(item.price) + " credits"
+				else:
+					print("Error: 'CostLabel' not found in DescriptionVBox" + str(slot_num + 1))
+			else:
+				print("Error: DescriptionVBox" + str(slot_num + 1) + " not found in slot ", slot_num)
+				continue  # Skip setting up buttons if DescriptionVBox is missing
 
 			# Set up the buy button
-			var buy_button = item_box.get_node("BuyButton") as Button
+			var buy_button = item_box.get_node_or_null("BuyButton") as Button
 			if buy_button != null:
 				# Disable the button if the item is a mineral
 				if item.name in mineral_names:
 					buy_button.disabled = true
 				else:
 					buy_button.disabled = false  # Ensure it's enabled for non-minerals
+				
 				# Safely disconnect the pressed signal, if it was connected
 				var buy_signal = Callable(self, "_on_buy_button_pressed_with_item")
 				if buy_button.is_connected("pressed", buy_signal):
@@ -126,9 +142,11 @@ func populate_shop(items: Array[Item]):
 				# Connect the mouse_entered and mouse_exited signals manually for buy button
 				buy_button.connect("mouse_entered", Callable(self, "_on_buy_button_mouse_entered").bind(buy_button))
 				buy_button.connect("mouse_exited", Callable(self, "_on_buy_button_mouse_exited").bind(buy_button))
+			else:
+				print("Error: 'BuyButton' not found in slot ", slot_num)
 
 			# Set up the sell button
-			var sell_button = item_box.get_node("SellButton") as Button
+			var sell_button = item_box.get_node_or_null("SellButton") as Button
 			if sell_button != null:
 				# Safely disconnect the pressed signal, if it was connected
 				var sell_signal = Callable(self, "_on_sell_button_pressed_with_item")
@@ -143,13 +161,23 @@ func populate_shop(items: Array[Item]):
 				# Connect the mouse_entered and mouse_exited signals manually for sell button
 				sell_button.connect("mouse_entered", Callable(self, "_on_sell_button_mouse_entered").bind(sell_button))
 				sell_button.connect("mouse_exited", Callable(self, "_on_sell_button_mouse_exited").bind(sell_button))
+			else:
+				print("Error: 'SellButton' not found in slot ", slot_num)
+
+		else:
+			print("Warning: slot_num ", slot_num, " exceeds grid_container child count ", grid_container.get_child_count())
+			break  # Exit the loop if there are more items than slots
 
 		slot_num += 1
 
 	# Hide remaining slots if there are fewer items than slots
 	for i in range(slot_num, grid_container.get_child_count()):
 		var unused_item_box = grid_container.get_child(i) as HBoxContainer
-		unused_item_box.visible = false
+		if unused_item_box != null:
+			unused_item_box.visible = false
+		else:
+			print("Error: Unused item box at index ", i, " is null")
+
 
 
 # Handle buy logic when the buy button is pressed
@@ -211,25 +239,52 @@ func execute_purchase(item: Item):
 
 # Execute the sale
 func execute_sale(item: Item):
+	print("Executing sale for item: ", item.name)
+	
 	# Add the price to the player's credits (gain credits)
 	player.add_credits(item.price)
-
-	# Find the item's index in the player's inventory
-	var index = player_inventory.get_items().find(item)
-
+	
+	print("Credits after sale: ", player.get_credits())
+	
+	# Find the first item in the player's inventory with the same name
+	var index = find_item_index_in_inventory(item.name)
+	
 	if index != -1:
 		# Remove the item from the player's inventory by index
 		player_inventory.remove_item(index)
 		print("Removed ", item.name, " from player's inventory")
-
+	else:
+		print("Error: Item ", item.name, " not found in player's inventory")
+	
 	# Add the item to the shop's inventory (optional, depending on your logic)
-	shop_inventory.add_item(item)
-
+	#shop_inventory.add_item(item)
+	#print("Added ", item.name, " to shop inventory")
+	
 	# Refresh the shop UI and player's inventory UI
 	update_shop_ui()
 	update_inventory_ui()
 	
+	# Debug print to show current inventory
+	print("Current Inventory:")
+	for i in range(player_inventory.get_items().size()):
+		var inv_item = player_inventory.get_items()[i]
+		if inv_item != null:
+			print("Slot ", i, ": ", inv_item.name)
+		else:
+			print("Slot ", i, ": Empty")
+	
 	print("Credits: ", player.get_credits())
+
+
+
+# Helper function to find item index by name
+func find_item_index_in_inventory(item_name: String) -> int:
+	var items = player_inventory.get_items()
+	for i in items.size():
+		if items[i] != null and items[i].name == item_name:
+			return i
+	return -1
+
 
 
 
