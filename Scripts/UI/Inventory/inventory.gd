@@ -39,7 +39,7 @@ func add_item_to_slot(item:Item, slot_index : int):
 
 func remove_item(index : int):
 	if _content[index] != null:
-		_content.erase(index)
+		_content[index] = null
 		size -= 1
 	
 # Get inventory items in the form of an array
@@ -63,7 +63,7 @@ func get_hotbar_items() -> Array[Item]:
 
 
 func add_to_hotbar(slot_index: int) -> bool:
-	if _content.has(slot_index) and _hotbar.size() < HOTBAR_SLOTS:
+	if _content.has(slot_index):
 		# Find the first available hotbar slot
 		for i in range(HOTBAR_SLOTS):
 			if _hotbar[i] == null or !_hotbar.has(i):
@@ -78,7 +78,10 @@ func remove_from_hotbar(hotbar_index: int):
 
 # Check if the item exists in the inventory
 func has_item(item: Item) -> bool:
-	return item.name in _content and _content[item.name].quantity > 0
+	for inv_item in _content.values():
+		if inv_item != null and inv_item.name == item.name:
+			return true
+	return false
 	
 	
 func swap_items(slot_a : int, slot_b : int):

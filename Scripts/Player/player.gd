@@ -467,8 +467,9 @@ func use_item(item : Item, index : int):
 	# Handle Item use and animations
 	match item.name:
 		"Drill":
-			drilling = true
-			target_rock.mine()
+			if target_rock:
+				drilling = true
+				target_rock.destroy()
 		"Duct Tape":
 			fix_oxygen_leak()
 		"Medkit":

@@ -6,7 +6,8 @@ extends StaticBody2D
 
 func destroy():
 	var instance = drop.instantiate()
-	add_child(instance)
+	get_parent().add_child(instance)
+	instance.global_position = global_position
 	queue_free()
 
 
