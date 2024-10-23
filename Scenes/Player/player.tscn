@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_ybtu2"]
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="2_ts4vt"]
-[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/Camera/ship_anchor_camera.tscn" id="3_wfdif"]
+[ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/Camera/anchor_camera_2d.tscn" id="3_wfdif"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="4_2g6bi"]
-[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/ship_anchor_detector.tscn" id="4_cvytj"]
+[ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/anchor_detector_2d.tscn" id="4_cvytj"]
 [ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="5_cx5qx"]
 [ext_resource type="AudioStream" uid="uid://dbekjhlgw6nd0" path="res://Assets/sounds/lego_death.mp3" id="6_tv2j8"]
 [ext_resource type="Texture2D" uid="uid://b0x3rmguinjac" path="res://Assets/images/Fire+Sparks-Sheet.png" id="7_yeksf"]
