@@ -6,9 +6,19 @@ extends StaticBody2D
 
 func destroy():
 	var instance = drop.instantiate()
+	spawn_item()
+	queue_free() # Remove node from scene
+
+
+func spawn_item():
+	var instance = drop.instantiate()
+	instance.position = self.position
+	
+	# Add random movement for pop out effect
+	var random_offset = Vector2(randf_range(-50, 50), randf_range(-50, 50))
+	instance.apply_central_impulse(random_offset)
+	
 	get_parent().add_child(instance)
-	instance.global_position = global_position
-	queue_free()
 
 
 func _on_proximity_body_entered(body: Node2D) -> void:

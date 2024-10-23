@@ -829,9 +829,9 @@ destination_level = "shipinterior"
 [node name="Pickup" parent="." instance=ExtResource("28_106hu")]
 position = Vector2(193, 126)
 
-[node name="Ore_node" parent="." instance=ExtResource("30_jwh3y")]
-position = Vector2(304, 169)
-scale = Vector2(2, 2)
-
 [node name="Pickup2" parent="." instance=ExtResource("31_j4k6w")]
 position = Vector2(103, 130)
+
+[node name="Ore_node" parent="." instance=ExtResource("30_jwh3y")]
+position = Vector2(323, 38)
+collision_layer = 1

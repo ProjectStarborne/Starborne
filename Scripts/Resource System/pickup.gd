@@ -11,7 +11,7 @@ func _ready() -> void:
 	#print("Item Position: ", instance.global_position)
 
 # If the player gets close enough, the item will be picked up and then removed from the scene
-func _on_area_2d_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	# Check if there is a function in the body's script called on_item_picked_up
 	if body.has_method("on_item_picked_up"):
 		# Call that function with the item_id

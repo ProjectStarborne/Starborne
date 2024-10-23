@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Resource System/mineral.gd" id="1_nv073"]
 [ext_resource type="Texture2D" uid="uid://b7l1il322tmlp" path="res://Assets/Minerals/Transperent/Icon4.png" id="1_ueu4h"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Minerals/platinum.tscn" id="2_q3sxs"]
+[ext_resource type="PackedScene" uid="uid://cixbfog4vpjga" path="res://Scenes/Items/Minerals/platinum.tscn" id="2_q3sxs"]
 
 [resource]
 script = ExtResource("1_nv073")

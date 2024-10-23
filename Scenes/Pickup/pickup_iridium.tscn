@@ -5,8 +5,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u24pj"]
 
-[node name="PickupIridium" type="Node2D"]
+[node name="PickupIridium" type="RigidBody2D"]
 scale = Vector2(1.31556, 1.12821)
+gravity_scale = 0.0
 script = ExtResource("1_u2g0g")
 item = ExtResource("2_bwbp1")
 
@@ -15,4 +16,4 @@ item = ExtResource("2_bwbp1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_u24pj")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
