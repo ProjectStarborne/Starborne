@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc3pq8mtv0r6l"]
+[gd_scene load_steps=5 format=3 uid="uid://bc3pq8mtv0r6l"]
 
 [ext_resource type="FontFile" uid="uid://chvv4jpnrktda" path="res://Assets/fonts/Terminal.ttf" id="1_bwjlx"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/ship_upgrades.gd" id="1_ro3iv"]
+[ext_resource type="AudioStream" uid="uid://b67pbewtgrkwg" path="res://Assets/sounds/keyboard.wav" id="3_psti1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceb2j"]
-bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="ShipUpgrades" type="Control"]
 layout_mode = 3
@@ -13,6 +15,7 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ro3iv")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -41,6 +44,7 @@ grow_vertical = 2
 
 [node name="Upgrade Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 26
 text = "
@@ -68,12 +72,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "Warp Engine V.1"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "30 Credits"
@@ -82,6 +88,7 @@ text = "30 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -94,12 +101,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "Fuel Efficiency Module V.1"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "50 Credits"
@@ -108,6 +117,7 @@ text = "50 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -120,12 +130,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "Stellar Cartography Module"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "100 Credits"
@@ -134,6 +146,7 @@ text = "100 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -146,12 +159,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "Reinforced Hull Plating"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "200 Credits"
@@ -160,6 +175,7 @@ text = "200 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -172,12 +188,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "Warp Engine V.2"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "230 Credits"
@@ -186,6 +204,7 @@ text = "230 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -198,12 +217,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "Deep Space Scanners"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "300 Credits"
@@ -212,6 +233,7 @@ text = "300 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -224,12 +246,14 @@ layout_mode = 2
 
 [node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
-text = "Dark Matter Fuel Cell"
+text = "Dark Matter Fuel Cells"
 
 [node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 20
 text = "400 Credits"
@@ -238,6 +262,7 @@ text = "400 Credits"
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 text = "Buy"
 
@@ -254,9 +279,9 @@ offset_right = 20.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
-theme_override_font_sizes/font_size = 22
-text = "Broke!"
+theme_override_font_sizes/font_size = 16
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1
@@ -266,6 +291,12 @@ anchor_right = 1.0
 offset_left = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_bwjlx")
 theme_override_font_sizes/font_size = 22
 text = "X"
+
+[node name="KeyboardClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_psti1")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

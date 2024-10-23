@@ -32,13 +32,46 @@ func populate_travel_buttons():
 
 # Handle button pressed logic
 func _on_travel_button_pressed(travel_button: Button) -> void:
-	# Get the level and remove the "Level " prefix from the string
 	var level_label = travel_button.get_meta("level")
 	var level = level_label.replace("Level ", "")
-	print("Travel button to level ", level, " pressed")
 	
-	# Call the function to transition to the new level
+	# Check for required upgrades for each level
+	match level:
+		"2":
+			if !Globals.upgrades_purchased["Warp Engine V.1"]:
+				display_popup_message("You need Warp Engine V.1 to travel to Level 2.")
+				return
+		"3":
+			if !Globals.upgrades_purchased["Fuel Efficiency Module V.1"]:
+				display_popup_message("You need Fuel Efficiency Module V.1 to travel to Level 3.")
+				return
+		"4":
+			if !Globals.upgrades_purchased["Stellar Cartography Module"]:
+				display_popup_message("You need Stellar Cartography Module to travel to Level 4.")
+				return
+		"5":
+			if !Globals.upgrades_purchased["Reinforced Hull Plating"]:
+				display_popup_message("You need Reinforced Hull Plating to travel to Level 5.")
+				return
+		"6":
+			if !Globals.upgrades_purchased["Warp Engine V.2"]:
+				display_popup_message("You need Warp Engine V.2 to travel to Level 6.")
+				return
+		"7":
+			if !Globals.upgrades_purchased["Deep Space Scanners"]:
+				display_popup_message("You need Deep Space Scanners to travel to Level 7.")
+				return
+		"8":
+			if !Globals.upgrades_purchased["Dark Matter Fuel Cells"]:
+				display_popup_message("You need Dark Matter Fuel Cells to travel to Level 8.")
+				return
+		_:
+			display_popup_message("Invalid level or no upgrade needed for this level.")
+	
+	print("Travel button to level ", level, " pressed")
 	change_level(level)
+
+
 
 
 # Function to change the level
@@ -77,3 +110,11 @@ func _on_travel_button_mouse_exited(travel_button: Button) -> void:
 
 func _on_close_button_pressed() -> void:
 	hide()
+
+# Display a message in the popup label
+func display_popup_message(message: String):
+	var popup_label = $BrokeAlert  # Adjust the path to the label
+	popup_label.text = message
+	popup_label.visible = true
+	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds
+	popup_label.visible = false
