@@ -72,8 +72,8 @@ func add_to_hotbar(slot_index: int) -> bool:
 	return false
 	
 func remove_from_hotbar(hotbar_index: int):
-	if _hotbar.has(hotbar_index):
-		_hotbar.erase(hotbar_index)
+	if _hotbar[hotbar_index] != null:
+		_hotbar[hotbar_index] = null
 
 
 # Check if the item exists in the inventory

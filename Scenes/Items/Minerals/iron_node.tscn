@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="2_kgrfh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4j0"]
-size = Vector2(31, 27)
+size = Vector2(17.75, 15.75)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_idgao"]
-radius = 30.0
+radius = 21.773
 
 [node name="Ore_node" type="StaticBody2D"]
 scale = Vector2(2, 2)
@@ -24,7 +24,7 @@ vframes = 5
 frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8.5, 2.5)
+position = Vector2(7.25, 2.25)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_1y4j0")
 
@@ -32,7 +32,7 @@ shape = SubResource("RectangleShape2D_1y4j0")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
-position = Vector2(8, 10)
+position = Vector2(7.5, 2.5)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_idgao")
 

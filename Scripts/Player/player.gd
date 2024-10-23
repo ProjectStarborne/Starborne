@@ -472,6 +472,7 @@ func use_item(item : Item, index : int):
 				target_rock.destroy()
 		"Duct Tape":
 			fix_oxygen_leak()
+			
 		"Medkit":
 			pass
 		"Oxygen Tank":
