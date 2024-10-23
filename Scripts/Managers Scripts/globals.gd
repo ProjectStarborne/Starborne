@@ -12,3 +12,6 @@ var upgrades_purchased = {
 	"Deep Space Scanners": false,
 	"Dark Matter Fuel Cells": false
 }
+
+# Global credits variable to persist across levels
+var credits: int = 100

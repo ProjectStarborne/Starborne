@@ -140,6 +140,16 @@ func remove_credits(amount: int) -> void:
 func get_credits() -> int:
 	return credits
 
+# Store credits into Globals before changing levels
+func save_credits_to_globals() -> void:
+	Globals.credits = credits
+	print("Credits saved to Globals: ", credits)
+
+# Retrieve credits from Globals when the level loads
+func load_credits_from_globals() -> void:
+	if Globals.credits != null:
+		credits = Globals.credits
+		print("Credits loaded from Globals: ", credits)
 
 ####### LEVEL TRACKING (For later on in the shop) #######
 
@@ -299,6 +309,8 @@ var is_dead = false  # Boolean to track if the player is dead (starts alive)
 func _ready() -> void: 
 	# Set the player's starting position to the spawn marker's position
 	global_position = spawn_marker.global_position
+	 # Load the saved credit amount when the level starts
+	load_credits_from_globals() 
 	# Set the health bar's maximum and current values to reflect the player's health
 	health_bar.max_value = max_health
 	health_bar.value = current_health

@@ -2,6 +2,8 @@ extends Control
 
 @onready var grid_container = $VBoxContainer/ScrollContainer/GridContainer
 @onready var click_sound = $KeyboardClick  # The AudioStreamPlayer node for the sound effect
+@onready var player = get_node("%Player")  # Adjust the path to your player node
+
 
 func _ready():
 	populate_travel_buttons()
@@ -76,6 +78,8 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 
 # Function to change the level
 func change_level(level: String) -> void:
+	# Save the player's credit count before loading into new level, and load it back in on ready() in player.gd
+	player.save_credits_to_globals()
 	# Use the NavigationManager to transition to the new level
 	var level_tag = determine_level_tag(level)
 	
