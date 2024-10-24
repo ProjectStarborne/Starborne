@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_u24pj"]
 
 [node name="PickupNickel" type="RigidBody2D"]
+collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("1_tbn6a")
 item = ExtResource("2_44ntc")

@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 class_name Player
 
+# Scene check variable
+var in_level : bool
+
 # Constants
 const SPEED = 300.0 # Normal speed of the player
 const NORMAL_FRICTION = 1500.0 
@@ -22,8 +25,40 @@ var oxygen_leaking = false  # Track if oxygen is leaking
 var oxygen_leak_rate_multiplier = 2.0  # Rate multiplier for faster oxygen depletion
 var warning_timer = 0.0  # Timer to control warning text flickers
 var warning_visible = false  # To track if warning text is currently visible
-@onready var warning_label = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning")  # Reference to warning label in UI
-@onready var warning_audio = get_node("/root/Environment/CanvasLayer/OxygenLeakWarning/Oxygen_Warning")  # Warning sound player
+@onready var warning_label = $"../CanvasLayer/OxygenLeakWarning"  # Reference to warning label in UI
+@onready var warning_audio = $"../CanvasLayer/OxygenLeakWarning/Oxygen_Warning" # Warning sound player
+
+# Reference to the fire effect AnimatedSprite2D
+@onready var fire_sprite = $Fire
+@onready var fire_light = $Fire/PointLight2D 
+
+var is_lava_custom_data = "is_lava"
+var LAVA_SPEED_FACTOR = 0.5  # Factor to slow down the player on lava (50% slower)
+var LAVA_DAMAGE = 10  # Amount of damage to apply while on lava
+var damage_interval = 1.0  # Time in seconds between each damage tick
+var last_damage_time = 0.0  # Keeps track of the last time damage was applied
+# Color for the firelight effect (warm orange)
+var fire_color = Color(1.0, 0.5, 0.1)  # RGB values for orange
+
+# Variable to hold the current speed, initially set to normal speed
+var current_speed = SPEED  # Initialize with the constant SPEED value
+
+# Oxygen Variables
+@onready var oxygen_bar = $"../CanvasLayer/OxygenBar"  # Reference to the oxygen bar node in the UI
+@export var max_oxygen = 100  # Maximum oxygen level for the player
+var current_oxygen = max_oxygen  # Player's current oxygen level, initialized to max
+var oxygen_gone = false  # Boolean to track whether oxygen depletion has started. cant remember if we used this or not 
+
+
+# Variables for managing health reduction once oxygen is depleted
+var health_chip_delay = 1.0  # Delay in seconds between health reductions (when oxygen is depleted)
+var time_since_last_health_chip = 0.0  # Tracks time since the last health reduction
+
+# Health Variables
+@onready var health_bar = $"../CanvasLayer/HealthBar" # Reference to the health bar node in the scene
+@export var max_health = 100  # Maximum health for the player (adjustable)
+var current_health = max_health  # Player's current health, initialized to the maximum
+var is_dead = false  # Boolean to track if the player is dead (starts alive)
 
 @onready var flashlight: PointLight2D = $Flashlight
 
@@ -37,84 +72,91 @@ var inventory : Inventory = Inventory.new()
 @onready var inventory_ui: Control = $"../CanvasLayer/InventoryUI"
 
 var drilling = false
-var target_rock
+var target_rock = null
 
 # Upgrade Level
 var upgrade_level = 0
 
+@onready var tile_map = $"../TileMap"  # Reference to your TileMap node
+
 # World Variable
 @onready var world = get_parent()
+
+# Called when the node is added to the scene
+func _ready() -> void: 
+	in_level = get_tree().current_scene.name == "Environment"
+	# Set the health bar's maximum and current values to reflect the player's health
+	health_bar.max_value = max_health
+	health_bar.value = current_health
+
+	# Set up the oxygen bar (assuming it is defined elsewhere)
+	oxygen_bar.max_value = max_oxygen
+	oxygen_bar.value = current_oxygen
+
+	# Update the health and oxygen bar colors to reflect current values
+	update_health_color()
+	update_oxygen_color()
+	
+	if in_level:
+		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
 
-	# Check if the player is standing on ice, and adjust friction accordingly
-	ice_check()
-	# Check if the player is standing on lava, and slow player down and take damage if so
-	lava_check()
+	# Should only work in Environment root node
+	if in_level:
+		# Check if the player is standing on ice, and adjust friction accordingly
+		ice_check()
+		# Check if the player is standing on lava, and slow player down and take damage if so
+		lava_check()
 
-	# Check if the player is dead, and prevent movement if so
-	if is_dead:
-		return  # Early exit to stop further processing
+		
+			
+		# Handle flashlight aiming at the mouse position
+		flashlight.look_at(get_global_mouse_position())
+		
+		# Dynamic Footstep Caller
+		footstep_handler()
+		
+		# Flicker warning text if oxygen is leaking
+		if oxygen_leaking:
+			handle_warning(delta)
+			
+		# Deplete oxygen over time
+		deplete_oxygen(delta)
+		
+		# Check if the player is dead, and prevent movement if so
+		if is_dead:
+			return  # Early exit to stop further processing
 
-	# Check if the player is currently in the knockback state
-	if knockback_timer > 0:
-		# Apply the knockback force by setting the player's velocity to knockback_velocity
-		velocity = knockback_velocity
-		# Reduce the knockback timer as time progresses
-		knockback_timer -= delta
-	else:
-		# Reset knockback velocity when knockback is finished
-		knockback_velocity = Vector2.ZERO
-
-		# Get the player input for movement
-		if Input.is_action_pressed("up"):
-			direction.y -= 1  # Move up
-			$Sprite2D/AnimationPlayer.play("walk_up")
-		if Input.is_action_pressed("down"):
-			direction.y += 1  # Move down
-			$Sprite2D/AnimationPlayer.play("walk_down")
-		if Input.is_action_pressed("left"):
-			direction.x -= 1  # Move left
-			if direction.y == 0:
-				$Sprite2D/AnimationPlayer.play("walk_left")
-		if Input.is_action_pressed("right"):
-			direction.x += 1  # Move right
-			if direction.y == 0:
-				$Sprite2D/AnimationPlayer.play("walk_right")
-
-		# Normalize the direction vector for consistent movement speed
-		direction = direction.normalized()
-
-		# Update velocity based on direction and apply friction when there's no input
-		if direction != Vector2.ZERO:
-			velocity = direction * current_speed
+		# Check if the player is currently in the knockback state
+		if knockback_timer > 0:
+			# Apply the knockback force by setting the player's velocity to knockback_velocity
+			velocity = knockback_velocity
+			# Reduce the knockback timer as time progresses
+			knockback_timer -= delta
 		else:
-			# Apply friction to slow down when there's no input
-			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-
-	# Handle flashlight aiming at the mouse position
-	flashlight.look_at(get_global_mouse_position())
-	
-	# Dynamic Footstep Caller
-	footstep_handler()
-
-	# Stop animations if there's no movement
-	if direction == Vector2.ZERO:
-		$Sprite2D/AnimationPlayer.stop()
-
-	# Flicker warning text if oxygen is leaking
-	if oxygen_leaking:
-		handle_warning(delta)
-
-	# Move the player based on the current velocity
-	move_and_slide()
-
-	# Deplete oxygen over time
-	deplete_oxygen(delta)
-	
-	# Handle input for using items
+			# Reset knockback velocity when knockback is finished
+			knockback_velocity = Vector2.ZERO
+		
+	# Get the player input for movement
+	if Input.is_action_pressed("up"):
+		direction.y -= 1  # Move up
+		$Sprite2D/AnimationPlayer.play("walk_up")
+	if Input.is_action_pressed("down"):
+		direction.y += 1  # Move down
+		$Sprite2D/AnimationPlayer.play("walk_down")
+	if Input.is_action_pressed("left"):
+		direction.x -= 1  # Move left
+		if direction.y == 0:
+			$Sprite2D/AnimationPlayer.play("walk_left")
+	if Input.is_action_pressed("right"):
+		direction.x += 1  # Move right
+		if direction.y == 0:
+			$Sprite2D/AnimationPlayer.play("walk_right")
+				
+			# Handle input for using items
 	if Input.is_action_just_pressed("action") and not inventory_ui.visible:
 		var item_index = hotbar.get_selected_slot()
 		var hotbar_list = inventory.get_hotbar_items()
@@ -123,7 +165,24 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("action") and not inventory_ui.visible:
 		# Disable drilling
 		drilling = false
-		
+
+	# Normalize the direction vector for consistent movement speed
+	direction = direction.normalized()
+
+	# Update velocity based on direction and apply friction when there's no input
+	if direction != Vector2.ZERO:
+		velocity = direction * current_speed
+	else:
+		# Apply friction to slow down when there's no input
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+
+	# Stop animations if there's no movement
+	if direction == Vector2.ZERO:
+		$Sprite2D/AnimationPlayer.stop()
+
+	# Move the player based on the current velocity
+	move_and_slide()
+
 
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
@@ -135,9 +194,6 @@ func apply_knockback(force: Vector2) -> void:
 	knockback_timer = KNOCKBACK_DURATION
 
 ####### ICE SLIDING ######
-
-@onready var tile_map = get_node("/root/Environment/TileMap")  # Reference to your TileMap node
-
 # Method to check if the tile under the player is ice
 func ice_check():
 	var player_pos : Vector2 = global_position  # player's global position
@@ -159,26 +215,8 @@ func ice_check():
 
 
 ####### LAVA SYSTEM ######
-
-# Reference to the fire effect AnimatedSprite2D
-@onready var fire_sprite = $Fire
-@onready var fire_light = $Fire/PointLight2D 
-
-var is_lava_custom_data = "is_lava"
-var LAVA_SPEED_FACTOR = 0.5  # Factor to slow down the player on lava (50% slower)
-var LAVA_DAMAGE = 10  # Amount of damage to apply while on lava
-var damage_interval = 1.0  # Time in seconds between each damage tick
-var last_damage_time = 0.0  # Keeps track of the last time damage was applied
-# Color for the firelight effect (warm orange)
-var fire_color = Color(1.0, 0.5, 0.1)  # RGB values for orange
-
-# Variable to hold the current speed, initially set to normal speed
-var current_speed = SPEED  # Initialize with the constant SPEED value
-
 # Method to check if the tile under the player is lava
 # Reference to the fire animation and light nodes
-
-
 func lava_check():
 	var player_pos : Vector2 = global_position  # Player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # Convert to local position relative to TileMap
@@ -257,30 +295,7 @@ func fix_oxygen_leak() -> void:
 
 
 
-
 ####### HEALTH SYSTEM #######
-
-# Health Variables
-@onready var health_bar = get_node("/root/Environment/CanvasLayer/HealthBar")  # Reference to the health bar node in the scene
-@export var max_health = 100  # Maximum health for the player (adjustable)
-var current_health = max_health  # Player's current health, initialized to the maximum
-var is_dead = false  # Boolean to track if the player is dead (starts alive)
-
-
-# Called when the node is added to the scene
-func _ready() -> void: 
-	# Set the health bar's maximum and current values to reflect the player's health
-	health_bar.max_value = max_health
-	health_bar.value = current_health
-
-	# Set up the oxygen bar (assuming it is defined elsewhere)
-	oxygen_bar.max_value = max_oxygen
-	oxygen_bar.value = current_oxygen
-
-	# Update the health and oxygen bar colors to reflect current values
-	update_health_color()
-	update_oxygen_color()
-
 
 # Function to handle when the player takes damage
 func take_damage(damage: int) -> void:
@@ -316,7 +331,6 @@ func game_over() -> void:
 	await get_tree().create_timer(2.0).timeout
 	respawn()  # Call the respawn function after the timer
 	print("Oxygen leaking state after respawn: ", oxygen_leaking)
-
 
 
 # Function to handle respawning the player
@@ -368,18 +382,6 @@ func update_health_color() -> void:
 
 
 ####### OXYGEN SYSTEM #######
-
-# Oxygen Variables
-@onready var oxygen_bar = get_node("/root/Environment/CanvasLayer/OxygenBar")  # Reference to the oxygen bar node in the UI
-@export var max_oxygen = 100  # Maximum oxygen level for the player
-var current_oxygen = max_oxygen  # Player's current oxygen level, initialized to max
-var oxygen_gone = false  # Boolean to track whether oxygen depletion has started. cant remember if we used this or not 
-
-
-# Variables for managing health reduction once oxygen is depleted
-var health_chip_delay = 1.0  # Delay in seconds between health reductions (when oxygen is depleted)
-var time_since_last_health_chip = 0.0  # Tracks time since the last health reduction
-
 
 # Function to update the oxygen bar UI when the oxygen level changes
 func update_oxygen_bar() -> void:

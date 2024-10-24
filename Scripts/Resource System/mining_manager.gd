@@ -2,8 +2,10 @@ extends StaticBody2D
 
 ## The mineral pickup that is dropped 
 @export var drop : PackedScene
-@onready var player = %Player
+@onready var player: Player = get_parent().get_node("Player")
 
+
+	
 func destroy():
 	var instance = drop.instantiate()
 	spawn_item()

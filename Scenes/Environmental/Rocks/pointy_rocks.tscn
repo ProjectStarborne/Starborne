@@ -8,6 +8,7 @@
 light_mode = 2
 
 [node name="PointyRock" type="Area2D"]
+collision_layer = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("1_t42x0")

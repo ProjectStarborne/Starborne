@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=50 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -6,13 +6,12 @@
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_um8kb"]
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="2_kpe0u"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
+[ext_resource type="PackedScene" uid="uid://bdq80nl7vihf3" path="res://Scenes/Items/Minerals/nickel_node.tscn" id="3_hn3xq"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
-[ext_resource type="PackedScene" uid="uid://cij22opdyf47o" path="res://Scenes/Pickup/pickup_plat.tscn" id="4_7lffv"]
-[ext_resource type="PackedScene" uid="uid://ds0pb3ov2ha5x" path="res://Scenes/Pickup/pickup_nickel.tscn" id="4_ovma1"]
+[ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="4_4c4p1"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="Texture2D" uid="uid://c5shmns5p5mnb" path="res://Assets/images/Landing_Pad.png" id="4_wyxad"]
-[ext_resource type="PackedScene" uid="uid://cnlsqnr3h4ocb" path="res://Scenes/Pickup/pickup_iridium.tscn" id="5_yj4bm"]
-[ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="6_xpaa1"]
+[ext_resource type="PackedScene" uid="uid://ci7dejjgoy0nk" path="res://Scenes/Items/Minerals/iridium.tscn" id="5_n20xm"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="12_ierrj"]
 [ext_resource type="Texture2D" uid="uid://bsf2lnu3ftgh2" path="res://Assets/images/Lava_Paths.png" id="12_mle3n"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
@@ -28,9 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="20_dm1r8"]
 [ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="20_xsg51"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="27_f57vm"]
-[ext_resource type="PackedScene" uid="uid://ivfem546huam" path="res://Scenes/Pickup/pickup_tape.tscn" id="28_106hu"]
 [ext_resource type="PackedScene" uid="uid://ct6vn0rfh3xr1" path="res://Scenes/Items/Minerals/iron_node.tscn" id="30_jwh3y"]
-[ext_resource type="PackedScene" uid="uid://c48bifnrxp55u" path="res://Scenes/Pickup/pickup_drill.tscn" id="31_j4k6w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x8q4"]
 shader = ExtResource("1_um8kb")
@@ -616,7 +613,7 @@ _data = {
 [node name="Environment" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_it5gi")
-pickups = Array[PackedScene]([ExtResource("6_xpaa1"), ExtResource("4_ovma1"), ExtResource("4_7lffv"), ExtResource("5_yj4bm")])
+ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq"), ExtResource("4_4c4p1"), ExtResource("5_n20xm")])
 
 [node name="Lighting" type="Node" parent="."]
 
@@ -825,13 +822,3 @@ position = Vector2(-905, -391)
 [node name="Door_S" parent="Doors" instance=ExtResource("27_f57vm")]
 position = Vector2(-1225, -42)
 destination_level = "shipinterior"
-
-[node name="Pickup" parent="." instance=ExtResource("28_106hu")]
-position = Vector2(193, 126)
-
-[node name="Pickup2" parent="." instance=ExtResource("31_j4k6w")]
-position = Vector2(103, 130)
-
-[node name="Ore_node" parent="." instance=ExtResource("30_jwh3y")]
-position = Vector2(323, 38)
-collision_layer = 1

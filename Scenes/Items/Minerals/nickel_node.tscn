@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdq80nl7vihf3"]
+[gd_scene load_steps=6 format=3 uid="uid://bdq80nl7vihf3"]
 
 [ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_miveb"]
 [ext_resource type="Texture2D" uid="uid://crohcgrgxuknx" path="res://Assets/images/mineable_rocks.png" id="1_s3oau"]
+[ext_resource type="PackedScene" uid="uid://ds0pb3ov2ha5x" path="res://Scenes/Pickup/pickup_nickel.tscn" id="2_s72eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4j0"]
 size = Vector2(31, 27)
@@ -10,7 +11,9 @@ size = Vector2(31, 27)
 radius = 30.0
 
 [node name="Ore_node" type="StaticBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_miveb")
+drop = ExtResource("2_s72eo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

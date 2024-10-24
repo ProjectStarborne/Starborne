@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7mm4fk34ehg8"]
+[gd_scene load_steps=6 format=3 uid="uid://b7mm4fk34ehg8"]
 
 [ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_bkput"]
 [ext_resource type="Texture2D" uid="uid://crohcgrgxuknx" path="res://Assets/images/mineable_rocks.png" id="1_ia3em"]
+[ext_resource type="PackedScene" uid="uid://cnlsqnr3h4ocb" path="res://Scenes/Pickup/pickup_iridium.tscn" id="2_st64d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xanyh"]
 size = Vector2(32, 26)
@@ -10,7 +11,9 @@ size = Vector2(32, 26)
 radius = 30.0
 
 [node name="Ore_node" type="StaticBody2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_bkput")
+drop = ExtResource("2_st64d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

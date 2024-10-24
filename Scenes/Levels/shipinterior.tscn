@@ -1,11 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=22 format=3 uid="uid://cibxlmib6djil"]
 
+[ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
 [ext_resource type="PackedScene" uid="uid://cc27e2xjnyb86" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
-[ext_resource type="PackedScene" uid="uid://bwrfpxkgve1q0" path="res://Scenes/Ship/navigation.tscn" id="3_0okt1"]
-[ext_resource type="PackedScene" uid="uid://c3u7ync2tln8v" path="res://Scenes/Ship/shop.tscn" id="4_13phx"]
-[ext_resource type="PackedScene" uid="uid://bf7kcsxpq6alv" path="res://Scenes/Ship/storage.tscn" id="5_2j5dh"]
+[ext_resource type="PackedScene" path="res://Scenes/Ship/navigation.tscn" id="3_0okt1"]
+[ext_resource type="PackedScene" path="res://Scenes/Ship/shop.tscn" id="4_13phx"]
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="4_lppfx"]
+[ext_resource type="PackedScene" path="res://Scenes/Ship/storage.tscn" id="5_2j5dh"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="6_cygqa"]
+[ext_resource type="PackedScene" uid="uid://cie5bf6jws1py" path="res://Scenes/UI/Inventory/inventory_ui.tscn" id="7_3c6jt"]
+[ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="8_lgbpk"]
+[ext_resource type="PackedScene" uid="uid://xvd4qmndtd1j" path="res://Scenes/UI/pause_menu.tscn" id="9_dprta"]
+[ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="9_ga0q0"]
+[ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="10_5egvl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn26q"]
 texture = ExtResource("1_yce60")
@@ -136,7 +143,88 @@ texture = ExtResource("1_yce60")
 [sub_resource type="TileSet" id="TileSet_ool8b"]
 sources/0 = SubResource("TileSetAtlasSource_bn26q")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e14ie"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+anti_aliasing_size = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0ivg"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 2
+anti_aliasing_size = 3.0
+
+[sub_resource type="Theme" id="Theme_m3mpi"]
+default_font = ExtResource("9_ga0q0")
+
+[sub_resource type="Animation" id="Animation_x043f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_342be"]
+resource_name = "fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.03333, 5, 5.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.03333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h6sd"]
+_data = {
+"RESET": SubResource("Animation_x043f"),
+"fade_out": SubResource("Animation_342be")
+}
+
 [node name="Shipinterior" type="Node2D"]
+script = ExtResource("1_ewpm4")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -148,7 +236,11 @@ layer_1/tile_data = PackedInt32Array(-655361, 720896, 10, -720896, 786432, 10, -
 layer_2/name = "Layer2"
 
 [node name="Player" parent="." instance=ExtResource("2_2fxea")]
+unique_name_in_owner = true
 z_index = 1
+script = ExtResource("4_lppfx")
+max_oxygen = 100
+max_health = 100
 
 [node name="Navigation" parent="." instance=ExtResource("3_0okt1")]
 position = Vector2(8, -133)
@@ -164,3 +256,75 @@ position = Vector2(74, -67)
 [node name="Door_S" parent="Doors" instance=ExtResource("6_cygqa")]
 position = Vector2(210, 32)
 destination_level = "world_asteroid"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 265.0
+offset_bottom = 40.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_e14ie")
+show_percentage = false
+
+[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 70.0
+offset_right = 265.0
+offset_bottom = 90.0
+theme_override_styles/background = SubResource("StyleBoxFlat_r0ivg")
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer"]
+offset_left = 90.0
+offset_right = 149.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("9_ga0q0")
+text = "Health"
+
+[node name="OxygenLabel" type="Label" parent="CanvasLayer"]
+offset_left = 105.0
+offset_top = 50.0
+offset_right = 145.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("9_ga0q0")
+text = "O2"
+
+[node name="OxygenLeakWarning" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 15.0
+offset_top = 100.0
+offset_right = 104.0
+offset_bottom = 124.0
+scale = Vector2(1.5, 1.5)
+theme = SubResource("Theme_m3mpi")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "REEEEEEEE"
+
+[node name="Oxygen_Warning" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
+stream = ExtResource("10_5egvl")
+volume_db = -10.0
+
+[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
+visible = false
+offset_top = 492.0
+offset_right = 283.0
+offset_bottom = 532.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("9_ga0q0")
+text = "Hello World"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
+libraries = {
+"": SubResource("AnimationLibrary_6h6sd")
+}
+
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("7_3c6jt")]
+visible = false
+
+[node name="HotBar" parent="CanvasLayer" instance=ExtResource("8_lgbpk")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_dprta")]
+visible = false

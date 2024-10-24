@@ -7,6 +7,7 @@
 
 [node name="PickupIridium" type="RigidBody2D"]
 scale = Vector2(1.31556, 1.12821)
+collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("1_u2g0g")
 item = ExtResource("2_bwbp1")

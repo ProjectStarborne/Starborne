@@ -30,51 +30,35 @@ func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
 
+	# Get the player input for movement
+	if Input.is_action_pressed("up"):
+		direction.y -= 1  # Move up
+		$Sprite2D/AnimationPlayer.play("walk_up")
+	if Input.is_action_pressed("down"):
+		direction.y += 1  # Move down
+		$Sprite2D/AnimationPlayer.play("walk_down")
+	if Input.is_action_pressed("left"):
+		direction.x -= 1  # Move left
+		if direction.y == 0:
+			$Sprite2D/AnimationPlayer.play("walk_left")
+	if Input.is_action_pressed("right"):
+		direction.x += 1  # Move right
+		if direction.y == 0:
+			$Sprite2D/AnimationPlayer.play("walk_right")
 
-	# Check if the player is dead, and prevent movement if so
-	# Check if the player is currently in the knockback state
-	if knockback_timer > 0:
-		# Apply the knockback force by setting the player's velocity to knockback_velocity
-		velocity = knockback_velocity
-		# Reduce the knockback timer as time progresses
-		knockback_timer -= delta
+	# Normalize the direction vector for consistent movement speed
+	direction = direction.normalized()
+
+	# Update velocity based on direction and apply friction when there's no input
+	if direction != Vector2.ZERO:
+		velocity = direction * SPEED
 	else:
-		# Reset knockback velocity when knockback is finished
-		knockback_velocity = Vector2.ZERO
-
-		# Get the player input for movement
-		if Input.is_action_pressed("up"):
-			direction.y -= 1  # Move up
-			$Sprite2D/AnimationPlayer.play("walk_up")
-		if Input.is_action_pressed("down"):
-			direction.y += 1  # Move down
-			$Sprite2D/AnimationPlayer.play("walk_down")
-		if Input.is_action_pressed("left"):
-			direction.x -= 1  # Move left
-			if direction.y == 0:
-				$Sprite2D/AnimationPlayer.play("walk_left")
-		if Input.is_action_pressed("right"):
-			direction.x += 1  # Move right
-			if direction.y == 0:
-				$Sprite2D/AnimationPlayer.play("walk_right")
-
-		# Normalize the direction vector for consistent movement speed
-		direction = direction.normalized()
-
-		# Update velocity based on direction and apply friction when there's no input
-		if direction != Vector2.ZERO:
-			velocity = direction * SPEED
-		else:
-			# Apply friction to slow down when there's no input
-			velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-
-	
+		# Apply friction to slow down when there's no input
+		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 	# Stop animations if there's no movement
 	if direction == Vector2.ZERO:
 		$Sprite2D/AnimationPlayer.stop()
-
-
 
 	# Move the player based on the current velocity
 	move_and_slide()
