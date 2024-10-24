@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4frqoq0jqq8s"]
+[gd_scene load_steps=9 format=3 uid="uid://d4frqoq0jqq8s"]
 
 [ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_ghb1l"]
 [ext_resource type="Texture2D" uid="uid://crohcgrgxuknx" path="res://Assets/images/mineable_rocks.png" id="1_x4n3n"]
@@ -10,6 +10,42 @@ size = Vector2(31, 28.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfgqs"]
 radius = 30.0
 
+[sub_resource type="Animation" id="Animation_6ra7y"]
+resource_name = "mine_platinum"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_6r3g3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bdscb"]
+_data = {
+"RESET": SubResource("Animation_6r3g3"),
+"mine_platinum": SubResource("Animation_6ra7y")
+}
+
 [node name="Ore_node" type="StaticBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_ghb1l")
@@ -17,6 +53,7 @@ drop = ExtResource("2_x2b27")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_x4n3n")
 hframes = 4
 vframes = 4
@@ -33,6 +70,9 @@ position = Vector2(0, 2.5)
 shape = SubResource("CircleShape2D_mfgqs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bdscb")
+}
 
 [connection signal="body_entered" from="Proximity" to="." method="_on_proximity_body_entered"]
 [connection signal="body_exited" from="Proximity" to="." method="_on_proximity_body_exited"]
