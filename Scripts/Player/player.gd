@@ -109,6 +109,7 @@ func _ready() -> void:
 		# Connect the respawn signal from the GameOver screen to the player
 		game_over_screen.connect("respawn_signal", Callable(self, "_on_respawn_signal"))
 
+
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
@@ -121,8 +122,6 @@ func _physics_process(delta: float) -> void:
 		# Check if the player is standing on lava, and slow player down and take damage if so
 		lava_check()
 
-		
-			
 		# Handle flashlight aiming at the mouse position
 		flashlight.look_at(get_global_mouse_position())
 		
