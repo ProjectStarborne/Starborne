@@ -10,6 +10,21 @@ size = Vector2(17.75, 15.75)
 [sub_resource type="CircleShape2D" id="CircleShape2D_idgao"]
 radius = 21.773
 
+[sub_resource type="Animation" id="Animation_oej0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
 [sub_resource type="Animation" id="Animation_ns4su"]
 resource_name = "mine_iron"
 length = 0.4
@@ -26,21 +41,6 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_oej0i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l7dhu"]
 _data = {
 "RESET": SubResource("Animation_oej0i"),
@@ -49,7 +49,6 @@ _data = {
 
 [node name="Ore_node" type="StaticBody2D"]
 scale = Vector2(2, 2)
-collision_layer = 2
 script = ExtResource("1_ng1l3")
 drop = ExtResource("2_kgrfh")
 
@@ -61,7 +60,6 @@ vframes = 4
 frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.25, 2.25)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_1y4j0")
 
@@ -69,7 +67,6 @@ shape = SubResource("RectangleShape2D_1y4j0")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
-position = Vector2(7.5, 2.5)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_idgao")
 

@@ -101,27 +101,24 @@ func _ready() -> void:
 	update_health_color()
 	update_oxygen_color()
 	
-	if in_level:
-		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
-	
 	# Only connect to the game over screen if not in the ShipInterior scene
 	if in_level and game_over_screen != null:
 		# Connect the respawn signal from the GameOver screen to the player
 		game_over_screen.connect("respawn_signal", Callable(self, "_on_respawn_signal"))
-
+	
+	if in_level:
+		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
+	else:
+		current_speed = SPEED / 4
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
-	if !in_level:
-		current_speed = SPEED / 4
 	# Should only work in Environment root node
 	if in_level:
-		# Check if the player is standing on ice, and adjust friction accordingly
-		ice_check()
 		# Check if the player is standing on lava, and slow player down and take damage if so
 		lava_check()
-
+		
 		# Handle flashlight aiming at the mouse position
 		flashlight.look_at(get_global_mouse_position())
 		
@@ -179,7 +176,7 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 
 	# Update velocity based on direction and apply friction when there's no input
-	if direction != Vector2.ZERO:
+	if direction != Vector2.ZERO and !ice_check(direction, delta):
 		velocity = direction * current_speed
 	else:
 		# Apply friction to slow down when there's no input
@@ -204,7 +201,7 @@ func apply_knockback(force: Vector2) -> void:
 
 ####### ICE SLIDING ######
 # Method to check if the tile under the player is ice
-func ice_check():
+func ice_check(direction: Vector2, delta: float) -> bool:
 	var player_pos : Vector2 = global_position  # player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
@@ -213,14 +210,18 @@ func ice_check():
 	if tile_data:
 		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
 		if tile_id == TileDetector.TerrainType.ICE:
+			velocity = velocity.move_toward(direction * current_speed, 300.0 * delta)
 			#print("This tile is ice!")
 			friction = ICE_FRICTION  # Set friction to ice friction
+			return true
 		else:
 			#print("This tile is not ice.")
 			friction = NORMAL_FRICTION  # Default friction when not on ice
 	else:
 		#print("No tile data")
 		friction = NORMAL_FRICTION  # Default friction when no tile data
+	
+	return false
 
 
 
