@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwrfpxkgve1q0"]
+[gd_scene load_steps=4 format=3 uid="uid://bwrfpxkgve1q0"]
 
 [ext_resource type="Texture2D" uid="uid://bd8endc4ych2e" path="res://Assets/images/nav_area.png" id="1_qqh70"]
+[ext_resource type="Script" path="res://Scenes/Ship/navigation_Area2D.gd" id="2_qxcw7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4dejt"]
 size = Vector2(48, 39)
@@ -12,7 +13,11 @@ texture_filter = 1
 texture = ExtResource("1_qqh70")
 
 [node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_qxcw7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_4dejt")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]

@@ -39,33 +39,33 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 	
 	# Check for required upgrades for each level
 	match level:
-		"2":
+		"1":
 			if !Globals.upgrades_purchased["Warp Engine V.1"]:
-				display_popup_message("You need Warp Engine V.1 to travel to Level 2.")
+				display_popup_message("You need Warp Engine V.1 to travel to Level 1.")
+				return
+		"2":
+			if !Globals.upgrades_purchased["Fuel Efficiency Module V.1"]:
+				display_popup_message("You need Fuel Efficiency Module V.1 to travel to Level 2.")
 				return
 		"3":
-			if !Globals.upgrades_purchased["Fuel Efficiency Module V.1"]:
-				display_popup_message("You need Fuel Efficiency Module V.1 to travel to Level 3.")
+			if !Globals.upgrades_purchased["Stellar Cartography Module"]:
+				display_popup_message("You need Stellar Cartography Module to travel to Level 3.")
 				return
 		"4":
-			if !Globals.upgrades_purchased["Stellar Cartography Module"]:
-				display_popup_message("You need Stellar Cartography Module to travel to Level 4.")
+			if !Globals.upgrades_purchased["Reinforced Hull Plating"]:
+				display_popup_message("You need Reinforced Hull Plating to travel to Level 4.")
 				return
 		"5":
-			if !Globals.upgrades_purchased["Reinforced Hull Plating"]:
-				display_popup_message("You need Reinforced Hull Plating to travel to Level 5.")
+			if !Globals.upgrades_purchased["Warp Engine V.2"]:
+				display_popup_message("You need Warp Engine V.2 to travel to Level 5.")
 				return
 		"6":
-			if !Globals.upgrades_purchased["Warp Engine V.2"]:
-				display_popup_message("You need Warp Engine V.2 to travel to Level 6.")
+			if !Globals.upgrades_purchased["Deep Space Scanners"]:
+				display_popup_message("You need Deep Space Scanners to travel to Level 6.")
 				return
 		"7":
-			if !Globals.upgrades_purchased["Deep Space Scanners"]:
-				display_popup_message("You need Deep Space Scanners to travel to Level 7.")
-				return
-		"8":
 			if !Globals.upgrades_purchased["Dark Matter Fuel Cells"]:
-				display_popup_message("You need Dark Matter Fuel Cells to travel to Level 8.")
+				display_popup_message("You need Dark Matter Fuel Cells to travel to Level 7.")
 				return
 		_:
 			display_popup_message("Invalid level or no upgrade needed for this level.")
@@ -96,7 +96,8 @@ func determine_level_tag(level: String) -> String:
 			return "world_space"
 		"2":
 			return "world_asteroid"
-		# Add more levels here as needed
+		"3":
+			return "asteroid_two"
 		_:
 			return ""
 

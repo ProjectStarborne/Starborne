@@ -542,6 +542,7 @@ func footstep_handler() -> void:
 		footstep_player.play()
 		audio_timer.start(0.3)
 
+
 ####### CURRENCY SYSTEM #######
 # Exported credits variable to track the player's credits
 @export var credits: int = 100

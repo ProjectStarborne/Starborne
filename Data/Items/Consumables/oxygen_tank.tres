@@ -7,12 +7,12 @@
 [resource]
 script = ExtResource("1_klx04")
 effect = 15.0
-consumable = true
 name = "Oxygen Tank"
 scene = ExtResource("2_7mikl")
 icon = ExtResource("1_3spnl")
-price = 0
+price = 10
 weight = 0
 description = "A lifeline for prolonged exploration, the Oxygen Tank is filled with compressed oxygen gas. Swapping out your current tank with a fresh one extends your exploration time, ensuring you have the breath needed to delve deeper into the asteroid’s mysteries."
 stackable = false
 quantity = 0
+consumable = true

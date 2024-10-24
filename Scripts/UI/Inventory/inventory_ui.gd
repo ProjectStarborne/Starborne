@@ -4,10 +4,13 @@ extends Control
 @onready var grid_container : GridContainer = %GridContainer
 @onready var inv : Inventory
 @onready var hotbar = %HotBar
+@onready var credits_label: Label = %CreditsLabel
+
+@onready var player = %Player
+
 
 func open(inventory:Inventory):
 	inv = inventory
-	show()
 	
 	var slots = get_tree().get_nodes_in_group("Inventory Slot")
 	#debug_inventory(inventory.get_items(), slots)
@@ -15,13 +18,19 @@ func open(inventory:Inventory):
 	var slot_num = 0
 	# This is where the inventory will be populated with item icons
 	for item in inventory.get_items():
-		if slot_num != slots.size() - 1 and item:
+		var children = slots[slot_num].get_children()
+		
+		if slot_num != slots.size() - 1 and item != null:
 			var image = item.icon
-			var children = slots[slot_num].get_children()
 			children[0].set_texture(image)
-			# Update the stack labels to show the proper amount of items in inventory
+		else:
+			children[0].set_texture(null)
+			
 		slot_num += 1
 
+	credits_label.text = "Credits: " + str(player.credits)
+	show()
+	
 func close():
 	hide()
 

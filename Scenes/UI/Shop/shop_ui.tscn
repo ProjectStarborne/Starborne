@@ -498,17 +498,17 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture = SubResource("PlaceholderTexture2D_6qxdm")
 
-[node name="DescriptionVBox 5" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+[node name="DescriptionVBox5" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
 layout_mode = 2
 alignment = 1
 
-[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox 5"]
+[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox5"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
 text = "placeholder"
 
-[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox 5"]
+[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox5"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8ov1t")
 theme_override_font_sizes/font_size = 20
@@ -535,6 +535,256 @@ text = "Sell"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/SellButton"]
 libraries = {
 "": SubResource("AnimationLibrary_phneg")
+}
+
+[node name="Item 6 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 6" type="TextureRect" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox6" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/DescriptionVBox6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/DescriptionVBox6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 7 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 7" type="TextureRect" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox7" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/DescriptionVBox7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/DescriptionVBox7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 8 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 8" type="TextureRect" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox8" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/DescriptionVBox8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/DescriptionVBox8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 9 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 9" type="TextureRect" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox9" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/DescriptionVBox9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/DescriptionVBox9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 10 + DescriptionVBox" type="HBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 10" type="TextureRect" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox10" type="VBoxContainer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/DescriptionVBox10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/DescriptionVBox10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
 }
 
 [node name="BrokeAlert" type="Label" parent="ShopControl"]
@@ -569,4 +819,9 @@ text = "X"
 [connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="ShopControl/VBoxContainer/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
