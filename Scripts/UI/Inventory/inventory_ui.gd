@@ -4,6 +4,8 @@ extends Control
 @onready var grid_container : GridContainer = %GridContainer
 @onready var inv : Inventory
 @onready var hotbar = %HotBar
+@onready var credits_label: Label = %CreditsLabel
+
 
 func open(inventory:Inventory):
 	inv = inventory
@@ -22,6 +24,7 @@ func open(inventory:Inventory):
 			# Update the stack labels to show the proper amount of items in inventory
 		slot_num += 1
 
+	credits_label.text = "Credits: " + str(Globals.credits)
 func close():
 	hide()
 

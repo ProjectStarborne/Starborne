@@ -23,7 +23,7 @@ var paused : bool = false
 func _ready() -> void:
 	# Gets all markers in the level
 	var markers = get_tree().get_nodes_in_group("Resource Spawn Marker")
-	# Creates random num generator object
+	# Creates random num generator objectd
 	var rng = RandomNumberGenerator.new()
 	
 	# For every marker that exists, choose a random pickup item and then
