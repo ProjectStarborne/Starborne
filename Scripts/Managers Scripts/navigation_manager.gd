@@ -6,6 +6,8 @@ extends Node
 const scene_space = preload("res://Scenes/Levels/world_space.tscn")
 const scene_asteroid = preload("res://Scenes/Levels/world_asteroid.tscn")
 const ship_interior = preload("res://Scenes/Levels/shipinterior.tscn")
+const scene_asteroid_two = preload("res://Scenes/Levels/asteroid_two.tscn")  # Adjust path if needed
+
 
 var spawn_door_tag
 
@@ -20,6 +22,8 @@ func go_to_level(level_tag, destination_tag):
 			scene_to_load = scene_asteroid
 		"shipinterior":
 			scene_to_load = ship_interior
+		"asteroid_two":
+			scene_to_load = scene_asteroid_two
 			
 	if scene_to_load != null:
 		TransitionManager.transition()
