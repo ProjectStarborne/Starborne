@@ -105,7 +105,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
-	
 	# Should only work in Environment root node
 	if in_level:
 		# Check if the player is standing on ice, and adjust friction accordingly
