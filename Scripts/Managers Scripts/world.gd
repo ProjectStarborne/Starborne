@@ -10,6 +10,12 @@ extends Node2D
 @onready var pause_menu = $CanvasLayer/PauseMenu
 # Label for pickups
 @onready var item_picked_up = $CanvasLayer/ItemPickupNotification
+# Add reference to shop UI
+@onready var shop_ui = $CanvasLayer/ShopUI
+# Add reference to ship navigation UI
+@onready var navigation_ui = $CanvasLayer/Navigation
+# Add reference to ship upgrades UI
+@onready var ship_upgrades_ui = $CanvasLayer/ShipUpgrades
 
 var paused : bool = false
 
@@ -46,7 +52,43 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("pause") and paused:
 		pause_menu.resume()
 		paused = !paused
+		
+		# Handle shop menu 
+	if Input.is_action_just_pressed("ui_select"):  # 'ui_select' is mapped to Space by default
+		if shop_ui.visible:
+			shop_ui.hide()  # Close the shop if it's already open
+		else:
+			close_inventory()  # Ensure the inventory is closed when opening the shop
+			#close_ship_upgrades()
+			shop_ui.show()  # Show the shop
 	
+			# Handle navigation menu 
+	if Input.is_action_just_pressed("navigation_menu"):  # map 'navigation_menu' to 'N' in Input Map
+		if navigation_ui.visible:
+			navigation_ui.hide()  # Close the ship navigation if it's already open
+		else:
+			close_shop()
+			close_inventory()
+			navigation_ui.show()  # Show the ship navigation UI
+	
+		# Handle ship upgrade menu 
+	if Input.is_action_just_pressed("ship_upgrades"):  # map 'ship_upgrade' to 'U' in Input Map
+		if ship_upgrades_ui.visible:
+			ship_upgrades_ui.hide()  # Close the ship upgrades if it's already open
+		else:
+			close_shop()
+			close_inventory()
+			ship_upgrades_ui.show()  # Show the ship upgrades UI
+
+# Close the shop if it's open
+func close_shop():
+	if shop_ui.visible:
+		shop_ui.hide()
+
+# Close the inventory if it's open
+func close_inventory():
+	if inventory.visible:
+		inventory.hide()
 
 # Displays what is picked up to the screen
 func on_picked_up_item(item : Item):

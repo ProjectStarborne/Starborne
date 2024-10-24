@@ -1,0 +1,302 @@
+[gd_scene load_steps=5 format=3 uid="uid://buifb6ja46nvx"]
+
+[ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="1_bwjlx"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/ship_upgrades.gd" id="1_ro3iv"]
+[ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="3_psti1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceb2j"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="ShipUpgrades" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ro3iv")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ceb2j")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Upgrade Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 26
+text = "
+Ship Upgrades
+
+"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(900, 450)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 128
+theme_override_constants/v_separation = 64
+
+[node name="Upgrade 1" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 1"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Warp Engine V.1"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "30 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 1"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="Upgrade 2" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 65
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 2"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Fuel Efficiency Module V.1"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "50 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 2"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="Upgrade 3" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 57
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 3"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Stellar Cartography Module"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "100 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 3"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="Upgrade 4" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 90
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 4"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Reinforced Hull Plating"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "200 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 4"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="Upgrade 5" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 175
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 5"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Warp Engine V.2"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "230 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 5"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="Upgrade 6" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 6"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Deep Space Scanners"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "300 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 6"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="Upgrade 7" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 115
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 7"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "Dark Matter Fuel Cells"
+
+[node name="Cost" type="Label" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 20
+text = "400 Credits"
+
+[node name="BuyButton" type="Button" parent="Control/VBoxContainer/ScrollContainer/GridContainer/Upgrade 7"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+text = "Buy"
+
+[node name="BrokeAlert" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 16
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_bwjlx")
+theme_override_font_sizes/font_size = 22
+text = "X"
+
+[node name="KeyboardClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_psti1")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

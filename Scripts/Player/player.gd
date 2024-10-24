@@ -4,6 +4,8 @@ class_name Player
 
 # Scene check variable
 var in_level : bool
+# Scene check variable
+var in_ship : bool
 
 # Constants
 const SPEED = 300.0 # Normal speed of the player
@@ -85,6 +87,8 @@ var upgrade_level = 0
 # Called when the node is added to the scene
 func _ready() -> void: 
 	in_level = get_tree().current_scene.name == "Environment"
+	in_ship = get_tree().current_scene.name == "ShipInterior"  # Add condition for ShipInterior scene
+	
 	# Set the health bar's maximum and current values to reflect the player's health
 	health_bar.max_value = max_health
 	health_bar.value = current_health
@@ -99,6 +103,11 @@ func _ready() -> void:
 	
 	if in_level:
 		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
+	
+	# Only connect to the game over screen if not in the ShipInterior scene
+	if in_level and game_over_screen != null:
+		# Connect the respawn signal from the GameOver screen to the player
+		game_over_screen.connect("respawn_signal", Callable(self, "_on_respawn_signal"))
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
@@ -215,6 +224,7 @@ func ice_check():
 		friction = NORMAL_FRICTION  # Default friction when no tile data
 
 
+
 ####### LAVA SYSTEM ######
 # Method to check if the tile under the player is lava
 # Reference to the fire animation and light nodes
@@ -314,50 +324,6 @@ func take_damage(damage: int) -> void:
 	update_health_color()
 
 
-# Function to update the health bar UI to reflect the current health
-func update_health_bar() -> void:
-	health_bar.value = current_health
-# Function to handle the game over state when the player's health reaches 0
-func game_over() -> void:
-	print("Game Over!")  # Output "Game Over" for debugging purposes
-	
-	# Play the game over sound (rn its "lego_death.wav" sound effect lmao)
-	var audio_player = get_node("Death_Sound")
-	if audio_player:
-		print("Audio player found!")  # Debugging statement
-		#audio_player.play()  # Play the sound
-	
-	is_dead = true  # Set the player to dead, disabling further movement
-	# Wait 2 seconds before respawning the player
-	await get_tree().create_timer(2.0).timeout
-	respawn()  # Call the respawn function after the timer
-	print("Oxygen leaking state after respawn: ", oxygen_leaking)
-
-
-# Function to handle respawning the player
-func respawn() -> void:
-	#Deactivate oxygen leak, if present upon death
-	fix_oxygen_leak()
-	#Bug fix workaround. The same rock cannot trigger oxygen drain twice cause its fuked
-	get_tree().reload_current_scene()
-	
-	# Reset the player's health, oxygen, and other stats upon respawn
-	current_health = max_health  # Reset health to full
-	update_health_bar()  # Update the health bar UI
-	update_health_color()  # Update the health bar color to green
-	
-	# Reset the player's oxygen levels 
-	current_oxygen = max_oxygen  
-	update_oxygen_bar()  # Update the oxygen bar UI
-	update_oxygen_color()  # Update the oxygen bar color to blue
-	
-	is_dead = false  # Allow the player to move again (remove the dead state)
-	
-	# Respawn the player at a predefined position (100, 100)
-	global_position = Vector2(100, 100)
-	print("Respawning...")  
-
-
 # Function to update the health bar's color based on the player's current health percentage
 func update_health_color() -> void:
 	# Calculate the player's health as a percentage (between 0 and 1)
@@ -379,6 +345,71 @@ func update_health_color() -> void:
 		fill_stylebox.bg_color = Color(1.0, 0.65, 0.0)  # Orange for health between 25% and 50%
 	else:
 		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for health below 25%
+
+
+# Function to update the health bar UI to reflect the current health
+func update_health_bar() -> void:
+	health_bar.value = current_health
+	
+
+####### RESPAWN/DEATH SYSTEM #######
+
+@onready var spawn_marker = get_node("/root/Environment/SpawnPoint")  # Reference to the Marker2D node
+@onready var game_over_screen = get_node("/root/Environment/CanvasLayer/GameOver")  # Reference to the GameOver screen in the hierarchy
+
+
+# Function to handle respawning the player
+func respawn() -> void:
+	# Respawn the player at the spawn marker's position
+	global_position = spawn_marker.global_position
+	# Deactivate oxygen leak, if present upon death
+	fix_oxygen_leak()
+	# Bug fix workaround. The same rock cannot trigger oxygen drain twice
+	get_tree().reload_current_scene()
+
+	# Reset the player's health, oxygen, and other stats upon respawn
+	current_health = max_health  # Reset health to full
+	update_health_bar()  # Update the health bar UI
+	update_health_color()  # Update the health bar color to green
+	
+	# Reset the player's oxygen levels 
+	current_oxygen = max_oxygen  
+	update_oxygen_bar()  # Update the oxygen bar UI
+	update_oxygen_color()  # Update the oxygen bar color to blue
+	
+	is_dead = false  # Allow the player to move again
+	print("Respawning...")  
+
+# Function to handle the game over state when the player's health reaches 0
+func game_over() -> void:
+	print("Game Over!")  # Debugging message
+
+	# Play the game over sound ("lego_death.wav")
+	var audio_player = get_node("Death_Sound")
+	if audio_player:
+		#audio_player.play()  # Play the sound
+		pass
+	
+	is_dead = true  # Set the player to dead, disabling further movement
+	
+	# Show the game over screen by setting it to visible
+	game_over_screen.visible = true
+
+
+# Function to show the death screen (not needed anymore but keeping as a placeholder)
+func show_death_screen() -> void:
+	print("Showing the death screen...")
+	game_over_screen.visible = true  # Just ensure visibility if needed
+
+
+# Handle the signal from the death screen to respawn the player
+func _on_respawn_signal() -> void:
+	print("Respawn signal received!")  # Debugging message to ensure the signal works
+	# Hide the game over screen when respawning
+	game_over_screen.visible = false
+	# maybe unpause the game (if we plan on it) and respawn the player
+	respawn()
+	
 
 
 
@@ -510,3 +541,39 @@ func footstep_handler() -> void:
 		footstep_player.pitch_scale = randf_range(0.8, 1.0)
 		footstep_player.play()
 		audio_timer.start(0.3)
+
+####### CURRENCY SYSTEM #######
+# Exported credits variable to track the player's credits
+@export var credits: int = 100
+
+# Function to update player's credits (optional)
+func add_credits(amount: int) -> void:
+	credits += amount
+	print("Credits added: ", amount, " Total credits: ", credits)
+
+func remove_credits(amount: int) -> void:
+	credits = max(0, credits - amount)  # Prevent going below 0
+	print("Credits removed: ", amount, " Remaining credits: ", credits)
+
+func get_credits() -> int:
+	return credits
+
+# Store credits into Globals before changing levels
+func save_credits_to_globals() -> void:
+	Globals.credits = credits
+	print("Credits saved to Globals: ", credits)
+
+# Retrieve credits from Globals when the level loads
+func load_credits_from_globals() -> void:
+	if Globals.credits != null:
+		credits = Globals.credits
+		print("Credits loaded from Globals: ", credits)
+
+####### LEVEL TRACKING (For later on in the shop) #######
+
+var current_level = 1  # Starting level
+
+# Method to get the current level
+func get_level() -> int:
+	return current_level
+	
