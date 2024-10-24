@@ -10,10 +10,6 @@ extends Node2D
 @onready var pause_menu = $CanvasLayer/PauseMenu
 # Label for pickups
 @onready var item_picked_up = $CanvasLayer/ItemPickupNotification
-# Add reference to shop UI
-@onready var shop_ui = $CanvasLayer/ShopUI
-# Add reference to ship navigation UI
-@onready var navigation_ui = $CanvasLayer/Navigation
 # Add reference to ship upgrades UI
 @onready var ship_upgrades_ui = $CanvasLayer/ShipUpgrades
 
@@ -39,7 +35,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Handle Inventory UI
-	if Input.is_action_just_pressed("inventory") and !shop_ui.visible and !navigation_ui.visible and !ship_upgrades_ui.visible :
+	if Input.is_action_just_pressed("inventory") and !ship_upgrades_ui.visible :
 		if inventory.visible:
 			inventory.close()
 		else:
@@ -47,43 +43,21 @@ func _process(delta: float) -> void:
 	
 	# Handle Pause UI
 	if Input.is_action_just_pressed("pause") and !paused:
+		close_ship_upgrades()
 		pause_menu.pause()
 		paused = !paused
 	elif Input.is_action_just_pressed("pause") and paused:
 		pause_menu.resume()
 		paused = !paused
-		
-		# Handle shop menu 
-	if Input.is_action_just_pressed("ui_select"):  # 'ui_select' is mapped to Space by default
-		if shop_ui.visible:
-			shop_ui.hide()  # Close the shop if it's already open
-		else:
-			inventory.close() # Ensure the inventory is closed when opening the shop
-			close_ship_upgrades()
-			shop_ui.show()  # Show the shop
-	
-			# Handle navigation menu 
-	if Input.is_action_just_pressed("navigation_menu"):  # map 'navigation_menu' to 'N' in Input Map
-		if navigation_ui.visible:
-			navigation_ui.hide()  # Close the ship navigation if it's already open
-		else:
-			close_shop()
-			inventory.close()
-			navigation_ui.show()  # Show the ship navigation UI
 	
 		# Handle ship upgrade menu 
 	if Input.is_action_just_pressed("ship_upgrades"):  # map 'ship_upgrade' to 'U' in Input Map
 		if ship_upgrades_ui.visible:
 			ship_upgrades_ui.hide()  # Close the ship upgrades if it's already open
 		else:
-			close_shop()
 			inventory.close()
 			ship_upgrades_ui.show()  # Show the ship upgrades UI
 
-# Close the shop if it's open
-func close_shop():
-	if shop_ui.visible:
-		shop_ui.hide()
 
 #Close the ship upgrades UI if it's open
 func close_ship_upgrades():
