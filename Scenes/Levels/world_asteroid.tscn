@@ -628,9 +628,8 @@ ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq"),
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Darkener" type="CanvasModulate" parent="Lighting"]
-visible = false
 position = Vector2(9.53674e-07, -2.38419e-07)
-color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+color = Color(0.205117, 0.205117, 0.205117, 1)
 
 [node name="Fog" type="ParallaxBackground" parent="Lighting/Darkener"]
 layer = 0
