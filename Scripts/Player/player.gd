@@ -107,13 +107,9 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	# Should only work in Environment root node
 	if in_level:
-		# Check if the player is standing on ice, and adjust friction accordingly
-		ice_check()
 		# Check if the player is standing on lava, and slow player down and take damage if so
 		lava_check()
-
 		
-			
 		# Handle flashlight aiming at the mouse position
 		flashlight.look_at(get_global_mouse_position())
 		
@@ -171,7 +167,7 @@ func _physics_process(delta: float) -> void:
 	direction = direction.normalized()
 
 	# Update velocity based on direction and apply friction when there's no input
-	if direction != Vector2.ZERO:
+	if direction != Vector2.ZERO and !ice_check(direction, delta):
 		velocity = direction * current_speed
 	else:
 		# Apply friction to slow down when there's no input
@@ -196,7 +192,7 @@ func apply_knockback(force: Vector2) -> void:
 
 ####### ICE SLIDING ######
 # Method to check if the tile under the player is ice
-func ice_check():
+func ice_check(direction: Vector2, delta: float) -> bool:
 	var player_pos : Vector2 = global_position  # player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
@@ -205,14 +201,18 @@ func ice_check():
 	if tile_data:
 		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
 		if tile_id == TileDetector.TerrainType.ICE:
+			velocity = velocity.move_toward(direction * current_speed, 300.0 * delta)
 			#print("This tile is ice!")
 			friction = ICE_FRICTION  # Set friction to ice friction
+			return true
 		else:
 			#print("This tile is not ice.")
 			friction = NORMAL_FRICTION  # Default friction when not on ice
 	else:
 		#print("No tile data")
 		friction = NORMAL_FRICTION  # Default friction when no tile data
+	
+	return false
 
 
 ####### LAVA SYSTEM ######
