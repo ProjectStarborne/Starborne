@@ -625,11 +625,18 @@ process_mode = 3
 script = ExtResource("1_it5gi")
 ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq"), ExtResource("4_4c4p1"), ExtResource("5_agmak")])
 
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -6018.0
+offset_top = -3316.0
+offset_right = 7232.0
+offset_bottom = 3315.0
+color = Color(0.152941, 0.14902, 0.141176, 1)
+
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Darkener" type="CanvasModulate" parent="Lighting"]
 position = Vector2(9.53674e-07, -2.38419e-07)
-color = Color(0.205117, 0.205117, 0.205117, 1)
+color = Color(0.158472, 0.158472, 0.158472, 1)
 
 [node name="Fog" type="ParallaxBackground" parent="Lighting/Darkener"]
 layer = 0
