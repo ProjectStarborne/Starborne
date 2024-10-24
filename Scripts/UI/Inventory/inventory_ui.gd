@@ -6,9 +6,12 @@ extends Control
 @onready var hotbar = %HotBar
 @onready var credits_label: Label = %CreditsLabel
 
+@onready var player = %Player
+
 
 func open(inventory:Inventory):
 	inv = inventory
+	
 	show()
 	
 	var slots = get_tree().get_nodes_in_group("Inventory Slot")
@@ -24,7 +27,7 @@ func open(inventory:Inventory):
 			# Update the stack labels to show the proper amount of items in inventory
 		slot_num += 1
 
-	credits_label.text = "Credits: " + str(Globals.credits)
+	credits_label.text = "Credits: " + str(player.credits)
 func close():
 	hide()
 
