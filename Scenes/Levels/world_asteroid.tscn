@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="4_4c4p1"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="Texture2D" uid="uid://c5shmns5p5mnb" path="res://Assets/images/Landing_Pad.png" id="4_wyxad"]
-[ext_resource type="PackedScene" uid="uid://ci7dejjgoy0nk" path="res://Scenes/Items/Minerals/iridium.tscn" id="5_n20xm"]
+[ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_agmak"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="12_ierrj"]
 [ext_resource type="Texture2D" uid="uid://bsf2lnu3ftgh2" path="res://Assets/images/Lava_Paths.png" id="12_mle3n"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
@@ -613,7 +613,7 @@ _data = {
 [node name="Environment" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_it5gi")
-ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq"), ExtResource("4_4c4p1"), ExtResource("5_n20xm")])
+ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq"), ExtResource("4_4c4p1"), ExtResource("5_agmak")])
 
 [node name="Lighting" type="Node" parent="."]
 

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cnlsqnr3h4ocb" path="res://Scenes/Pickup/pickup_iridium.tscn" id="2_st64d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xanyh"]
-size = Vector2(32, 26)
+size = Vector2(32, 28.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t47ud"]
 radius = 30.0
@@ -22,13 +22,14 @@ hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 10)
+light_mask = 2
+position = Vector2(0, 2.25)
 shape = SubResource("RectangleShape2D_xanyh")
 
 [node name="Proximity" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
-position = Vector2(8, 10)
+position = Vector2(0, 2.5)
 shape = SubResource("CircleShape2D_t47ud")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
