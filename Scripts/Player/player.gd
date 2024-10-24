@@ -46,7 +46,7 @@ var fire_color = Color(1.0, 0.5, 0.1)  # RGB values for orange
 var current_speed = SPEED  # Initialize with the constant SPEED value
 
 # Oxygen Variables
-@onready var oxygen_bar = $"../CanvasLayer/OxygenBar"  # Reference to the oxygen bar node in the UI
+@onready var oxygen_bar = $"../CanvasLayer/HBoxContainer/ControlOxygen/OxygenBar"  # Reference to the oxygen bar node in the UI
 @export var max_oxygen = 100  # Maximum oxygen level for the player
 var current_oxygen = max_oxygen  # Player's current oxygen level, initialized to max
 var oxygen_gone = false  # Boolean to track whether oxygen depletion has started. cant remember if we used this or not 
@@ -57,7 +57,7 @@ var health_chip_delay = 1.0  # Delay in seconds between health reductions (when 
 var time_since_last_health_chip = 0.0  # Tracks time since the last health reduction
 
 # Health Variables
-@onready var health_bar = $"../CanvasLayer/HealthBar" # Reference to the health bar node in the scene
+@onready var health_bar = $"../CanvasLayer/HBoxContainer/ControlHealth/HealthBar" # Reference to the health bar node in the scene
 @export var max_health = 100  # Maximum health for the player (adjustable)
 var current_health = max_health  # Player's current health, initialized to the maximum
 var is_dead = false  # Boolean to track if the player is dead (starts alive)

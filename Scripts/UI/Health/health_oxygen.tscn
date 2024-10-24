@@ -1,3 +1,29 @@
 [gd_scene format=3 uid="uid://kihyegqtwuas"]
 
-[node name="HealthOxygen" type="Node2D"]
+[node name="HealthOxygen" type="HBoxContainer"]
+
+[node name="ControlHealth" type="Control" parent="."]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="ControlHealth"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HealthBar" type="ProgressBar" parent="ControlHealth"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="ControlOxygen" type="Control" parent="."]
+layout_mode = 2
+
+[node name="OxygenLabel" type="Label" parent="ControlOxygen"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="OxygenBar" type="ProgressBar" parent="ControlOxygen"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
