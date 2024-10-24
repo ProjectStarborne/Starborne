@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=42 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -24,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="21_c3j6w"]
 [ext_resource type="Texture2D" uid="uid://ci36fqjtkdcvo" path="res://Assets/images/circle_light2.png" id="23_b6o08"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="24_ryqv3"]
+[ext_resource type="Script" path="res://Scripts/Environmental/Meteor/meteor_spawner.gd" id="25_55wwj"]
+[ext_resource type="PackedScene" uid="uid://chdv7oq5t6ggr" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="26_2wbn7"]
+[ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="27_mojhb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i441f"]
 shader = ExtResource("1_43alx")
@@ -759,6 +762,7 @@ _data = {
 [node name="Environment" type="Node2D"]
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 offset_left = -6018.0
 offset_top = -3316.0
 offset_right = 7232.0
@@ -1020,3 +1024,20 @@ scale = Vector2(0.706875, 0.706875)
 blend_mode = 2
 texture = ExtResource("24_ryqv3")
 texture_scale = 2.0
+
+[node name="MeteorSpawner" type="Node2D" parent="."]
+process_mode = 1
+visible = false
+script = ExtResource("25_55wwj")
+MeteorScene = ExtResource("26_2wbn7")
+ImpactIndicatorScene = ExtResource("27_mojhb")
+
+[node name="Timer" type="Timer" parent="MeteorSpawner"]
+wait_time = 0.2
+autostart = true
+
+[node name="MeteorLandingArea" type="Area2D" parent="."]
+process_mode = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MeteorLandingArea"]
+polygon = PackedVector2Array(36, 850, 919, 873, 915, 786, 1263, 782, 1282, 865, 1576, 880, 1561, 797, 1727, 778, 1704, 722, 1791, 718, 1814, 642, 1969, 631, 1969, 552, 2207, 540, 2191, 469, 2274, 472, 2282, 325, 2361, 310, 2373, 216, 2539, 223, 2539, 167, 2879, 148, 2852, 61, 3081, 78, 3092, -2, 3175, -21, 3175, -89, 3255, -81, 3251, -172, 3334, -179, 3319, -330, 3383, -326, 3406, -341, 3417, -704, 3323, -719, 3334, -855, 3251, -874, 3262, -1032, 3179, -1032, 3183, -1108, 3092, -1119, 3096, -1180, 2949, -1187, 2922, -1270, 2858, -1270, 2851, -1346, 2688, -1350, 2707, -1838, 2598, -1842, 2613, -1986, 2519, -2004, 2537, -2140, 2447, -2144, 2451, -2227, 2379, -2227, 2371, -2303, 1594, -2322, 1594, -2242, 1242, -2238, 1250, -2306, 1186, -2322, 1182, -2393, 1099, -2401, 1099, -2469, 1005, -2476, 1012, -2544, 940, -2559, 933, -2620, 850, -2639, 846, -2710, 317, -2726, 306, -2646, 12, -2650, 19, -2574, -132, -2559, -170, -2488, -256, -2473, -249, -2401, -410, -2386, -413, -2325, -553, -2303, -572, -2227, -916, -2231, -916, -2322, -1074, -2310, -1097, -2401, -1607, -2389, -1603, -2310, -1852, -2306, -1856, -2246, -1912, -2227, -1912, -2057, -2011, -2061, -2003, -1676, -2086, -1691, -2094, -1521, -2165, -1510, -2184, -77, -2252, -77, -2245, 89, -2335, 85, -2339, 387, -2248, 376, -2263, 444, -2026, 459, -2026, 546, -1927, 546, -1931, 629, -1708, 622, -1697, 690, -1607, 708, -1614, 792, -1535, 776, -1535, 852, -1369, 867, -1361, 961, -901, 950, -912, 863, -670, 871, -674, 784, -436, 792, -425, 697, -213, 712, -191, 641, -13, 644, -13, 852)
