@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Handle Inventory UI
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory") and !shop_ui.visible and !navigation_ui.visible and !ship_upgrades_ui.visible :
 		if inventory.visible:
 			inventory.close()
 		else:
@@ -58,8 +58,8 @@ func _process(delta: float) -> void:
 		if shop_ui.visible:
 			shop_ui.hide()  # Close the shop if it's already open
 		else:
-			close_inventory()  # Ensure the inventory is closed when opening the shop
-			#close_ship_upgrades()
+			inventory.close() # Ensure the inventory is closed when opening the shop
+			close_ship_upgrades()
 			shop_ui.show()  # Show the shop
 	
 			# Handle navigation menu 
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 			navigation_ui.hide()  # Close the ship navigation if it's already open
 		else:
 			close_shop()
-			close_inventory()
+			inventory.close()
 			navigation_ui.show()  # Show the ship navigation UI
 	
 		# Handle ship upgrade menu 
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 			ship_upgrades_ui.hide()  # Close the ship upgrades if it's already open
 		else:
 			close_shop()
-			close_inventory()
+			inventory.close()
 			ship_upgrades_ui.show()  # Show the ship upgrades UI
 
 # Close the shop if it's open
@@ -85,10 +85,10 @@ func close_shop():
 	if shop_ui.visible:
 		shop_ui.hide()
 
-# Close the inventory if it's open
-func close_inventory():
-	if inventory.visible:
-		inventory.hide()
+#Close the ship upgrades UI if it's open
+func close_ship_upgrades():
+	if ship_upgrades_ui.visible:
+		ship_upgrades_ui.hide()
 
 # Displays what is picked up to the screen
 func on_picked_up_item(item : Item):
