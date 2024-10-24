@@ -99,12 +99,13 @@ func _ready() -> void:
 	
 	if in_level:
 		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
+	else:
+		current_speed = SPEED / 4
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
-	if !in_level:
-		current_speed = SPEED / 4
+	
 	# Should only work in Environment root node
 	if in_level:
 		# Check if the player is standing on ice, and adjust friction accordingly
