@@ -99,6 +99,8 @@ func _ready() -> void:
 	
 	if in_level:
 		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
+	else:
+		current_speed = SPEED / 4
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
