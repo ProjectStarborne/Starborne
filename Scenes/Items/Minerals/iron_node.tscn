@@ -54,6 +54,7 @@ drop = ExtResource("2_kgrfh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_1nmv2")
 hframes = 4
 vframes = 4
