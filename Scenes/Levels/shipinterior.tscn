@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
 [ext_resource type="PackedScene" uid="uid://cc27e2xjnyb86" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
-[ext_resource type="PackedScene" path="res://Scenes/Ship/navigation.tscn" id="3_0okt1"]
+[ext_resource type="PackedScene" uid="uid://cs5gp4oh6g1ny" path="res://Scenes/Ship/navigation.tscn" id="3_0okt1"]
 [ext_resource type="PackedScene" uid="uid://bkpuwft2gsg7i" path="res://Scenes/Ship/shop.tscn" id="4_13phx"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="4_lppfx"]
 [ext_resource type="PackedScene" uid="uid://ioveg0tyk8gc" path="res://Scenes/Ship/storage.tscn" id="5_2j5dh"]

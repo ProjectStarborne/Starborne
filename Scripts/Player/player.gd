@@ -76,9 +76,6 @@ var inventory : Inventory = Inventory.new()
 var drilling = false
 var target_rock = null
 
-# Upgrade Level
-var upgrade_level = 0
-
 @onready var tile_map = $"../TileMap"  # Reference to your TileMap node
 
 # World Variable
@@ -578,3 +575,22 @@ var current_level = 1  # Starting level
 func get_level() -> int:
 	return current_level
 	
+####### Save Information #######
+
+# Function used in file_manager.gd
+func save() -> Dictionary:
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"current_health" : current_health,
+		"max_health" : max_health,
+		"current_oxygen" : current_oxygen,
+		"max_oxygen": max_oxygen,
+		"is_dead" : is_dead,
+		"inventory" : inventory.to_dict(),
+		"level" : current_level
+	}
+	
+	return save_dict

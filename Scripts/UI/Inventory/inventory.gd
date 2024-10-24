@@ -98,3 +98,45 @@ func swap_hotbar_items(hotbar_index: int, inventory_index: int):
 	
 	_hotbar[hotbar_index] = inventory_item
 	_content[inventory_index] = hotbar_item
+
+
+func to_dict() -> Dictionary:
+	var content_dict = {}
+	for key in _content.keys():
+		if _content[key] != null:
+			content_dict[key] = _content[key].to_dict()
+		else:
+			content_dict[key] = null
+
+	var hotbar_dict = {}
+	for key in _hotbar.keys():
+		if _hotbar[key] != null:
+			hotbar_dict[key] = _hotbar[key].to_dict()
+		else:
+			hotbar_dict[key] = null
+
+	return {
+		"content": content_dict,
+		"hotbar": hotbar_dict,
+		"size": size
+	}
+
+static func from_dict(data: Dictionary) -> Inventory:
+	var inventory = Inventory.new()
+	for key in data["content"].keys():
+		if data["content"][key] != null:
+			inventory._content[key] = Item.from_dict(data["content"][key])
+		else:
+			inventory._content[key] = null
+	
+	for key in data["hotbar"].keys():
+		if data["hotbar"][key] != null:
+			inventory._hotbar[key] = Item.from_dict(data["hotbar"][key])
+		else:
+			inventory._hotbar[key] = null
+	
+	inventory.size = data["size"]
+	return inventory
+			
+			
+			

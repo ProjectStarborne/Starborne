@@ -35,6 +35,7 @@ project/assembly_name="Starborne"
 
 Player=""
 "Resource Spawn Marker"=""
+Persist=""
 
 [input]
 
