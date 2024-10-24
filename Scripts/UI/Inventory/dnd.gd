@@ -48,7 +48,8 @@ func get_preview():
 	# Set properties of preview (may make it so its slightly transparent)
 	preview_texture.texture = texture_rect.texture
 	preview_texture.expand_mode = 1
-	preview_texture.size = Vector2(30, 30)
+	preview_texture.size = Vector2(64, 64)
+	preview_texture.z_index = 2
 	
 	# Bring to view
 	var preview = Control.new()

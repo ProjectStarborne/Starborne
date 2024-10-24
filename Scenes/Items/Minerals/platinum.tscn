@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5s1jhb4o568n"]
+[gd_scene load_steps=2 format=3 uid="uid://cixbfog4vpjga"]
 
 [ext_resource type="Texture2D" uid="uid://b7l1il322tmlp" path="res://Assets/Minerals/Transperent/Icon4.png" id="1_er4jh"]
 
-[node name="Item_test" type="Node2D"]
+[node name="Platinum" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
