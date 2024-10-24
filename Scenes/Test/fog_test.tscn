@@ -15,7 +15,7 @@
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="13_x1mpd"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_yg3w1"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="16_7imqp"]
-[ext_resource type="Script" path="res://Scenes/Test/fog_o_war.gd" id="17_klwff"]
+[ext_resource type="Script" path="res://Scripts/Lighting/fog_o_war.gd" id="17_klwff"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jtqv7"]
 shader = ExtResource("6_4navx")

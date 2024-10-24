@@ -108,7 +108,7 @@ func shoot_projectile():
 
 	# Play the gunshot sound
 	var audio_player = AudioStreamPlayer2D.new()
-	audio_player.volume_db = -10.0
+	audio_player.volume_db = -20.0
 	audio_player.stream = gunshot_sound
 	audio_player.global_position = barrel_tip.global_position
 	get_tree().current_scene.add_child(audio_player)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct6vn0rfh3xr1"]
+[gd_scene load_steps=9 format=3 uid="uid://ct6vn0rfh3xr1"]
 
 [ext_resource type="Texture2D" uid="uid://crohcgrgxuknx" path="res://Assets/images/mineable_rocks.png" id="1_1nmv2"]
 [ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_ng1l3"]
@@ -10,6 +10,43 @@ size = Vector2(17.75, 15.75)
 [sub_resource type="CircleShape2D" id="CircleShape2D_idgao"]
 radius = 21.773
 
+[sub_resource type="Animation" id="Animation_ns4su"]
+resource_name = "mine_iron"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_oej0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l7dhu"]
+_data = {
+"RESET": SubResource("Animation_oej0i"),
+"mine_iron": SubResource("Animation_ns4su")
+}
+
 [node name="Ore_node" type="StaticBody2D"]
 scale = Vector2(2, 2)
 collision_layer = 2
@@ -20,8 +57,8 @@ drop = ExtResource("2_kgrfh")
 texture_filter = 1
 texture = ExtResource("1_1nmv2")
 hframes = 4
-vframes = 5
-frame = 8
+vframes = 4
+frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7.25, 2.25)
@@ -37,6 +74,9 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_idgao")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l7dhu")
+}
 
 [connection signal="body_entered" from="Proximity" to="." method="_on_proximity_body_entered"]
 [connection signal="body_exited" from="Proximity" to="." method="_on_proximity_body_exited"]
