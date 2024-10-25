@@ -16,7 +16,8 @@ var target_zoom = 1.0
 func _ready() -> void:
 	# Setting a node as top-level makes it move independentlly of its parent
 	set_as_top_level(true)
-
+	
+	position = owner.position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

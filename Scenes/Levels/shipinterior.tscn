@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=26 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
@@ -308,6 +308,8 @@ _data = {
 "fade_out": SubResource("Animation_342be")
 }
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vfjot"]
+
 [node name="Shipinterior" type="Node2D"]
 script = ExtResource("1_ewpm4")
 
@@ -474,3 +476,9 @@ visible = false
 
 [node name="ShipUpgrades" parent="CanvasLayer" instance=ExtResource("16_dfmsb")]
 visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(218, 38)
+shape = SubResource("SegmentShape2D_vfjot")
