@@ -15,3 +15,5 @@ var upgrades_purchased = {
 
 # Global credits variable to persist across levels
 var credits: int = 100
+
+var inventory : Inventory = Inventory.new()

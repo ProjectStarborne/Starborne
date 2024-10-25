@@ -67,7 +67,7 @@ var is_dead = false  # Boolean to track if the player is dead (starts alive)
 signal picked_up_item(item : Item, fail : bool)
 
 # Inventory
-var inventory : Inventory = Inventory.new()
+var inventory : Inventory
 # Hotbar
 @onready var hotbar = %HotBar
 # Inventory UI
@@ -85,6 +85,9 @@ var target_rock = null
 func _ready() -> void: 
 	in_level = get_tree().current_scene.name == "Environment"
 	in_ship = get_tree().current_scene.name == "ShipInterior"  # Add condition for ShipInterior scene
+	
+	inventory = Globals.inventory
+	hotbar.update_hotbar_ui(inventory)
 	
 	# Set the health bar's maximum and current values to reflect the player's health
 	health_bar.max_value = max_health
