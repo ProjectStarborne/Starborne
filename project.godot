@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Starborne"
-run/main_scene="res://Scenes/Levels/asteroid_two.tscn"
+run/main_scene="res://Scenes/Levels/shipinterior.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Assets/images/icon.svg"
 
@@ -120,8 +120,3 @@ ship_upgrades={
 2d_physics/layer_1="actors"
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="anchors"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

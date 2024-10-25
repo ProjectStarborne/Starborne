@@ -35,12 +35,12 @@ func _ready():
 		player_inventory = player.inventory
 
 	# Initialize player with some test inventory items for the shop trade
-	var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
-	var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
-	var iron_item_2 = iron_item_1.duplicate()  # Create a duplicate of the first iron item
-	player.inventory.add_item(iron_item_1)
-	player.inventory.add_item(iron_item_2)
-	player.inventory.add_item(nickel_item)
+	#var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
+	#var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
+	#var iron_item_2 = iron_item_1.duplicate()  # Create a duplicate of the first iron item
+	#player.inventory.add_item(iron_item_1)
+	#player.inventory.add_item(iron_item_2)
+	#player.inventory.add_item(nickel_item)
 
 	# Get the current level (we will need to adjust this to wherever we store the level info)
 	var current_level = player.get_level()  # Call get_level() in player.gd

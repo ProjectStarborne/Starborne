@@ -107,7 +107,8 @@ func _ready() -> void:
 		game_over_screen.connect("respawn_signal", Callable(self, "_on_respawn_signal"))
 	
 	if in_level:
-		inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
+		pass
+		#inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
 	else:
 		current_speed = SPEED / 4
 
