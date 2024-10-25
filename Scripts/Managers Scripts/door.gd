@@ -7,7 +7,10 @@ class_name Door
 
 @onready var spawn = $Spawn
 
+@onready var player = %Player
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): # TODO: or Player
 		body.velocity = lerp(body.velocity, Vector2.ZERO, 0.8)
 		NavigationManager.go_to_level(destination_level, destination_door)
+		Globals.inventory = player.inventory

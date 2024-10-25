@@ -250,7 +250,7 @@ animations = [{
 "speed": 25.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Persist", "Player"]]
 z_index = 1
 script = ExtResource("1_ybtu2")
 
