@@ -62,13 +62,12 @@ func get_hotbar_items() -> Array[Item]:
 	
 
 
-func add_to_hotbar(slot_index: int) -> bool:
+func add_to_hotbar(slot_index: int, hotbar_index : int) -> bool:
 	if _content.has(slot_index):
 		# Find the first available hotbar slot
-		for i in range(HOTBAR_SLOTS):
-			if _hotbar[i] == null or !_hotbar.has(i):
-				_hotbar[i] = _content[slot_index]
-				return true
+		if _hotbar[hotbar_index] == null or !_hotbar.has(hotbar_index):
+			_hotbar[hotbar_index] = _content[slot_index]
+			return true
 	return false
 	
 func remove_from_hotbar(hotbar_index: int):
@@ -91,13 +90,12 @@ func swap_items(slot_a : int, slot_b : int):
 	_content[slot_a] = item_b
 	_content[slot_b] = item_a
 
-func swap_hotbar_items(hotbar_index: int, inventory_index: int):
+func swap_hotbar_items(from_index: int, to_index: int):
 	# Perform the swap between hotbar and inventory
-	var hotbar_item = _hotbar.get(hotbar_index, null)
-	var inventory_item = _content.get(inventory_index, null)
+	var temp = _hotbar[from_index]
 	
-	_hotbar[hotbar_index] = inventory_item
-	_content[inventory_index] = hotbar_item
+	_hotbar[from_index] = _hotbar[to_index]
+	_hotbar[to_index] = temp
 
 
 func to_dict() -> Dictionary:

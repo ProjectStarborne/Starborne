@@ -54,6 +54,7 @@ texture = ExtResource("1_4t0vf")
 [node name="Slot" parent="TextureRect2" instance=ExtResource("2_jebjc")]
 z_index = -1
 layout_mode = 0
+slot_num = 1
 is_hotbar_slot = true
 
 [node name="TextureRect3" type="TextureRect" parent="." groups=["hb_slots"]]
@@ -75,6 +76,7 @@ texture = ExtResource("1_4t0vf")
 [node name="Slot" parent="TextureRect3" instance=ExtResource("2_jebjc")]
 z_index = -1
 layout_mode = 0
+slot_num = 2
 is_hotbar_slot = true
 
 [connection signal="item_swap" from="TextureRect/Slot" to="." method="_on_slot_item_swap"]
