@@ -154,66 +154,66 @@ theme_override_constants/h_separation = 14
 theme_override_constants/v_separation = 14
 columns = 4
 
-[node name="Slot" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 
-[node name="Slot2" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot2" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 1
 
-[node name="Slot3" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot3" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 2
 
-[node name="Slot4" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot4" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 3
 
-[node name="Slot5" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot5" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 4
 
-[node name="Slot6" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot6" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 5
 
-[node name="Slot7" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot7" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 6
 
-[node name="Slot8" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot8" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 7
 
-[node name="Slot9" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot9" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 8
 
-[node name="Slot10" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot10" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 9
 
-[node name="Slot11" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot11" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 10
 
-[node name="Slot12" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot12" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 11
 
-[node name="Slot13" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot13" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 12
 
-[node name="Slot14" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot14" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 13
 
-[node name="Slot15" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot15" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 14
 
-[node name="Slot16" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Inventory Slot"] instance=ExtResource("3_2j4p3")]
+[node name="Slot16" parent="ShipStorage/VBoxContainer/ShipGridContainer" groups=["Storage Slot"] instance=ExtResource("3_2j4p3")]
 layout_mode = 2
 slot_num = 15
 
@@ -229,3 +229,5 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(0.999688, 0.0434917, 0.0240812, 1)
 theme_override_fonts/font = ExtResource("2_v04dh")
 text = "X"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
