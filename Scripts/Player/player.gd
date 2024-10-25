@@ -87,10 +87,14 @@ var target_rock = null
 # Called when the node is added to the scene
 func _ready() -> void: 
 	in_level = get_tree().current_scene.name == "Environment"
-	in_ship = get_tree().current_scene.name == "ShipInterior"  # Add condition for ShipInterior scene
+	in_ship = get_tree().current_scene.name == "Shipinterior"  # Add condition for ShipInterior scene
 	
 	inventory = Globals.inventory
 	hotbar.update_hotbar_ui(inventory)
+	
+	# Load the player's health and oxygen from the global variables
+	current_health = Globals.current_health
+	current_oxygen = Globals.current_oxygen
 	
 	# Set the health bar's maximum and current values to reflect the player's health
 	health_bar.max_value = max_health
@@ -104,6 +108,12 @@ func _ready() -> void:
 	update_health_color()
 	update_oxygen_color()
 	
+	# Check if the oxygen is leaking when entering the world scene
+	if Globals.oxygen_leaking:
+		start_oxygen_leak()
+	else:
+		fix_oxygen_leak()
+		
 	# Only connect to the game over screen if not in the ShipInterior scene
 	if in_level and game_over_screen != null:
 		# Connect the respawn signal from the GameOver screen to the player
@@ -115,7 +125,9 @@ func _ready() -> void:
 	else:
 		current_speed = SPEED / 4
 
+
 func _physics_process(delta: float) -> void:
+	
 	# Initialize a direction vector to store player input
 	var direction = Vector2.ZERO
 	# Should only work in Environment root node
@@ -133,22 +145,28 @@ func _physics_process(delta: float) -> void:
 		if oxygen_leaking:
 			handle_warning(delta)
 			
-		# Deplete oxygen over time
+	# Check if inside the ship to refill oxygen or deplete outside
+	var is_in_ship = get_tree().current_scene.name == "Shipinterior"
+	if is_in_ship and current_oxygen < max_oxygen:
+		# Refill oxygen while in the ship
+		refill_oxygen(delta)
+	else:
+		# Deplete oxygen over time when not in the ship
 		deplete_oxygen(delta)
 		
-		# Check if the player is dead, and prevent movement if so
-		if is_dead:
-			return  # Early exit to stop further processing
+	# Check if the player is dead, and prevent movement if so
+	if is_dead:
+		return  # Early exit to stop further processing
 
-		# Check if the player is currently in the knockback state
-		if knockback_timer > 0:
-			# Apply the knockback force by setting the player's velocity to knockback_velocity
-			velocity = knockback_velocity
-			# Reduce the knockback timer as time progresses
-			knockback_timer -= delta
-		else:
-			# Reset knockback velocity when knockback is finished
-			knockback_velocity = Vector2.ZERO
+	# Check if the player is currently in the knockback state
+	if knockback_timer > 0:
+		# Apply the knockback force by setting the player's velocity to knockback_velocity
+		velocity = knockback_velocity
+		# Reduce the knockback timer as time progresses
+		knockback_timer -= delta
+	else:
+		# Reset knockback velocity when knockback is finished
+		knockback_velocity = Vector2.ZERO
 		
 	# Get the player input for movement
 	if Input.is_action_pressed("up"):
@@ -166,7 +184,7 @@ func _physics_process(delta: float) -> void:
 		if direction.y == 0:
 			$Sprite2D/AnimationPlayer.play("walk_right")
 				
-			# Handle input for using items
+	# Handle input for using items
 	if Input.is_action_just_pressed("action") and not inventory_ui.visible and not shop_ui.visible and not navigation.visible and not ship_upgrades.visible:
 		var item_index = hotbar.get_selected_slot()
 		var hotbar_list = inventory.get_hotbar_items()
@@ -192,6 +210,7 @@ func _physics_process(delta: float) -> void:
 
 	# Move the player based on the current velocity
 	move_and_slide()
+
 
 
 ####### KNOCKBACK #######
@@ -275,42 +294,13 @@ func lava_check():
 		fire_light.visible = false  # Disable the light
 		fire_light.energy = 0.0  # Reset energy when not on lava
 
-####### OXYGEN LEAK SYSTEM ######
-
-# Start oxygen leak
-func start_oxygen_leak() -> void:
-	oxygen_leaking = true
-	# Center the warning label on the screen
-	#center_warning_label()
-	# Display and start flickering the warning label
-	warning_label.text = "WARNING! Oxygen leak detected!"
-	warning_visible = true
-	warning_label.visible = true
-	warning_audio.stream.loop = true
-	warning_audio.play()  # Play the warning sounds
-
-
-# Handle flickering of warning text
-func handle_warning(delta: float) -> void:
-	warning_timer += delta
-	if warning_timer >= 0.5:  # Flicker every 0.5 seconds
-		warning_visible = not warning_visible  # Toggle visibility
-		warning_label.visible = warning_visible
-		warning_timer = 0.0
-
-
-# function to fix the oxygen leak (using duct tape or if you die and respawn)
-func fix_oxygen_leak() -> void:
-	oxygen_leaking = false
-	warning_label.visible = false  # Hide the warning text
-
-	# Stop the warning sound and disable looping
-	warning_audio.stop()
-	warning_audio.stream.loop = false
-
 
 
 ####### HEALTH SYSTEM #######
+
+func save_player_stats() -> void:
+	Globals.current_health = current_health
+	Globals.current_oxygen = current_oxygen
 
 # Function to handle when the player takes damage
 func take_damage(damage: int) -> void:
@@ -416,7 +406,6 @@ func _on_respawn_signal() -> void:
 	
 
 
-
 ####### OXYGEN SYSTEM #######
 
 # Function to update the oxygen bar UI when the oxygen level changes
@@ -426,10 +415,12 @@ func update_oxygen_bar() -> void:
 
 # Function to deplete oxygen over time (called every frame)
 func deplete_oxygen(delta: float) -> void:
+	var is_in_ship = get_tree().current_scene.name == "Shipinterior"
 	var oxygenDrainRate = 2 * delta  # Controls how quickly oxygen drains over time (adjustable)
 	var healthDrainRate = 15  # Amount of health to reduce per "tick" when oxygen is depleted
 	
-	if oxygen_leaking:
+	# Only deplete oxygen if leaking and not inside the ship
+	if Globals.oxygen_leaking and not is_in_ship:
 		oxygenDrainRate *= oxygen_leak_rate_multiplier  # Increase drain rate if leaking
 	
 	# If the player still has oxygen, continue to deplete it
@@ -450,6 +441,14 @@ func deplete_oxygen(delta: float) -> void:
 				time_since_last_health_chip = 0.0  # Reset the timer after each health reduction
 	
 	# Update the oxygen bar and its color to reflect the current oxygen level
+	update_oxygen_bar()
+	update_oxygen_color()
+
+
+func refill_oxygen(delta: float) -> void:
+	var refill_rate = 10 * delta  # Adjust this rate to control how quickly oxygen refills
+	current_oxygen = min(current_oxygen + refill_rate, max_oxygen)  # Refill oxygen but do not exceed max
+	# Update the oxygen bar and its color
 	update_oxygen_bar()
 	update_oxygen_color()
 
@@ -476,6 +475,49 @@ func update_oxygen_color() -> void:
 	else:
 		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for oxygen below 25% 
 		
+
+####### OXYGEN LEAK SYSTEM ######
+
+# Start oxygen leak
+func start_oxygen_leak() -> void:
+	Globals.oxygen_leaking = true
+	# Display and start flickering the warning label
+	warning_label.text = "WARNING! Oxygen leak detected!"
+	warning_visible = true
+	warning_label.visible = true
+	
+	# Check if the player is inside the ship
+	var is_in_ship = get_tree().current_scene.name == "Shipinterior"
+	
+	if not is_in_ship:
+		# Play the warning sound only if not inside the ship
+		warning_audio.stream.loop = true
+		warning_audio.play()
+	else:
+		# Stop the audio inside the ship
+		warning_audio.stop()
+		warning_audio.stream.loop = false
+
+
+
+# Handle flickering of warning text
+func handle_warning(delta: float) -> void:
+	warning_timer += delta
+	if warning_timer >= 0.5:  # Flicker every 0.5 seconds
+		warning_visible = not warning_visible  # Toggle visibility
+		warning_label.visible = warning_visible
+		warning_timer = 0.0
+
+
+# function to fix the oxygen leak (using duct tape or if you die and respawn)
+func fix_oxygen_leak() -> void:
+	Globals.oxygen_leaking = false
+	warning_label.visible = false  # Hide the warning text
+
+	# Stop the warning sound and disable looping
+	warning_audio.stop()
+	warning_audio.stream.loop = false
+
 
 
 ####### Resource Management System #######

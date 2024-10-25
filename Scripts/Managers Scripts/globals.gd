@@ -17,3 +17,7 @@ var upgrades_purchased = {
 var credits: int = 100
 
 var inventory : Inventory = Inventory.new()
+
+var oxygen_leaking = false
+var current_health = 100
+var current_oxygen = 100

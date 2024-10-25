@@ -100,7 +100,8 @@ func populate_shop(items: Array[Item]):
 		if item.icon == null:
 			print("Warning: Item '" + item.name + "' has a null icon.")
 		else:
-			print("Item '" + item.name + "' has a valid icon: ", item.icon)
+			#print("Item '" + item.name + "' has a valid icon: ", item.icon)
+			pass
 			
 		if slot_num < grid_container.get_child_count():
 			var item_box = grid_container.get_child(slot_num) as HBoxContainer
