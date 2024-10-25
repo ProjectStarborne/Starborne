@@ -1,6 +1,10 @@
 extends Control
 @onready var hotbar_slots : Array = get_tree().get_nodes_in_group("hb_slots")
 @onready var inventory_ui: Control = $"../InventoryUI"
+@onready var shop_ui: Control = $"../ShopUI"
+@onready var navigation: Control = $"../Navigation"
+@onready var ship_upgrades: Control = $"../ShipUpgrades"
+
 
 
 # Images for hotbar is loaded here
@@ -13,28 +17,29 @@ var selected_slot_index = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# Handle mouse scroll input
-	if Input.is_action_just_released("scroll up"):
-		selected_slot_index += 1
-		if selected_slot_index > hotbar_slots.size() - 1:
+	if !shop_ui.visible and !navigation.visible and !ship_upgrades.visible:
+		# Handle mouse scroll input
+		if Input.is_action_just_released("scroll up"):
+			selected_slot_index += 1
+			if selected_slot_index > hotbar_slots.size() - 1:
+				selected_slot_index = 0
+			change_selected_slot_texture()
+		if Input.is_action_just_released("scroll down"):
+			selected_slot_index -= 1
+			if selected_slot_index < 0:
+				selected_slot_index = hotbar_slots.size() - 1
+			change_selected_slot_texture()
+			
+		# Handle number (1-3) presets
+		if Input.is_action_just_pressed("hotbar_1"):
 			selected_slot_index = 0
-		change_selected_slot_texture()
-	if Input.is_action_just_released("scroll down"):
-		selected_slot_index -= 1
-		if selected_slot_index < 0:
-			selected_slot_index = hotbar_slots.size() - 1
-		change_selected_slot_texture()
-		
-	# Handle number (1-3) presets
-	if Input.is_action_just_pressed("hotbar_1"):
-		selected_slot_index = 0
-		change_selected_slot_texture()
-	if Input.is_action_just_pressed("hotbar_2"):
-		selected_slot_index = 1
-		change_selected_slot_texture()
-	if Input.is_action_just_pressed("hotbar_3"):
-		selected_slot_index = 2
-		change_selected_slot_texture()
+			change_selected_slot_texture()
+		if Input.is_action_just_pressed("hotbar_2"):
+			selected_slot_index = 1
+			change_selected_slot_texture()
+		if Input.is_action_just_pressed("hotbar_3"):
+			selected_slot_index = 2
+			change_selected_slot_texture()
 		
 	#print("HotBar Slot: ", selected_slot_index)
 

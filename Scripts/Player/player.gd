@@ -72,6 +72,9 @@ var inventory : Inventory
 @onready var hotbar = %HotBar
 # Inventory UI
 @onready var inventory_ui: Control = $"../CanvasLayer/InventoryUI"
+@onready var shop_ui: Control = $"../CanvasLayer/ShopUI"
+@onready var ship_upgrades: Control = $"../CanvasLayer/ShipUpgrades"
+@onready var navigation: Control = $"../CanvasLayer/Navigation"
 
 var drilling = false
 var target_rock = null
@@ -164,7 +167,7 @@ func _physics_process(delta: float) -> void:
 			$Sprite2D/AnimationPlayer.play("walk_right")
 				
 			# Handle input for using items
-	if Input.is_action_just_pressed("action") and not inventory_ui.visible:
+	if Input.is_action_just_pressed("action") and not inventory_ui.visible and not shop_ui.visible and not navigation.visible and not ship_upgrades.visible:
 		var item_index = hotbar.get_selected_slot()
 		var hotbar_list = inventory.get_hotbar_items()
 		
