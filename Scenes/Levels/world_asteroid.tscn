@@ -523,7 +523,7 @@ texture = ExtResource("12_mle3n")
 11:17/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_1gcu8"]
-occlusion_layer_0/light_mask = 1
+occlusion_layer_0/light_mask = 0
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "TerrainID"
 custom_data_layer_0/type = 2
@@ -660,6 +660,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" parent="." instance=ExtResource("3_lct7p")]
 unique_name_in_owner = true
 process_mode = 1
+position = Vector2(-1059, 0)
 scale = Vector2(0.84, 0.84)
 
 [node name="TileMap" type="TileMap" parent="."]

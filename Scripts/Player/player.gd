@@ -534,11 +534,13 @@ func footstep_handler() -> void:
 	var footstep_player : AudioStreamPlayer2D = $Footsteps
 	var audio_timer : Timer = $Footsteps/Timer
 	
+	var play = false
+	
 	match tile_id:
 		TileDetector.TerrainType.ROCK:
-			pass # set different audio here
+			play = true
 			
-	if audio_timer.time_left <= 0:
+	if play and audio_timer.time_left <= 0:
 		footstep_player.pitch_scale = randf_range(0.8, 1.0)
 		footstep_player.play()
 		audio_timer.start(0.3)
