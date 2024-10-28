@@ -36,6 +36,9 @@ project/assembly_name="Starborne"
 Player=""
 "Resource Spawn Marker"=""
 Persist=""
+"Storage Inventory Slot"=""
+"Storage Slot"=""
+"Inventory Slot"=""
 
 [input]
 

@@ -20,7 +20,7 @@ func _on_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if player_nearby and Input.is_action_just_pressed(interact_key):
 		if ship_storage_ui.visible:
-			ship_storage_ui.hide()
+			ship_storage_ui.close()
 		else:
-			ship_storage_ui.show()
+			ship_storage_ui.open(Globals.inventory, Globals.ship_inventory)
 		print("Storage menu toggled.")

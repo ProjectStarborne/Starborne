@@ -4,6 +4,7 @@ extends Control
 @onready var shop_ui: Control = $"../ShopUI"
 @onready var navigation: Control = $"../Navigation"
 @onready var ship_upgrades: Control = $"../ShipUpgrades"
+@onready var ship_storage_ui: Control = $"../ShipStorageUI"
 
 
 
@@ -17,7 +18,8 @@ var selected_slot_index = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !shop_ui.visible and !navigation.visible and !ship_upgrades.visible:
+	var is_in_menu = !shop_ui.visible and !navigation.visible and !ship_upgrades.visible and !ship_storage_ui.visible
+	if is_in_menu:
 		# Handle mouse scroll input
 		if Input.is_action_just_released("scroll up"):
 			selected_slot_index += 1

@@ -20,7 +20,7 @@ func _init():
 			
 
 func add_item(item:Item) -> bool:
-	if size == MAX_SLOTS:
+	if size == MAX_SLOTS or !item:
 			return false
 	
 	for i in range(MAX_SLOTS):

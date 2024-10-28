@@ -1,12 +1,13 @@
 extends PanelContainer
 
 @onready var texture_rect = $TextureRect
-@onready var label = $Label
 
 @export var slot_num : int
 @export var is_hotbar_slot : bool
 
 signal item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar : bool)
+signal storage_item_swap(from_slot : int, to_slot : int)
+signal storage_swap(from_slot : int, to_slot : int, to_storage)
 
 # Returns texture for dragging
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -31,15 +32,21 @@ func _drop_data(_pos: Vector2, data: Variant):
 	texture_rect.texture = data.texture
 	data.texture = temp
 	
-	
-	
-	# Emit signal to update inventory or hotbar
 	var parent = data.get_parent()
 	var to_slot = slot_num
 	var from_slot = parent.slot_num
-	var is_from_hotbar = parent.is_hotbar_slot
-	emit_signal("item_swap", from_slot, to_slot, is_hotbar_slot, is_from_hotbar)
-
+	if is_in_group("Storage Slot") and parent.is_in_group("Storage Inventory Slot"):
+		# Emit signal to transfer item from inventory to storage
+		emit_signal("storage_swap", from_slot, to_slot, true)
+	elif is_in_group("Storage Inventory Slot") and parent.is_in_group("Storage Slot"):
+		# Emit signal to transfer item from storage to inventory
+		emit_signal("storage_swap", from_slot, to_slot, false)
+	elif is_in_group("Storage Slot") and parent.is_in_group("Storage Slot"):
+		emit_signal("storage_item_swap", from_slot, to_slot)
+	else:
+		# Emit signal to update inventory or hotbar
+		var is_from_hotbar = parent.is_hotbar_slot
+		emit_signal("item_swap", from_slot, to_slot, is_hotbar_slot, is_from_hotbar)
 # Create drag and drop preview
 # Gives indication that the item in the slot has been clicked
 func get_preview():
