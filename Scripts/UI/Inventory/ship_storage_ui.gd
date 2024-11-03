@@ -22,7 +22,8 @@ func open(inventory : Inventory, storage : Inventory):
 func populate(group : String, inventory : Inventory):
 	var slots = get_tree().get_nodes_in_group(group)
 	#debug_inventory(inventory.get_items(), slots)
-	var slot_num = 0
+	var keys = inventory._content.keys()
+	var slot_num = keys[0]
 	# This is where the inventory will be populated with item icons
 	for item in inventory.get_items():
 		var children = slots[slot_num].get_children()
@@ -41,6 +42,11 @@ func close():
 # Close the UI
 func _on_close_button_pressed() -> void:
 	close()
+
+func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar : bool):
+	inv.swap_items(from_slot, to_slot)
+	save()
+	open(inv, ship_inv)
 
 # Transfer items to storage
 func _on_transfer_to_storage_pressed() -> void:
@@ -62,7 +68,7 @@ func _on_transfer_to_inventory_pressed() -> void:
 	save()
 	open(inv, ship_inv)
 
-
+# Swap between inventories
 func _on_storage_swap(from_slot: int, to_slot: int, to_storage : bool) -> void:
 	print("Item swapping...from storage? ", to_storage)
 	
@@ -78,11 +84,13 @@ func _on_storage_swap(from_slot: int, to_slot: int, to_storage : bool) -> void:
 	save()
 	open(inv, ship_inv)
 
+# Swap between ship storage slots
+func _on_storage_item_swap(from_slot: int, to_slot: int, inventory : Inventory) -> void:
+	ship_inv.swap_items(from_slot, to_slot)
+	save()
+	open(inv, ship_inv)
+
+# Save data into Singleton
 func save():
 	Globals.inventory = inv
 	Globals.ship_inventory = ship_inv
-	
-
-
-func _on_storage_item_swap(from_slot: int, to_slot: int) -> void:
-	ship_inv.swap_items(from_slot, to_slot)

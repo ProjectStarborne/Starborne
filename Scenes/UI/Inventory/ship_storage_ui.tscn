@@ -12,7 +12,9 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_egb8s")
+metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -21,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.121569, 0.121569, 0.121569, 1)
 
 [node name="Inventory" type="Control" parent="."]
@@ -30,6 +33,7 @@ anchor_right = 0.45
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Inventory"]
 layout_mode = 1
@@ -119,11 +123,12 @@ slot_num = 15
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.422
+anchor_right = 0.575
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
 layout_mode = 1
@@ -160,6 +165,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ShipStorage"]
 layout_mode = 1
@@ -260,21 +266,37 @@ theme_override_colors/font_color = Color(0.999688, 0.0434917, 0.0240812, 1)
 theme_override_fonts/font = ExtResource("2_v04dh")
 text = "X"
 
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot2" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot2" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot3" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot3" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot4" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot4" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot5" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot5" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot6" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot6" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot7" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot7" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot8" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot8" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot9" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot9" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot10" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot10" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot11" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot11" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot12" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot12" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot13" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot13" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot14" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot14" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot15" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot15" to="." method="_on_storage_swap"]
+[connection signal="item_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot16" to="." method="_on_item_swap"]
 [connection signal="storage_swap" from="Inventory/VBoxContainer/InventoryGridContainer/Slot16" to="." method="_on_storage_swap"]
 [connection signal="pressed" from="Buttons/VBoxContainer/GridContainer/TransferToStorage" to="." method="_on_transfer_to_storage_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/GridContainer/TransferToInventory" to="." method="_on_transfer_to_inventory_pressed"]

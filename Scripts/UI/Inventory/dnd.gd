@@ -11,6 +11,8 @@ signal storage_swap(from_slot : int, to_slot : int, to_storage)
 
 # Returns texture for dragging
 func _get_drag_data(at_position: Vector2) -> Variant:
+	print("Getting drop data")
+	
 	set_drag_preview(get_preview())
 	
 	#var drag_data = {
@@ -22,6 +24,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	
 # Check if the item is droppable or not
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	print("Checking drop data")
 	return data is TextureRect
 	
 # Swap the texture data
