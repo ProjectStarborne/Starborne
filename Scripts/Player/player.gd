@@ -635,8 +635,8 @@ func get_level() -> int:
 # Function used in file_manager.gd
 func save() -> Dictionary:
 	var save_dict = {
+		"name" : "Player",
 		"filename" : get_scene_file_path(),
-		"parent" : get_parent().get_path(),
 		"pos_x" : position.x,
 		"pos_y" : position.y,
 		"current_health" : current_health,
@@ -645,7 +645,7 @@ func save() -> Dictionary:
 		"max_oxygen": max_oxygen,
 		"is_dead" : is_dead,
 		"inventory" : inventory.to_dict(),
-		"level" : current_level
+		"current_level" : current_level
 	}
 	
 	return save_dict

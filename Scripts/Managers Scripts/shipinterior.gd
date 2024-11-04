@@ -10,9 +10,12 @@ var paused : bool = false
 # Ship Upgrades UI variable
 @onready var ship_upgrades_ui = $CanvasLayer/ShipUpgrades
 
+@onready var file_manager: FileManager = $FileManager
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	file_manager.load_game()	# Will return immediately if no save file is available
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
