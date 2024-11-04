@@ -1,9 +1,20 @@
 extends Node
-class_name FileManager
 
+##
+# FileManager Class
+# 
+# This class handles all saving and loading of game data to a save file.
+# Nodes need to be modified slightly to be included in the save file.
+# 
+# Requirements:
+# - A save() function in the root node's script that returns a dictionary of all the values needed 
+#	to be stored. See player.gd for reference.
+# - Be added to the global group "Persist"
+# - If saving a custom object, you must create your own functions, to_dict and from_dict, to create 
+#	dictionaries that can be appended to the main dictionary. See Inventory.gd for reference.
+#	
+class_name FileManager
 	
-# Note: This can be called from anywhere inside the tree. This function is
-# path independent.
 # Go through everything in the persist category and ask them to return a
 # dict of relevant variables.
 func save_game():
