@@ -92,6 +92,8 @@ func _ready() -> void:
 	in_ship = get_tree().current_scene.name == "Shipinterior"  # Add condition for ShipInterior scene
 	
 	inventory = Globals.inventory
+	# Wait for Hotbar to be ready before updating
+	await hotbar.ready
 	hotbar.update_hotbar_ui(inventory)
 	
 	# Load the player's health and oxygen from the global variables
