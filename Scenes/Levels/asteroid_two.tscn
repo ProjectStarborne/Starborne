@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=50 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://chdv7oq5t6ggr" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="26_2wbn7"]
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="27_mojhb"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="29_scf7e"]
+[ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="35_jqmhs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i441f"]
 shader = ExtResource("1_43alx")
@@ -1067,3 +1068,9 @@ position = Vector2(-1399, -185)
 
 [node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-211, -767)
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="Door_S" parent="Doors" instance=ExtResource("35_jqmhs")]
+position = Vector2(-1694, 219)
+destination_level = "shipinterior"
