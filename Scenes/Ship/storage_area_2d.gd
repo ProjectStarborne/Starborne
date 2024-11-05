@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		if ship_storage_ui.visible:
 			ship_storage_ui.close()
 		else:
-			ship_storage_ui.open(Globals.inventory, Globals.ship_inventory)
+			ship_storage_ui.open(player.inventory, Globals.ship_inventory)
 		print("Storage menu toggled.")
 
 # Show the interaction message over the player's head
