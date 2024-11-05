@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=55 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -33,7 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="25_cae0v"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="27_f57vm"]
 [ext_resource type="PackedScene" uid="uid://ct6vn0rfh3xr1" path="res://Scenes/Items/Minerals/iron_node.tscn" id="30_jwh3y"]
-[ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="34_gbrhf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x8q4"]
 shader = ExtResource("1_um8kb")
@@ -902,6 +901,3 @@ destination_level = "shipinterior"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-1040, -180)
-
-[node name="FileManager" type="Node" parent="."]
-script = ExtResource("34_gbrhf")

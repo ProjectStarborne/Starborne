@@ -2,10 +2,104 @@
 
 [ext_resource type="PackedScene" uid="uid://0uawvwmknsjj" path="res://Scenes/UI/Inventory/Slot.tscn" id="1_gpvdu"]
 
-[node name="Test" type="Node2D"]
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Slot" parent="." instance=ExtResource("1_gpvdu")]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.176419, 0.176419, 0.176419, 1)
 
-[node name="Slot2" parent="." instance=ExtResource("1_gpvdu")]
-offset_left = 99.0
-offset_right = 139.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.112
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Test
+"
+
+[node name="GridContainer" type="GridContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Slot" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot2" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot3" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot4" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot5" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot6" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot7" parent="Control/VBoxContainer/GridContainer" groups=["Storage Inventory Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.118
+anchor_right = 0.245
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control2/VBoxContainer"]
+layout_mode = 2
+text = "Test
+"
+
+[node name="GridContainer" type="GridContainer" parent="Control2/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Slot2" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot3" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot4" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot5" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot6" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot7" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2
+
+[node name="Slot8" parent="Control2/VBoxContainer/GridContainer" groups=["Storage Slot"] instance=ExtResource("1_gpvdu")]
+layout_mode = 2

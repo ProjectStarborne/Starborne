@@ -20,7 +20,7 @@ func _init():
 			
 
 func add_item(item:Item) -> bool:
-	if size == MAX_SLOTS:
+	if size == MAX_SLOTS or !item:
 			return false
 	
 	for i in range(MAX_SLOTS):
@@ -101,17 +101,19 @@ func swap_hotbar_items(from_index: int, to_index: int):
 func to_dict() -> Dictionary:
 	var content_dict = {}
 	for key in _content.keys():
-		if _content[key] != null:
-			content_dict[key] = _content[key].to_dict()
+		var int_key = int(key)
+		if _content[int_key] != null:
+			content_dict[int_key] = _content[int_key].to_dict()
 		else:
-			content_dict[key] = null
+			content_dict[int_key] = null
 
 	var hotbar_dict = {}
 	for key in _hotbar.keys():
-		if _hotbar[key] != null:
-			hotbar_dict[key] = _hotbar[key].to_dict()
+		var int_key = int(key)
+		if _hotbar[int_key] != null:
+			hotbar_dict[int_key] = _hotbar[int_key].to_dict()
 		else:
-			hotbar_dict[key] = null
+			hotbar_dict[int_key] = null
 
 	return {
 		"content": content_dict,
@@ -122,16 +124,18 @@ func to_dict() -> Dictionary:
 static func from_dict(data: Dictionary) -> Inventory:
 	var inventory = Inventory.new()
 	for key in data["content"].keys():
+		var int_key = int(key)
 		if data["content"][key] != null:
-			inventory._content[key] = Item.from_dict(data["content"][key])
+			inventory._content[int_key] = Item.from_dict(data["content"][key])
 		else:
-			inventory._content[key] = null
+			inventory._content[int_key] = null
 	
 	for key in data["hotbar"].keys():
+		var int_key = int(key)
 		if data["hotbar"][key] != null:
-			inventory._hotbar[key] = Item.from_dict(data["hotbar"][key])
+			inventory._hotbar[int_key] = Item.from_dict(data["hotbar"][key])
 		else:
-			inventory._hotbar[key] = null
+			inventory._hotbar[int_key] = null
 	
 	inventory.size = data["size"]
 	return inventory

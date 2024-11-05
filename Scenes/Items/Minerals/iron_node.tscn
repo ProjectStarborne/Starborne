@@ -26,7 +26,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ns4su"]
-resource_name = "mine_iron"
+resource_name = "mine"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,7 +44,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l7dhu"]
 _data = {
 "RESET": SubResource("Animation_oej0i"),
-"mine_iron": SubResource("Animation_ns4su")
+"mine": SubResource("Animation_ns4su")
 }
 
 [node name="Ore_node" type="StaticBody2D"]

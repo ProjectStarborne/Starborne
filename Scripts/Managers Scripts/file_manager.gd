@@ -1,9 +1,20 @@
 extends Node
 
-var save_nodes = get_tree().get_nodes_in_group("Persists") 
+##
+# FileManager Class
+# 
+# This class handles all saving and loading of game data to a save file.
+# Nodes need to be modified slightly to be included in the save file.
+# 
+# Requirements:
+# - A save() function in the root node's script that returns a dictionary of all the values needed 
+#	to be stored. See player.gd for reference.
+# - Be added to the global group "Persist"
+# - If saving a custom object, you must create your own functions, to_dict and from_dict, to create 
+#	dictionaries that can be appended to the main dictionary. See Inventory.gd for reference.
+#	
+class_name FileManager
 	
-# Note: This can be called from anywhere inside the tree. This function is
-# path independent.
 # Go through everything in the persist category and ask them to return a
 # dict of relevant variables.
 func save_game():
@@ -33,15 +44,16 @@ func save_game():
 # is path independent.
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
-		return # Error! We don't have a save to load.
+		print("No save file found.")
+		return # Exit. We don't have a save to load.
 
 	# We need to revert the game state so we're not cloning objects
 	# during loading. This will vary wildly depending on the needs of a
 	# project, so take care with this step.
 	# For our example, we will accomplish this by deleting saveable objects.
-	var save_nodes = get_tree().get_nodes_in_group("Persist")
-	for i in save_nodes:
-		i.queue_free()
+	#var save_nodes = get_tree().get_nodes_in_group("Persist")
+	#for i in save_nodes:
+		#i.queue_free()
 
 	# Load the file line by line and process that dictionary to restore
 	# the object it represents.
@@ -54,20 +66,34 @@ func load_game():
 
 		# Check if there is any error while parsing the JSON string, skip in case of failure.
 		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
+		if parse_result != OK:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
 			continue
-
+			
 		# Get the data from the JSON object.
 		var node_data = json.data
-
-		# Firstly, we need to create the object and add it to the tree and set its position.
-		var new_object = load(node_data["filename"]).instantiate()
-		get_node(node_data["parent"]).add_child(new_object)
-		new_object.position = Vector2(node_data["pos_x"], node_data["pos_y"])
-
+		var node_name = node_data["name"]	# Get node name
+		
+		print("Current Scene: ", get_tree().current_scene)
+		
+		var node = null
+		for n in get_tree().get_nodes_in_group("Persist"):
+			if n.name == node_name:
+				node = n
+				break
+				
+		if node == null:
+			print("Node ", node_name, " not found in scene. Skipping update.")
+			continue
+			
+		#node.position = Vector2(node_data["pos_x"], node_data["pos_y"])
 		# Now we set the remaining variables.
 		for i in node_data.keys():
-			if i == "filename" or i == "parent" or i == "pos_x" or i == "pos_y":
+			if i == "filename" or i == "name" or i == "pos_x" or i == "pos_y":
 				continue
-			new_object.set(i, node_data[i])
+			if i in node:
+				if i == "inventory":
+					node.inventory = node.inventory.from_dict(node_data["inventory"])
+				node.set(i, node_data[i])
+			else:
+				print("Warning: Property ", i, " not found on ", node.name)

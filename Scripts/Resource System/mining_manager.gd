@@ -3,10 +3,13 @@ extends StaticBody2D
 ## The mineral pickup that is dropped 
 @export var drop : PackedScene
 @onready var player: Player = get_parent().get_node("Player")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 	
 func destroy():
+	animation_player.play("mine")
+	await animation_player.animation_finished
 	var instance = drop.instantiate()
 	spawn_item()
 	queue_free() # Remove node from scene

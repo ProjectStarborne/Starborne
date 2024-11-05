@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=29 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="14_amo1g"]
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="15_mwkym"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="16_dfmsb"]
+[ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="17_qq3mm"]
+[ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="19_abd2d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn26q"]
 texture = ExtResource("1_yce60")
@@ -331,7 +333,7 @@ layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-655361, 720896, 10, -720896, 786432, 10, -720895, 851968, 10, -589825, 720896, 11, -524289, 720896, 12, -655360, 786432, 11, -655359, 851968, 11, -589824, 786432, 12, -589823, 851968, 12, -393221, 720896, 10, -393220, 786432, 10, -393219, 851968, 10, -327685, 720896, 11, -327684, 786432, 11, -327683, 851968, 11, -262149, 720896, 12, -262148, 786432, 12, -262147, 851968, 12)
 layer_2/name = "Layer2"
 
-[node name="Player" parent="." instance=ExtResource("2_2fxea")]
+[node name="Player" parent="." groups=["Persist"] instance=ExtResource("2_2fxea")]
 unique_name_in_owner = true
 z_index = 1
 position = Vector2(154, 31)
@@ -488,8 +490,14 @@ visible = false
 [node name="ShipUpgrades" parent="CanvasLayer" instance=ExtResource("16_dfmsb")]
 visible = false
 
+[node name="ShipStorageUI" parent="CanvasLayer" instance=ExtResource("17_qq3mm")]
+visible = false
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(218, 38)
 shape = SubResource("SegmentShape2D_vfjot")
+
+[node name="FileManager" type="Node" parent="."]
+script = ExtResource("19_abd2d")
