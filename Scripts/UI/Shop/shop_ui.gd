@@ -8,7 +8,8 @@ var player
 # Shop inventory, this is separate from the player's inventory
 var shop_inventory: Inventory = Inventory.new()
 # Optionally, if you have a player's inventory for trading or purchasing
-var player_inventory: Inventory = Inventory.new()  # Player's inventory (to handle trading)
+#var player_inventory: Inventory = Inventory.new()  # Player's inventory (to handle trading)
+#var player_inventory  # Don't initialize with Inventory.new()
 # Add all mineral names to the array so we know when to disable the buy button 
 var mineral_names = ["Iron", "Iridium", "Platinum", "Nickel", "Hydrogen"] 
 
@@ -30,9 +31,6 @@ func _ready():
 	else:
 		print("Player found: ", player)
 
-	# Now assign the player's inventory to player_inventory
-	if player != null:
-		player_inventory = player.inventory
 
 	# Initialize player with some test inventory items for the shop trade
 	#var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
@@ -206,7 +204,7 @@ func _on_buy_button_pressed_with_item(item: Item) -> void:
 
 # Handle sell logic when the sell button is pressed
 func _on_sell_button_pressed_with_item(item: Item) -> void:
-	if player_inventory.has_item(item):
+	if player.inventory.has_item(item):
 		print("Sold ", item.name, " for ", item.price, " credits")
 		display_popup_message(item.name + " sold!")
 		execute_sale(item)
@@ -228,8 +226,8 @@ func execute_purchase(item: Item):
 	# Deduct the price from the player's credits
 	player.remove_credits(item.price)
 
-	# Add the item to the player's inventory
-	player_inventory.add_item(item)
+	# Add the item to the player's inventory directly
+	player.inventory.add_item(item)
 	print("Added ", item.name, " to player's inventory")
 
 	# Find the item's index in the shop inventory
@@ -262,7 +260,7 @@ func execute_sale(item: Item):
 	
 	if index != -1:
 		# Remove the item from the player's inventory by index
-		player_inventory.remove_item(index)
+		player.inventory.remove_item(index)
 		print("Removed ", item.name, " from player's inventory")
 	else:
 		print("Error: Item ", item.name, " not found in player's inventory")
@@ -277,8 +275,8 @@ func execute_sale(item: Item):
 	
 	# Debug print to show current inventory
 	print("Current Inventory:")
-	for i in range(player_inventory.get_items().size()):
-		var inv_item = player_inventory.get_items()[i]
+	for i in range(player.inventory.get_items().size()):
+		var inv_item = player.inventory.get_items()[i]
 		if inv_item != null:
 			print("Slot ", i, ": ", inv_item.name)
 		else:
@@ -290,12 +288,11 @@ func execute_sale(item: Item):
 
 # Helper function to find item index by name
 func find_item_index_in_inventory(item_name: String) -> int:
-	var items = player_inventory.get_items()
+	var items = player.inventory.get_items()
 	for i in items.size():
 		if items[i] != null and items[i].name == item_name:
 			return i
 	return -1
-
 
 
 
@@ -312,7 +309,7 @@ func update_inventory_ui():
 	if get_tree().current_scene.has_node("CanvasLayer/InventoryUI"):
 		var inventory_ui = get_tree().current_scene.get_node("CanvasLayer/InventoryUI") as Control
 		if inventory_ui and inventory_ui.visible:
-			inventory_ui.open(player_inventory)  # Only refresh if the inventory is already open
+			inventory_ui.open(player.inventory)  # Only refresh if the inventory is already open
 
 
 # Update the shop UI (use this after an item is traded)
