@@ -1,15 +1,20 @@
-[gd_scene load_steps=44 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=49 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
+[ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_fe5u2"]
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="1_yw0t2"]
+[ext_resource type="PackedScene" uid="uid://ct6vn0rfh3xr1" path="res://Scenes/Items/Minerals/iron_node.tscn" id="2_7dht7"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="2_63qiv"]
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="2_leiwq"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="2_qr6hg"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="3_3ffbt"]
+[ext_resource type="PackedScene" uid="uid://bdq80nl7vihf3" path="res://Scenes/Items/Minerals/nickel_node.tscn" id="3_itwfd"]
 [ext_resource type="Texture2D" uid="uid://bsf2lnu3ftgh2" path="res://Assets/images/Lava_Paths.png" id="3_vjbcf"]
+[ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="4_fiqp2"]
 [ext_resource type="PackedScene" uid="uid://cie5bf6jws1py" path="res://Scenes/UI/Inventory/inventory_ui.tscn" id="4_hecyw"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="4_pge1e"]
+[ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_ml5p0"]
 [ext_resource type="PackedScene" uid="uid://xvd4qmndtd1j" path="res://Scenes/UI/pause_menu.tscn" id="5_xua0y"]
 [ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="6_2omem"]
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="7_qusm8"]
@@ -762,6 +767,8 @@ _data = {
 }
 
 [node name="Environment" type="Node2D"]
+script = ExtResource("1_fe5u2")
+ore_nodes = Array[PackedScene]([ExtResource("2_7dht7"), ExtResource("3_itwfd"), ExtResource("4_fiqp2"), ExtResource("5_ml5p0")])
 
 [node name="Background" type="ColorRect" parent="."]
 visible = false
@@ -1051,3 +1058,12 @@ position = Vector2(-1382, 172)
 
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("29_scf7e")
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-694, -287)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-1399, -185)
+
+[node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-211, -767)

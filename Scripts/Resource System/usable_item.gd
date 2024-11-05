@@ -19,7 +19,7 @@ func to_dict() -> Dictionary:
 	}
 	return dict
 
-static func from_dict(data: Dictionary) -> Tool:
+static func from_dict(data: Dictionary) -> Usable:
 	var usable = Tool.new()
 	usable.name = data["name"]
 	

@@ -19,7 +19,7 @@ func to_dict() -> Dictionary:
 	}
 	return dict
 
-static func from_dict(data: Dictionary) -> Tool:
+static func from_dict(data: Dictionary) -> Mineral:
 	var mineral = Mineral.new()
 	mineral.name = data["name"]
 	
