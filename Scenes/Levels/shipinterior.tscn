@@ -490,7 +490,7 @@ visible = false
 [node name="ShipUpgrades" parent="CanvasLayer" instance=ExtResource("16_dfmsb")]
 visible = false
 
-[node name="ShipStorageUI" parent="CanvasLayer" instance=ExtResource("17_qq3mm")]
+[node name="ShipStorageUI" parent="CanvasLayer" groups=["Persist"] instance=ExtResource("17_qq3mm")]
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

@@ -130,12 +130,13 @@ static func from_dict(data: Dictionary) -> Inventory:
 		else:
 			inventory._content[int_key] = null
 	
-	for key in data["hotbar"].keys():
-		var int_key = int(key)
-		if data["hotbar"][key] != null:
-			inventory._hotbar[int_key] = Item.from_dict(data["hotbar"][key])
-		else:
-			inventory._hotbar[int_key] = null
+	if data.has("hotbar"):
+		for key in data["hotbar"].keys():
+			var int_key = int(key)
+			if data["hotbar"][key] != null:
+				inventory._hotbar[int_key] = Item.from_dict(data["hotbar"][key])
+			else:
+				inventory._hotbar[int_key] = null
 	
 	inventory.size = data["size"]
 	return inventory

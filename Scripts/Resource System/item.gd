@@ -14,7 +14,7 @@ class_name Item extends Resource
 func to_dict() -> Dictionary:
 	return {
 		"name" : name,
-		"scene" : scene.resource_path,
+		"scene_path" : scene.resource_path,
 		"icon" : icon.resource_path,
 		"price" : price,
 		"weight" : weight,
