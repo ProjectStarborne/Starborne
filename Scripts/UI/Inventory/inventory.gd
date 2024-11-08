@@ -1,3 +1,5 @@
+## @Author: Brandon Grunes
+
 class_name Inventory
 
 const MAX_SLOTS = 16
@@ -19,10 +21,12 @@ func _init():
 			_hotbar[i] = null
 			
 
+# Add an item into _content
 func add_item(item:Item) -> bool:
 	if size == MAX_SLOTS or !item:
 			return false
 	
+	# Determine quantity of item if already exists
 	for i in range(MAX_SLOTS):
 		if _content[i] == null or !_content.has(i):
 			_content[i] = item
@@ -33,10 +37,12 @@ func add_item(item:Item) -> bool:
 	return false
 		
 
+# Add item to a specified index in _content
 func add_item_to_slot(item:Item, slot_index : int):
 	_content[slot_index] = item
 	size += 1
 
+# Remove item in _content by index
 func remove_item(index : int):
 	if _content[index] != null:
 		_content[index] = null
@@ -61,7 +67,7 @@ func get_hotbar_items() -> Array[Item]:
 	return hotbar_items
 	
 
-
+# Add item from _content to _hotbar by index. Used for when dragging and dropping items into slots
 func add_to_hotbar(slot_index: int, hotbar_index : int) -> bool:
 	if _content.has(slot_index):
 		# Find the first available hotbar slot
@@ -70,6 +76,8 @@ func add_to_hotbar(slot_index: int, hotbar_index : int) -> bool:
 			return true
 	return false
 	
+	
+# Remove item from _hotbar by index
 func remove_from_hotbar(hotbar_index: int):
 	if _hotbar[hotbar_index] != null:
 		_hotbar[hotbar_index] = null
@@ -83,6 +91,7 @@ func has_item(item: Item) -> bool:
 	return false
 	
 	
+# Swap items in specified slots
 func swap_items(slot_a : int, slot_b : int):
 	var item_a = _content.get(slot_a, null)
 	var item_b = _content.get(slot_b, null)
@@ -90,6 +99,7 @@ func swap_items(slot_a : int, slot_b : int):
 	_content[slot_a] = item_b
 	_content[slot_b] = item_a
 
+#
 func swap_hotbar_items(from_index: int, to_index: int):
 	# Perform the swap between hotbar and inventory
 	var temp = _hotbar[from_index]
