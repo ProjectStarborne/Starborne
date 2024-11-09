@@ -25,7 +25,9 @@ func _on_resume_button_pressed() -> void:
 
 # This will open up video and audio settings when applicable
 func _on_settings_button_pressed() -> void:
-	pass # Replace with function body.
+	var settings_scene = load("res://Scenes/UI/settings.tscn")
+	var instance = settings_scene.instantiate()
+	add_child(instance)
 
 # Quit the game entirely (Should take it to main menu when menu is made)
 func _on_quit_button_pressed() -> void:

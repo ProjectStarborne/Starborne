@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=62 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -12,8 +12,13 @@
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="Texture2D" uid="uid://c5shmns5p5mnb" path="res://Assets/images/Landing_Pad.png" id="4_wyxad"]
 [ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_agmak"]
+[ext_resource type="AudioStream" uid="uid://dr101d5tc3yqa" path="res://Assets/sounds/01-footstep.ogg" id="8_pncd0"]
+[ext_resource type="AudioStream" uid="uid://iiv1alnfnd4p" path="res://Assets/sounds/explosion_mine.wav" id="9_klghy"]
+[ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="10_xjyr3"]
+[ext_resource type="AudioStream" uid="uid://baalka180ivjc" path="res://Assets/sounds/meteor_impact.wav" id="11_4sph7"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="12_ierrj"]
 [ext_resource type="Texture2D" uid="uid://bsf2lnu3ftgh2" path="res://Assets/images/Lava_Paths.png" id="12_mle3n"]
+[ext_resource type="AudioStream" uid="uid://rwofhp4k32h7" path="res://Assets/sounds/gunshot.wav" id="13_tn0rf"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="15_aj44i"]
@@ -34,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="27_f57vm"]
 [ext_resource type="PackedScene" uid="uid://ct6vn0rfh3xr1" path="res://Scenes/Items/Minerals/iron_node.tscn" id="30_jwh3y"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="34_gbrhf"]
+[ext_resource type="PackedScene" uid="uid://cfj7e17wnr76r" path="res://Scenes/sound_manager.tscn" id="35_qo6u8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x8q4"]
 shader = ExtResource("1_um8kb")
@@ -634,6 +640,36 @@ offset_right = 7232.0
 offset_bottom = 3315.0
 color = Color(0.152941, 0.14902, 0.141176, 1)
 
+[node name="FileManager" type="Node" parent="."]
+script = ExtResource("34_gbrhf")
+
+[node name="SoundManager" parent="." instance=ExtResource("35_qo6u8")]
+
+[node name="Footstep2" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("8_pncd0")
+bus = &"SFX"
+
+[node name="ExplosionMine2" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("9_klghy")
+bus = &"SFX"
+
+[node name="Keyboard2" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("10_xjyr3")
+bus = &"UI"
+
+[node name="MeteorImpact2" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("11_4sph7")
+bus = &"SFX"
+
+[node name="OxygenWarning2" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("14_8fmbm")
+bus = &"UI"
+parameters/looping = true
+
+[node name="Gunshot2" type="AudioStreamPlayer2D" parent="SoundManager"]
+stream = ExtResource("13_tn0rf")
+bus = &"SFX"
+
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Darkener" type="CanvasModulate" parent="Lighting"]
@@ -899,6 +935,3 @@ destination_level = "shipinterior"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-1040, -180)
-
-[node name="FileManager" type="Node" parent="."]
-script = ExtResource("34_gbrhf")

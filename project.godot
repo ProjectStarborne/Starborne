@@ -20,6 +20,9 @@ config/icon="res://Assets/images/icon.svg"
 TransitionManager="*res://Scenes/Managers/transition_manager.tscn"
 NavigationManager="*res://Scripts/Managers Scripts/navigation_manager.gd"
 Globals="*res://Scripts/Managers Scripts/globals.gd"
+OptionsManager="*res://Scripts/Managers Scripts/options_manager.gd"
+SoundManager="*res://Scripts/Managers Scripts/sound_manager.gd"
+KeyManager="*res://Scripts/Managers Scripts/key_manager.gd"
 
 [display]
 
