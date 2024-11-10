@@ -117,7 +117,7 @@ func _ready() -> void:
 		start_oxygen_leak()
 	else:
 		fix_oxygen_leak()
-		
+	
 	# Only connect to the game over screen if not in the ShipInterior scene
 	if in_level and game_over_screen != null:
 		# Connect the respawn signal from the GameOver screen to the player
@@ -131,12 +131,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
 	# Initialize a direction vector to store player input
-	var direction = Vector2.ZERO
+	var direction = Input.get_vector("left", "right", "up", "down")
+	
 	# Should only work in Environment root node
 	if in_level:
-		# Check if the player is standing on lava, and slow player down and take damage if so
+		# Check if the player is standing on lava
 		lava_check()
 		
 		# Handle flashlight aiming at the mouse position
@@ -148,9 +148,11 @@ func _physics_process(delta: float) -> void:
 		# Flicker warning text if oxygen is leaking
 		if oxygen_leaking:
 			handle_warning(delta)
-			
+	
+	
 	# Check if inside the ship to refill oxygen or deplete outside
 	var is_in_ship = get_tree().current_scene.name == "Shipinterior"
+	
 	if is_in_ship and current_oxygen < max_oxygen:
 		# Refill oxygen while in the ship
 		refill_oxygen(delta)
@@ -171,33 +173,17 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Reset knockback velocity when knockback is finished
 		knockback_velocity = Vector2.ZERO
-		
-	# Get the player input for movement
+	
+	# Direction -> Animation
 	if Input.is_action_pressed("up"):
-		direction.y -= 1  # Move up
 		$Sprite2D/AnimationPlayer.play("walk_up")
-	if Input.is_action_pressed("down"):
-		direction.y += 1  # Move down
+	elif Input.is_action_pressed("down"):
 		$Sprite2D/AnimationPlayer.play("walk_down")
-	if Input.is_action_pressed("left"):
-		direction.x -= 1  # Move left
-		if direction.y == 0:
-			$Sprite2D/AnimationPlayer.play("walk_left")
-	if Input.is_action_pressed("right"):
-		direction.x += 1  # Move right
-		if direction.y == 0:
-			$Sprite2D/AnimationPlayer.play("walk_right")
-				
-			# Handle input for using items
-	if Input.is_action_just_pressed("action") and not inventory_ui.visible and not shop_ui.visible and not navigation.visible and not ship_upgrades.visible and not ship_storage_ui.visible:
-		var item_index = hotbar.get_selected_slot()
-		var hotbar_list = inventory.get_hotbar_items()
-		
-		use_item(hotbar_list[item_index], item_index)
-	if Input.is_action_just_released("action") and not inventory_ui.visible:
-		# Disable drilling
-		drilling = false
-
+	elif Input.is_action_pressed("left"):
+		$Sprite2D/AnimationPlayer.play("walk_left")
+	elif Input.is_action_pressed("right"):
+		$Sprite2D/AnimationPlayer.play("walk_right")
+	
 	# Normalize the direction vector for consistent movement speed
 	direction = direction.normalized()
 
@@ -207,14 +193,25 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Apply friction to slow down when there's no input
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-
+	
 	# Stop animations if there's no movement
 	if direction == Vector2.ZERO:
 		$Sprite2D/AnimationPlayer.stop()
-
+	
+	# Handle input for using items
+	if Input.is_action_just_pressed("action") and not inventory_ui.visible and not shop_ui.visible and not navigation.visible and not ship_upgrades.visible and not ship_storage_ui.visible:
+		var item_index = hotbar.get_selected_slot()
+		var hotbar_list = inventory.get_hotbar_items()
+		
+		use_item(hotbar_list[item_index], item_index)
+	
+	if Input.is_action_just_released("action") and not inventory_ui.visible:
+		# Disable drilling
+		drilling = false
+	
+	
 	# Move the player based on the current velocity
 	move_and_slide()
-
 
 
 ####### KNOCKBACK #######
@@ -228,7 +225,7 @@ func apply_knockback(force: Vector2) -> void:
 
 ####### ICE SLIDING ######
 # Method to check if the tile under the player is ice
-func ice_check(direction: Vector2, delta: float) -> bool:
+func ice_check(direction: Vector2, delta: float) -> bool:	
 	var player_pos : Vector2 = global_position  # player's global position
 	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
 	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
@@ -236,21 +233,15 @@ func ice_check(direction: Vector2, delta: float) -> bool:
 
 	if tile_data:
 		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
+		
 		if tile_id == TileDetector.TerrainType.ICE:
 			velocity = velocity.move_toward(direction * current_speed, 300.0 * delta)
-			#print("This tile is ice!")
 			friction = ICE_FRICTION  # Set friction to ice friction
 			return true
 		else:
-			#print("This tile is not ice.")
 			friction = NORMAL_FRICTION  # Default friction when not on ice
-	else:
-		#print("No tile data")
-		friction = NORMAL_FRICTION  # Default friction when no tile data
 	
 	return false
-
-
 
 ####### LAVA SYSTEM ######
 # Method to check if the tile under the player is lava

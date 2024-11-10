@@ -6,7 +6,8 @@ class_name TileDetector
 enum TerrainType {
 	ROCK = 0,
 	LAVA = 6,
-	ICE = 7
+	ICE = 7,
+	STEEL = 8
 }
 
 # Custom layer id where terrain types lie

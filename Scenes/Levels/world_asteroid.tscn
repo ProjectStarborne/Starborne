@@ -637,6 +637,7 @@ color = Color(0.152941, 0.14902, 0.141176, 1)
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Darkener" type="CanvasModulate" parent="Lighting"]
+visible = false
 position = Vector2(9.53674e-07, -2.38419e-07)
 color = Color(0.158472, 0.158472, 0.158472, 1)
 
@@ -830,66 +831,68 @@ position = Vector2(-104, 712)
 [node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(933, -644)
 
-[node name="PointyRocks" parent="." instance=ExtResource("15_aj44i")]
+[node name="Hazards" type="Node" parent="."]
+
+[node name="PointyRocks" parent="Hazards" instance=ExtResource("15_aj44i")]
 process_mode = 1
 texture_filter = 1
 position = Vector2(223, -183)
 
-[node name="PointyRock" parent="." instance=ExtResource("15_aj44i")]
+[node name="PointyRock" parent="Hazards" instance=ExtResource("15_aj44i")]
 process_mode = 1
 texture_filter = 1
 position = Vector2(196, 543)
 
-[node name="PointyRock2" parent="." instance=ExtResource("15_aj44i")]
+[node name="PointyRock2" parent="Hazards" instance=ExtResource("15_aj44i")]
 process_mode = 1
 texture_filter = 1
 position = Vector2(1297, -390)
 
-[node name="MeteorSpawner" type="Node2D" parent="."]
+[node name="MeteorSpawner" type="Node2D" parent="Hazards"]
 process_mode = 1
 visible = false
 script = ExtResource("17_bxqg6")
 MeteorScene = ExtResource("18_aly4v")
 ImpactIndicatorScene = ExtResource("19_nm2tu")
 
-[node name="Timer" type="Timer" parent="MeteorSpawner"]
+[node name="Timer" type="Timer" parent="Hazards/MeteorSpawner"]
 wait_time = 0.2
 autostart = true
 
-[node name="MeteorLandingArea" type="Area2D" parent="."]
+[node name="MeteorLandingArea" type="Area2D" parent="Hazards"]
 process_mode = 1
 visible = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MeteorLandingArea"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hazards/MeteorLandingArea"]
 visibility_layer = 3
 polygon = PackedVector2Array(-628, 866, -1180, 869, -1180, 795, -1266, 795, -1263, 719, -1347, 709, -1351, 621, -1670, 624, -1668, 541, -1746, 538, -1751, 153, -1668, 160, -1665, 89, -1580, 82, -1592, -73, -1508, -78, -1508, -398, -1343, -400, -1355, -481, -1187, -484, -1187, -553, -632, -553, -635, -631, -383, -643, -392, -802, -296, -802, -290, -955, 262, -958, 262, -1048, 502, -1057, 505, -1105, 1111, -1120, 1108, -1036, 1750, -1042, 1756, -946, 1837, -949, 1849, -802, 1915, -790, 1912, -412, 1837, -412, 1840, -256, 1678, -253, 1687, -97, 1435, -85, 1444, -13, 1282, -13, 1276, 458, 1198, 473, 1198, 545, 880, 551, 886, 695, 808, 713, 805, 866, 727, 872, 727, 1019, 646, 1031, 640, 1103, -302, 1115, -311, 1034, -536, 1037, -536, 950, -626, 944)
 
-[node name="Mine" parent="." instance=ExtResource("20_140il")]
+[node name="Mine" parent="Hazards" instance=ExtResource("20_140il")]
 process_mode = 1
 texture_filter = 1
 position = Vector2(802, 23)
 scale = Vector2(0.75, 0.75)
 
-[node name="Mine2" parent="." instance=ExtResource("20_140il")]
+[node name="Mine2" parent="Hazards" instance=ExtResource("20_140il")]
 process_mode = 1
 texture_filter = 1
 position = Vector2(567, -780)
 scale = Vector2(0.75, 0.75)
 
-[node name="Mine3" parent="." instance=ExtResource("20_140il")]
+[node name="Mine3" parent="Hazards" instance=ExtResource("20_140il")]
 process_mode = 1
 texture_filter = 1
 position = Vector2(-1349, 392)
 scale = Vector2(0.75, 0.75)
 
-[node name="Turret2" parent="." instance=ExtResource("16_ocvle")]
+[node name="Turret2" parent="Hazards" instance=ExtResource("16_ocvle")]
 texture_filter = 1
-position = Vector2(-893, -464)
+position = Vector2(681, -735)
 
-[node name="Turret" parent="." instance=ExtResource("16_ocvle")]
+[node name="Turret" parent="Hazards" instance=ExtResource("16_ocvle")]
 process_mode = 1
 texture_filter = 1
-position = Vector2(-905, -391)
+position = Vector2(669, -662)
 
 [node name="Doors" type="Node" parent="."]
 
