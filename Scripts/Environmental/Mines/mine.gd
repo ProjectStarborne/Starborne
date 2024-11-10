@@ -36,6 +36,7 @@ func trigger_explosion():
 	# Spawn explosion at the mine's position
 	var explosion_instance = explosion_scene.instantiate()  # For Godot 4.x, use instantiate() instead of instance()
 	explosion_instance.global_position = global_position
+	print(explosion_instance.global_position, " ", global_position)
 	get_tree().current_scene.add_child(explosion_instance)
 
 	# Damage the player if they are within the blast radius

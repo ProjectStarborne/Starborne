@@ -274,6 +274,7 @@ speed_scale = 0.617
 movie_quit_on_finish = true
 
 [node name="Flashlight" type="PointLight2D" parent="."]
+y_sort_enabled = true
 texture_filter = 5
 position = Vector2(4, -41.7536)
 scale = Vector2(2.67977, 2.67977)
