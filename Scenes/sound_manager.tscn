@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfj7e17wnr76r"]
+[gd_scene load_steps=8 format=3 uid="uid://cs1fo0rbshst4"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/sound_manager.gd" id="1_2e36i"]
 [ext_resource type="AudioStream" uid="uid://dr101d5tc3yqa" path="res://Assets/sounds/01-footstep.ogg" id="1_8m5uo"]

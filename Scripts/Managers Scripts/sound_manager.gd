@@ -1,11 +1,11 @@
 extends Node
 
-@onready var footstep = $Footstep
-@onready var explosion_mine = $ExplosionMine
-@onready var keyboard = $Keyboard
-@onready var meteor_impact = $MeteorImpact
-@onready var oxygen_warning = $OxygenWarning
-@onready var gunshot = $Gunshot
+var footstep
+var explosion_mine
+var keyboard
+var meteor_impact
+var oxygen_warning
+var gunshot
 
 var master_bus
 var music_bus
@@ -13,19 +13,20 @@ var sfx_bus
 var ui_bus
 
 func _ready():
+	await self.ready
 	master_bus = AudioServer.get_bus_index("Master")
 	music_bus = AudioServer.get_bus_index("Music")
 	sfx_bus = AudioServer.get_bus_index("SFX")
 	ui_bus = AudioServer.get_bus_index("UI")
+	print(footstep, explosion_mine, keyboard, meteor_impact, oxygen_warning, gunshot)
 	
-	footstep = $Footstep
-	explosion_mine = $ExplosionMine
-	keyboard = $Keyboard
-	meteor_impact = $MeteorImpact
-	oxygen_warning = $OxygenWarning
-	gunshot = $Gunshot
-	
-	
+	var footstep = $Footstep
+	var explosion_mine = $ExplosionMine
+	var keyboard = $Keyboard
+	var meteor_impact = $MeteorImpact
+	var oxygen_warning = $OxygenWarning
+	var gunshot = $Gunshot
+
 func set_master_volume(value):
 	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
 
