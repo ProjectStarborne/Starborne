@@ -9,6 +9,7 @@ script = ExtResource("1_8yvsm")
 effect = 0.0
 name = "Duct Tape"
 scene = ExtResource("2_isu1q")
+type = ""
 icon = ExtResource("1_53fux")
 price = 10
 weight = 0

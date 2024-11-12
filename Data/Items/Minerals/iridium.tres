@@ -9,6 +9,7 @@ script = ExtResource("1_mxn4e")
 mineral_type = ""
 name = "Iridium"
 scene = ExtResource("2_c8ew1")
+type = ""
 icon = ExtResource("1_bs85k")
 price = 5
 weight = 0

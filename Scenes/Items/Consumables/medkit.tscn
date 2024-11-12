@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://by5avpjtkeki"]
+
+[ext_resource type="Texture2D" uid="uid://clfgtf5atvj4w" path="res://Assets/Tools/Transparent/health_transparent.png" id="1_6trpk"]
+
+[node name="Medkit" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_6trpk")

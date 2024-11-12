@@ -9,6 +9,7 @@ script = ExtResource("1_dxelw")
 mineral_type = "Common"
 name = "Nickel"
 scene = ExtResource("2_3x3t2")
+type = ""
 icon = ExtResource("1_klm61")
 price = 5
 weight = 0
