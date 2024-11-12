@@ -1,15 +1,21 @@
-[gd_scene load_steps=41 format=3 uid="uid://cg1n3hs12k8ko"]
+[gd_scene load_steps=53 format=3 uid="uid://cg1n3hs12k8ko"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_ybtu2"]
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="2_ts4vt"]
 [ext_resource type="Texture2D" uid="uid://dnay164abwgje" path="res://Assets/images/duct_anim-Sheet.png" id="3_g3bx0"]
 [ext_resource type="PackedScene" uid="uid://3p6hnlpnes2w" path="res://Scenes/Camera/ship_anchor_camera.tscn" id="3_wfdif"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="4_2g6bi"]
+[ext_resource type="Texture2D" uid="uid://db7pl4xwn877o" path="res://Assets/images/drillforward_anim-Sheet.png" id="4_anoeo"]
 [ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/ship_anchor_detector.tscn" id="4_cvytj"]
+[ext_resource type="Texture2D" uid="uid://bods2t4efwg0f" path="res://Assets/images/drillright_animation-Sheet.png" id="5_3tyy0"]
 [ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="5_cx5qx"]
+[ext_resource type="Texture2D" uid="uid://dgxyh3hjr2iyc" path="res://Assets/images/drillleft_animation-Sheet.png" id="6_432vx"]
 [ext_resource type="AudioStream" uid="uid://dbekjhlgw6nd0" path="res://Assets/sounds/lego_death.mp3" id="6_tv2j8"]
+[ext_resource type="Texture2D" uid="uid://wqth1a13wrx4" path="res://Assets/images/drillbackward_animation-Sheet.png" id="7_ue75j"]
 [ext_resource type="Texture2D" uid="uid://b0x3rmguinjac" path="res://Assets/images/Fire+Sparks-Sheet.png" id="7_yeksf"]
 [ext_resource type="Texture2D" uid="uid://ci36fqjtkdcvo" path="res://Assets/images/circle_light2.png" id="8_addg8"]
+[ext_resource type="Texture2D" uid="uid://gadgbacov6l8" path="res://Assets/images/air_animation-Sheet.png" id="8_m38hb"]
+[ext_resource type="Texture2D" uid="uid://de4ucyknukiw0" path="res://Assets/images/health_anim-Sheet.png" id="9_tb8x1"]
 [ext_resource type="AudioStream" uid="uid://dr101d5tc3yqa" path="res://Assets/sounds/01-footstep.ogg" id="9_ymawl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_61hrv"]
@@ -40,17 +46,33 @@ tracks/1/keys = {
 "update": 1,
 "values": [ExtResource("2_ts4vt")]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:frame_coords")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+
+[sub_resource type="Animation" id="Animation_erjoe"]
+resource_name = "duct_tape"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2i(0, 0)]
+"values": [ExtResource("3_g3bx0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
 [sub_resource type="Animation" id="Animation_buua6"]
@@ -169,8 +191,10 @@ tracks/1/keys = {
 "values": [ExtResource("2_ts4vt")]
 }
 
-[sub_resource type="Animation" id="Animation_erjoe"]
-resource_name = "duct_tape"
+[sub_resource type="Animation" id="Animation_01iq6"]
+resource_name = "drill_forward"
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -181,25 +205,173 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_g3bx0")]
+"values": [ExtResource("4_anoeo")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame_coords")
+tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": []
+"values": [0, 1, 2, 3, 4, 5, 6, 8]
+}
+
+[sub_resource type="Animation" id="Animation_1mws4"]
+resource_name = "drill_right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_3tyy0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_at817"]
+resource_name = "drill_left"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_432vx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_kbp30"]
+resource_name = "drill_backward"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_ue75j")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_rssvl"]
+resource_name = "oxygen"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_m38hb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_leemy"]
+resource_name = "health"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_tb8x1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ssem5"]
 _data = {
 "RESET": SubResource("Animation_ji7po"),
+"drill_backward": SubResource("Animation_kbp30"),
+"drill_forward": SubResource("Animation_01iq6"),
+"drill_left": SubResource("Animation_at817"),
+"drill_right": SubResource("Animation_1mws4"),
 "duct_tape": SubResource("Animation_erjoe"),
+"health": SubResource("Animation_leemy"),
+"oxygen": SubResource("Animation_rssvl"),
 "walk_down": SubResource("Animation_buua6"),
 "walk_left": SubResource("Animation_l4o41"),
 "walk_right": SubResource("Animation_t0srk"),
