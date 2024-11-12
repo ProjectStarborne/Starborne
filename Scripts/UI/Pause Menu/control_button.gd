@@ -10,11 +10,6 @@ func _ready() -> void:
 	display_current_key()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func display_current_key():
 	var action_events = InputMap.action_get_events(action)
 	var current_key = ""
