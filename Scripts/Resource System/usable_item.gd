@@ -20,7 +20,7 @@ func to_dict() -> Dictionary:
 	return dict
 
 static func from_dict(data: Dictionary) -> Usable:
-	var usable = Tool.new()
+	var usable = Usable.new()
 	usable.name = data["name"]
 	
 	if data.has("scene_path") and data["scene_path"] != "":

@@ -547,6 +547,7 @@ func use_item(item : Item, index : int):
 		return
 	else:
 		print("Using ", item.name, "...")
+		
 
 	# Handle Item use and animations
 	match item.name:
@@ -555,11 +556,15 @@ func use_item(item : Item, index : int):
 				drilling = true
 				target_rock.destroy()
 		"Duct Tape":
+			if !Globals.oxygen_leaking:
+				return
 			fix_oxygen_leak()
 			
 		"Medkit":
 			pass
 		"Oxygen Tank":
+			if current_oxygen == max_oxygen:
+				return
 			current_oxygen += item.effect
 	
 	if item.consumable:
