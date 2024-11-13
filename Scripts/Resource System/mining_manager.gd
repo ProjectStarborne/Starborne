@@ -5,14 +5,18 @@ extends StaticBody2D
 @onready var player: Player = get_parent().get_node("Player")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-
-	
-func destroy():
-	animation_player.play("mine")
-	await animation_player.animation_finished
-	var instance = drop.instantiate()
-	spawn_item()
-	queue_free() # Remove node from scene
+@export var animation_weight = 1.0
+@export var required_level = 1
+func destroy(item : Item):
+	if item.level >= required_level:
+		var speed = animation_weight * item.weight
+		animation_player.play("mine", -1, speed)
+		await animation_player.animation_finished
+		var instance = drop.instantiate()
+		spawn_item()
+		queue_free() # Remove node from scene
+	else:
+		print("Player not able to mine! Not at suitable level!")
 
 
 func spawn_item():
