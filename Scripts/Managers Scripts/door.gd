@@ -14,9 +14,9 @@ class_name Door
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): # TODO: or Player
 		body.velocity = lerp(body.velocity, Vector2.ZERO, 0.8)
-		Globals.inventory = player.inventory
+		Globals.inventory = player.inventory	
 		#player.save()
-		if destination_level == "world_asteroid":
+		if destination_level == "shipinterior":
 			file_manager.call_deferred("save_game")
 		NavigationManager.go_to_level(destination_level, destination_door)
 		

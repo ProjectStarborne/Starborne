@@ -10,6 +10,7 @@ charge = 0.0
 level = 0
 name = "Drill"
 scene = ExtResource("2_lyd1m")
+type = ""
 icon = ExtResource("1_naw0x")
 price = 0
 weight = 0
