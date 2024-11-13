@@ -554,7 +554,7 @@ func use_item(item : Item, index : int):
 		"Drill":
 			if target_rock:
 				drilling = true
-				target_rock.destroy()
+				target_rock.destroy(item)
 		"Duct Tape":
 			if !Globals.oxygen_leaking:
 				return

@@ -50,6 +50,8 @@ _data = {
 scale = Vector2(2, 2)
 script = ExtResource("1_ghb1l")
 drop = ExtResource("2_x2b27")
+animation_weight = 0.5
+required_level = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

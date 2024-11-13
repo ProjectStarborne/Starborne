@@ -94,6 +94,7 @@ func load_game():
 			if i in node:
 				if i == "inventory":
 					node.inventory = node.inventory.from_dict(node_data["inventory"])
+					Globals.inventory = node.inventory
 				if i == "ship_inv":
 					node.ship_inv = Inventory.new()
 					node.ship_inv = node.ship_inv.from_dict(node_data["ship_inv"])

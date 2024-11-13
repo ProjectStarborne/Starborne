@@ -50,6 +50,7 @@ _data = {
 scale = Vector2(2, 2)
 script = ExtResource("1_miveb")
 drop = ExtResource("2_s72eo")
+animation_weight = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
