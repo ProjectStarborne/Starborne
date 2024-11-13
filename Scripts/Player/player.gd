@@ -533,10 +533,10 @@ func on_item_picked_up(item:Item) -> void:
 	
 	if !inventory.add_item(item):
 		print("Inventory Full!")
-		picked_up_item.emit(item, false)
+		picked_up_item.emit(item, true)
 	else:
 		print("I got ", item.name)
-		picked_up_item.emit(item, true)
+		picked_up_item.emit(item, false)
 
 
 ####### HotBar/Item Use Handling #######
