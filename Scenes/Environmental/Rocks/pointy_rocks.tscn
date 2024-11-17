@@ -16,7 +16,7 @@ script = ExtResource("1_t42x0")
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 material = SubResource("CanvasItemMaterial_75idh")
 position = Vector2(-2, 2)
-scale = Vector2(3, 3)
+scale = Vector2(4, 4)
 texture = ExtResource("2_uqbkh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

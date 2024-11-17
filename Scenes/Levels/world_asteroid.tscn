@@ -137,6 +137,9 @@ offset_right = 7232.0
 offset_bottom = 3315.0
 color = Color(0.152941, 0.14902, 0.141176, 1)
 
+[node name="FileManager" type="Node" parent="."]
+script = ExtResource("34_gbrhf")
+
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Darkener" type="CanvasModulate" parent="Lighting"]
@@ -409,7 +412,4 @@ position = Vector2(-1228, 355)
 destination_level = "shipinterior"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(-1014, 424)
-
-[node name="FileManager" type="Node" parent="."]
-script = ExtResource("34_gbrhf")
+position = Vector2(-1040, -180)

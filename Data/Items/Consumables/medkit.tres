@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="Usable" load_steps=2 format=3 uid="uid://be0l3lsipm0i1"]
+[gd_resource type="Resource" script_class="Usable" load_steps=4 format=3 uid="uid://be0l3lsipm0i1"]
 
 [ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_01wqb"]
+[ext_resource type="Texture2D" uid="uid://clfgtf5atvj4w" path="res://Assets/Tools/Transparent/health_transparent.png" id="1_72ne6"]
+[ext_resource type="PackedScene" path="res://Scenes/Items/Consumables/medkit.tscn" id="2_dk8fi"]
 
 [resource]
 script = ExtResource("1_01wqb")
 effect = 0.0
 name = "Medkit"
+scene = ExtResource("2_dk8fi")
+type = ""
+icon = ExtResource("1_72ne6")
 price = 0
 weight = 0
 description = "Your personal first aid kit, the Medkit is vital for treating injuries sustained during exploration. Quickly restores health and keeps you in the game, allowing you to recover from booboos and continue your mission without delay."

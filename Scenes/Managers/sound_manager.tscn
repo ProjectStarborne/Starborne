@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs1fo0rbshst4"]
+
+[ext_resource type="Script" path="res://Scripts/Managers Scripts/sound_manager.gd" id="1_2e36i"]
+[ext_resource type="AudioStream" uid="uid://dr101d5tc3yqa" path="res://Assets/sounds/01-footstep.ogg" id="1_8m5uo"]
+[ext_resource type="AudioStream" uid="uid://iiv1alnfnd4p" path="res://Assets/sounds/explosion_mine.wav" id="2_gbv3i"]
+[ext_resource type="AudioStream" uid="uid://rwofhp4k32h7" path="res://Assets/sounds/gunshot.wav" id="3_v0lpv"]
+[ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="4_j222n"]
+[ext_resource type="AudioStream" uid="uid://baalka180ivjc" path="res://Assets/sounds/meteor_impact.wav" id="5_w3yrd"]
+[ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="6_lx5ar"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_2e36i")
+
+[node name="Footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_8m5uo")
+bus = &"SFX"
+
+[node name="ExplosionMine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gbv3i")
+bus = &"SFX"
+
+[node name="Keyboard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j222n")
+bus = &"UI"
+
+[node name="MeteorImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w3yrd")
+bus = &"SFX"
+
+[node name="OxygenWarning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lx5ar")
+bus = &"UI"
+parameters/looping = true
+
+[node name="Gunshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v0lpv")
+bus = &"SFX"
