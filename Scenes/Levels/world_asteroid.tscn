@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="4_4c4p1"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_agmak"]
-[ext_resource type="TileSet" uid="uid://yx1w328lgppi" path="res://Assets/asteroid_tileset.tres" id="8_fu3je"]
+[ext_resource type="TileSet" uid="uid://yx1w328lgppi" path="res://Assets/Tilesets/asteroid_tileset.tres" id="8_fu3je"]
 [ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="12_ssr1n"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]

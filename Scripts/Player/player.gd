@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 	# Should only work in Environment root node
 	if in_level:
 		# Handle flashlight aiming at the mouse position
-		flashlight.look_at(get_global_mouse_position())
+		handle_flashlight()
 		
 		# Dynamic Footstep Caller
 		footstep_handler()
@@ -194,6 +194,7 @@ func handle_animation():
 	elif Input.is_action_pressed("right"):
 		$Sprite2D/AnimationPlayer.play("walk_right")
 
+
 func handle_special_movement(): 
 	match stepping_tile:
 		TileDetector.TerrainType.ICE:
@@ -205,6 +206,11 @@ func handle_special_movement():
 			remove_lava()
 
 
+func handle_flashlight():
+	flashlight.look_at(get_global_mouse_position())
+	if Input.is_action_just_pressed("toggle_flashlight"):
+		flashlight.visible = !flashlight.visible
+
 ####### KNOCKBACK #######
 # Function to apply knockback to the player
 func apply_knockback(force: Vector2) -> void:
@@ -213,6 +219,7 @@ func apply_knockback(force: Vector2) -> void:
 
 	# Start the knockback timer, which lasts for the duration defined in KNOCKBACK_DURATION
 	knockback_timer = KNOCKBACK_DURATION
+
 
 ####### LAVA SYSTEM ######
 func apply_lava():
@@ -242,6 +249,7 @@ func remove_lava():
 func save_player_stats() -> void:
 	Globals.current_health = current_health
 	Globals.current_oxygen = current_oxygen
+
 
 # Function to handle when the player takes damage
 func take_damage(damage: int) -> void:
@@ -279,6 +287,7 @@ func respawn() -> void:
 	is_dead = false  # Allow the player to move again
 	print("Respawning...")  
 
+
 # Function to handle the game over state when the player's health reaches 0
 func game_over() -> void:
 	print("Game Over!")  # Debugging message
@@ -293,12 +302,6 @@ func game_over() -> void:
 	
 	# Show the game over screen by setting it to visible
 	game_over_screen.visible = true
-
-
-# Function to show the death screen (not needed anymore but keeping as a placeholder)
-func show_death_screen() -> void:
-	print("Showing the death screen...")
-	game_over_screen.visible = true  # Just ensure visibility if needed
 
 
 # Handle the signal from the death screen to respawn the player
@@ -413,8 +416,8 @@ func use_item(item : Item, index : int):
 		return
 	else:
 		print("Using ", item.name, "...")
-		
-
+	
+	
 	# Handle Item use and animations
 	match item.name:
 		"Drill":

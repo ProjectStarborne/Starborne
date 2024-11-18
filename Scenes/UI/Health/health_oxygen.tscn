@@ -47,12 +47,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -45.0
+offset_left = -19.0
 offset_top = 520.0
-offset_right = 29.0
-offset_bottom = 24.0
+offset_right = 2.0
+offset_bottom = 544.0
 theme_override_fonts/font = ExtResource("1_tdocd")
-text = "Health"
+text = "HP"
 
 [node name="HealthBar" type="ProgressBar" parent="ControlHealth"]
 custom_minimum_size = Vector2(20, 250)
