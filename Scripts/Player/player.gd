@@ -7,14 +7,20 @@ var in_level : bool
 # Scene check variable
 var in_ship : bool
 
-# Constants
 const SPEED = 300.0 # Normal speed of the player
-const NORMAL_FRICTION = 1500.0 
-const ICE_FRICTION = 100.0  # Low friction for sliding on ice
-#const LAVA_FRICTION = 100.0  # Low friction for sliding on ice
 
-# Exported variable for friction, which controls how quickly the player slows down after moving
-@export var friction = NORMAL_FRICTION
+enum Frictions {
+	ICE = 200,
+	NORM = 5000
+}
+
+# Tracks player's status on terrain
+var stepping_tile: int
+var friction = Frictions.NORM
+
+signal damage_taken
+signal oxygen_changed
+
 # Vector to hold the player's knockback velocity (force applied when hit)
 var knockback_velocity = Vector2.ZERO
 # Timer to track how long the knockback effect lasts
@@ -34,30 +40,24 @@ var warning_visible = false  # To track if warning text is currently visible
 @onready var fire_sprite = $Fire
 @onready var fire_light = $Fire/PointLight2D 
 
-var is_lava_custom_data = "is_lava"
 var LAVA_SPEED_FACTOR = 0.5  # Factor to slow down the player on lava (50% slower)
 var LAVA_DAMAGE = 10  # Amount of damage to apply while on lava
 var damage_interval = 1.0  # Time in seconds between each damage tick
 var last_damage_time = 0.0  # Keeps track of the last time damage was applied
-# Color for the firelight effect (warm orange)
-var fire_color = Color(1.0, 0.5, 0.1)  # RGB values for orange
 
 # Variable to hold the current speed, initially set to normal speed
 var current_speed = SPEED  # Initialize with the constant SPEED value
 
 # Oxygen Variables
-@onready var oxygen_bar = $"../CanvasLayer/HBoxContainer/ControlOxygen/OxygenBar"  # Reference to the oxygen bar node in the UI
 @export var max_oxygen = 100  # Maximum oxygen level for the player
 var current_oxygen = max_oxygen  # Player's current oxygen level, initialized to max
 var oxygen_gone = false  # Boolean to track whether oxygen depletion has started. cant remember if we used this or not 
-
 
 # Variables for managing health reduction once oxygen is depleted
 var health_chip_delay = 1.0  # Delay in seconds between health reductions (when oxygen is depleted)
 var time_since_last_health_chip = 0.0  # Tracks time since the last health reduction
 
 # Health Variables
-@onready var health_bar = $"../CanvasLayer/HBoxContainer/ControlHealth/HealthBar" # Reference to the health bar node in the scene
 @export var max_health = 100  # Maximum health for the player (adjustable)
 var current_health = max_health  # Player's current health, initialized to the maximum
 var is_dead = false  # Boolean to track if the player is dead (starts alive)
@@ -68,8 +68,10 @@ signal picked_up_item(item : Item, fail : bool)
 
 # Inventory
 var inventory : Inventory
+
 # Hotbar
 @onready var hotbar = %HotBar
+
 # Inventory UI
 @onready var inventory_ui: Control = $"../CanvasLayer/InventoryUI"
 @onready var shop_ui: Control = $"../CanvasLayer/ShopUI"
@@ -77,11 +79,8 @@ var inventory : Inventory
 @onready var navigation: Control = $"../CanvasLayer/Navigation"
 @onready var ship_storage_ui: Control = $"../CanvasLayer/ShipStorageUI"
 
-
 var drilling = false
 var target_rock = null
-
-@onready var tile_map = $"../TileMap"  # Reference to your TileMap node
 
 # World Variable
 @onready var world = get_parent()
@@ -100,17 +99,9 @@ func _ready() -> void:
 	current_health = Globals.current_health
 	current_oxygen = Globals.current_oxygen
 	
-	# Set the health bar's maximum and current values to reflect the player's health
-	health_bar.max_value = max_health
-	health_bar.value = current_health
-
-	# Set up the oxygen bar (assuming it is defined elsewhere)
-	oxygen_bar.max_value = max_oxygen
-	oxygen_bar.value = current_oxygen
-
-	# Update the health and oxygen bar colors to reflect current values
-	update_health_color()
-	update_oxygen_color()
+	# Signal to update the health and oxygen bar colors to reflect current values
+	damage_taken.emit()
+	oxygen_changed.emit()
 	
 	# Check if the oxygen is leaking when entering the world scene
 	if Globals.oxygen_leaking:
@@ -123,10 +114,7 @@ func _ready() -> void:
 		# Connect the respawn signal from the GameOver screen to the player
 		game_over_screen.connect("respawn_signal", Callable(self, "_on_respawn_signal"))
 	
-	if in_level:
-		pass
-		#inventory.add_item(load("res://Data/Items/Tools/drill.tres") as Tool)
-	else:
+	if !in_level:
 		current_speed = SPEED / 4
 
 
@@ -136,9 +124,6 @@ func _physics_process(delta: float) -> void:
 	
 	# Should only work in Environment root node
 	if in_level:
-		# Check if the player is standing on lava
-		lava_check()
-		
 		# Handle flashlight aiming at the mouse position
 		flashlight.look_at(get_global_mouse_position())
 		
@@ -149,7 +134,6 @@ func _physics_process(delta: float) -> void:
 		if oxygen_leaking:
 			handle_warning(delta)
 	
-	
 	# Check if inside the ship to refill oxygen or deplete outside
 	var is_in_ship = get_tree().current_scene.name == "Shipinterior"
 	
@@ -159,7 +143,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Deplete oxygen over time when not in the ship
 		deplete_oxygen(delta)
-		
+	
 	# Check if the player is dead, and prevent movement if so
 	if is_dead:
 		return  # Early exit to stop further processing
@@ -174,24 +158,9 @@ func _physics_process(delta: float) -> void:
 		# Reset knockback velocity when knockback is finished
 		knockback_velocity = Vector2.ZERO
 	
-	# Direction -> Animation
-	if Input.is_action_pressed("up"):
-		$Sprite2D/AnimationPlayer.play("walk_up")
-	elif Input.is_action_pressed("down"):
-		$Sprite2D/AnimationPlayer.play("walk_down")
-	elif Input.is_action_pressed("left"):
-		$Sprite2D/AnimationPlayer.play("walk_left")
-	elif Input.is_action_pressed("right"):
-		$Sprite2D/AnimationPlayer.play("walk_right")
-	
-	# Normalize the direction vector for consistent movement speed
-	direction = direction.normalized()
-
-	# Update velocity based on direction and apply friction when there's no input
-	if direction != Vector2.ZERO and !ice_check(direction, delta):
-		velocity = direction * current_speed
+	if direction != Vector2.ZERO:
+		velocity = velocity.move_toward(direction * current_speed, friction * delta)
 	else:
-		# Apply friction to slow down when there's no input
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	
 	# Stop animations if there's no movement
@@ -209,9 +178,31 @@ func _physics_process(delta: float) -> void:
 		# Disable drilling
 		drilling = false
 	
-	
-	# Move the player based on the current velocity
+	handle_special_movement()
+	handle_animation()
 	move_and_slide()
+
+
+func handle_animation():
+	# Direction -> Animation
+	if Input.is_action_pressed("up"):
+		$Sprite2D/AnimationPlayer.play("walk_up")
+	elif Input.is_action_pressed("down"):
+		$Sprite2D/AnimationPlayer.play("walk_down")
+	elif Input.is_action_pressed("left"):
+		$Sprite2D/AnimationPlayer.play("walk_left")
+	elif Input.is_action_pressed("right"):
+		$Sprite2D/AnimationPlayer.play("walk_right")
+
+func handle_special_movement(): 
+	match stepping_tile:
+		TileDetector.TerrainType.ICE:
+			friction = Frictions.ICE
+		TileDetector.TerrainType.LAVA:
+			apply_lava()
+		_:
+			friction = Frictions.NORM
+			remove_lava()
 
 
 ####### KNOCKBACK #######
@@ -223,73 +214,28 @@ func apply_knockback(force: Vector2) -> void:
 	# Start the knockback timer, which lasts for the duration defined in KNOCKBACK_DURATION
 	knockback_timer = KNOCKBACK_DURATION
 
-####### ICE SLIDING ######
-# Method to check if the tile under the player is ice
-func ice_check(direction: Vector2, delta: float) -> bool:	
-	var player_pos : Vector2 = global_position  # player's global position
-	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # convert to local position relative to TileMap
-	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # convert local position to TileMap grid position
-	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
-
-	if tile_data:
-		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
-		
-		if tile_id == TileDetector.TerrainType.ICE:
-			velocity = velocity.move_toward(direction * current_speed, 300.0 * delta)
-			friction = ICE_FRICTION  # Set friction to ice friction
-			return true
-		else:
-			friction = NORMAL_FRICTION  # Default friction when not on ice
-	
-	return false
-
 ####### LAVA SYSTEM ######
-# Method to check if the tile under the player is lava
-# Reference to the fire animation and light nodes
-func lava_check():
-	var player_pos : Vector2 = global_position  # Player's global position
-	var local_player_pos : Vector2 = tile_map.to_local(player_pos)  # Convert to local position relative to TileMap
-	var tile_pos : Vector2i = tile_map.local_to_map(local_player_pos)  # Convert local position to TileMap grid position
-	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
-
-	if tile_data:
-		var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
-		if tile_id == TileDetector.TerrainType.LAVA:
-			# Slow down the player's speed by reducing the current_speed
-			current_speed = SPEED * LAVA_SPEED_FACTOR  # Adjust the player's current speed when on lava
-
-			# Check if enough time has passed since last damage
-			if Time.get_ticks_msec() / 1000.0 - last_damage_time >= damage_interval:
-				take_damage(LAVA_DAMAGE)  # Apply damage to the player
-				last_damage_time = Time.get_ticks_msec() / 1000.0  # Update last damage time
-
-			# Play fire animation
-			if fire_sprite.animation != "on_fire":
-				fire_sprite.animation = "on_fire"  # Set the animation to "on_fire"
-			fire_sprite.play("on_fire")  # Start the fire animation if not already playing
-			fire_sprite.visible = true  # Make sure the fire animation is visible
-
-			# Enable the light and set properties
-			fire_light.visible = true
-			fire_light.color = fire_color  # Set the light to a warm orange color
-			fire_light.energy = 0.8  # Adjust energy level as needed
-		else:
-			# Reset speed and stop fire animation when not on lava
-			current_speed = SPEED
-			fire_sprite.stop()  # Stop the fire animation
-			fire_sprite.visible = false  # Hide the fire animation when not on lava
-
-			# Disable the light
-			fire_light.visible = false
-			fire_light.energy = 0.0  # Reset energy when not on lava
-	else:
-		current_speed = SPEED  # Reset speed when no tile data found
-		fire_sprite.stop()  # Stop the fire animation
-		fire_sprite.visible = false  # Hide the fire animation
-		fire_light.visible = false  # Disable the light
-		fire_light.energy = 0.0  # Reset energy when not on lava
+func apply_lava():
+	# Slow down the player's speed by reducing the current_speed
+	current_speed = SPEED * LAVA_SPEED_FACTOR
+	
+	# Check if enough time has passed since last damage
+	if Time.get_ticks_msec() / 1000.0 - last_damage_time >= damage_interval:
+		take_damage(LAVA_DAMAGE)  # Apply damage to the player
+		last_damage_time = Time.get_ticks_msec() / 1000.0
+	
+	fire_sprite.play("on_fire")
+	fire_sprite.visible = true
+	fire_light.visible = true
 
 
+func remove_lava():
+	if !fire_sprite:
+		return
+	
+	fire_sprite.visible = false
+	fire_light.visible = false
+	current_speed = SPEED
 
 ####### HEALTH SYSTEM #######
 
@@ -301,51 +247,18 @@ func save_player_stats() -> void:
 func take_damage(damage: int) -> void:
 	# Reduce the player's current health by the damage amount
 	current_health -= damage
+	damage_taken.emit()
 	
 	# If health drops to 0 or below, trigger game over
 	if current_health <= 0:
 		current_health = 0  # Prevent health from going negative
 		game_over()  # Call the game over function
 		print("Current Health:", current_health)  # Output current health for debugging
-	
-	# Update the health bar and color after taking damage
-	update_health_bar()
-	update_health_color()
-
-
-# Function to update the health bar's color based on the player's current health percentage
-func update_health_color() -> void:
-	# Calculate the player's health as a percentage (between 0 and 1)
-	var health_percentage = float(current_health) / float(max_health)
-	
-	# Get the fill stylebox of the health bar to change its background color
-	var fill_stylebox = health_bar.get("theme_override_styles/fill")
-	if fill_stylebox == null:
-		# If there's no existing style, create a new one
-		fill_stylebox = StyleBoxFlat.new()
-		health_bar.set("theme_override_styles/fill", fill_stylebox)
-
-	# Set the color of the health bar based on the health percentage:
-	if health_percentage > 0.75:
-		fill_stylebox.bg_color = Color(0.0, 0.7, 0.0)  # Green for health > 75%
-	elif health_percentage > 0.5:
-		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for health between 50% and 75%
-	elif health_percentage > 0.25:
-		fill_stylebox.bg_color = Color(1.0, 0.65, 0.0)  # Orange for health between 25% and 50%
-	else:
-		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for health below 25%
-
-
-# Function to update the health bar UI to reflect the current health
-func update_health_bar() -> void:
-	health_bar.value = current_health
-	
 
 ####### RESPAWN/DEATH SYSTEM #######
 
 @onready var spawn_marker = get_node("/root/Environment/SpawnPoint")  # Reference to the Marker2D node
 @onready var game_over_screen = get_node("/root/Environment/CanvasLayer/GameOver")  # Reference to the GameOver screen in the hierarchy
-
 
 # Function to handle respawning the player
 func respawn() -> void:
@@ -356,15 +269,12 @@ func respawn() -> void:
 	# Bug fix workaround. The same rock cannot trigger oxygen drain twice
 	get_tree().reload_current_scene()
 
-	# Reset the player's health, oxygen, and other stats upon respawn
-	current_health = max_health  # Reset health to full
-	update_health_bar()  # Update the health bar UI
-	update_health_color()  # Update the health bar color to green
+	## Reset the player's health, oxygen, and other stats upon respawn
+	current_health = max_health
 	
-	# Reset the player's oxygen levels 
+	## Reset the player's oxygen levels 
 	current_oxygen = max_oxygen  
-	update_oxygen_bar()  # Update the oxygen bar UI
-	update_oxygen_color()  # Update the oxygen bar color to blue
+	oxygen_changed.emit()
 	
 	is_dead = false  # Allow the player to move again
 	print("Respawning...")  
@@ -398,15 +308,9 @@ func _on_respawn_signal() -> void:
 	game_over_screen.visible = false
 	# maybe unpause the game (if we plan on it) and respawn the player
 	respawn()
-	
 
 
 ####### OXYGEN SYSTEM #######
-
-# Function to update the oxygen bar UI when the oxygen level changes
-func update_oxygen_bar() -> void:
-	oxygen_bar.value = current_oxygen  # Set the oxygen bar's value to the current oxygen level
-
 
 # Function to deplete oxygen over time (called every frame)
 func deplete_oxygen(delta: float) -> void:
@@ -435,41 +339,14 @@ func deplete_oxygen(delta: float) -> void:
 				take_damage(healthDrainRate)  # Reduce player's health by a fixed amount (15)
 				time_since_last_health_chip = 0.0  # Reset the timer after each health reduction
 	
-	# Update the oxygen bar and its color to reflect the current oxygen level
-	update_oxygen_bar()
-	update_oxygen_color()
+	# Send signal to update the oxygen bar and its color to reflect the current oxygen level
+	oxygen_changed.emit()
 
 
 func refill_oxygen(delta: float) -> void:
 	var refill_rate = 10 * delta  # Adjust this rate to control how quickly oxygen refills
 	current_oxygen = min(current_oxygen + refill_rate, max_oxygen)  # Refill oxygen but do not exceed max
-	# Update the oxygen bar and its color
-	update_oxygen_bar()
-	update_oxygen_color()
-
-
-# Function to update the oxygen bar's color based on the player's current oxygen level
-func update_oxygen_color() -> void:
-	# Calculate the oxygen as a percentage (between 0 and 1)
-	var oxygen_percentage = float(current_oxygen) / float(max_oxygen)
-
-	# Get the fill stylebox of the oxygen bar to modify its color
-	var fill_stylebox = oxygen_bar.get("theme_override_styles/fill")
-	if fill_stylebox == null:
-		# If there's no existing style, create a new one
-		fill_stylebox = StyleBoxFlat.new()
-		oxygen_bar.set("theme_override_styles/fill", fill_stylebox)
-
-	# Set the color of the oxygen bar based on the oxygen percentage:
-	if oxygen_percentage > 0.75:
-		fill_stylebox.bg_color = Color(0.0, 0.5, 1.0)  # Blue for oxygen > 75%
-	elif oxygen_percentage > 0.5:
-		fill_stylebox.bg_color = Color(0.0, 1.0, 1.0)  # Cyan for oxygen between 50% and 75%
-	elif oxygen_percentage > 0.25:
-		fill_stylebox.bg_color = Color(1.0, 1.0, 0.0)  # Yellow for oxygen between 25% and 50%
-	else:
-		fill_stylebox.bg_color = Color(1.0, 0.0, 0.0)  # Red for oxygen below 25% 
-		
+	oxygen_changed.emit()
 
 ####### OXYGEN LEAK SYSTEM ######
 
@@ -494,7 +371,6 @@ func start_oxygen_leak() -> void:
 		warning_audio.stream.loop = false
 
 
-
 # Handle flickering of warning text
 func handle_warning(delta: float) -> void:
 	warning_timer += delta
@@ -512,7 +388,6 @@ func fix_oxygen_leak() -> void:
 	# Stop the warning sound and disable looping
 	warning_audio.stop()
 	warning_audio.stream.loop = false
-
 
 
 ####### Resource Management System #######
@@ -566,25 +441,18 @@ func use_item(item : Item, index : int):
 
 ####### Dynamic Footsteps #######
 func footstep_handler() -> void:
-	# Grabbing player's local tile information
-	var local_pos = tile_map.to_local(global_position)
-	var tile_pos = tile_map.local_to_map(local_pos)
-	var tile_data : TileData = tile_map.get_cell_tile_data(0, tile_pos)
-	
-	# If tile data doesn't exist or not moving, do nothing
-	if (!tile_data or velocity == Vector2.ZERO):
+	if velocity == Vector2.ZERO:
 		return
 	
-	var tile_id = tile_data.get_custom_data_by_layer_id(TileDetector.TERRAIN_ID_LAYER)
 	var footstep_player : AudioStreamPlayer2D = $Footsteps
 	var audio_timer : Timer = $Footsteps/Timer
 	
 	var play = false
 	
-	match tile_id:
+	match stepping_tile:
 		TileDetector.TerrainType.ROCK:
 			play = true
-			
+	
 	if play and audio_timer.time_left <= 0:
 		footstep_player.pitch_scale = randf_range(0.8, 1.0)
 		footstep_player.play()

@@ -7,6 +7,7 @@ extends StaticBody2D
 
 @export var animation_weight = 1.0
 @export var required_level = 1
+
 func destroy(item : Item):
 	if item.level >= required_level:
 		var speed = animation_weight * item.weight

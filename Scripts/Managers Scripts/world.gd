@@ -33,7 +33,7 @@ func _ready() -> void:
 		instance.global_position = marker.global_position
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Handle Inventory UI
 	if Input.is_action_just_pressed("inventory") and !ship_upgrades_ui.visible :
 		if inventory.visible:

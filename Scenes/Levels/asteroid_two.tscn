@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=49 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ykg6fs1mac27" path="res://Scenes/Environmental/Mines/mine.tscn" id="12_uhb5x"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="17_nfwn5"]
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="18_2pr4v"]
+[ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="19_j62ah"]
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="19_skswi"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="20_eb7ld"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="21_c3j6w"]
@@ -743,28 +744,6 @@ sources/3 = SubResource("TileSetAtlasSource_27lom")
 sources/5 = SubResource("TileSetAtlasSource_homhr")
 sources/4 = SubResource("TileSetAtlasSource_thid6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7hmu"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u8wh"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
-
 [sub_resource type="Theme" id="Theme_iub4r"]
 default_font = ExtResource("2_qr6hg")
 
@@ -954,78 +933,7 @@ position = Vector2(-1148, -2068)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -800.0
-offset_right = -25.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/separation = 40
-
-[node name="ControlHealth" type="Control" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HealthLabel" type="Label" parent="CanvasLayer/HBoxContainer/ControlHealth"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_top = 520.0
-offset_right = 29.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("2_qr6hg")
-text = "Health"
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/ControlHealth"]
-custom_minimum_size = Vector2(20, 250)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 0.95
-offset_left = -20.0
-offset_top = -250.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_p7hmu")
-fill_mode = 3
-show_percentage = false
-
-[node name="ControlOxygen" type="Control" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="OxygenLabel" type="Label" parent="CanvasLayer/HBoxContainer/ControlOxygen"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -20.0
-offset_top = 520.0
-offset_right = 20.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("2_qr6hg")
-text = "O2"
-
-[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/ControlOxygen"]
-custom_minimum_size = Vector2(20, 250)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 0.95
-offset_left = -20.0
-offset_top = -250.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_5u8wh")
-fill_mode = 3
-show_percentage = false
+[node name="HealthOxygen" parent="CanvasLayer" instance=ExtResource("19_j62ah")]
 
 [node name="OxygenLeakWarning" type="Label" parent="CanvasLayer"]
 visible = false
@@ -1145,3 +1053,6 @@ position = Vector2(-211, -767)
 [node name="Door_S" parent="Doors" instance=ExtResource("35_jqmhs")]
 position = Vector2(-1694, 219)
 destination_level = "shipinterior"
+
+[connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
+[connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]

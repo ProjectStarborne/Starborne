@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=36 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_it5gi"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_um8kb"]
@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="4_4c4p1"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_agmak"]
-[ext_resource type="TileSet" uid="uid://btioc2p66jni8" path="res://Assets/asteroid_tileset.tres" id="8_fu3je"]
+[ext_resource type="TileSet" uid="uid://yx1w328lgppi" path="res://Assets/asteroid_tileset.tres" id="8_fu3je"]
+[ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="12_ssr1n"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]
 [ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="15_aj44i"]
@@ -36,28 +37,6 @@ shader_parameter/density = 0.6
 shader_parameter/speed = Vector2(0.004, 0.003)
 shader_parameter/res = 150
 shader_parameter/noise_texture = ExtResource("2_kpe0u")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhfqr"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hv3m"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
 
 [sub_resource type="Theme" id="Theme_m1pj0"]
 default_font = ExtResource("4_w767y")
@@ -197,78 +176,7 @@ scale = Vector2(0.84, 0.84)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -800.0
-offset_right = -25.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/separation = 40
-
-[node name="ControlHealth" type="Control" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HealthLabel" type="Label" parent="CanvasLayer/HBoxContainer/ControlHealth"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_top = 520.0
-offset_right = 29.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("4_w767y")
-text = "Health"
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/ControlHealth"]
-custom_minimum_size = Vector2(20, 250)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 0.95
-offset_left = -20.0
-offset_top = -250.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_vhfqr")
-fill_mode = 3
-show_percentage = false
-
-[node name="ControlOxygen" type="Control" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="OxygenLabel" type="Label" parent="CanvasLayer/HBoxContainer/ControlOxygen"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -20.0
-offset_top = 520.0
-offset_right = 20.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("4_w767y")
-text = "O2"
-
-[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/ControlOxygen"]
-custom_minimum_size = Vector2(20, 250)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 0.95
-offset_left = -20.0
-offset_top = -250.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_7hv3m")
-fill_mode = 3
-show_percentage = false
+[node name="HealthO2" parent="CanvasLayer" instance=ExtResource("12_ssr1n")]
 
 [node name="OxygenLeakWarning" type="Label" parent="CanvasLayer"]
 visible = false
@@ -412,4 +320,6 @@ destination_level = "shipinterior"
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-1040, -180)
 
+[connection signal="damage_taken" from="Player" to="CanvasLayer/HealthO2" method="update_health"]
+[connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthO2" method="update_oxygen"]
 [connection signal="picked_up_item" from="Player" to="." method="_on_player_picked_up_item"]
