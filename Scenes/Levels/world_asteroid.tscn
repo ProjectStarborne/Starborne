@@ -285,15 +285,13 @@ text = "REEEEEEEE"
 stream = ExtResource("14_8fmbm")
 volume_db = -10.0
 
-[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
+[node name="ItemPickupNotification" type="RichTextLabel" parent="CanvasLayer"]
 visible = false
 offset_top = 492.0
 offset_right = 283.0
 offset_bottom = 532.0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("4_w767y")
-text = "Hello World"
+size_flags_horizontal = 2
+size_flags_vertical = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
 libraries = {
@@ -413,3 +411,5 @@ destination_level = "shipinterior"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-1040, -180)
+
+[connection signal="picked_up_item" from="Player" to="." method="_on_player_picked_up_item"]
