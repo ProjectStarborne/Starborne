@@ -18,18 +18,29 @@ func _ready() -> void:
 	set_as_top_level(true)
 	
 	position = owner.position
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	update_zoom()
-	# The camera's target position is either the anchor_position if the value isn't Vector2.ZERO or the owner's position. The owner is the root node of the scene in which the camera is instanced.
+	
+	# Screen shake logic
+	if shake_timer > 0:
+		shake_timer -= delta
+		var shake_offset = Vector2(
+			randf_range(-shake_intensity, shake_intensity),
+			randf_range(-shake_intensity, shake_intensity)
+		)
+		position += shake_offset  # Apply shake offset to camera position
+	
+	# Determine the target position based on whether we have an anchor
 	var target_position: Vector2 = (
 		owner.global_position
 		if anchor_position.is_equal_approx(Vector2.ZERO)
 		else anchor_position
 	)
 	
-	arrive_to(target_position)
+	arrive_to(target_position)  # Move camera towards the target position
 	
 # Entering the Anchor we receive the anchor object and change our anchor_position and target_zoom
 func _on_AnchorDetector2D_anchor_detected(anchor: Area2D) -> void:

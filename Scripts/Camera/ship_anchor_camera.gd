@@ -68,6 +68,7 @@ var shake_timer = 0.0
 
 # Call this function to start screen shake
 func start_screen_shake(duration: float, intensity: float) -> void:
+	print("start_screen_shake executed!")
 	shake_duration = duration
 	shake_intensity = intensity
 	shake_timer = duration
