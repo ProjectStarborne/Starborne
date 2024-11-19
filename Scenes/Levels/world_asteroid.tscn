@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=37 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_it5gi"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_um8kb"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="21_rqa7b"]
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="22_hmx0r"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="23_ljpey"]
+[ext_resource type="PackedScene" uid="uid://bbnjnupb8xnst" path="res://Scenes/UI/Logs/logs_ui.tscn" id="23_tjucf"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="24_25jqm"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="25_cae0v"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="27_f57vm"]
@@ -230,6 +231,17 @@ visible = false
 
 [node name="ShipStorageUI" parent="CanvasLayer" instance=ExtResource("25_cae0v")]
 visible = false
+
+[node name="LogsUI" parent="CanvasLayer" instance=ExtResource("23_tjucf")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -506.0
+offset_top = -273.5
+offset_right = 506.0
+offset_bottom = 273.5
 
 [node name="Glow" type="PointLight2D" parent="."]
 show_behind_parent = true
