@@ -21,7 +21,7 @@ var possible_directions = ["top", "bottom", "left", "right"]
 # Called when the node is added to the scene
 func _ready() -> void:
 	randomize()  # Randomize the seed for random number generation
-	start_event_timer()  # Start the timer for the first meteor event
+	#start_event_timer()  # Start the timer for the first meteor event
 
 
 # Function to start a timer for the next meteor event

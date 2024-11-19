@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cuhyx4pc6o35c"]
+[gd_scene load_steps=27 format=3 uid="uid://cuhyx4pc6o35c"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/title_screen.gd" id="1_063et"]
 [ext_resource type="Texture2D" uid="uid://dhpblh1nuy6gd" path="res://Assets/images/bg.png" id="1_ag1il"]
@@ -6,6 +6,68 @@
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="3_sed8d"]
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="4_j0dum"]
 [ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="5_8s8d8"]
+
+[sub_resource type="Animation" id="Animation_ahaw0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parallax/AnimationPlayer/Background1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-594, -180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parallax/AnimationPlayer/Background2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-42, -324)]
+}
+
+[sub_resource type="Animation" id="Animation_looy5"]
+resource_name = "parallax"
+length = 25.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Parallax/AnimationPlayer/Background1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-594, -180), Vector2(-190, -180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Parallax/AnimationPlayer/Background2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 16.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-186, 221), Vector2(-186, 154)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmu4c"]
+_data = {
+"RESET": SubResource("Animation_ahaw0"),
+"parallax": SubResource("Animation_looy5")
+}
 
 [sub_resource type="FontVariation" id="FontVariation_at12e"]
 base_font = ExtResource("1_ecslu")
@@ -32,7 +94,7 @@ corner_radius_bottom_right = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exmew"]
 content_margin_left = 25.0
-bg_color = Color(0.0705243, 0.0476382, 0.129168, 1)
+bg_color = Color(0.149897, 0.112785, 0.24524, 1)
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 
@@ -52,16 +114,6 @@ Button/styles/focus = SubResource("StyleBoxFlat_dj7mw")
 Button/styles/hover = SubResource("StyleBoxFlat_xfm74")
 Button/styles/normal = SubResource("StyleBoxFlat_exmew")
 Button/styles/pressed = SubResource("StyleBoxFlat_h2p0c")
-
-[sub_resource type="FontVariation" id="FontVariation_c4con"]
-base_font = ExtResource("3_sed8d")
-variation_embolden = 0.5
-variation_transform = Transform2D(1.25, 0, 0, 1, 0, 0)
-spacing_glyph = 50
-
-[sub_resource type="LabelSettings" id="LabelSettings_fhc1l"]
-font_size = 120
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be8cs"]
 atlas = ExtResource("4_j0dum")
@@ -98,6 +150,16 @@ animations = [{
 "name": &"walking",
 "speed": 5.0
 }]
+
+[sub_resource type="FontVariation" id="FontVariation_c4con"]
+base_font = ExtResource("3_sed8d")
+variation_embolden = 0.5
+variation_transform = Transform2D(1.25, 0, 0, 1, 0, 0)
+spacing_glyph = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_fhc1l"]
+font_size = 120
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_qy3kv"]
 length = 0.001
@@ -170,32 +232,53 @@ offset_right = 1517.0
 offset_bottom = 879.0
 color = Color(0, 0, 0, 1)
 
-[node name="Background1" type="TextureRect" parent="."]
+[node name="Parallax" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Parallax"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_dmu4c")
+}
+
+[node name="Background1" type="TextureRect" parent="Parallax/AnimationPlayer"]
 modulate = Color(1, 1, 1, 0.12549)
 texture_filter = 5
-layout_mode = 2
-offset_left = -252.0
-offset_top = -103.0
-offset_right = 1716.0
-offset_bottom = 881.0
+offset_left = -594.0
+offset_top = -180.0
+offset_right = 1522.0
+offset_bottom = 878.0
+rotation = 6.28318
+pivot_offset = Vector2(1052, 563)
+texture = ExtResource("1_ag1il")
+
+[node name="Background2" type="TextureRect" parent="Parallax/AnimationPlayer"]
+modulate = Color(1, 1, 1, 0.0980392)
+texture_filter = 5
+offset_left = -42.0
+offset_top = -324.0
+offset_right = 3993.0
+offset_bottom = 1694.0
+rotation = 3.14159
+scale = Vector2(-1, 1)
+pivot_offset = Vector2(1052, 563)
 texture = ExtResource("1_ag1il")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+top_level = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -19.0
+offset_left = -15.0
 offset_top = -299.0
-offset_right = 516.0
+offset_right = 520.0
 grow_vertical = 0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme = SubResource("Theme_lk1wp")
-theme_override_constants/separation = 10
+theme_override_constants/separation = 15
 
 [node name="Start" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -212,7 +295,24 @@ layout_mode = 2
 text = "Quit"
 alignment = 0
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(760, 53)
+scale = Vector2(2.03125, 2.03125)
+sprite_frames = SubResource("SpriteFrames_umjl6")
+animation = &"walking"
+
+[node name="Flashlight" type="TextureRect" parent="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.133333)
+offset_left = 2.95381
+offset_top = -39.3846
+offset_right = 78.9538
+offset_bottom = 46.6154
+texture = ExtResource("5_8s8d8")
+expand_mode = 1
+
 [node name="Label" type="Label" parent="."]
+top_level = true
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -229,22 +329,6 @@ grow_vertical = 2
 theme_override_fonts/font = SubResource("FontVariation_c4con")
 text = "STARBORNE"
 label_settings = SubResource("LabelSettings_fhc1l")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(760, 53)
-scale = Vector2(2.03125, 2.03125)
-sprite_frames = SubResource("SpriteFrames_umjl6")
-animation = &"walking"
-
-[node name="Flashlight" type="TextureRect" parent="AnimatedSprite2D"]
-modulate = Color(1, 1, 1, 0.133333)
-offset_left = 2.95381
-offset_top = -39.3846
-offset_right = 78.9538
-offset_bottom = 46.6154
-texture = ExtResource("5_8s8d8")
-expand_mode = 1
 
 [node name="Fade" type="Node" parent="."]
 
@@ -269,5 +353,11 @@ libraries = {
 "": SubResource("AnimationLibrary_blmt0")
 }
 
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Start" to="." method="_on_button_hover" binds= [NodePath("MarginContainer/VBoxContainer/Start")]]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Start" to="." method="_on_button_exit" binds= [NodePath("MarginContainer/VBoxContainer/Start")]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_button_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Options" to="." method="_on_button_hover" binds= [NodePath("MarginContainer/VBoxContainer/Options")]]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Options" to="." method="_on_button_exit" binds= [NodePath("MarginContainer/VBoxContainer/Options")]]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_button_hover" binds= [NodePath("MarginContainer/VBoxContainer/Quit")]]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_button_exit" binds= [NodePath("MarginContainer/VBoxContainer/Quit")]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

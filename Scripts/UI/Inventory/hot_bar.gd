@@ -22,14 +22,14 @@ func _process(delta: float) -> void:
 	if is_in_menu:
 		# Handle mouse scroll input
 		if Input.is_action_just_released("scroll up"):
-			selected_slot_index += 1
-			if selected_slot_index > hotbar_slots.size() - 1:
-				selected_slot_index = 0
-			change_selected_slot_texture()
-		if Input.is_action_just_released("scroll down"):
 			selected_slot_index -= 1
 			if selected_slot_index < 0:
 				selected_slot_index = hotbar_slots.size() - 1
+			change_selected_slot_texture()
+		if Input.is_action_just_released("scroll down"):
+			selected_slot_index += 1
+			if selected_slot_index > hotbar_slots.size() - 1:
+				selected_slot_index = 0
 			change_selected_slot_texture()
 			
 		# Handle number (1-3) presets

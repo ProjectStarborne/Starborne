@@ -23,7 +23,7 @@ func _on_body_exited(body: Node2D) -> void:
 		hide_interaction_message()
 
 # Check for the interaction key press
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player_nearby and Input.is_action_just_pressed(interact_key):
 		if shop_ui.visible:
 			shop_ui.hide()

@@ -8,7 +8,6 @@ extends Control
 
 @onready var player = %Player
 
-
 func open(inventory:Inventory):
 	inv = inventory
 	
@@ -27,15 +26,17 @@ func open(inventory:Inventory):
 			children[0].set_texture(null)
 			
 		slot_num += 1
-
+	
 	credits_label.text = "Credits: " + str(player.credits)
 	show()
-	
+
 func close():
 	hide()
 
+
 func _on_close_button_pressed() -> void:
 	close()
+
 
 # Connected to slot item swap signal
 func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_hotbar : bool):
@@ -62,6 +63,7 @@ func _on_item_swap(from_slot : int, to_slot : int, is_to_hotbar : bool, is_from_
 		inv.swap_items(from_slot, to_slot)
 		
 	hotbar.update_hotbar_ui(inv)
+
 
 # Check to make sure inventory is getting data
 func debug_inventory(inventory : Array, slots : Array):

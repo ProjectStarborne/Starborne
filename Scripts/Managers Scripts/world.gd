@@ -32,10 +32,8 @@ func _ready() -> void:
 		add_child(instance)
 		instance.global_position = marker.global_position
 	
-	# Connect the emitted signal to this script manually
-	player.connect("picked_up_item", on_picked_up_item)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Handle Inventory UI
 	if Input.is_action_just_pressed("inventory") and !ship_upgrades_ui.visible :
 		if inventory.visible:
@@ -67,9 +65,11 @@ func close_ship_upgrades():
 		ship_upgrades_ui.hide()
 
 # Displays what is picked up to the screen
-func on_picked_up_item(item : Item):
+func _on_player_picked_up_item(item: Item, fail: bool) -> void:
 	print("Sent to world.gd")
-	item_picked_up.visible = true
-	item_picked_up.text = "Picked up " + item.name
-	var animation = item_picked_up.get_node("AnimationPlayer")
-	animation.play("fade_out")
+	
+	if not fail:
+		item_picked_up.visible = true
+		item_picked_up.text += "Picked up " + item.name + "\n"
+		var animation = item_picked_up.get_node("AnimationPlayer")
+		animation.play("fade_out")

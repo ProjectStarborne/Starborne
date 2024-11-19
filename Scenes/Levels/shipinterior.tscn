@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=28 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://xvd4qmndtd1j" path="res://Scenes/UI/pause_menu.tscn" id="9_dprta"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="9_ga0q0"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="10_5egvl"]
+[ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="10_670fk"]
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="14_amo1g"]
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="15_mwkym"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="16_dfmsb"]
@@ -30,17 +31,24 @@ texture = ExtResource("1_yce60")
 12:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:3/0 = 0
 9:4/0 = 0
+9:4/0/custom_data_0 = 8
 10:4/0 = 0
+10:4/0/custom_data_0 = 8
 11:4/0 = 0
+11:4/0/custom_data_0 = 8
 12:4/0 = 0
 12:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:4/0 = 0
 13:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:4/0 = 0
 9:5/0 = 0
+9:5/0/custom_data_0 = 8
 10:5/0 = 0
+10:5/0/custom_data_0 = 8
 11:5/0 = 0
+11:5/0/custom_data_0 = 8
 12:5/0 = 0
+12:5/0/custom_data_0 = 8
 13:5/0 = 0
 13:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:5/0 = 0
@@ -55,9 +63,13 @@ texture = ExtResource("1_yce60")
 5:6/0 = 0
 5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:6/0 = 0
+9:6/0/custom_data_0 = 8
 10:6/0 = 0
+10:6/0/custom_data_0 = 8
 11:6/0 = 0
+11:6/0/custom_data_0 = 8
 12:6/0 = 0
+12:6/0/custom_data_0 = 8
 13:6/0 = 0
 13:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:6/0 = 0
@@ -72,9 +84,13 @@ texture = ExtResource("1_yce60")
 5:7/0 = 0
 5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:7/0 = 0
+9:7/0/custom_data_0 = 8
 10:7/0 = 0
+10:7/0/custom_data_0 = 8
 11:7/0 = 0
+11:7/0/custom_data_0 = 8
 12:7/0 = 0
+12:7/0/custom_data_0 = 8
 13:7/0 = 0
 13:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:7/0 = 0
@@ -89,7 +105,9 @@ texture = ExtResource("1_yce60")
 5:8/0 = 0
 5:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:8/0 = 0
+10:8/0/custom_data_0 = 8
 11:8/0 = 0
+11:8/0/custom_data_0 = 8
 12:8/0 = 0
 12:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:8/0 = 0
@@ -117,8 +135,11 @@ texture = ExtResource("1_yce60")
 1:10/0 = 0
 1:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:10/0 = 0
+2:10/0/custom_data_0 = 8
 3:10/0 = 0
+3:10/0/custom_data_0 = 8
 4:10/0 = 0
+4:10/0/custom_data_0 = 8
 5:10/0 = 0
 5:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:10/0 = 0
@@ -154,13 +175,19 @@ texture = ExtResource("1_yce60")
 6:13/0 = 0
 6:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:13/0 = 0
+7:13/0/custom_data_0 = 8
 8:13/0 = 0
+8:13/0/custom_data_0 = 8
 9:13/0 = 0
+9:13/0/custom_data_0 = 8
 10:13/0 = 0
 10:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:5/0 = 0
+8:5/0/custom_data_0 = 8
 8:6/0 = 0
+8:6/0/custom_data_0 = 8
 8:7/0 = 0
+8:7/0/custom_data_0 = 8
 7:7/0 = 0
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:6/0 = 0
@@ -178,6 +205,7 @@ texture = ExtResource("1_yce60")
 8:8/0 = 0
 8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:8/0 = 0
+9:8/0/custom_data_0 = 8
 7:8/0 = 0
 7:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:9/0 = 0
@@ -223,29 +251,9 @@ texture = ExtResource("1_yce60")
 
 [sub_resource type="TileSet" id="TileSet_ool8b"]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "TerrainID"
+custom_data_layer_0/type = 2
 sources/0 = SubResource("TileSetAtlasSource_bn26q")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sby8f"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_meyol"]
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 5
 
 [sub_resource type="Theme" id="Theme_m3mpi"]
 default_font = ExtResource("9_ga0q0")
@@ -369,78 +377,7 @@ destination_level = "world_asteroid"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -65.0
-offset_top = -800.0
-offset_right = -25.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/separation = 40
-
-[node name="ControlHealth" type="Control" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="HealthLabel" type="Label" parent="CanvasLayer/HBoxContainer/ControlHealth"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -45.0
-offset_top = 520.0
-offset_right = 29.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("9_ga0q0")
-text = "Health"
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/ControlHealth"]
-custom_minimum_size = Vector2(20, 250)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 0.95
-offset_left = -20.0
-offset_top = -250.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_sby8f")
-fill_mode = 3
-show_percentage = false
-
-[node name="ControlOxygen" type="Control" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="OxygenLabel" type="Label" parent="CanvasLayer/HBoxContainer/ControlOxygen"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -20.0
-offset_top = 520.0
-offset_right = 20.0
-offset_bottom = 24.0
-theme_override_fonts/font = ExtResource("9_ga0q0")
-text = "O2"
-
-[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/ControlOxygen"]
-custom_minimum_size = Vector2(20, 250)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.95
-anchor_right = 1.0
-anchor_bottom = 0.95
-offset_left = -20.0
-offset_top = -250.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_meyol")
-fill_mode = 3
-show_percentage = false
+[node name="HealthOxygen" parent="CanvasLayer" instance=ExtResource("10_670fk")]
 
 [node name="OxygenLeakWarning" type="Label" parent="CanvasLayer"]
 visible = false
@@ -501,3 +438,6 @@ shape = SubResource("SegmentShape2D_vfjot")
 
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("19_abd2d")
+
+[connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
+[connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
