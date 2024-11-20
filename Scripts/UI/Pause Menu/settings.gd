@@ -35,6 +35,9 @@ func setup_display():
 	music_volume_slider.value = options.music_volume if options.has("music_volume") else 1.0
 	sfx_volume_slider.value = options.sfx_volume if options.has("sfx_volume") else 1.0
 	ui_volume_slider.value = options.ui_volume if options.has("ui_volume") else 1.0
+	
+	OptionsManager.resize_window()
+	OptionsManager.set_window_mode()
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel") && is_open:
