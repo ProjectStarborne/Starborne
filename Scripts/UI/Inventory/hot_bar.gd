@@ -8,8 +8,8 @@ extends Control
 
 # Images for hotbar is loaded here
 var imgs = [Image.new(), Image.new()]
-var hb_unsel = imgs[0].load(ProjectSettings.globalize_path("res://Assets/images/Hotbar/hotbar-0.jpeg"))
-var hb_sel = imgs[1].load(ProjectSettings.globalize_path("res://Assets/images/Hotbar/hotbar-1.jpeg"))
+var hb_unsel = imgs[0].load_from_file("res://Assets/images/Hotbar/hotbar_unsel.png")
+var hb_sel = imgs[1].load_from_file("res://Assets/images/Hotbar/hotbar_sel.png")
 
 
 
@@ -63,10 +63,10 @@ func update_hotbar_ui(inventory: Inventory):
 func change_selected_slot_texture():
 	for i in range(hotbar_slots.size()):
 		if i == selected_slot_index:
-			hotbar_slots[i].texture = hb_sel
+			hotbar_slots[i].texture = ImageTexture.create_from_image(hb_sel)
 			print(hotbar_slots[i].texture)
 		else:
-			hotbar_slots[i].texture = hb_unsel
+			hotbar_slots[i].texture = ImageTexture.create_from_image(hb_unsel)
 
 
 # Get the current slot that is highlighted on screen
