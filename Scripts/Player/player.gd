@@ -464,33 +464,6 @@ func footstep_handler() -> void:
 		audio_timer.start(0.3)
 
 
-####### CURRENCY SYSTEM #######
-# Exported credits variable to track the player's credits
-@export var credits: int = 100
-
-# Function to update player's credits (optional)
-func add_credits(amount: int) -> void:
-	credits += amount
-	print("Credits added: ", amount, " Total credits: ", credits)
-
-func remove_credits(amount: int) -> void:
-	credits = max(0, credits - amount)  # Prevent going below 0
-	print("Credits removed: ", amount, " Remaining credits: ", credits)
-
-func get_credits() -> int:
-	return credits
-
-# Store credits into Globals before changing levels
-func save_credits_to_globals() -> void:
-	Globals.credits = credits
-	print("Credits saved to Globals: ", credits)
-
-# Retrieve credits from Globals when the level loads
-func load_credits_from_globals() -> void:
-	if Globals.credits != null:
-		credits = Globals.credits
-		print("Credits loaded from Globals: ", credits)
-
 ####### LEVEL TRACKING (For later on in the shop) #######
 
 # Method to get the current level

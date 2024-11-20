@@ -287,7 +287,6 @@ position = Vector2(154, 31)
 script = ExtResource("4_lppfx")
 max_oxygen = 100
 max_health = 100
-credits = 100
 
 [node name="InteractionLabel" type="Label" parent="Player"]
 offset_left = -18.0
