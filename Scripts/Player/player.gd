@@ -64,7 +64,7 @@ var is_dead = false  # Boolean to track if the player is dead (starts alive)
 
 @onready var flashlight: PointLight2D = $Flashlight
 
-signal picked_up_item(item : Item, fail : bool)
+signal picked_up_item(item : Item, msg : String)
 
 # Inventory
 var inventory : Inventory
@@ -402,10 +402,12 @@ func on_item_picked_up(item:Item) -> void:
 	
 	if !inventory.add_item(item):
 		print("Inventory Full!")
-		picked_up_item.emit(item, true)
+		picked_up_item.emit(item, "Inventory Full!\n")
+		
 	else:
-		print("I got ", item.name)
-		picked_up_item.emit(item, false)
+		print("Picked up ", item.name)
+		picked_up_item.emit(item, "Picked up " + item.name + ".\n")
+		
 
 
 ####### HotBar/Item Use Handling #######

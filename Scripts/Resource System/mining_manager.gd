@@ -9,6 +9,7 @@ extends StaticBody2D
 @export var required_level = 1
 
 signal ore_destroyed(item : Item)
+signal upgrade_notif(item, fail, msg)
 
 func destroy(item : Item):
 	if item.level >= required_level:
@@ -22,7 +23,10 @@ func destroy(item : Item):
 		# Tell connected nodes that this ore was destroyed.
 		ore_destroyed.emit(item)
 	else:
-		print("Player not able to mine! Not at suitable level!")
+		var msg = "Player not able to mine! Not at suitable level!\n"
+		print(msg)
+		upgrade_notif.emit(item, msg)
+		
 
 
 func spawn_item():

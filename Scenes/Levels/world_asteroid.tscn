@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=74 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="19_nm2tu"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="20_dm1r8"]
 [ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="20_xsg51"]
+[ext_resource type="PackedScene" uid="uid://cee145qk5hmmo" path="res://Scenes/UI/notifications.tscn" id="21_kfndn"]
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="21_rqa7b"]
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="22_hmx0r"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="23_ljpey"]
@@ -556,67 +557,6 @@ sources/5 = SubResource("TileSetAtlasSource_2jyso")
 [sub_resource type="Theme" id="Theme_m1pj0"]
 default_font = ExtResource("4_w767y")
 
-[sub_resource type="Animation" id="Animation_x043f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_342be"]
-resource_name = "fade_out"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3.03333, 5, 5.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(5.03333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h6sd"]
-_data = {
-"RESET": SubResource("Animation_x043f"),
-"fade_out": SubResource("Animation_342be")
-}
-
 [sub_resource type="Animation" id="Animation_sy051"]
 length = 0.001
 tracks/0/type = "value"
@@ -930,21 +870,9 @@ text = "REEEEEEEE"
 [node name="Oxygen_Warning" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
 stream = ExtResource("14_8fmbm")
 volume_db = -10.0
+bus = &"UI"
 
-[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
-visible = false
-offset_top = 492.0
-offset_right = 283.0
-offset_bottom = 532.0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("4_w767y")
-text = "Hello World"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
-libraries = {
-"": SubResource("AnimationLibrary_6h6sd")
-}
+[node name="Notifications" parent="CanvasLayer" instance=ExtResource("21_kfndn")]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("15_ie1be")]
 visible = false

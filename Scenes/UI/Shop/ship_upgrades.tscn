@@ -298,5 +298,6 @@ text = "X"
 
 [node name="KeyboardClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_psti1")
+bus = &"UI"
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

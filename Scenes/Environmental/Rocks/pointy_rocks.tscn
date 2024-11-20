@@ -25,6 +25,7 @@ polygon = PackedVector2Array(19, 90, 136, -33, 127, 4, 157, -14, 151, 7, 180, -1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Area2D"]
 stream = ExtResource("3_0momd")
+bus = &"SFX"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
