@@ -14,6 +14,7 @@ var is_open : bool = false
 var options
 
 func _ready():
+	is_open = true
 	setup_display()
 
 
@@ -49,7 +50,8 @@ func _on_back_button_pressed() -> void:
 
 
 func back_to_pause_menu():
-	if (animation_player):
+	print(get_tree().current_scene.name)
+	if (get_tree().current_scene.name == "TitleScreen"):
 		print("In title screen")
 		animation_player.play_backwards('options_transition')
 		is_open = false
