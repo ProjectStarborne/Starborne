@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=72 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -8,10 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
 [ext_resource type="PackedScene" uid="uid://bdq80nl7vihf3" path="res://Scenes/Items/Minerals/nickel_node.tscn" id="3_hn3xq"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
-[ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="4_4c4p1"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="Texture2D" uid="uid://c5shmns5p5mnb" path="res://Assets/images/Landing_Pad.png" id="4_wyxad"]
-[ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_agmak"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="12_ierrj"]
 [ext_resource type="Texture2D" uid="uid://bsf2lnu3ftgh2" path="res://Assets/images/Lava_Paths.png" id="12_mle3n"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
@@ -788,7 +786,7 @@ _data = {
 [node name="Environment" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_it5gi")
-ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq"), ExtResource("4_4c4p1"), ExtResource("5_agmak")])
+ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq")])
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = -7708.0
