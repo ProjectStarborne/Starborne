@@ -3,6 +3,17 @@ extends Node
 
 const options_path = "user://options.data"
 
+var DEFAULT_OPTIONS = {
+	"window_width": 1280,
+	"window_height": 720,
+	"full_screen" : false,
+	"ui_volume" : 1.0,
+	"master_volume": 1.0,
+	"music_volume" : 1.0,
+	"sfx_volume": 1
+}
+
+
 var window_size_list = [
 	{"width": 1024, "height": 768},
 	{"width": 1280, "height": 720},
@@ -18,6 +29,9 @@ func read_options():
 	if file:
 		options = file.get_var()
 		file.close()
+	else:
+		write_options(DEFAULT_OPTIONS)
+		return DEFAULT_OPTIONS
 	
 	return options
 	

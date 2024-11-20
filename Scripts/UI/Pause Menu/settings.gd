@@ -16,6 +16,7 @@ var options
 func _ready():
 	is_open = true
 	setup_display()
+	print(options)
 
 
 func setup_display():
