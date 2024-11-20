@@ -1,7 +1,7 @@
 extends Control
 
-@onready var grid_container = $Control/VBoxContainer/ScrollContainer/GridContainer
-@onready var click_sound = $KeyboardClick  # The AudioStreamPlayer node for the sound effect
+@onready var grid_container = $ScrollContainer/GridContainer
+@onready var click_sound = $"../../KeyboardClick" # The AudioStreamPlayer node for the sound effect
 @onready var player = get_node("%Player")  # Access the global player node
 
 # Define the list of upgrades with their associated cost and purchase status
@@ -16,8 +16,12 @@ var upgrade_costs = {
 }
 
 
+@onready var tab_container = $TabContainer
+
 func _ready():
 	populate_upgrade_buttons()
+
+
 
 # Function to populate the UI with buy buttons and connect signals
 func populate_upgrade_buttons():

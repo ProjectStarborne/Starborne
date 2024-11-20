@@ -1,7 +1,7 @@
 extends Control
 class_name Navigation
-@onready var grid_container = $VBoxContainer/ScrollContainer/GridContainer
-@onready var click_sound = $KeyboardClick  # The AudioStreamPlayer node for the sound effect
+@onready var grid_container = $ScrollContainer/GridContainer
+@onready var click_sound = $"../../KeyboardClick"  # The AudioStreamPlayer node for the sound effect
 @onready var player = get_node("%Player")  # Adjust the path to your player node
 @onready var ship_interior_node = get_node_or_null("/root/Shipinterior")  # Adjust this path to your Shipinterior 2D node
 
@@ -144,7 +144,7 @@ func _on_close_button_pressed() -> void:
 
 # Display a message in the popup label
 func display_popup_message(message: String):
-	var popup_label = $BrokeAlert  # Adjust the path to the label
+	var popup_label = $"../../BrokeAlert"  # Adjust the path to the label
 	popup_label.text = message
 	popup_label.visible = true
 	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds

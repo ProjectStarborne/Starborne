@@ -1055,5 +1055,8 @@ position = Vector2(-211, -767)
 position = Vector2(-1694, 219)
 destination_level = "shipinterior"
 
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-1583, 224)
+
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]

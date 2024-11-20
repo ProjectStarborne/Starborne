@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqb0pah3befw8"]
+[gd_scene load_steps=6 format=3 uid="uid://dqb0pah3befw8"]
 
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="1_1g7un"]
 [ext_resource type="Script" path="res://Scripts/UI/Navigation/navigation.gd" id="1_i81kw"]
 [ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="3_f6qfo"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/ship_upgrades.gd" id="3_kqf6p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7ni5"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
@@ -19,7 +20,6 @@ offset_right = -0.200073
 offset_bottom = -0.200012
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_i81kw")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -30,17 +30,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p7ni5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(1036, 655)
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 600.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_selected_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+current_tab = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Navigation" type="VBoxContainer" parent="TabContainer"]
+visible = false
+custom_minimum_size = Vector2(1036, 655)
+layout_mode = 2
+script = ExtResource("1_i81kw")
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="TabContainer/Navigation"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
@@ -52,38 +60,38 @@ Navigation System
 "
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Navigation"]
 custom_minimum_size = Vector2(1036, 515)
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Navigation/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/h_separation = 128
 theme_override_constants/v_separation = 48
 
-[node name="Level1" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level1" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 210
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level1"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level1/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level1/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 1"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level1/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level1/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Warp Engine V.1 Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level1"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level1"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -92,28 +100,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level2" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 60
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level2"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level2/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level2/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 2"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level2/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level2/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Fuel Efficiency Module V.1 Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level2"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level2"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -122,28 +130,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level3" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level3" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level3"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level3/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level3/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 3"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level3/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level3/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Stellar Cartography Module Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level3"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level3"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -152,28 +160,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level4" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level4" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 95
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level4"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level4/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level4/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 4"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level4/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level4/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Reinforced Hull Plating Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level4"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level4"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -182,28 +190,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level5" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level5" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 210
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level5"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level5/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level5/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 5"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level5/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level5/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Warp Engine V.2 Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level5"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level5"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -213,28 +221,28 @@ theme_override_font_sizes/font_size = 26
 text = "Launch
 "
 
-[node name="Level6" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level6" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 160
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level6"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level6"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level6/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level6/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 6"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level6/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level6/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Deep Space Scanner Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level6"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level6"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -243,28 +251,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level7" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level7" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 120
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level7"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level7"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level7/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level7/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 7"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level7/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level7/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Dark Matter Fuel Cells Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level7"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level7"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -273,28 +281,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level8" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level8" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 290
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level8"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level8"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level8/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level8/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 8"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level8/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level8/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Upgrade X Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level8"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level8"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -303,28 +311,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level9" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level9" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 290
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level9"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level9"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level9/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level9/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 9"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level9/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level9/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Upgrade X Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level9"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level9"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -333,28 +341,28 @@ theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
 
-[node name="Level10" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+[node name="Level10" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
 layout_mode = 2
 theme_override_constants/separation = 290
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Level10"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level10"]
 layout_mode = 2
 
-[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level10/VBoxContainer"]
+[node name="Level" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level10/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Level 10"
 
-[node name="Upgrade" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Level10/VBoxContainer"]
+[node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level10/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Upgrade X Required"
 
-[node name="Travel" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Level10"]
+[node name="Travel" type="Button" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level10"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -362,6 +370,235 @@ theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
 text = "Launch"
+
+[node name="Upgrades" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+script = ExtResource("3_kqf6p")
+metadata/_tab_index = 1
+
+[node name="Upgrade Label" type="Label" parent="TabContainer/Upgrades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
+text = "
+Ship Upgrades
+
+"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Upgrades"]
+custom_minimum_size = Vector2(900, 450)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Upgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 128
+theme_override_constants/v_separation = 64
+
+[node name="Upgrade 1" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Warp Engine V.1"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "30 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
+
+[node name="Upgrade 2" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 65
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Fuel Efficiency Module V.1"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "50 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
+
+[node name="Upgrade 3" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 57
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Stellar Cartography Module"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "100 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
+
+[node name="Upgrade 4" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 90
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Reinforced Hull Plating"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "200 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
+
+[node name="Upgrade 5" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 175
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Warp Engine V.2"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "230 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
+
+[node name="Upgrade 6" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Deep Space Scanners"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "300 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
+
+[node name="Upgrade 7" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 115
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7"]
+layout_mode = 2
+
+[node name="Upgrade" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "Dark Matter Fuel Cells"
+
+[node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
+text = "400 Credits"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_1g7un")
+text = "Buy"
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1
