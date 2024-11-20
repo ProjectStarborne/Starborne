@@ -1,6 +1,7 @@
 extends Control
 
-@onready var grid_container = $ScrollContainer/GridContainer
+@onready var grid_container: GridContainer = $ScrollContainer/GridContainer
+#@onready var grid_container: GridContainer = $ScrollContainer/GridContainerUpgrade
 @onready var click_sound = $"../../KeyboardClick" # The AudioStreamPlayer node for the sound effect
 @onready var player = get_node("%Player")  # Access the global player node
 
@@ -16,15 +17,15 @@ var upgrade_costs = {
 }
 
 
-@onready var tab_container = $TabContainer
-
 func _ready():
 	populate_upgrade_buttons()
 
 
-
 # Function to populate the UI with buy buttons and connect signals
 func populate_upgrade_buttons():
+	if grid_container == null:
+		print("DAMN")
+		return
 	for i in range(grid_container.get_child_count()):
 		var upgrade_box = grid_container.get_child(i) as HBoxContainer
 		var vbox_container = upgrade_box.get_node("VBoxContainer") as VBoxContainer
@@ -82,7 +83,9 @@ func _on_close_button_pressed() -> void:
 
 # Display a message in the popup label
 func display_popup_message(message: String):
-	var popup_label = $Control/BrokeAlert  # Adjust the path to the label
+	var popup_label = $"../../BrokeAlert"
+
+	#var popup_label = $Control/BrokeAlert  # Adjust the path to the label
 	popup_label.text = message
 	popup_label.visible = true
 	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds

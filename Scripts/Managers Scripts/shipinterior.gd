@@ -30,18 +30,3 @@ func _process(_delta: float) -> void:
 		else:
 			inventory.open(player.inventory)
 	
-	# Handle Pause UI
-	if Input.is_action_just_pressed("pause") and !paused:
-		pause_menu.pause()
-		paused = !paused
-	elif Input.is_action_just_pressed("pause") and paused:
-		pause_menu.resume()
-		paused = !paused
-		
-	# Handle Ship Upgrades UI
-	if Input.is_action_just_pressed("ship_upgrades"):  # Assuming 'ship_upgrades' is mapped to 'U'
-		if ship_upgrades_ui.visible:
-			ship_upgrades_ui.hide()  # Close the ship upgrades if it's already open
-		else:
-			inventory.close()  # Optionally close the inventory if it's open
-			ship_upgrades_ui.show()  # Show the ship upgrades UI

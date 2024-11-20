@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="1_1g7un"]
 [ext_resource type="Script" path="res://Scripts/UI/Navigation/navigation.gd" id="1_i81kw"]
 [ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="3_f6qfo"]
-[ext_resource type="Script" path="res://Scripts/UI/Shop/ship_upgrades.gd" id="3_kqf6p"]
+[ext_resource type="Script" path="res://Assets/ship_upgrades.gd" id="3_kqf6p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7ni5"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
@@ -39,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_selected_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 20
 current_tab = 1
 
 [node name="Navigation" type="VBoxContainer" parent="TabContainer"]
@@ -380,7 +381,7 @@ metadata/_tab_index = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 32
 text = "
 Ship Upgrades
 
@@ -399,7 +400,7 @@ theme_override_constants/v_separation = 64
 
 [node name="Upgrade 1" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 180
+theme_override_constants/separation = 220
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1"]
 layout_mode = 2
@@ -408,14 +409,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Warp Engine V.1"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "30 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 1"]
@@ -424,11 +425,12 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="Upgrade 2" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 65
+theme_override_constants/separation = 70
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2"]
 layout_mode = 2
@@ -437,14 +439,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Fuel Efficiency Module V.1"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "50 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 2"]
@@ -453,11 +455,12 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="Upgrade 3" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 57
+theme_override_constants/separation = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3"]
 layout_mode = 2
@@ -466,14 +469,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Stellar Cartography Module"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "100 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 3"]
@@ -482,11 +485,12 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="Upgrade 4" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 90
+theme_override_constants/separation = 103
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4"]
 layout_mode = 2
@@ -495,14 +499,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Reinforced Hull Plating"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "200 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 4"]
@@ -511,11 +515,12 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="Upgrade 5" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 175
+theme_override_constants/separation = 217
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5"]
 layout_mode = 2
@@ -524,14 +529,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Warp Engine V.2"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "230 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 5"]
@@ -540,11 +545,12 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="Upgrade 6" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 125
+theme_override_constants/separation = 153
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6"]
 layout_mode = 2
@@ -553,14 +559,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Deep Space Scanners"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "300 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 6"]
@@ -569,11 +575,12 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="Upgrade 7" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
 layout_mode = 2
-theme_override_constants/separation = 115
+theme_override_constants/separation = 124
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7"]
 layout_mode = 2
@@ -582,14 +589,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "Dark Matter Fuel Cells"
 
 [node name="Cost" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 26
 text = "400 Credits"
 
 [node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Upgrade 7"]
@@ -598,6 +605,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
+theme_override_font_sizes/font_size = 26
 text = "Buy"
 
 [node name="CloseButton" type="Button" parent="."]
