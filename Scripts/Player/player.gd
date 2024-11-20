@@ -493,11 +493,9 @@ func load_credits_from_globals() -> void:
 
 ####### LEVEL TRACKING (For later on in the shop) #######
 
-var current_level = 1  # Starting level
-
 # Method to get the current level
 func get_level() -> int:
-	return current_level
+	return Globals.current_level
 	
 ####### Save Information #######
 
@@ -514,7 +512,7 @@ func save() -> Dictionary:
 		"max_oxygen": max_oxygen,
 		"is_dead" : is_dead,
 		"inventory" : inventory.to_dict(),
-		"current_level" : current_level
+		"current_level" : Globals.current_level
 	}
 	
 	return save_dict
