@@ -4,6 +4,7 @@ class_name Navigation
 @onready var click_sound = $"../../KeyboardClick"  # The AudioStreamPlayer node for the sound effect
 @onready var player = get_node("%Player")  # Adjust the path to your player node
 @onready var ship_interior_node = get_node_or_null("/root/Shipinterior")  # Adjust this path to your Shipinterior 2D node
+@onready var navigation_manager = get_parent().get_parent() 
 
 # Variables for screen shake
 var shake_timer = 0.0
@@ -96,6 +97,10 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 	# Update the current level in Globals to the new level
 	Globals.current_level = int(level)
 	display_popup_message("Traveling to level " + level + "...")
+	
+		# Close the entire navigation menu
+	if navigation_manager != null:
+		navigation_manager.hide()
 
 # Screen shake logic for ship interior scene
 func start_screen_shake(duration: float, intensity: float) -> void:
@@ -123,10 +128,8 @@ func _process(delta: float) -> void:
 func determine_level_tag(level: String) -> String:
 	match level:
 		"1":
-			return "world_space"
-		"2":
 			return "world_asteroid"
-		"3":
+		"2":
 			return "asteroid_two"
 		_:
 			return ""

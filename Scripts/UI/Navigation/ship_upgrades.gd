@@ -54,17 +54,46 @@ func _on_buy_button_pressed(upgrade_button: Button) -> void:
 	var upgrade_name = upgrade_button.get_meta("upgrade_name")
 	var upgrade_cost = upgrade_costs.get(upgrade_name, 0)
 
-	# Use the global upgrades_purchased dictionary from Globals.gd
+	# Check prerequisites for each upgrade
+	match upgrade_name:
+		"Fuel Efficiency Module V.1":
+			if !Globals.upgrades_purchased["Warp Engine V.1"]:
+				display_popup_message("You need to purchase Warp Engine V.1 first!")
+				return
+		"Stellar Cartography Module":
+			if !Globals.upgrades_purchased["Warp Engine V.1"] or !Globals.upgrades_purchased["Fuel Efficiency Module V.1"]:
+				display_popup_message("You need Warp Engine V.1 and Fuel Efficiency Module V.1 to purchase this!")
+				return
+		"Reinforced Hull Plating":
+			if !Globals.upgrades_purchased["Warp Engine V.1"] or !Globals.upgrades_purchased["Fuel Efficiency Module V.1"] or !Globals.upgrades_purchased["Stellar Cartography Module"]:
+				display_popup_message("You need all previous upgrades to purchase this!")
+				return
+		"Warp Engine V.2":
+			if !Globals.upgrades_purchased["Reinforced Hull Plating"]:
+				display_popup_message("You need Reinforced Hull Plating to purchase Warp Engine V.2!")
+				return
+		"Deep Space Scanners":
+			if !Globals.upgrades_purchased["Warp Engine V.2"]:
+				display_popup_message("You need Warp Engine V.2 to purchase Deep Space Scanners!")
+				return
+		"Dark Matter Fuel Cells":
+			if !Globals.upgrades_purchased["Deep Space Scanners"]:
+				display_popup_message("You need Deep Space Scanners to purchase Dark Matter Fuel Cells!")
+				return
+
+	# Check if the upgrade has already been purchased
 	if Globals.upgrades_purchased[upgrade_name]:
 		display_popup_message(upgrade_name + " already purchased.")
 		return
 
+	# Check if the player has enough credits
 	if Globals.get_credits() >= upgrade_cost:
 		Globals.remove_credits(upgrade_cost)
 		Globals.upgrades_purchased[upgrade_name] = true  # Update the global dictionary
 		display_popup_message(upgrade_name + " purchased successfully.")
 	else:
 		display_popup_message("Not enough credits to purchase " + upgrade_name)
+
 
 
 
