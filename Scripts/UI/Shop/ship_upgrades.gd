@@ -54,8 +54,8 @@ func _on_buy_button_pressed(upgrade_button: Button) -> void:
 		display_popup_message(upgrade_name + " already purchased.")
 		return
 
-	if player.get_credits() >= upgrade_cost:
-		player.remove_credits(upgrade_cost)
+	if Globals.get_credits() >= upgrade_cost:
+		Globals.remove_credits(upgrade_cost)
 		Globals.upgrades_purchased[upgrade_name] = true  # Update the global dictionary
 		display_popup_message(upgrade_name + " purchased successfully.")
 	else:

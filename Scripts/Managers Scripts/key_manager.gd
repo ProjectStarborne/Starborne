@@ -8,7 +8,8 @@ const DEFAULT_KEY_MAP = {
 	"right": [KEY_D, KEY_RIGHT],
 	"inventory": [KEY_TAB],
 	"action": [MOUSE_BUTTON_LEFT, KEY_SPACE],
-	"pause_game": [KEY_ESCAPE]
+	"pause_game": [KEY_ESCAPE],
+	"flashlight_toggle": [KEY_F]
 }
 const keymaps_path = "user://keymaps.dat"
 

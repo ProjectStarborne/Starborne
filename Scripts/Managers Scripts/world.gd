@@ -8,8 +8,9 @@ extends Node2D
 @onready var inventory = $CanvasLayer/InventoryUI
 # Pause Menu variable
 @onready var pause_menu = $CanvasLayer/PauseMenu
-# Label for pickups
-@onready var item_picked_up = $CanvasLayer/ItemPickupNotification
+# Label for notifications
+@onready var notifications: ScrollContainer = $CanvasLayer/Notifications
+
 # Add reference to ship upgrades UI
 @onready var ship_upgrades_ui = $CanvasLayer/ShipUpgrades
 
@@ -31,7 +32,9 @@ func _ready() -> void:
 		var instance = ore_nodes[random_number].instantiate()
 		add_child(instance)
 		instance.global_position = marker.global_position
-	
+		instance.connect("upgrade_notif", notif)
+		
+	player.connect("picked_up_item", notif)
 
 func _process(_delta: float) -> void:
 	# Handle Inventory UI
@@ -65,11 +68,6 @@ func close_ship_upgrades():
 		ship_upgrades_ui.hide()
 
 # Displays what is picked up to the screen
-func _on_player_picked_up_item(item: Item, fail: bool) -> void:
+func notif(item: Item, msg : String) -> void:
 	print("Sent to world.gd")
-	
-	if not fail:
-		item_picked_up.visible = true
-		item_picked_up.text += "Picked up " + item.name + "\n"
-		var animation = item_picked_up.get_node("AnimationPlayer")
-		animation.play("fade_out")
+	notifications.enter_message(msg)

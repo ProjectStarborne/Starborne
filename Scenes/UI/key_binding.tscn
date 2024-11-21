@@ -17,28 +17,28 @@ script = ExtResource("1_xrv6b")
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.2
-anchor_right = 0.7
+anchor_left = 0.25
+anchor_top = 0.15
+anchor_right = 0.75
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.121569, 0.121569, 0.121569, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -207.0
-offset_top = -398.0
-offset_right = 207.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
-[node name="ControlsContainer" type="GridContainer" parent="ColorRect/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ControlsContainer" type="GridContainer" parent="ColorRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -46,198 +46,219 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="EmptyLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="EmptyLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 
-[node name="PrimaryKeyLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="PrimaryKeyLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Primary Key"
 
-[node name="SecondaryKeyLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="SecondaryKeyLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Secondary Key"
 
-[node name="UpLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="UpLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Up"
 
-[node name="UpPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="UpPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "up"
 primary = true
 
-[node name="UpSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="UpSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "up"
 
-[node name="DownLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="DownLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Down"
 
-[node name="DownPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="DownPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "down"
 primary = true
 
-[node name="DownSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="DownSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "down"
 
-[node name="LeftLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="LeftLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Left"
 
-[node name="LeftPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="LeftPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "left"
 primary = true
 
-[node name="LeftSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="LeftSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "left"
 
-[node name="RightLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="RightLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Right"
 
-[node name="RightPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="RightPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "right"
 primary = true
 
-[node name="RightSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="RightSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "right"
 
-[node name="InteractLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="InteractLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Interact"
 
-[node name="InteractPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="InteractPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "interact"
 primary = true
 
-[node name="InteractSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="InteractSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "interact"
 
-[node name="ActionLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="ActionLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Action"
 
-[node name="ActionPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="ActionPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "action"
 primary = true
 
-[node name="ActionSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="ActionSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "action"
 
-[node name="InventoryLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="InventoryLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Inventory"
 
-[node name="InventoryPrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="InventoryPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "inventory"
 primary = true
 
-[node name="InventorySecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="InventorySecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "inventory"
 
-[node name="PauseLabel" type="Label" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="PauseLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 20
 text = "Pause"
 
-[node name="PausePrimaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="PausePrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "pause"
 primary = true
 
-[node name="PauseSecondaryButton" type="Button" parent="ColorRect/VBoxContainer/ControlsContainer"]
+[node name="PauseSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "pause"
 
-[node name="BackContainer" type="MarginContainer" parent="ColorRect/VBoxContainer"]
+[node name="FlashlightLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wcmxc")
+theme_override_font_sizes/font_size = 20
+text = "Flashlight (Toggle)"
+
+[node name="FlashPrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("3_n1lls")
+action = "toggle_flashlight"
+primary = true
+
+[node name="FlashSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
+layout_mode = 2
+toggle_mode = true
+script = ExtResource("3_n1lls")
+action = "toggle_flashlight"
+
+[node name="BackContainer" type="MarginContainer" parent="ColorRect/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="BackButton" type="Button" parent="ColorRect/VBoxContainer/BackContainer"]
+[node name="BackButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/BackContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
 theme_override_font_sizes/font_size = 30
 text = "Back"
 
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/UpPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/UpPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/UpSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/UpSecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/DownPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/DownPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/DownSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/DownSecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/LeftPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/LeftPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/LeftSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/LeftSecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/RightPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/RightPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/RightSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/RightSecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/InteractPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/InteractPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/InteractSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/InteractSecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/ActionPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/ActionPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/ActionSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/ActionSecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/InventoryPrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/InventoryPrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/InventorySecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/InventorySecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/PausePrimaryButton" to="ColorRect/VBoxContainer/ControlsContainer/PausePrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/VBoxContainer/ControlsContainer/PauseSecondaryButton" to="ColorRect/VBoxContainer/ControlsContainer/PauseSecondaryButton" method="_on_toggled"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/BackContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/UpPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/UpPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/UpSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/UpSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/DownPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/DownPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/DownSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/DownSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/LeftPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/LeftPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/LeftSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/LeftSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/RightPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/RightPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/RightSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/RightSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InteractPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InteractPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InteractSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InteractSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/ActionPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/ActionPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/ActionSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/ActionSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventoryPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventoryPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventorySecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventorySecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PausePrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PausePrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PauseSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PauseSecondaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashPrimaryButton" method="_on_toggled"]
+[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashSecondaryButton" method="_on_toggled"]
+[connection signal="pressed" from="ColorRect/ScrollContainer/VBoxContainer/BackContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -7,11 +7,19 @@ extends Control
 @onready var sfx_volume_slider: HSlider = $VBoxContainer/OptionsContainer/SFXVolumeSlider
 @onready var ui_volume_slider: HSlider = $VBoxContainer/OptionsContainer/UIVolumeSlider
 
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+var is_open : bool = false
 
 
 var options
 
 func _ready():
+	is_open = true
+	setup_display()
+	print(options)
+
+
+func setup_display():
 	options = OptionsManager.read_options()
 	if options.has("full_screen"):
 		fullscreen_button.set_pressed_no_signal(options.full_screen)
@@ -29,10 +37,12 @@ func _ready():
 	music_volume_slider.value = options.music_volume if options.has("music_volume") else 1.0
 	sfx_volume_slider.value = options.sfx_volume if options.has("sfx_volume") else 1.0
 	ui_volume_slider.value = options.ui_volume if options.has("ui_volume") else 1.0
-
+	
+	OptionsManager.resize_window()
+	OptionsManager.set_window_mode()
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") && is_open:
 		back_to_pause_menu()
 
 
@@ -41,7 +51,14 @@ func _on_back_button_pressed() -> void:
 
 
 func back_to_pause_menu():
-	queue_free()
+	print(get_tree().current_scene.name)
+	if (get_tree().current_scene.name == "TitleScreen"):
+		print("In title screen")
+		animation_player.play_backwards('options_transition')
+		is_open = false
+	else:
+		print("Not in title screen")
+		queue_free()
 
 
 func _on_window_size_option_button_item_selected(index: int) -> void:

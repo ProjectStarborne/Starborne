@@ -27,7 +27,7 @@ func open(inventory:Inventory):
 			
 		slot_num += 1
 	
-	credits_label.text = "Credits: " + str(player.credits)
+	credits_label.text = "Credits: " + str(Globals.get_credits())
 	show()
 
 func close():

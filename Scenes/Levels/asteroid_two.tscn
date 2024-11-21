@@ -949,6 +949,7 @@ text = "REEEEEEEE"
 [node name="Oxygen_Warning" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
 stream = ExtResource("3_3ffbt")
 volume_db = -10.0
+bus = &"UI"
 
 [node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
 visible = false
@@ -1039,13 +1040,13 @@ position = Vector2(-1382, 172)
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("29_scf7e")
 
-[node name="Marker2D" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+[node name="OreSpot" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-694, -287)
 
-[node name="Marker2D2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+[node name="OreSpot2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-1399, -185)
 
-[node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+[node name="OreSpot3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-211, -767)
 
 [node name="Doors" type="Node" parent="."]

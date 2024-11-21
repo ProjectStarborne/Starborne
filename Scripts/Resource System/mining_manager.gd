@@ -8,6 +8,9 @@ extends StaticBody2D
 @export var animation_weight = 1.0
 @export var required_level = 1
 
+signal ore_destroyed(item : Item)
+signal upgrade_notif(item, fail, msg)
+
 func destroy(item : Item):
 	if item.level >= required_level:
 		var speed = animation_weight * item.weight
@@ -16,8 +19,14 @@ func destroy(item : Item):
 		var instance = drop.instantiate()
 		spawn_item()
 		queue_free() # Remove node from scene
+		
+		# Tell connected nodes that this ore was destroyed.
+		ore_destroyed.emit(item)
 	else:
-		print("Player not able to mine! Not at suitable level!")
+		var msg = "Player not able to mine! Not at suitable level!\n"
+		print(msg)
+		upgrade_notif.emit(item, msg)
+		
 
 
 func spawn_item():

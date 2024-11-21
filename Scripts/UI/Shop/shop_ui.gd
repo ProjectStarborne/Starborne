@@ -218,13 +218,13 @@ func _on_sell_button_pressed_with_item(item: Item) -> void:
 
 # Check if the player can afford the selected item
 func player_can_afford(item: Item) -> bool:
-	return player.credits >= item.price
+	return Globals.get_credits() >= item.price
 
 
 # Execute the purchase
 func execute_purchase(item: Item):
 	# Deduct the price from the player's credits
-	player.remove_credits(item.price)
+	Globals.remove_credits(item.price)
 
 	# Add the item to the player's inventory directly
 	player.inventory.add_item(item)
@@ -241,7 +241,7 @@ func execute_purchase(item: Item):
 	update_shop_ui()
 	update_inventory_ui()
 	
-	print("Credits: ", player.get_credits())
+	print("Credits: ", Globals.get_credits())
 
 
 
@@ -251,9 +251,9 @@ func execute_sale(item: Item):
 	print("Executing sale for item: ", item.name)
 	
 	# Add the price to the player's credits (gain credits)
-	player.add_credits(item.price)
+	Globals.add_credits(item.price)
 	
-	print("Credits after sale: ", player.get_credits())
+	print("Credits after sale: ", Globals.get_credits())
 	
 	# Find the first item in the player's inventory with the same name
 	var index = find_item_index_in_inventory(item.name)
@@ -282,7 +282,7 @@ func execute_sale(item: Item):
 		else:
 			print("Slot ", i, ": Empty")
 	
-	print("Credits: ", player.get_credits())
+	print("Credits: ", Globals.get_credits())
 
 
 

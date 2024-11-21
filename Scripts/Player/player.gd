@@ -64,7 +64,7 @@ var is_dead = false  # Boolean to track if the player is dead (starts alive)
 
 @onready var flashlight: PointLight2D = $Flashlight
 
-signal picked_up_item(item : Item, fail : bool)
+signal picked_up_item(item : Item, msg : String)
 
 # Inventory
 var inventory : Inventory
@@ -402,10 +402,12 @@ func on_item_picked_up(item:Item) -> void:
 	
 	if !inventory.add_item(item):
 		print("Inventory Full!")
-		picked_up_item.emit(item, true)
+		picked_up_item.emit(item, "Inventory Full!\n")
+		
 	else:
-		print("I got ", item.name)
-		picked_up_item.emit(item, false)
+		print("Picked up ", item.name)
+		picked_up_item.emit(item, "Picked up " + item.name + ".\n")
+		
 
 
 ####### HotBar/Item Use Handling #######
@@ -462,40 +464,11 @@ func footstep_handler() -> void:
 		audio_timer.start(0.3)
 
 
-####### CURRENCY SYSTEM #######
-# Exported credits variable to track the player's credits
-@export var credits: int = 100
-
-# Function to update player's credits (optional)
-func add_credits(amount: int) -> void:
-	credits += amount
-	print("Credits added: ", amount, " Total credits: ", credits)
-
-func remove_credits(amount: int) -> void:
-	credits = max(0, credits - amount)  # Prevent going below 0
-	print("Credits removed: ", amount, " Remaining credits: ", credits)
-
-func get_credits() -> int:
-	return credits
-
-# Store credits into Globals before changing levels
-func save_credits_to_globals() -> void:
-	Globals.credits = credits
-	print("Credits saved to Globals: ", credits)
-
-# Retrieve credits from Globals when the level loads
-func load_credits_from_globals() -> void:
-	if Globals.credits != null:
-		credits = Globals.credits
-		print("Credits loaded from Globals: ", credits)
-
 ####### LEVEL TRACKING (For later on in the shop) #######
-
-var current_level = 1  # Starting level
 
 # Method to get the current level
 func get_level() -> int:
-	return current_level
+	return Globals.current_level
 	
 ####### Save Information #######
 
@@ -512,7 +485,7 @@ func save() -> Dictionary:
 		"max_oxygen": max_oxygen,
 		"is_dead" : is_dead,
 		"inventory" : inventory.to_dict(),
-		"current_level" : current_level
+		"current_level" : Globals.current_level
 	}
 	
 	return save_dict

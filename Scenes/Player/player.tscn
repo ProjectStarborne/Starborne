@@ -596,6 +596,7 @@ position = Vector2(0, -47.7536)
 stream = ExtResource("9_ymawl")
 volume_db = -5.0
 pitch_scale = 0.5
+bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="Footsteps"]
 wait_time = 0.2
@@ -604,6 +605,7 @@ one_shot = true
 [node name="Death_Sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -47.7536)
 stream = ExtResource("6_tv2j8")
+bus = &"SFX"
 
 [connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
 [connection signal="anchor_detected" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detected"]
