@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/Resource System/usable_item.gd" id="1_01wqb"]
 [ext_resource type="Texture2D" uid="uid://clfgtf5atvj4w" path="res://Assets/Tools/Transparent/health_transparent.png" id="1_72ne6"]
-[ext_resource type="PackedScene" path="res://Scenes/Items/Consumables/medkit.tscn" id="2_dk8fi"]
+[ext_resource type="PackedScene" uid="uid://by5avpjtkeki" path="res://Scenes/Items/Consumables/medkit.tscn" id="2_dk8fi"]
 
 [resource]
 script = ExtResource("1_01wqb")
 effect = 0.0
+upgrade_price = 50
 name = "Medkit"
 scene = ExtResource("2_dk8fi")
 type = ""

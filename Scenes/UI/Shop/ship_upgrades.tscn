@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://buifb6ja46nvx"]
 
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="1_bwjlx"]
-[ext_resource type="Script" path="res://Assets/ship_upgrades.gd" id="1_ro3iv"]
+[ext_resource type="Script" path="res://Scripts/UI/Navigation/ship_upgrades.gd" id="1_ro3iv"]
 [ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="3_psti1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceb2j"]

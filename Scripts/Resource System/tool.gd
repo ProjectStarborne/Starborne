@@ -2,6 +2,7 @@ class_name Tool extends Item
 
 @export var charge: float
 @export var level : int
+@export var upgrade_price: int
 
 # Add tool-specific properties to the save dictionary
 func to_dict() -> Dictionary:
@@ -17,7 +18,8 @@ func to_dict() -> Dictionary:
 		"consumable": consumable,
 		"type": "Tool",  # Add the subclass identifier here
 		"charge": charge,
-		"level": level
+		"level": level,
+		"upgrade_price": upgrade_price
 	}
 	return dict
 
@@ -37,5 +39,6 @@ static func from_dict(data: Dictionary) -> Tool:
 	tool.consumable = data["consumable"]
 	tool.charge = data["charge"]
 	tool.level = data["level"]
+	tool.upgrade_price = data.get("upgrade_price", 0)
 	
 	return tool

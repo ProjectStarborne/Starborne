@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqb0pah3befw8"]
+[gd_scene load_steps=7 format=3 uid="uid://dqb0pah3befw8"]
 
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="1_1g7un"]
+[ext_resource type="Script" path="res://Scripts/UI/Navigation/navigation_manager.gd" id="1_1w63i"]
 [ext_resource type="Script" path="res://Scripts/UI/Navigation/navigation.gd" id="1_i81kw"]
 [ext_resource type="AudioStream" uid="uid://df1ybkgv8baaw" path="res://Assets/sounds/keyboard.wav" id="3_f6qfo"]
-[ext_resource type="Script" path="res://Assets/ship_upgrades.gd" id="3_kqf6p"]
+[ext_resource type="Script" path="res://Scripts/UI/Navigation/ship_upgrades.gd" id="3_kqf6p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7ni5"]
 bg_color = Color(0.101961, 0.101961, 0.101961, 1)
@@ -20,6 +21,7 @@ offset_right = -0.200073
 offset_bottom = -0.200012
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1w63i")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

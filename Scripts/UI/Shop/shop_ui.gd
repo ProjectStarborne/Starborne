@@ -2,7 +2,7 @@
 extends Control
 
 # Access the GridContainer where items will be displayed
-@onready var grid_container = $ShopControl/VBoxContainer/ScrollContainer/GridContainer
+@onready var grid_container = $ScrollContainer/GridContainer
 # store the player node
 var player 
 # Shop inventory, this is separate from the player's inventory
@@ -32,13 +32,6 @@ func _ready():
 		print("Player found: ", player)
 
 
-	# Initialize player with some test inventory items for the shop trade
-	#var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
-	#var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
-	#var iron_item_2 = iron_item_1.duplicate()  # Create a duplicate of the first iron item
-	#player.inventory.add_item(iron_item_1)
-	#player.inventory.add_item(iron_item_2)
-	#player.inventory.add_item(nickel_item)
 
 	# Get the current level (we will need to adjust this to wherever we store the level info)
 	var current_level = player.get_level()  # Call get_level() in player.gd
@@ -230,13 +223,6 @@ func execute_purchase(item: Item):
 	player.inventory.add_item(item)
 	print("Added ", item.name, " to player's inventory")
 
-	# Find the item's index in the shop inventory
-	var index = shop_inventory.get_items().find(item)
-
-	if index != -1:
-		# Remove the item from the shop inventory by index
-		shop_inventory.remove_item(index)
-
 	# Refresh the shop UI and player's inventory UI
 	update_shop_ui()
 	update_inventory_ui()
@@ -298,7 +284,7 @@ func find_item_index_in_inventory(item_name: String) -> int:
 
 # Display a message in the popup label
 func display_popup_message(message: String):
-	var popup_label = $ShopControl/BrokeAlert  # Adjust the path to the label
+	var popup_label = $"../../BrokeAlert"  # Adjust the path to the label
 	popup_label.text = message
 	popup_label.visible = true
 	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds
@@ -317,9 +303,10 @@ func update_shop_ui():
 	populate_shop(shop_inventory.get_items())
 
 
+
 # Function to close the shop when the close button is pressed
-func _on_close_button_pressed():
-	hide()
+#func _on_close_button_pressed():
+#	hide()
 
 # Mouse enter/exit handlers for buy button
 func _on_buy_button_mouse_entered(buy_button: Button) -> void:
@@ -354,3 +341,7 @@ func _on_sell_button_mouse_exited(sell_button: Button) -> void:
 	var animation_player = sell_button.get_meta("animation_player") as AnimationPlayer
 	if animation_player:
 		animation_player.play("shrink_on_exit")
+
+
+func _on_close_button_pressed() -> void:
+	hide() 
