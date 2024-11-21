@@ -42,7 +42,6 @@ func get_shop_items_for_level() -> Array[Item]:
 	var items_for_level: Array[Item] = []
 	items_for_level.append(load("res://Data/Items/Tools/drill.tres") as Item)
 	items_for_level.append(load("res://Data/Items/Tools/flashlight.tres") as Item)
-	items_for_level.append(load("res://Data/Items/Consumables/duct_tape.tres") as Item)
 	items_for_level.append(load("res://Data/Items/Consumables/medkit.tres") as Item)
 	items_for_level.append(load("res://Data/Items/Consumables/oxygen_tank.tres") as Item)
 
