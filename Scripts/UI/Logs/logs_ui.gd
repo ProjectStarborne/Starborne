@@ -7,6 +7,9 @@ var current_visible_entry: ScrollContainer
 func _ready() -> void:
 	connect_buttons()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_story"):
+		self.visible = !self.visible
 
 func connect_buttons() -> void:
 	# Connect each of the slots "pressed" signal to our function
