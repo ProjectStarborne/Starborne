@@ -150,8 +150,21 @@ func player_can_afford(item: Item) -> bool:
 func execute_upgrade(item: Item):
 	# Deduct the price from the player's credits
 	Globals.remove_credits(item.price)
-
+	
 	# BRANDONS CODE GOES HERE
+	if item.name == "Drill":
+		var level = player.inventory.update_drill_level()
+		
+		if level == -1:
+			print("Could not find Drill!")
+		else:
+			print("Drill upgraded to level " + str(level))
+	elif item is Usable:
+		match item.name:
+			"Oxygen Tank":
+				Globals.oxygen_modifier += 2.5
+			"Medkit":
+				Globals.medkit_modifier += 2.5 
 
 	update_shop_ui() #useless code here, probably. 
 	update_inventory_ui()

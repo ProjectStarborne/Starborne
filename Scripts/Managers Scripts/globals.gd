@@ -26,6 +26,11 @@ var next_level
 #shaking variable to prevent player from leaving ship while its moving
 var is_shaking = false
 
+##### Upgrade Effects #####
+var drill_level = 1
+var oxygen_modifier = 0
+var medkit_modifier = 0
+
 
 ##### CURRENCY SYSTEM #####
 # Global credits variable to persist across levels

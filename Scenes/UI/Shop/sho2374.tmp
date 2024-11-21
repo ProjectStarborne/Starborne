@@ -1,0 +1,1250 @@
+[gd_scene load_steps=28 format=3 uid="uid://bjm27ftv60peu"]
+
+[ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="1_8ov1t"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/shop_manager.gd" id="1_bm1qs"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/shop_ui.gd" id="1_vkafb"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/item_upgrades.gd" id="3_8qqdd"]
+
+[sub_resource type="Theme" id="Theme_spn2d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1aki"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.184314, 0.309804, 0.309804, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_m4b1u"]
+
+[sub_resource type="Animation" id="Animation_f0j6q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_s2ic8"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_b5tdl"]
+resource_name = "shrink_on_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 48), Vector2(100, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ukcpj"]
+_data = {
+"RESET": SubResource("Animation_f0j6q"),
+"enlarge_on_hover": SubResource("Animation_s2ic8"),
+"shrink_on_exit": SubResource("Animation_b5tdl")
+}
+
+[sub_resource type="Animation" id="Animation_ttk46"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_s2tr3"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_0s6dt"]
+resource_name = "shrink_on_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 48), Vector2(100, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvjyt"]
+_data = {
+"RESET": SubResource("Animation_ttk46"),
+"enlarge_on_hover": SubResource("Animation_s2tr3"),
+"shrink_on_exit": SubResource("Animation_0s6dt")
+}
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mbag3"]
+
+[sub_resource type="Animation" id="Animation_ax545"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_5f32v"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_c186l"]
+resource_name = "shrink_on_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 48), Vector2(100, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gb4sn"]
+_data = {
+"RESET": SubResource("Animation_ax545"),
+"enlarge_on_hover": SubResource("Animation_5f32v"),
+"shrink_on_exit": SubResource("Animation_c186l")
+}
+
+[sub_resource type="Animation" id="Animation_l8cxr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_snvl1"]
+resource_name = "enlarge_on_hover"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 40), Vector2(120, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_5hppv"]
+resource_name = "shrink_on_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 48), Vector2(100, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phneg"]
+_data = {
+"RESET": SubResource("Animation_l8cxr"),
+"enlarge_on_hover": SubResource("Animation_snvl1"),
+"shrink_on_exit": SubResource("Animation_5hppv")
+}
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kr1rb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f63jw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6qxdm"]
+
+[node name="ShopUI" type="Control"]
+layout_mode = 3
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = 48.0
+offset_top = 62.0
+offset_right = -21.0
+offset_bottom = 1.0
+theme = SubResource("Theme_spn2d")
+script = ExtResource("1_bm1qs")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a1aki")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+
+[node name="Shop" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("1_vkafb")
+metadata/_tab_index = 0
+
+[node name="Shop Label" type="Label" parent="TabContainer/Shop"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 32
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Shop"]
+custom_minimum_size = Vector2(900, 450)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Shop/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 128
+theme_override_constants/v_separation = 64
+
+[node name="Item 1 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 1" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox1" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/DescriptionVBox1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/DescriptionVBox1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 2 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 2" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_mbag3")
+
+[node name="DescriptionVBox2" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/DescriptionVBox2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/DescriptionVBox2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
+}
+
+[node name="Item 3 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 3" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_kr1rb")
+
+[node name="DescriptionVBox3" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/DescriptionVBox3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/DescriptionVBox3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
+}
+
+[node name="Item 4 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 4" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_f63jw")
+
+[node name="DescriptionVBox4" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/DescriptionVBox4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/DescriptionVBox4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
+}
+
+[node name="Item 5 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 5" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_6qxdm")
+
+[node name="DescriptionVBox5" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_phneg")
+}
+
+[node name="Item 6 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 6" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox6" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/DescriptionVBox6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/DescriptionVBox6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 7 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 7" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox7" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/DescriptionVBox7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/DescriptionVBox7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 8 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 8" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox8" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/DescriptionVBox8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/DescriptionVBox8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 9 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 9" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox9" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/DescriptionVBox9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/DescriptionVBox9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Item 10 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 10" type="TextureRect" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox10" type="VBoxContainer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/DescriptionVBox10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/DescriptionVBox10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="SellButton" type="Button" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Sell"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/SellButton"]
+libraries = {
+"": SubResource("AnimationLibrary_pvjyt")
+}
+
+[node name="Upgrades" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+script = ExtResource("3_8qqdd")
+metadata/_tab_index = 1
+
+[node name="Shop Label" type="Label" parent="TabContainer/Upgrades"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 32
+text = "Item Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Upgrades"]
+custom_minimum_size = Vector2(900, 450)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Upgrades/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 128
+theme_override_constants/v_separation = 64
+
+[node name="Item 1 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 1" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox1" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/DescriptionVBox1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/DescriptionVBox1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="Item 2 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 2" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_mbag3")
+
+[node name="DescriptionVBox2" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/DescriptionVBox2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/DescriptionVBox2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="Item 3 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 3" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_kr1rb")
+
+[node name="DescriptionVBox3" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/DescriptionVBox3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/DescriptionVBox3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="Item 4 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 4" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_f63jw")
+
+[node name="DescriptionVBox4" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/DescriptionVBox4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/DescriptionVBox4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="Item 5 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Item 5" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_6qxdm")
+
+[node name="DescriptionVBox5" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/DescriptionVBox5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox"]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_gb4sn")
+}
+
+[node name="Item 6 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 6" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox6" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/DescriptionVBox6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/DescriptionVBox6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="Item 7 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 7" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox7" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/DescriptionVBox7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/DescriptionVBox7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="Item 8 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 8" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox8" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/DescriptionVBox8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/DescriptionVBox8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Buy"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="Item 9 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 9" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox9" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/DescriptionVBox9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/DescriptionVBox9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="Item 10 + DescriptionVBox" type="HBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Item 10" type="TextureRect" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_m4b1u")
+
+[node name="DescriptionVBox10" type="VBoxContainer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="ItemNameLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/DescriptionVBox10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="CostLabel" type="Label" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/DescriptionVBox10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+text = "placeholder"
+
+[node name="BuyButton" type="Button" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/BuyButton"]
+libraries = {
+"": SubResource("AnimationLibrary_ukcpj")
+}
+
+[node name="CloseButton" type="Button" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_8ov1t")
+text = "X"
+
+[node name="BrokeAlert" type="Label" parent="."]
+visible = false
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_8ov1t")
+theme_override_font_sizes/font_size = 20
+
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Shop/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 1 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 2 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 3 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 4 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 5 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 6 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 7 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 8 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 9 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="TabContainer/Upgrades/ScrollContainer/GridContainer/Item 10 + DescriptionVBox/BuyButton" to="." method="_on_trade_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

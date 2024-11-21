@@ -432,11 +432,13 @@ func use_item(item : Item, index : int):
 			fix_oxygen_leak()
 			
 		"Medkit":
-			pass
+			if current_health == max_health:
+				return
+			current_health += item.effect + Globals.medkit_modifier
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
 				return
-			current_oxygen += item.effect
+			current_oxygen += item.effect + Globals.oxygen_modifier
 	
 	if item.consumable:
 		inventory.remove_from_hotbar(index)
