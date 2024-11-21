@@ -10,6 +10,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_story"):
 		self.visible = !self.visible
+		get_tree().paused = !get_tree().paused
 
 func connect_buttons() -> void:
 	# Connect each of the slots "pressed" signal to our function

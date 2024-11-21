@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnmm6lh1tfvil"]
+[gd_scene load_steps=6 format=3 uid="uid://bnmm6lh1tfvil"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Inventory/ship_storage_ui.gd" id="1_egb8s"]
+[ext_resource type="Texture2D" uid="uid://cd8culxj68lmt" path="res://Assets/images/InventoryUI/inventory_rect.png" id="2_1ugny"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="2_v04dh"]
 [ext_resource type="PackedScene" uid="uid://0uawvwmknsjj" path="res://Scenes/UI/Inventory/Slot.tscn" id="3_2j4p3"]
+[ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="3_qalpf"]
 
 [node name="ShipStorageUI" type="Control"]
 layout_mode = 3
@@ -16,15 +18,19 @@ mouse_filter = 1
 script = ExtResource("1_egb8s")
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.121569, 0.121569, 0.121569, 1)
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -47.0
+offset_top = -28.0
+offset_right = 124.0
+offset_bottom = 77.0
+scale = Vector2(5, 5)
+texture = ExtResource("2_1ugny")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
 
 [node name="Inventory" type="Control" parent="."]
 layout_mode = 1
@@ -44,9 +50,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Inventory/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_v04dh")
+theme_override_fonts/font = ExtResource("3_qalpf")
+theme_override_font_sizes/font_size = 36
 text = "Inventory"
 
 [node name="InventoryGridContainer" type="GridContainer" parent="Inventory/VBoxContainer"]
@@ -148,13 +156,17 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 46
 
 [node name="TransferToStorage" type="Button" parent="Buttons/VBoxContainer/GridContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_qalpf")
 text = "To Storage ->"
 
 [node name="TransferToInventory" type="Button" parent="Buttons/VBoxContainer/GridContainer"]
+texture_filter = 1
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qalpf")
 text = "<- To Inventory"
 
 [node name="ShipStorage" type="Control" parent="."]
@@ -176,9 +188,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="ShipStorage/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_v04dh")
+theme_override_fonts/font = ExtResource("3_qalpf")
+theme_override_font_sizes/font_size = 36
 text = "Ship Storage"
 
 [node name="ShipGridContainer" type="GridContainer" parent="ShipStorage/VBoxContainer"]

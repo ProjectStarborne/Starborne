@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=38 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_it5gi"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_um8kb"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="5_agmak"]
 [ext_resource type="TileSet" uid="uid://yx1w328lgppi" path="res://Assets/Tilesets/asteroid_tileset.tres" id="8_fu3je"]
+[ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="12_ahg6v"]
 [ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="12_ssr1n"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]
@@ -174,6 +175,9 @@ y_sort_enabled = true
 position = Vector2(-1016, 465)
 scale = Vector2(0.84, 0.84)
 
+[node name="BrokenLog" parent="." instance=ExtResource("12_ahg6v")]
+position = Vector2(-15, 503)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 1
 
@@ -233,6 +237,7 @@ visible = false
 visible = false
 
 [node name="LogsUI" parent="CanvasLayer" instance=ExtResource("23_tjucf")]
+process_mode = 3
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -336,3 +341,4 @@ position = Vector2(-1040, -180)
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthO2" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthO2" method="update_oxygen"]
 [connection signal="picked_up_item" from="Player" to="." method="_on_player_picked_up_item"]
+[connection signal="log_pickup" from="BrokenLog" to="CanvasLayer/LogsUI" method="reveal_entry"]

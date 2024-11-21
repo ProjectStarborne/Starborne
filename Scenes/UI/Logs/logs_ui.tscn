@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbnjnupb8xnst"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Logs/logs_ui.gd" id="1_4q7ha"]
-[ext_resource type="Texture2D" uid="uid://0i4g8xl4nmpf" path="res://Assets/images/LogUI/log_rect.png" id="1_yty4d"]
+[ext_resource type="Texture2D" uid="uid://0i4g8xl4nmpf" path="res://Assets/images/Logs/log_rect.png" id="1_yty4d"]
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="2_quh7p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mirgd"]
@@ -78,6 +78,7 @@ offset_right = 967.0
 offset_bottom = 501.0
 
 [node name="1" type="Control" parent="Logs"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -261,6 +262,7 @@ label_settings = SubResource("LabelSettings_xjdc1")
 autowrap_mode = 2
 
 [node name="2" type="Control" parent="Logs"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
