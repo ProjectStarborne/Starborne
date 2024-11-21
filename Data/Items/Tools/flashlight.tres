@@ -6,7 +6,6 @@
 script = ExtResource("1_7s2ep")
 charge = 0.0
 level = 0
-upgrade_price = 100
 name = "Flashlight"
 type = ""
 price = 0

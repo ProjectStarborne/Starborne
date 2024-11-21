@@ -7,7 +7,6 @@
 [resource]
 script = ExtResource("1_01wqb")
 effect = 0.0
-upgrade_price = 50
 name = "Medkit"
 scene = ExtResource("2_dk8fi")
 type = ""

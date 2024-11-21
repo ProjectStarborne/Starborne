@@ -8,7 +8,6 @@
 script = ExtResource("1_dutuq")
 charge = 0.0
 level = 1
-upgrade_price = 200
 name = "Drill"
 scene = ExtResource("2_lyd1m")
 type = ""

@@ -30,3 +30,10 @@ func _process(_delta: float) -> void:
 		else:
 			inventory.open(player.inventory)
 	
+	# Handle Pause UI
+	if Input.is_action_just_pressed("pause") and !paused:
+		pause_menu.pause()
+		paused = !paused
+	elif Input.is_action_just_pressed("pause") and paused:
+		pause_menu.resume()
+		paused = !paused

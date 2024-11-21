@@ -7,7 +7,6 @@
 [resource]
 script = ExtResource("1_klx04")
 effect = 45.0
-upgrade_price = 50
 name = "Oxygen Tank"
 scene = ExtResource("2_7mikl")
 type = ""
