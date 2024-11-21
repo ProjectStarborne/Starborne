@@ -4,7 +4,7 @@ extends Node
 
 # Track upgrade purchases globally
 var upgrades_purchased = {
-	"Warp Engine V.1": false,
+	"Warp Engine V.1": true,
 	"Fuel Efficiency Module V.1": false,
 	"Stellar Cartography Module": false,
 	"Reinforced Hull Plating": false,
