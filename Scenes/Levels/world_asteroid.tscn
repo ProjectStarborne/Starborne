@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=76 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bw14qukpolqwr" path="res://Assets/images/satellite.png" id="36_75eig"]
 [ext_resource type="Texture2D" uid="uid://chcrt65yby5rj" path="res://Assets/images/flood_light.png" id="36_s1pf6"]
 [ext_resource type="Texture2D" uid="uid://b2tt5ojvjphdv" path="res://Assets/images/medical_guy.png" id="36_u8f4x"]
+[ext_resource type="Script" path="res://Scenes/Levels/chat_detection.gd" id="36_yee7f"]
 [ext_resource type="Texture2D" uid="uid://b4cymuri5ybfe" path="res://Assets/images/const_worker1.png" id="37_jur8c"]
 [ext_resource type="Texture2D" uid="uid://bfeyo7rwndeu2" path="res://Assets/images/construction.png" id="37_yi6tr"]
 [ext_resource type="Texture2D" uid="uid://dbox1x8tn2xcs" path="res://Assets/images/const_worker2.png" id="38_0ymw4"]
@@ -638,6 +639,9 @@ _data = {
 "idle": SubResource("Animation_qjnwc")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfnr8"]
+radius = 33.63
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmvg0"]
 radius = 4.7619
 height = 10.9524
@@ -1037,6 +1041,12 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="ChatDetection" type="Area2D" parent="NPC/Construction_Lead/Construction_Lead"]
+script = ExtResource("36_yee7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Construction_Lead/Construction_Lead/ChatDetection"]
+shape = SubResource("CircleShape2D_bfnr8")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Construction_Lead"]
 position = Vector2(-993, -1)
 scale = Vector2(4.2, 4.2)
@@ -1203,3 +1213,5 @@ texture = ExtResource("36_s1pf6")
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
+[connection signal="body_entered" from="NPC/Construction_Lead/Construction_Lead/ChatDetection" to="NPC/Construction_Lead/Construction_Lead/ChatDetection" method="_on_body_entered"]
+[connection signal="body_exited" from="NPC/Construction_Lead/Construction_Lead/ChatDetection" to="NPC/Construction_Lead/Construction_Lead/ChatDetection" method="_on_body_exited"]

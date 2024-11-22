@@ -85,6 +85,8 @@ var target_rock = null
 # World Variable
 @onready var world = get_parent()
 
+var allowed_to_move = true
+
 # Called when the node is added to the scene
 func _ready() -> void: 
 	in_level = get_tree().current_scene.name == "Environment"
@@ -116,12 +118,18 @@ func _ready() -> void:
 	
 	if !in_level:
 		current_speed = SPEED / 4
+		
+	Dialogic.signal_event.connect(stop_movement)
 
 
 func _physics_process(delta: float) -> void:
 	# Initialize a direction vector to store player input
-	var direction = Input.get_vector("left", "right", "up", "down")
+	var direction = Vector2.ZERO
 	
+	# Handle movement when player is busy
+	if allowed_to_move:
+		direction = Input.get_vector("left", "right", "up", "down")
+		
 	# Should only work in Environment root node
 	if in_level:
 		# Handle flashlight aiming at the mouse position
@@ -471,7 +479,14 @@ func footstep_handler() -> void:
 # Method to get the current level
 func get_level() -> int:
 	return Globals.current_level
-	
+
+
+func stop_movement(arg: String):
+	if arg == "false":
+		allowed_to_move = false
+	elif arg == "true":
+		allowed_to_move = true
+
 ####### Save Information #######
 
 # Function used in file_manager.gd
