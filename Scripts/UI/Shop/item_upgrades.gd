@@ -125,10 +125,13 @@ func populate_shop(items: Array[Item]):
 			print("Error: Unused item box at index ", i, " is null")
 
 
-
-
 # Handle buy logic when the buy button is pressed
 func _on_buy_button_pressed_with_item(item: Item) -> void:
+	if not player.inventory.has_item(item):
+		print("You need to own ", item.name, " to upgrade it!")
+		display_popup_message("You need to own " + item.name + " to upgrade!")
+		return
+		
 	if player_can_afford(item):
 		print("Purchased ", item.name, " for ", item.price, " credits")
 		display_popup_message(item.name + " Upgraded!")
