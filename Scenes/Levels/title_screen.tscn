@@ -116,36 +116,36 @@ Button/styles/hover = SubResource("StyleBoxFlat_xfm74")
 Button/styles/normal = SubResource("StyleBoxFlat_exmew")
 Button/styles/pressed = SubResource("StyleBoxFlat_h2p0c")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_be8cs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcj4d"]
 atlas = ExtResource("4_j0dum")
-region = Rect2(0, 0, 16, 23)
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ydcwj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbm6b"]
 atlas = ExtResource("4_j0dum")
-region = Rect2(16, 0, 16, 23)
+region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uoed6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7g8sy"]
 atlas = ExtResource("4_j0dum")
-region = Rect2(32, 0, 16, 23)
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyfwx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b73p"]
 atlas = ExtResource("4_j0dum")
-region = Rect2(48, 0, 16, 23)
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_umjl6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_be8cs")
+"texture": SubResource("AtlasTexture_rcj4d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ydcwj")
+"texture": SubResource("AtlasTexture_wbm6b")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uoed6")
+"texture": SubResource("AtlasTexture_7g8sy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jyfwx")
+"texture": SubResource("AtlasTexture_1b73p")
 }],
 "loop": true,
 "name": &"walking",
@@ -492,7 +492,7 @@ alignment = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(760, 53)
+position = Vector2(760, 47)
 scale = Vector2(2.03125, 2.03125)
 sprite_frames = SubResource("SpriteFrames_umjl6")
 animation = &"walking"

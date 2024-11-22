@@ -108,6 +108,19 @@ func swap_hotbar_items(from_index: int, to_index: int):
 	_hotbar[to_index] = temp
 
 
+func update_drill_level() -> int:
+	for key in _content.keys():
+		if _content[key] != null:
+			if _content[key].name == "Drill":
+				_content[key].level += 1
+				return _content[key].level
+	for key in _hotbar.keys():
+		if _hotbar[key] != null:
+			if _hotbar[key].name == "Drill":
+				_hotbar[key].level += 1
+				return _hotbar[key].level
+	return -1
+
 func to_dict() -> Dictionary:
 	var content_dict = {}
 	for key in _content.keys():

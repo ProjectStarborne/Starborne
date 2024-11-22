@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbnjnupb8xnst"]
+[gd_scene load_steps=8 format=3 uid="uid://bbnjnupb8xnst"]
 
-[ext_resource type="Texture2D" uid="uid://0i4g8xl4nmpf" path="res://Assets/images/LogUI/log_rect.png" id="1_yty4d"]
+[ext_resource type="Script" path="res://Scripts/UI/Logs/logs_ui.gd" id="1_4q7ha"]
+[ext_resource type="Texture2D" uid="uid://0i4g8xl4nmpf" path="res://Assets/images/Logs/log_rect.png" id="1_yty4d"]
 [ext_resource type="FontFile" uid="uid://he5rh500h73r" path="res://Assets/fonts/Terminal.ttf" id="2_quh7p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mirgd"]
@@ -15,9 +16,11 @@ Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("2_quh7p")
 Button/styles/normal = SubResource("StyleBoxTexture_mirgd")
 
+[sub_resource type="Theme" id="Theme_0i3vh"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_xjdc1"]
 font = ExtResource("2_quh7p")
-font_size = 48
+font_color = Color(0.821789, 0.821789, 0.821789, 1)
 
 [node name="LogsUI" type="Control"]
 texture_filter = 5
@@ -30,6 +33,7 @@ offset_right = -268.0
 offset_bottom = -173.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4q7ha")
 
 [node name="BaseUI" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -68,30 +72,41 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 
-[node name="Log1" type="Button" parent="."]
+[node name="Logs" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 967.0
+offset_bottom = 501.0
+
+[node name="1" type="Control" parent="Logs"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Logs/1"]
 layout_mode = 2
-offset_left = 39.0
-offset_top = 39.0
-offset_right = 525.0
-offset_bottom = 193.0
+offset_left = 41.0
+offset_top = 55.0
+offset_right = 515.0
+offset_bottom = 183.0
 scale = Vector2(0.5, 0.5)
 theme = SubResource("Theme_8enw1")
 text = "Happy birthday..."
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Log1"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Logs/1"]
+visible = false
 layout_mode = 0
-offset_left = 580.0
-offset_top = 26.0
-offset_right = 1844.0
-offset_bottom = 912.0
+offset_left = 329.0
+offset_top = 48.0
+offset_right = 974.0
+offset_bottom = 502.0
+theme = SubResource("Theme_0i3vh")
 horizontal_scroll_mode = 0
 
-[node name="Label" type="Label" parent="Log1/ScrollContainer"]
-custom_minimum_size = Vector2(1264, 886)
+[node name="Label" type="Label" parent="Logs/1/ScrollContainer"]
+custom_minimum_size = Vector2(637, 454)
 layout_mode = 2
-text = "
-
-I see the player you mean.
+text = "I see the player you mean.
 
 PLAYERNAME?
 
@@ -243,5 +258,71 @@ You are the player.
 
 Wake up.
 "
+label_settings = SubResource("LabelSettings_xjdc1")
+autowrap_mode = 2
+
+[node name="2" type="Control" parent="Logs"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Logs/2"]
+layout_mode = 2
+offset_left = 41.0
+offset_top = 120.0
+offset_right = 515.0
+offset_bottom = 248.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_8enw1")
+text = "sike"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Logs/2"]
+visible = false
+layout_mode = 0
+offset_left = 329.0
+offset_top = 48.0
+offset_right = 974.0
+offset_bottom = 502.0
+theme = SubResource("Theme_0i3vh")
+horizontal_scroll_mode = 0
+
+[node name="Label" type="Label" parent="Logs/2/ScrollContainer"]
+custom_minimum_size = Vector2(637, 454)
+layout_mode = 2
+text = "it's actually my bday"
+label_settings = SubResource("LabelSettings_xjdc1")
+autowrap_mode = 2
+
+[node name="3" type="Control" parent="Logs"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Logs/3"]
+layout_mode = 2
+offset_left = 41.0
+offset_top = 184.0
+offset_right = 515.0
+offset_bottom = 312.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_8enw1")
+text = "double sike"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Logs/3"]
+visible = false
+layout_mode = 0
+offset_left = 329.0
+offset_top = 48.0
+offset_right = 974.0
+offset_bottom = 502.0
+theme = SubResource("Theme_0i3vh")
+horizontal_scroll_mode = 0
+
+[node name="Label" type="Label" parent="Logs/3/ScrollContainer"]
+custom_minimum_size = Vector2(637, 454)
+layout_mode = 2
+text = "i don't know whose birthday it is"
 label_settings = SubResource("LabelSettings_xjdc1")
 autowrap_mode = 2

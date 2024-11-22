@@ -2,7 +2,7 @@
 extends Control
 
 # Access the GridContainer where items will be displayed
-@onready var grid_container = $ShopControl/VBoxContainer/ScrollContainer/GridContainer
+@onready var grid_container = $ScrollContainer/GridContainer
 # store the player node
 var player 
 # Shop inventory, this is separate from the player's inventory
@@ -32,13 +32,6 @@ func _ready():
 		print("Player found: ", player)
 
 
-	# Initialize player with some test inventory items for the shop trade
-	#var iron_item_1 = load("res://Data/Items/Minerals/iron.tres") as Item
-	#var nickel_item = load("res://Data/Items/Minerals/nickel.tres") as Item
-	#var iron_item_2 = iron_item_1.duplicate()  # Create a duplicate of the first iron item
-	#player.inventory.add_item(iron_item_1)
-	#player.inventory.add_item(iron_item_2)
-	#player.inventory.add_item(nickel_item)
 
 	# Get the current level (we will need to adjust this to wherever we store the level info)
 	var current_level = player.get_level()  # Call get_level() in player.gd
@@ -64,6 +57,7 @@ func get_shop_items_for_level(level: int) -> Array[Item]:
 		items_for_level.append(load("res://Data/Items/Minerals/nickel.tres") as Item)
 		items_for_level.append(load("res://Data/Items/Consumables/duct_tape.tres") as Item)
 		items_for_level.append(load("res://Data/Items/Consumables/oxygen_tank.tres") as Item)
+		items_for_level.append(load("res://Data/Items/Consumables/medkit.tres") as Item)
 		items_for_level.append(load("res://Data/Items/Tools/drill.tres") as Item)
 		items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
 		items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
@@ -218,30 +212,23 @@ func _on_sell_button_pressed_with_item(item: Item) -> void:
 
 # Check if the player can afford the selected item
 func player_can_afford(item: Item) -> bool:
-	return player.credits >= item.price
+	return Globals.get_credits() >= item.price
 
 
 # Execute the purchase
 func execute_purchase(item: Item):
 	# Deduct the price from the player's credits
-	player.remove_credits(item.price)
+	Globals.remove_credits(item.price)
 
 	# Add the item to the player's inventory directly
 	player.inventory.add_item(item)
 	print("Added ", item.name, " to player's inventory")
 
-	# Find the item's index in the shop inventory
-	var index = shop_inventory.get_items().find(item)
-
-	if index != -1:
-		# Remove the item from the shop inventory by index
-		shop_inventory.remove_item(index)
-
 	# Refresh the shop UI and player's inventory UI
 	update_shop_ui()
 	update_inventory_ui()
 	
-	print("Credits: ", player.get_credits())
+	print("Credits: ", Globals.get_credits())
 
 
 
@@ -251,9 +238,9 @@ func execute_sale(item: Item):
 	print("Executing sale for item: ", item.name)
 	
 	# Add the price to the player's credits (gain credits)
-	player.add_credits(item.price)
+	Globals.add_credits(item.price)
 	
-	print("Credits after sale: ", player.get_credits())
+	print("Credits after sale: ", Globals.get_credits())
 	
 	# Find the first item in the player's inventory with the same name
 	var index = find_item_index_in_inventory(item.name)
@@ -282,7 +269,7 @@ func execute_sale(item: Item):
 		else:
 			print("Slot ", i, ": Empty")
 	
-	print("Credits: ", player.get_credits())
+	print("Credits: ", Globals.get_credits())
 
 
 
@@ -298,7 +285,7 @@ func find_item_index_in_inventory(item_name: String) -> int:
 
 # Display a message in the popup label
 func display_popup_message(message: String):
-	var popup_label = $ShopControl/BrokeAlert  # Adjust the path to the label
+	var popup_label = $"../../BrokeAlert"  # Adjust the path to the label
 	popup_label.text = message
 	popup_label.visible = true
 	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds
@@ -317,9 +304,10 @@ func update_shop_ui():
 	populate_shop(shop_inventory.get_items())
 
 
+
 # Function to close the shop when the close button is pressed
-func _on_close_button_pressed():
-	hide()
+#func _on_close_button_pressed():
+#	hide()
 
 # Mouse enter/exit handlers for buy button
 func _on_buy_button_mouse_entered(buy_button: Button) -> void:
@@ -354,3 +342,7 @@ func _on_sell_button_mouse_exited(sell_button: Button) -> void:
 	var animation_player = sell_button.get_meta("animation_player") as AnimationPlayer
 	if animation_player:
 		animation_player.play("shrink_on_exit")
+
+
+func _on_close_button_pressed() -> void:
+	hide() 
