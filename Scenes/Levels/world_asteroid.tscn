@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=74 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -43,7 +43,6 @@
 [ext_resource type="Texture2D" uid="uid://dbox1x8tn2xcs" path="res://Assets/images/const_worker2.png" id="38_0ymw4"]
 [ext_resource type="Texture2D" uid="uid://douh01kyuwyic" path="res://Assets/images/sleeping_worker.png" id="39_jsxwd"]
 [ext_resource type="Texture2D" uid="uid://dvsdfpkorgt6q" path="res://Assets/images/book_worker.png" id="40_bs131"]
-[ext_resource type="PackedScene" uid="uid://cgrjsyyihe7on" path="res://Scenes/Camera/anchor_2d.tscn" id="44_i0rdh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x8q4"]
 shader = ExtResource("1_um8kb")
@@ -1202,12 +1201,5 @@ position = Vector2(1231, -960)
 scale = Vector2(3, 3)
 texture = ExtResource("36_s1pf6")
 
-[node name="Anchor2D" parent="." instance=ExtResource("44_i0rdh")]
-
-[node name="CollisionShape2D" parent="Anchor2D" index="0"]
-position = Vector2(790, -488)
-
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
-
-[editable path="Anchor2D"]
