@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=27 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
 [ext_resource type="PackedScene" uid="uid://cc27e2xjnyb86" path="res://Scenes/Player/ship_player.tscn" id="2_2fxea"]
+[ext_resource type="Shader" path="res://Scenes/Levels/wormhole.gdshader" id="2_w4dn6"]
 [ext_resource type="PackedScene" uid="uid://bwrfpxkgve1q0" path="res://Scenes/Ship/navigation.tscn" id="3_0okt1"]
 [ext_resource type="PackedScene" uid="uid://bkpuwft2gsg7i" path="res://Scenes/Ship/shop.tscn" id="4_13phx"]
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="4_lppfx"]
@@ -20,6 +21,14 @@
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="16_dfmsb"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="17_qq3mm"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="19_abd2d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhwrb"]
+shader = ExtResource("2_w4dn6")
+shader_parameter/time = null
+shader_parameter/intensity = 1.0
+shader_parameter/pixel_size = 400.0
+shader_parameter/star_speed = 50.0
+shader_parameter/star_density = 0.5
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bn26q"]
 texture = ExtResource("1_yce60")
@@ -264,6 +273,7 @@ default_font = ExtResource("9_ga0q0")
 script = ExtResource("1_ewpm4")
 
 [node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fhwrb")
 offset_left = -642.0
 offset_top = -349.0
 offset_right = 637.0

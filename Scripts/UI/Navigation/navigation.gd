@@ -1,18 +1,66 @@
 extends Control
 class_name Navigation
+
 @onready var grid_container = $ScrollContainer/GridContainer
 @onready var click_sound = $"../../KeyboardClick"  # The AudioStreamPlayer node for the sound effect
 @onready var player = get_node("%Player")  # Adjust the path to your player node
 @onready var ship_interior_node = get_node_or_null("/root/Shipinterior")  # Adjust this path to your Shipinterior 2D node
-@onready var navigation_manager = get_parent().get_parent() 
+@onready var navigation_manager = get_parent().get_parent()
+@onready var wormhole_background = null
 
 # Variables for screen shake
 var shake_timer = 0.0
 var shake_intensity = 0.0
 var original_position = Vector2.ZERO
 
+# Timers for controlling the wormhole effect
+var travel_timer: Timer  # A timer to control the duration
+var fade_timer: Timer  # A timer for fading in/out
+var update_timer: Timer  # A timer to update the shader's time parameter
+
+# Variable to track elapsed time manually
+var elapsed_time = 0.0
+
 func _ready():
+	# Populate travel buttons
 	populate_travel_buttons()
+	
+	# Search for Background in parent hierarchy
+	var parent = get_parent()
+	while parent != null:
+		if parent.has_node("Background"):
+			wormhole_background = parent.get_node("Background") as ColorRect
+			break
+		parent = parent.get_parent()
+
+	if wormhole_background == null:
+		print("Error: Could not find Background node in parent hierarchy.")
+	else:
+		print("Found Background!")
+		if wormhole_background.material is ShaderMaterial:
+			# Duplicate the ShaderMaterial to ensure a unique instance
+			wormhole_background.material = wormhole_background.material.duplicate() as ShaderMaterial
+			# Initialize shader parameters using set_shader_parameter
+			wormhole_background.material.set_shader_parameter("intensity", 0.0)
+			wormhole_background.material.set_shader_parameter("time", 0.0)
+			print("Shader parameters initialized.")
+		else:
+			print("Error: Background node does not have a ShaderMaterial assigned.")
+	
+	# Initialize the travel timer (10 seconds)
+	travel_timer = Timer.new()
+	add_child(travel_timer)
+	travel_timer.wait_time = 10.0
+	travel_timer.one_shot = true
+	travel_timer.connect("timeout", Callable(self, "end_travel_effect"))
+	
+	# Initialize the update timer (for shader time updates)
+	update_timer = Timer.new()
+	add_child(update_timer)
+	update_timer.wait_time = 0.05
+	update_timer.one_shot = false
+	update_timer.connect("timeout", Callable(self, "_update_travel_effect"))
+	# Do not start update_timer yet; it will be started when the effect begins
 
 # Function to populate the UI with travel buttons and connect signals
 func populate_travel_buttons():
@@ -45,7 +93,7 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 	if Globals.current_level == int(level):  # Compare against the selected level
 		display_popup_message("You're already at your destination.")
 		return
-		
+	
 	# Check for required upgrades for each level
 	match level:
 		"1":
@@ -78,6 +126,7 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 				return
 		_:
 			display_popup_message("Invalid level or no upgrade needed for this level.")
+			return
 	
 	# Close the navigation menu
 	var navigation_menu = $"."  # Adjust this path to your node
@@ -90,7 +139,7 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 		Globals.is_shaking = true
 	else:
 		print("Error: 'Shipinterior' node not found!")
-
+	
 	# Set the next level to be loaded upon exiting the ship
 	Globals.next_level = determine_level_tag(level)
 	
@@ -98,7 +147,10 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 	Globals.current_level = int(level)
 	display_popup_message("Traveling to level " + level + "...")
 	
-		# Close the entire navigation menu
+	# Start the wormhole effect
+	start_travel_effect()
+	
+	# Close the entire navigation manager
 	if navigation_manager != null:
 		navigation_manager.hide()
 
@@ -152,3 +204,99 @@ func display_popup_message(message: String):
 	popup_label.visible = true
 	await get_tree().create_timer(2.0).timeout  # Show message for 2 seconds
 	popup_label.visible = false
+
+###### WORMHOLE CODE #######
+
+func start_travel_effect():
+	if wormhole_background == null:
+		print("Error: 'wormhole_background' is null.")
+		return
+	
+	# Ensure shader parameters are initialized using set_shader_parameter
+	wormhole_background.material.set_shader_parameter("intensity", 0.0)
+	wormhole_background.material.set_shader_parameter("time", 0.0)
+	
+	# Reset elapsed_time
+	elapsed_time = 0.0
+	
+	# Start the fade-in
+	fade_timer = Timer.new()
+	add_child(fade_timer)
+	fade_timer.wait_time = 0.05
+	fade_timer.one_shot = false
+	fade_timer.connect("timeout", Callable(self, "_fade_in_effect"))
+	fade_timer.start()
+	
+	# Start the travel timer for 10 seconds
+	travel_timer.start()
+	
+	# Start updating the 'time' uniform
+	update_timer.start()
+
+func _fade_in_effect():
+	if wormhole_background == null or wormhole_background.material == null:
+		print("Error: 'wormhole_background' or its material is null.")
+		return
+	
+	# Gradually increase intensity
+	var intensity = wormhole_background.material.get_shader_parameter("intensity")
+	if intensity == null:
+		intensity = 0.0  # Initialize intensity if it's null
+	
+	if intensity < 1.0:
+		intensity += 0.05
+		intensity = clamp(intensity, 0.0, 1.0)
+		wormhole_background.material.set_shader_parameter("intensity", intensity)
+		print("Increasing intensity to ", intensity)
+	else:
+		# Stop the fade-in once fully visible
+		fade_timer.stop()
+		fade_timer.queue_free()
+		print("Fade-in complete. Intensity is now 1.0")
+
+func _update_travel_effect():
+	if wormhole_background.material is ShaderMaterial:
+		# Manually track elapsed_time
+		elapsed_time += update_timer.wait_time
+		wormhole_background.material.set_shader_parameter("time", elapsed_time)
+		#print("Updating time to ", elapsed_time)  # Uncomment for debugging
+	else:
+		print("Error: 'wormhole_background' material is not a ShaderMaterial.")
+
+func end_travel_effect():
+	if wormhole_background == null:
+		print("Error: 'wormhole_background' is null.")
+		return
+	
+	# Stop updating the 'time' uniform
+	update_timer.stop()
+	
+	# Start fading out the effect
+	fade_timer = Timer.new()
+	add_child(fade_timer)
+	fade_timer.wait_time = 0.05
+	fade_timer.one_shot = false
+	fade_timer.connect("timeout", Callable(self, "_fade_out_effect"))
+	fade_timer.start()
+
+func _fade_out_effect():
+	if wormhole_background == null or wormhole_background.material == null:
+		print("Error: 'wormhole_background' or its material is null.")
+		return
+	
+	# Gradually decrease intensity
+	var intensity = wormhole_background.material.get_shader_parameter("intensity")
+	if intensity == null:
+		intensity = 0.0  # Initialize if null
+	
+	if intensity > 0.0:
+		intensity -= 0.05
+		intensity = clamp(intensity, 0.0, 1.0)
+		wormhole_background.material.set_shader_parameter("intensity", intensity)
+		print("Decreasing intensity to ", intensity)
+	else:
+		# Stop the fade-out and reset the background to black
+		wormhole_background.material.set_shader_parameter("intensity", 0.0)
+		fade_timer.stop()
+		fade_timer.queue_free()
+		print("Fade-out complete. Intensity reset to 0.0")
