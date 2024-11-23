@@ -440,9 +440,11 @@ func use_item(item : Item, index : int):
 			fix_oxygen_leak()
 			
 		"Medkit":
+			print(current_health)
 			if current_health == max_health:
 				return
 			current_health += item.effect + Globals.medkit_modifier
+			print(current_health)
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
 				return
