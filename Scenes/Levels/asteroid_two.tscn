@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=58 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://dvf6waq6s36vp" path="res://Assets/images/camp.png" id="38_xe66f"]
 [ext_resource type="Texture2D" uid="uid://5thd34jl3vli" path="res://Assets/images/frozen_guy.png" id="40_rwq86"]
 [ext_resource type="Texture2D" uid="uid://b5urxdlrtesjv" path="res://Assets/images/frozen_astronaut.png" id="41_txmib"]
+[ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="42_tk2ri"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i441f"]
 shader = ExtResource("1_43alx")
@@ -1217,7 +1218,7 @@ unique_name_in_owner = true
 process_mode = 1
 z_index = 0
 y_sort_enabled = true
-position = Vector2(-10696, 2158)
+position = Vector2(-1520, 200)
 scale = Vector2(0.84, 0.84)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1445,6 +1446,12 @@ texture_filter = 1
 position = Vector2(-10420, 15)
 scale = Vector2(-4.2, 4.2)
 texture = ExtResource("41_txmib")
+
+[node name="BrokenLog" parent="." instance=ExtResource("42_tk2ri")]
+position = Vector2(-6281, 187)
+
+[node name="BrokenLog2" parent="." instance=ExtResource("42_tk2ri")]
+position = Vector2(-10662, 39)
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
