@@ -308,10 +308,10 @@ theme_override_font_sizes/font_size = 100
 visible_characters_behavior = 1
 
 [node name="Navigation" parent="." instance=ExtResource("3_0okt1")]
-position = Vector2(8, -133)
+position = Vector2(9, -133)
 
 [node name="Shop" parent="." instance=ExtResource("4_13phx")]
-position = Vector2(-56, -70)
+position = Vector2(-55, -70)
 
 [node name="Storage" parent="." instance=ExtResource("5_2j5dh")]
 position = Vector2(74, -67)
