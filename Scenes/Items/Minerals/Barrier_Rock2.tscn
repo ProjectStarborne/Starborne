@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4frqoq0jqq8s"]
+[gd_scene load_steps=7 format=3 uid="uid://smkk3jm0pusw"]
 
-[ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_ghb1l"]
-[ext_resource type="Texture2D" uid="uid://crohcgrgxuknx" path="res://Assets/images/mineable_rocks.png" id="1_x4n3n"]
-[ext_resource type="PackedScene" uid="uid://cij22opdyf47o" path="res://Scenes/Pickup/pickup_plat.tscn" id="2_x2b27"]
+[ext_resource type="Texture2D" uid="uid://b1xxvn7gtb6x1" path="res://Assets/images/barrier_rocks.png" id="1_47qsu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4j0"]
-size = Vector2(31, 28.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njffo"]
+size = Vector2(32, 28.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mfgqs"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_svq0k"]
 radius = 30.0
 
 [sub_resource type="Animation" id="Animation_6r3g3"]
@@ -47,35 +45,29 @@ _data = {
 "mine": SubResource("Animation_6ra7y")
 }
 
-[node name="Ore_node" type="StaticBody2D"]
-scale = Vector2(2, 2)
-script = ExtResource("1_ghb1l")
-drop = ExtResource("2_x2b27")
-animation_weight = 0.5
-required_level = 2
+[node name="BarrierRock2" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_x4n3n")
+texture = ExtResource("1_47qsu")
 hframes = 4
 vframes = 4
 frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.25)
-shape = SubResource("RectangleShape2D_1y4j0")
+light_mask = 2
+position = Vector2(0, 3.375)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_njffo")
 
 [node name="Proximity" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
 position = Vector2(0, 2.5)
-shape = SubResource("CircleShape2D_mfgqs")
+shape = SubResource("CircleShape2D_svq0k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_bdscb")
 }
-
-[connection signal="body_entered" from="Proximity" to="." method="_on_proximity_body_entered"]
-[connection signal="body_exited" from="Proximity" to="." method="_on_proximity_body_exited"]
