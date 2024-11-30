@@ -38,6 +38,7 @@ var warning_timer = 0.0  # Timer to control warning text flickers
 var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_label = $"../CanvasLayer/OxygenLeakWarning"  # Reference to warning label in UI
 @onready var warning_audio = $"../CanvasLayer/OxygenLeakWarning/Oxygen_Warning" # Warning sound player
+@onready var leak_audio = $"../CanvasLayer/OxygenLeakWarning/Oxygen_Leak" # leak sound 
 
 # Reference to the fire effect AnimatedSprite2D
 @onready var fire_sprite = $Fire
@@ -123,6 +124,9 @@ func _ready() -> void:
 		current_speed = SPEED / 4
 		
 	Dialogic.signal_event.connect(stop_movement)
+	
+	warning_audio.volume_db = -25  # Adjust volume in decibels (lower is quieter)
+	leak_audio.volume_db = -35  # Adjust volume in decibels
 
 
 func _physics_process(delta: float) -> void:
@@ -411,10 +415,14 @@ func start_oxygen_leak() -> void:
 		# Play the warning sound only if not inside the ship
 		warning_audio.stream.loop = true
 		warning_audio.play()
+		leak_audio.stream.loop = true
+		leak_audio.play()
 	else:
 		# Stop the audio inside the ship
 		warning_audio.stop()
 		warning_audio.stream.loop = false
+		leak_audio.stop()
+		leak_audio.stream.loop = false 
 
 
 # Handle flickering of warning text
@@ -434,6 +442,8 @@ func fix_oxygen_leak() -> void:
 	# Stop the warning sound and disable looping
 	warning_audio.stop()
 	warning_audio.stream.loop = false
+	leak_audio.stop()
+	leak_audio.stream.loop = false
 
 
 ####### Resource Management System #######

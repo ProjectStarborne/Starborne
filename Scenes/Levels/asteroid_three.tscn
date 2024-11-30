@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://diswrhrsycgti"]
+[gd_scene load_steps=42 format=3 uid="uid://diswrhrsycgti"]
 
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="1_su75u"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="2_nfand"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="12_2o67y"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="13_ig83x"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="14_805od"]
+[ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="14_o7y4a"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="15_h2tah"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="16_luhlj"]
 [ext_resource type="PackedScene" uid="uid://chabragb6rc5h" path="res://Scenes/Environmental/Turret/turret.tscn" id="18_2wbxx"]
@@ -1013,6 +1014,9 @@ text = "REEEEEEEE"
 stream = ExtResource("7_c6j1s")
 volume_db = -10.0
 bus = &"UI"
+
+[node name="Oxygen_Leak" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
+stream = ExtResource("14_o7y4a")
 
 [node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
 visible = false
