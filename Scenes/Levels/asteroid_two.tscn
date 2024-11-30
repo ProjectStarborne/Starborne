@@ -1242,7 +1242,7 @@ z_index = -10
 texture_filter = 1
 offset_left = -13350.0
 offset_top = -3084.0
-offset_right = 5945.0
+offset_right = -4066.0
 offset_bottom = 3547.0
 color = Color(0.152941, 0.14902, 0.141176, 1)
 
