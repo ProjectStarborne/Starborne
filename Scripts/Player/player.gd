@@ -7,6 +7,9 @@ var in_level : bool
 # Scene check variable
 var in_ship : bool
 
+#Keeps track of last facing direction for animation purposes
+var last_facing_direction = Vector2.DOWN
+
 const SPEED = 300.0 # Normal speed of the player
 
 enum Frictions {
@@ -16,7 +19,7 @@ enum Frictions {
 
 # Tracks player's status on terrain
 var stepping_tile: int
-var friction = Frictions.NORM
+var friction = Frictions.NORM 
 
 signal damage_taken
 signal oxygen_changed
@@ -119,6 +122,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if $Sprite2D/AnimationPlayer.current_animation == "health":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "oxygen":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "duct_tape":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "health":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "drill_up":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "drill_down":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "drill_right":
+		return
+	if $Sprite2D/AnimationPlayer.current_animation == "drill_left":
+		return
+		
 	# Initialize a direction vector to store player input
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
@@ -163,21 +184,29 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	
-	# Stop animations if there's no movement
-	if direction == Vector2.ZERO:
-		$Sprite2D/AnimationPlayer.stop()
-	
 	# Handle input for using items
 	if Input.is_action_just_pressed("action") and not inventory_ui.visible and not shop_ui.visible and not navigation.visible and not ship_upgrades.visible and not ship_storage_ui.visible:
 		var item_index = hotbar.get_selected_slot()
 		var hotbar_list = inventory.get_hotbar_items()
-		
+			
 		use_item(hotbar_list[item_index], item_index)
-	
+		
+			
 	if Input.is_action_just_released("action") and not inventory_ui.visible:
 		# Disable drilling
 		drilling = false
-	
+			 
+	# Stop animations if there's no movement
+	if direction == Vector2.ZERO:
+		if $Sprite2D/AnimationPlayer.current_animation == "walk_right":
+			$Sprite2D/AnimationPlayer.stop()
+		if $Sprite2D/AnimationPlayer.current_animation == "walk_left":
+			$Sprite2D/AnimationPlayer.stop()
+		if $Sprite2D/AnimationPlayer.current_animation == "walk_up":
+			$Sprite2D/AnimationPlayer.stop()
+		if $Sprite2D/AnimationPlayer.current_animation == "walk_down":
+			$Sprite2D/AnimationPlayer.stop()
+			
 	handle_special_movement()
 	handle_animation()
 	move_and_slide()
@@ -185,6 +214,12 @@ func _physics_process(delta: float) -> void:
 
 func handle_animation():
 	# Direction -> Animation
+	
+	var direction = Input.get_vector("left", "right", "up", "down")
+	if direction != Vector2.ZERO:
+		last_facing_direction = direction
+		
+		
 	if Input.is_action_pressed("up"):
 		$Sprite2D/AnimationPlayer.play("walk_up")
 	elif Input.is_action_pressed("down"):
@@ -418,26 +453,38 @@ func use_item(item : Item, index : int):
 		return
 	else:
 		print("Using ", item.name, "...")
-	
-	
+
+			
 	# Handle Item use and animations
 	match item.name:
 		"Drill":
 			if target_rock:
 				drilling = true
+				
+				if last_facing_direction == Vector2.UP:
+						$Sprite2D/AnimationPlayer.play("drill_backward")
+				if last_facing_direction == Vector2.DOWN:
+						$Sprite2D/AnimationPlayer.play("drill_forward")
+				if last_facing_direction == Vector2.LEFT:
+						$Sprite2D/AnimationPlayer.play("drill_left")
+				if last_facing_direction == Vector2.RIGHT:
+						$Sprite2D/AnimationPlayer.play("drill_right")
 				target_rock.destroy(item)
 		"Duct Tape":
 			if !Globals.oxygen_leaking:
 				return
+			$Sprite2D/AnimationPlayer.play("duct_tape")
 			fix_oxygen_leak()
 			
 		"Medkit":
 			if current_health == max_health:
 				return
+			$Sprite2D/AnimationPlayer.play("health")
 			current_health += item.effect + Globals.medkit_modifier
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
 				return
+			$Sprite2D/AnimationPlayer.play("oxygen")
 			current_oxygen += item.effect + Globals.oxygen_modifier
 	
 	if item.consumable:

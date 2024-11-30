@@ -50,7 +50,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_kbp30"]
 resource_name = "drill_backward"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -79,7 +78,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_01iq6"]
 resource_name = "drill_forward"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -108,7 +106,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_at817"]
 resource_name = "drill_left"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -137,7 +134,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_1mws4"]
 resource_name = "drill_right"
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
