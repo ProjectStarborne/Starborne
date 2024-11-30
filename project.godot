@@ -37,7 +37,7 @@ directories/dtl_directory={
 }
 glossary/default_case_sensitive=true
 layout/style_list=[]
-layout/default_style="Default"
+layout/default_style=""
 variables={}
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
@@ -195,3 +195,7 @@ dialogic_default_action={
 2d_physics/layer_1="actors"
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="anchors"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
