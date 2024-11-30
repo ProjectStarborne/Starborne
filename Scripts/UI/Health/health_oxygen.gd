@@ -20,7 +20,9 @@ func update_oxygen() -> void:
 
 
 func update_health_color() -> void:
-	var health_percentage = float(%Player.current_health) / float(%Player.max_health)
+	var curr = float(%Player.current_health)
+	var max = float(%Player.max_health)
+	var health_percentage = curr / max
 	
 	# Get the fill stylebox of the health bar to change its background color
 	var fill_stylebox = health_bar.get("theme_override_styles/fill")

@@ -64,7 +64,7 @@ var health_chip_delay = 1.0  # Delay in seconds between health reductions (when 
 var time_since_last_health_chip = 0.0  # Tracks time since the last health reduction
 
 # Health Variables
-@export var max_health = 100  # Maximum health for the player (adjustable)
+@export var max_health = 100.0  # Maximum health for the player (adjustable)
 var current_health = max_health  # Player's current health, initialized to the maximum
 var is_dead = false  # Boolean to track if the player is dead (starts alive)
 
