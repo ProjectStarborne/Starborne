@@ -5,6 +5,7 @@ var player_nearby: bool = false
 @onready var ship_storage_ui: Control = $"../../CanvasLayer/ShipStorageUI"
 @onready var player: Player = get_node("/root/Shipinterior/Player")
 @onready var interaction_label = player.get_node("InteractionLabel")
+@onready var world = get_node("/root/Shipinterior")
 
 
 # Detect when the player enters the navigation computer's area
@@ -26,8 +27,12 @@ func _process(_delta: float) -> void:
 	if player_nearby and Input.is_action_just_pressed(interact_key):
 		if ship_storage_ui.visible:
 			ship_storage_ui.close()
+			world.menu_open = false
+			world.current_menu = null
 		else:
 			ship_storage_ui.open(player.inventory, Globals.ship_inventory)
+			world.menu_open = true
+			world.current_menu = ship_storage_ui
 		print("Storage menu toggled.")
 
 # Show the interaction message over the player's head

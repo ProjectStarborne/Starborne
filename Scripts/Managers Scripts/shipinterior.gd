@@ -14,6 +14,9 @@ var paused : bool = false
 
 @onready var file_manager: FileManager = $FileManager
 
+var menu_open : bool = false
+var current_menu = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,13 +30,17 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		if inventory.visible:
 			inventory.close()
+			menu_open = false
 		else:
 			inventory.open(player.inventory)
+			menu_open = true
+			current_menu = inventory
 	
 	# Handle Pause UI
-	if Input.is_action_just_pressed("pause") and !paused:
+	if Input.is_action_just_pressed("escape") and !paused and !menu_open:
 		pause_menu.pause()
 		paused = !paused
-	elif Input.is_action_just_pressed("pause") and paused:
-		pause_menu.resume()
-		paused = !paused
+	elif Input.is_action_just_pressed("escape") and menu_open:
+		current_menu.hide()
+		menu_open = false
+		current_menu = null
