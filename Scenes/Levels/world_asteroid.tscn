@@ -841,6 +841,7 @@ size = Vector2(392, 43.5)
 
 [node name="Environment" type="Node2D"]
 process_mode = 3
+texture_filter = 1
 script = ExtResource("1_it5gi")
 ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq")])
 

@@ -238,15 +238,16 @@ _data = {
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6qxdm"]
 
 [node name="ShopUI" type="Control"]
+texture_filter = 1
 layout_mode = 3
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-offset_left = 48.0
-offset_top = 62.0
-offset_right = -21.0
-offset_bottom = 1.0
+anchor_left = 0.137
+anchor_top = 0.186
+anchor_right = 0.884
+anchor_bottom = 0.901
+offset_left = 0.639984
+offset_top = 0.0800018
+offset_right = -0.52002
+offset_bottom = 0.279968
 theme = SubResource("Theme_spn2d")
 script = ExtResource("1_bm1qs")
 
@@ -263,12 +264,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_a1aki")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.006
+anchor_top = 0.008
+anchor_right = 1.006
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 6.0
+offset_left = -3.73
+offset_top = -0.12
+offset_right = 0.269958
 offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
