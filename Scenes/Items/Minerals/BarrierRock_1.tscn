@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqe4jrf6g54sb"]
+[gd_scene load_steps=8 format=3 uid="uid://dqe4jrf6g54sb"]
 
 [ext_resource type="Texture2D" uid="uid://b1xxvn7gtb6x1" path="res://Assets/images/barrier_rocks.png" id="1_kw5v8"]
+[ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_y8y8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mk0s6"]
 size = Vector2(32, 28.5)
@@ -46,6 +47,8 @@ _data = {
 }
 
 [node name="BarrierRock1" type="StaticBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_y8y8i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -69,3 +72,6 @@ shape = SubResource("CircleShape2D_t1hww")
 libraries = {
 "": SubResource("AnimationLibrary_qplc1")
 }
+
+[connection signal="body_entered" from="Proximity" to="." method="_on_proximity_body_entered"]
+[connection signal="body_exited" from="Proximity" to="." method="_on_proximity_body_exited"]

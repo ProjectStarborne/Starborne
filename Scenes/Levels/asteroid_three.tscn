@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://diswrhrsycgti"]
+[gd_scene load_steps=44 format=3 uid="uid://diswrhrsycgti"]
 
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="1_su75u"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="2_nfand"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="22_v35x2"]
 [ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="25_cq8al"]
 [ext_resource type="Texture2D" uid="uid://be3d5kkgtsg6l" path="res://Assets/images/space3.png" id="26_88tdc"]
+[ext_resource type="PackedScene" uid="uid://d00d6eipxndoc" path="res://Scenes/Items/Minerals/Barrier_Rock4.tscn" id="27_pouaf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sipe"]
 shader = ExtResource("21_kixyb")
@@ -997,7 +998,6 @@ layer_4/tile_data = PackedInt32Array(-2293748, 720899, 1, -2162682, 131077, 3, -
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 1
-visible = false
 
 [node name="HealthOxygen" parent="CanvasLayer" instance=ExtResource("5_crwj7")]
 
@@ -1126,11 +1126,20 @@ offset_right = 8196.0
 offset_bottom = 4024.0
 texture = ExtResource("26_88tdc")
 
+[node name="Background3" type="ColorRect" parent="."]
+z_index = -10
+texture_filter = 1
+offset_left = -19145.0
+offset_top = -4915.0
+offset_right = -6587.0
+offset_bottom = 3997.0
+color = Color(0.152941, 0.14902, 0.141176, 1)
+
 [node name="Background2" type="ColorRect" parent="."]
 z_index = -10
 texture_filter = 1
-offset_left = -18978.0
-offset_top = -4915.0
+offset_left = -19145.0
+offset_top = -4888.0
 offset_right = -6587.0
 offset_bottom = 3997.0
 color = Color(0, 0, 0, 1)
@@ -1155,3 +1164,53 @@ position = Vector2(-416, 467)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-8, -5, -53, -13, -116, -46, -180, -86, -228, -111, -327, -171, -383, -219, -435, -266, -502, -375, -542, -473, -554, -571, -559, -717, -545, -831, -494, -941, -390, -1066, -298, -1151, -261, -1166, -185, -1176, -101, -1187, 41, -1211, 136, -1224, 244, -1224, 372, -1220, 487, -1191, 558, -1183, 614, -1187, 670, -1146, 746, -1094, 818, -1009, 863, -923, 920, -808, 974, -723, 1023, -696, 1034, -644, 1000, -571, 954, -487, 903, -421, 857, -356, 803, -276, 727, -209, 649, -173, 608, -118, 560, -46, 483, -4, 390, 2, 413, 14, 458, 10, 500, 6, 536, -16, 569, -32, 583, -61, 606, -92, 631, -129, 657, -155, 699, -182, 741, -200, 771, -226, 815, -267, 850, -314, 871, -353, 909, -406, 949, -456, 979, -506, 1007, -560, 1039, -624, 1055, -657, 1045, -692, 1026, -723, 986, -740, 960, -776, 934, -816, 901, -875, 872, -930, 832, -1009, 790, -1063, 751, -1102, 677, -1156, 617, -1200, 587, -1200, 551, -1195, 495, -1204, 428, -1219, 375, -1234, 315, -1234, 242, -1239, 138, -1235, 50, -1224, -1, -1212, -90, -1206, -140, -1202, -174, -1197, -200, -1195, -239, -1186, -270, -1178, -293, -1172, -322, -1156, -359, -1119, -400, -1079, -511, -949, -566, -841, -576, -715, -568, -567, -558, -467, -518, -365, -444, -254, -394, -204, -335, -153, -239, -90, -190, -68, -125, -29, -60, 4, -8, 10)
+
+[node name="Rocks" type="Node" parent="."]
+
+[node name="BarrierRock6" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(-25, 1352)
+
+[node name="BarrierRock4" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(88, 1178)
+
+[node name="BarrierRock5" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(40, 1265)
+
+[node name="BarrierRock7" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(753, 1897)
+
+[node name="BarrierRock8" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(753, 1985)
+
+[node name="BarrierRock9" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(1636, 596)
+
+[node name="BarrierRock10" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(1539, 596)
+
+[node name="BarrierRock11" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(2268, 176)
+
+[node name="BarrierRock12" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(2336, 269)
+
+[node name="BarrierRock13" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(787, -891)
+
+[node name="BarrierRock14" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(736, -983)
+
+[node name="BarrierRock15" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(660, -1082)
+
+[node name="BarrierRock16" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(570, -2432)
+
+[node name="BarrierRock17" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(660, -2432)
+
+[node name="BarrierRock18" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(765, -2432)
+
+[node name="BarrierRock19" parent="Rocks" instance=ExtResource("27_pouaf")]
+position = Vector2(864, -2432)
