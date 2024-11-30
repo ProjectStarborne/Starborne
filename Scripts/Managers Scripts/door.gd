@@ -36,6 +36,7 @@ func _on_body_entered(body: Node2D) -> void:
 		# Check if there is a queued level in Globals.next_level
 		if Globals.next_level != null and Globals.next_level != "":
 			# Use the queued level as the destination, then clear Globals.next_level
+			destination_door = "newship"
 			NavigationManager.go_to_level(Globals.next_level, destination_door)
 			Globals.next_level = null  # Clear queued level after transition
 		else:

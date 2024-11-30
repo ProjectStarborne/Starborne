@@ -1205,7 +1205,7 @@ _data = {
 "fade_out": SubResource("Animation_342be")
 }
 
-[node name="Environment" type="Node2D"]
+[node name="Environment2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_fe5u2")
 ore_nodes = Array[PackedScene]([ExtResource("2_7dht7"), ExtResource("3_itwfd"), ExtResource("4_fiqp2"), ExtResource("5_ml5p0")])
@@ -1435,6 +1435,7 @@ position = Vector2(-211, -767)
 [node name="Door_S" parent="Doors" instance=ExtResource("35_jqmhs")]
 position = Vector2(-1694, 219)
 destination_level = "shipinterior"
+destination_door = "asteroid_two"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-1583, 224)

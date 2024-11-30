@@ -21,6 +21,9 @@ enum Frictions {
 var stepping_tile: int
 var friction = Frictions.NORM 
 
+# Determines if oxygen will be depleted
+@export var oxygen_handler: bool = true
+
 signal damage_taken
 signal oxygen_changed
 
@@ -144,16 +147,15 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	# Should only work in Environment root node
-	if in_level:
-		# Handle flashlight aiming at the mouse position
-		handle_flashlight()
+	# Handle flashlight aiming at the mouse position
+	handle_flashlight()
 		
-		# Dynamic Footstep Caller
-		footstep_handler()
+	# Dynamic Footstep Caller
+	footstep_handler()
 		
-		# Flicker warning text if oxygen is leaking
-		if oxygen_leaking:
-			handle_warning(delta)
+	# Flicker warning text if oxygen is leaking
+	if oxygen_leaking:
+		handle_warning(delta)
 	
 	# Check if inside the ship to refill oxygen or deplete outside
 	var is_in_ship = get_tree().current_scene.name == "Shipinterior"
@@ -161,7 +163,7 @@ func _physics_process(delta: float) -> void:
 	if is_in_ship and current_oxygen < max_oxygen:
 		# Refill oxygen while in the ship
 		refill_oxygen(delta)
-	else:
+	elif oxygen_handler:
 		# Deplete oxygen over time when not in the ship
 		deplete_oxygen(delta)
 	
@@ -242,6 +244,7 @@ func handle_special_movement():
 
 
 func handle_flashlight():
+	if !flashlight: return
 	flashlight.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("toggle_flashlight"):
 		flashlight.visible = !flashlight.visible
@@ -491,6 +494,8 @@ func use_item(item : Item, index : int):
 		inventory.remove_from_hotbar(index)
 	
 	hotbar.update_hotbar_ui(inventory)
+	damage_taken.emit()
+	oxygen_changed.emit()
 
 
 ####### Dynamic Footsteps #######
@@ -507,7 +512,7 @@ func footstep_handler() -> void:
 		TileDetector.TerrainType.ROCK:
 			play = true
 	
-	if play and audio_timer.time_left <= 0:
+	if play and audio_timer and audio_timer.time_left <= 0:
 		footstep_player.pitch_scale = randf_range(0.8, 1.0)
 		footstep_player.play()
 		audio_timer.start(0.3)

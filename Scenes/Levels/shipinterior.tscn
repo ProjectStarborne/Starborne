@@ -318,9 +318,11 @@ position = Vector2(74, -67)
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="Door_S" parent="Doors" instance=ExtResource("6_cygqa")]
+[node name="ship_door" parent="Doors" instance=ExtResource("6_cygqa")]
+unique_name_in_owner = true
 position = Vector2(210, 32)
 destination_level = "world_asteroid"
+destination_door = "shipinterior"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

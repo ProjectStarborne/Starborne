@@ -882,6 +882,7 @@ unique_name_in_owner = true
 process_mode = 1
 position = Vector2(-935, 272)
 scale = Vector2(0.84, 0.84)
+oxygen_handler = false
 
 [node name="TileMap" type="TileMap" parent="."]
 process_mode = 1
@@ -1015,6 +1016,7 @@ polygon = PackedVector2Array(-628, 866, -1180, 869, -1180, 795, -1266, 795, -126
 [node name="Door_S" parent="Doors" instance=ExtResource("27_f57vm")]
 position = Vector2(-1154, 252)
 destination_level = "shipinterior"
+destination_door = "world_asteroid"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-979, 262)

@@ -8,11 +8,12 @@ const scene_asteroid = preload("res://Scenes/Levels/world_asteroid.tscn")
 const ship_interior = preload("res://Scenes/Levels/shipinterior.tscn")
 const scene_asteroid_two = preload("res://Scenes/Levels/asteroid_two.tscn")  # Adjust path if needed
 
+# Game starts -> First level is tutorial when coming out of ship
+var previous_door_tag = "world_asteroid"
 
-var spawn_door_tag
 
 # Changes scene to specific door
-func go_to_level(level_tag, destination_tag):
+func go_to_level(to_tag, from_tag):
 	var scene_to_load
 	
 	# Dynamically find the player node, adjusting for different scene structures
@@ -32,9 +33,12 @@ func go_to_level(level_tag, destination_tag):
 		player.save_player_stats()
 	else:
 		print("Player not found!")
-
-	# Determine which scene to load based on the level_tag
-	match level_tag:
+	
+	if from_tag == "shipinterior":
+		to_tag = previous_door_tag
+	
+	# Determine which scene to load based on the to_tag
+	match to_tag:
 		"world_space":
 			scene_to_load = scene_space
 		"world_asteroid":
@@ -43,9 +47,9 @@ func go_to_level(level_tag, destination_tag):
 			scene_to_load = ship_interior
 		"asteroid_two":
 			scene_to_load = scene_asteroid_two
-
+	
 	if scene_to_load != null:
 		TransitionManager.transition()
 		await TransitionManager.on_transition_finished
-		spawn_door_tag = destination_tag
+		previous_door_tag = from_tag
 		get_tree().change_scene_to_packed(scene_to_load)
