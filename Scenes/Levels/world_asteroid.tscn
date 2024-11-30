@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=78 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
 [ext_resource type="PackedScene" uid="uid://bdq80nl7vihf3" path="res://Scenes/Items/Minerals/nickel_node.tscn" id="3_hn3xq"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
+[ext_resource type="Texture2D" uid="uid://b6ww7ukg7fogb" path="res://Assets/images/space1.png" id="4_5voqj"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="Texture2D" uid="uid://c5shmns5p5mnb" path="res://Assets/images/Landing_Pad.png" id="4_wyxad"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="12_ierrj"]
@@ -21,6 +22,7 @@
 [ext_resource type="Script" path="res://Scripts/Environmental/Meteor/meteor_spawner.gd" id="17_bxqg6"]
 [ext_resource type="PackedScene" uid="uid://chdv7oq5t6ggr" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="18_aly4v"]
 [ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="18_yfa2m"]
+[ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="19_5f584"]
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="19_nm2tu"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="20_dm1r8"]
 [ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="20_xsg51"]
@@ -38,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://bw14qukpolqwr" path="res://Assets/images/satellite.png" id="36_75eig"]
 [ext_resource type="Texture2D" uid="uid://chcrt65yby5rj" path="res://Assets/images/flood_light.png" id="36_s1pf6"]
 [ext_resource type="Texture2D" uid="uid://b2tt5ojvjphdv" path="res://Assets/images/medical_guy.png" id="36_u8f4x"]
+[ext_resource type="Script" path="res://Scenes/Levels/chat_detection.gd" id="36_yee7f"]
 [ext_resource type="Texture2D" uid="uid://b4cymuri5ybfe" path="res://Assets/images/const_worker1.png" id="37_jur8c"]
 [ext_resource type="Texture2D" uid="uid://bfeyo7rwndeu2" path="res://Assets/images/construction.png" id="37_yi6tr"]
 [ext_resource type="Texture2D" uid="uid://dbox1x8tn2xcs" path="res://Assets/images/const_worker2.png" id="38_0ymw4"]
@@ -639,6 +642,9 @@ _data = {
 "idle": SubResource("Animation_qjnwc")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfnr8"]
+radius = 33.63
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmvg0"]
 radius = 4.7619
 height = 10.9524
@@ -838,15 +844,16 @@ size = Vector2(392, 43.5)
 
 [node name="Environment" type="Node2D"]
 process_mode = 3
+texture_filter = 1
 script = ExtResource("1_it5gi")
 ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq")])
 
-[node name="Background" type="ColorRect" parent="."]
-offset_left = -7971.0
-offset_top = -4782.0
-offset_right = 5279.0
-offset_bottom = 1849.0
-color = Color(0.152941, 0.14902, 0.141176, 1)
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -6353.0
+offset_top = -3708.0
+offset_right = 6897.0
+offset_bottom = 2923.0
+texture = ExtResource("4_5voqj")
 
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("34_gbrhf")
@@ -923,6 +930,9 @@ text = "REEEEEEEE"
 stream = ExtResource("14_8fmbm")
 volume_db = -10.0
 bus = &"UI"
+
+[node name="Oxygen_Leak" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
+stream = ExtResource("19_5f584")
 
 [node name="Notifications" parent="CanvasLayer" instance=ExtResource("21_kfndn")]
 
@@ -1037,6 +1047,12 @@ libraries = {
 "": SubResource("AnimationLibrary_0lbyl")
 }
 autoplay = "idle"
+
+[node name="ChatDetection" type="Area2D" parent="NPC/Construction_Lead/Construction_Lead"]
+script = ExtResource("36_yee7f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Construction_Lead/Construction_Lead/ChatDetection"]
+shape = SubResource("CircleShape2D_bfnr8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Construction_Lead"]
 position = Vector2(-993, -1)
@@ -1210,3 +1226,5 @@ position = Vector2(1326, 250)
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
+[connection signal="body_entered" from="NPC/Construction_Lead/Construction_Lead/ChatDetection" to="NPC/Construction_Lead/Construction_Lead/ChatDetection" method="_on_body_entered"]
+[connection signal="body_exited" from="NPC/Construction_Lead/Construction_Lead/ChatDetection" to="NPC/Construction_Lead/Construction_Lead/ChatDetection" method="_on_body_exited"]

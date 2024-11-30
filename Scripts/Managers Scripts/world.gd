@@ -15,6 +15,7 @@ extends Node2D
 @onready var ship_upgrades_ui = $CanvasLayer/ShipUpgrades
 
 var paused : bool = false
+var menu_open : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,25 +42,16 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory") and !ship_upgrades_ui.visible :
 		if inventory.visible:
 			inventory.close()
+			menu_open = false
 		else:
 			inventory.open(player.inventory)
+			menu_open = true
 	
 	# Handle Pause UI
-	if Input.is_action_just_pressed("pause") and !paused:
+	if Input.is_action_just_pressed("escape") and !paused && !menu_open:
 		close_ship_upgrades()
 		pause_menu.pause()
 		paused = !paused
-	elif Input.is_action_just_pressed("pause") and paused:
-		pause_menu.resume()
-		paused = !paused
-	
-		# Handle ship upgrade menu 
-	if Input.is_action_just_pressed("ship_upgrades"):  # map 'ship_upgrade' to 'U' in Input Map
-		if ship_upgrades_ui.visible:
-			ship_upgrades_ui.hide()  # Close the ship upgrades if it's already open
-		else:
-			inventory.close()
-			ship_upgrades_ui.show()  # Show the ship upgrades UI
 
 
 #Close the ship upgrades UI if it's open

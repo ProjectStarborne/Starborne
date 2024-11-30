@@ -38,6 +38,7 @@ var warning_timer = 0.0  # Timer to control warning text flickers
 var warning_visible = false  # To track if warning text is currently visible
 @onready var warning_label = $"../CanvasLayer/OxygenLeakWarning"  # Reference to warning label in UI
 @onready var warning_audio = $"../CanvasLayer/OxygenLeakWarning/Oxygen_Warning" # Warning sound player
+@onready var leak_audio = $"../CanvasLayer/OxygenLeakWarning/Oxygen_Leak" # leak sound 
 
 # Reference to the fire effect AnimatedSprite2D
 @onready var fire_sprite = $Fire
@@ -88,6 +89,8 @@ var target_rock = null
 # World Variable
 @onready var world = get_parent()
 
+var allowed_to_move = true
+
 # Called when the node is added to the scene
 func _ready() -> void: 
 	in_level = get_tree().current_scene.name == "Environment"
@@ -119,6 +122,11 @@ func _ready() -> void:
 	
 	if !in_level:
 		current_speed = SPEED / 4
+		
+	Dialogic.signal_event.connect(stop_movement)
+	
+	warning_audio.volume_db = -25  # Adjust volume in decibels (lower is quieter)
+	leak_audio.volume_db = -35  # Adjust volume in decibels
 
 
 func _physics_process(delta: float) -> void:
@@ -141,8 +149,12 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	# Initialize a direction vector to store player input
-	var direction = Input.get_vector("left", "right", "up", "down")
+	var direction = Vector2.ZERO
 	
+	# Handle movement when player is busy
+	if allowed_to_move:
+		direction = Input.get_vector("left", "right", "up", "down")
+		
 	# Should only work in Environment root node
 	if in_level:
 		# Handle flashlight aiming at the mouse position
@@ -403,10 +415,14 @@ func start_oxygen_leak() -> void:
 		# Play the warning sound only if not inside the ship
 		warning_audio.stream.loop = true
 		warning_audio.play()
+		leak_audio.stream.loop = true
+		leak_audio.play()
 	else:
 		# Stop the audio inside the ship
 		warning_audio.stop()
 		warning_audio.stream.loop = false
+		leak_audio.stop()
+		leak_audio.stream.loop = false 
 
 
 # Handle flickering of warning text
@@ -426,6 +442,8 @@ func fix_oxygen_leak() -> void:
 	# Stop the warning sound and disable looping
 	warning_audio.stop()
 	warning_audio.stream.loop = false
+	leak_audio.stop()
+	leak_audio.stream.loop = false
 
 
 ####### Resource Management System #######
@@ -477,10 +495,14 @@ func use_item(item : Item, index : int):
 			fix_oxygen_leak()
 			
 		"Medkit":
+			print(current_health)
 			if current_health == max_health:
 				return
 			$Sprite2D/AnimationPlayer.play("health")
 			current_health += item.effect + Globals.medkit_modifier
+			damage_taken.emit()
+			oxygen_changed.emit()
+			print(current_health)
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
 				return
@@ -518,7 +540,14 @@ func footstep_handler() -> void:
 # Method to get the current level
 func get_level() -> int:
 	return Globals.current_level
-	
+
+
+func stop_movement(arg: String):
+	if arg == "false":
+		allowed_to_move = false
+	elif arg == "true":
+		allowed_to_move = true
+
 ####### Save Information #######
 
 # Function used in file_manager.gd

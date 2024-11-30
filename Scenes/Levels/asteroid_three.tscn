@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://diswrhrsycgti"]
+[gd_scene load_steps=43 format=3 uid="uid://diswrhrsycgti"]
 
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="1_su75u"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="2_nfand"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="12_2o67y"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="13_ig83x"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="14_805od"]
+[ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="14_o7y4a"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="15_h2tah"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="16_luhlj"]
 [ext_resource type="PackedScene" uid="uid://chabragb6rc5h" path="res://Scenes/Environmental/Turret/turret.tscn" id="18_2wbxx"]
@@ -27,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="22_v35x2"]
 [ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="25_cq8al"]
 [ext_resource type="PackedScene" uid="uid://d00d6eipxndoc" path="res://Scenes/Items/Minerals/Barrier_Rock4.tscn" id="27_pouaf"]
+[ext_resource type="Texture2D" uid="uid://be3d5kkgtsg6l" path="res://Assets/images/space3.png" id="26_88tdc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sipe"]
 shader = ExtResource("21_kixyb")
@@ -1014,6 +1016,9 @@ stream = ExtResource("7_c6j1s")
 volume_db = -10.0
 bus = &"UI"
 
+[node name="Oxygen_Leak" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
+stream = ExtResource("14_o7y4a")
+
 [node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
 visible = false
 offset_top = 492.0
@@ -1112,14 +1117,14 @@ process_mode = 1
 texture_filter = 1
 position = Vector2(-1215, -1627)
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 z_index = -10
 texture_filter = 1
-offset_left = -19145.0
-offset_top = -4915.0
-offset_right = 6447.0
-offset_bottom = 3997.0
-color = Color(0.152941, 0.14902, 0.141176, 1)
+offset_left = -17396.0
+offset_top = -4888.0
+offset_right = 8196.0
+offset_bottom = 4024.0
+texture = ExtResource("26_88tdc")
 
 [node name="Background3" type="ColorRect" parent="."]
 z_index = -10

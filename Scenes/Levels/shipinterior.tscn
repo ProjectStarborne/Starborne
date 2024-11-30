@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=29 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
@@ -17,11 +17,13 @@
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="10_5egvl"]
 [ext_resource type="PackedScene" uid="uid://kjrccbhl3oxl" path="res://Scenes/UI/Health/health_oxygen.tscn" id="10_670fk"]
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="14_amo1g"]
+[ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="14_h6fwj"]
 [ext_resource type="PackedScene" uid="uid://bjm27ftv60peu" path="res://Scenes/UI/Shop/shop_ui.tscn" id="15_mwkym"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="16_dfmsb"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="17_qq3mm"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="19_abd2d"]
 [ext_resource type="Texture2D" uid="uid://dxp6gwfi30kpf" path="res://Assets/images/exit_sign.png" id="22_ru3qb"]
+[ext_resource type="AudioStream" uid="uid://52oj1i2q88de" path="res://Assets/sounds/spaceship-ambience.mp3" id="23_eij13"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fhwrb"]
 shader = ExtResource("2_w4dn6")
@@ -279,6 +281,7 @@ default_font = ExtResource("9_ga0q0")
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vfjot"]
 
 [node name="Shipinterior" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_ewpm4")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -351,26 +354,29 @@ stream = ExtResource("10_5egvl")
 volume_db = -10.0
 bus = &"UI"
 
-[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("7_3c6jt")]
+[node name="Oxygen_Leak" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
+stream = ExtResource("14_h6fwj")
+
+[node name="InventoryUI" parent="CanvasLayer" groups=["UI"] instance=ExtResource("7_3c6jt")]
 visible = false
 
-[node name="HotBar" parent="CanvasLayer" instance=ExtResource("8_lgbpk")]
+[node name="HotBar" parent="CanvasLayer" groups=["UI"] instance=ExtResource("8_lgbpk")]
 unique_name_in_owner = true
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_dprta")]
 visible = false
 
-[node name="Navigation" parent="CanvasLayer" instance=ExtResource("14_amo1g")]
+[node name="Navigation" parent="CanvasLayer" groups=["UI"] instance=ExtResource("14_amo1g")]
 visible = false
 
-[node name="ShopUI" parent="CanvasLayer" instance=ExtResource("15_mwkym")]
+[node name="ShopUI" parent="CanvasLayer" groups=["UI"] instance=ExtResource("15_mwkym")]
 visible = false
 
-[node name="ShipUpgrades" parent="CanvasLayer" instance=ExtResource("16_dfmsb")]
+[node name="ShipUpgrades" parent="CanvasLayer" groups=["UI"] instance=ExtResource("16_dfmsb")]
 visible = false
 script = null
 
-[node name="ShipStorageUI" parent="CanvasLayer" groups=["Persist"] instance=ExtResource("17_qq3mm")]
+[node name="ShipStorageUI" parent="CanvasLayer" groups=["Persist", "UI"] instance=ExtResource("17_qq3mm")]
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -386,6 +392,10 @@ script = ExtResource("19_abd2d")
 texture_filter = 1
 position = Vector2(145, -22)
 texture = ExtResource("22_ru3qb")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_eij13")
+autoplay = true
+parameters/looping = true
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]

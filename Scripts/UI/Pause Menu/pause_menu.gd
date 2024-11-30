@@ -1,6 +1,11 @@
 extends Control
 
 @onready var world = get_parent().get_parent()
+var paused = false
+
+func _process(delta):
+	if Input.is_action_just_pressed("escape") && paused:
+		resume()
 
 #func _ready() -> void:
 	#$AnimationPlayer.play("RESET")
@@ -10,6 +15,8 @@ func pause() -> void:
 	get_tree().paused = true
 	show()
 	$AnimationPlayer.play("Blur")
+	await get_tree().create_timer(1).timeout
+	paused = true
 	
 func resume():
 	print("Resuming Game...")
@@ -18,6 +25,7 @@ func resume():
 	hide()
 	get_tree().paused = false
 	world.paused = false
+	paused = false
 	
 
 func _on_resume_button_pressed() -> void:

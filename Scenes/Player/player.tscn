@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cg1n3hs12k8ko"]
+[gd_scene load_steps=54 format=3 uid="uid://cg1n3hs12k8ko"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_ybtu2"]
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="2_ts4vt"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://gadgbacov6l8" path="res://Assets/images/air_animation-Sheet.png" id="8_m38hb"]
 [ext_resource type="Texture2D" uid="uid://de4ucyknukiw0" path="res://Assets/images/health_anim-Sheet.png" id="9_tb8x1"]
 [ext_resource type="AudioStream" uid="uid://dr101d5tc3yqa" path="res://Assets/sounds/01-footstep.ogg" id="9_ymawl"]
+[ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="18_5b5r8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_61hrv"]
 
@@ -521,6 +522,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["Persist", "Player"]]
 z_index = 1
+texture_filter = 1
 script = ExtResource("1_ybtu2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -601,6 +603,11 @@ one_shot = true
 [node name="Death_Sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -47.7536)
 stream = ExtResource("6_tv2j8")
+bus = &"SFX"
+
+[node name="AirLeak" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -47.7536)
+stream = ExtResource("18_5b5r8")
 bus = &"SFX"
 
 [connection signal="anchor_detached" from="AnchorDetector2D" to="AnchorCamera2D" method="_on_AnchorDetector2D_anchor_detached"]
