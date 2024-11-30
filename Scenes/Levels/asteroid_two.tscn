@@ -1147,6 +1147,7 @@ default_font = ExtResource("2_qr6hg")
 
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
+texture_filter = 1
 script = ExtResource("1_fe5u2")
 ore_nodes = Array[PackedScene]([ExtResource("2_7dht7"), ExtResource("3_itwfd"), ExtResource("4_fiqp2"), ExtResource("5_ml5p0")])
 

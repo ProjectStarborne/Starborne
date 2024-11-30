@@ -270,6 +270,7 @@ default_font = ExtResource("9_ga0q0")
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vfjot"]
 
 [node name="Shipinterior" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_ewpm4")
 
 [node name="Background" type="ColorRect" parent="."]
