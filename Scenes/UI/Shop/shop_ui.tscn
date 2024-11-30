@@ -248,6 +248,7 @@ offset_left = 0.639984
 offset_top = 0.0800018
 offset_right = -0.52002
 offset_bottom = 0.279968
+mouse_filter = 2
 theme = SubResource("Theme_spn2d")
 script = ExtResource("1_bm1qs")
 
@@ -260,6 +261,7 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_a1aki")
 
 [node name="TabContainer" type="TabContainer" parent="."]
