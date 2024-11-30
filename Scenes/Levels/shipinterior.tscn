@@ -344,26 +344,26 @@ stream = ExtResource("10_5egvl")
 volume_db = -10.0
 bus = &"UI"
 
-[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("7_3c6jt")]
+[node name="InventoryUI" parent="CanvasLayer" groups=["UI"] instance=ExtResource("7_3c6jt")]
 visible = false
 
-[node name="HotBar" parent="CanvasLayer" instance=ExtResource("8_lgbpk")]
+[node name="HotBar" parent="CanvasLayer" groups=["UI"] instance=ExtResource("8_lgbpk")]
 unique_name_in_owner = true
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_dprta")]
 visible = false
 
-[node name="Navigation" parent="CanvasLayer" instance=ExtResource("14_amo1g")]
+[node name="Navigation" parent="CanvasLayer" groups=["UI"] instance=ExtResource("14_amo1g")]
 visible = false
 
-[node name="ShopUI" parent="CanvasLayer" instance=ExtResource("15_mwkym")]
+[node name="ShopUI" parent="CanvasLayer" groups=["UI"] instance=ExtResource("15_mwkym")]
 visible = false
 
-[node name="ShipUpgrades" parent="CanvasLayer" instance=ExtResource("16_dfmsb")]
+[node name="ShipUpgrades" parent="CanvasLayer" groups=["UI"] instance=ExtResource("16_dfmsb")]
 visible = false
 script = null
 
-[node name="ShipStorageUI" parent="CanvasLayer" groups=["Persist"] instance=ExtResource("17_qq3mm")]
+[node name="ShipStorageUI" parent="CanvasLayer" groups=["Persist", "UI"] instance=ExtResource("17_qq3mm")]
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

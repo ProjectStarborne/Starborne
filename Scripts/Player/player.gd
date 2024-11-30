@@ -91,6 +91,8 @@ var target_rock = null
 # World Variable
 @onready var world = get_parent()
 
+var allowed_to_move = true
+
 # Called when the node is added to the scene
 func _ready() -> void: 
 	in_level = get_tree().current_scene.name == "Environment"
@@ -122,6 +124,8 @@ func _ready() -> void:
 	
 	if !in_level:
 		current_speed = SPEED / 4
+		
+	Dialogic.signal_event.connect(stop_movement)
 
 
 func _physics_process(delta: float) -> void:
@@ -144,8 +148,12 @@ func _physics_process(delta: float) -> void:
 		return
 		
 	# Initialize a direction vector to store player input
-	var direction = Input.get_vector("left", "right", "up", "down")
+	var direction = Vector2.ZERO
 	
+	# Handle movement when player is busy
+	if allowed_to_move:
+		direction = Input.get_vector("left", "right", "up", "down")
+		
 	# Should only work in Environment root node
 	# Handle flashlight aiming at the mouse position
 	handle_flashlight()
@@ -480,10 +488,14 @@ func use_item(item : Item, index : int):
 			fix_oxygen_leak()
 			
 		"Medkit":
+			print(current_health)
 			if current_health == max_health:
 				return
 			$Sprite2D/AnimationPlayer.play("health")
 			current_health += item.effect + Globals.medkit_modifier
+			damage_taken.emit()
+			oxygen_changed.emit()
+			print(current_health)
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
 				return
@@ -523,7 +535,14 @@ func footstep_handler() -> void:
 # Method to get the current level
 func get_level() -> int:
 	return Globals.current_level
-	
+
+
+func stop_movement(arg: String):
+	if arg == "false":
+		allowed_to_move = false
+	elif arg == "true":
+		allowed_to_move = true
+
 ####### Save Information #######
 
 # Function used in file_manager.gd

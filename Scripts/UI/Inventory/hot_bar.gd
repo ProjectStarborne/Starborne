@@ -6,12 +6,13 @@ extends Control
 @onready var ship_upgrades: Control = $"../ShipUpgrades"
 @onready var ship_storage_ui: Control = $"../ShipStorageUI"
 
-
-
 # Images for hotbar is loaded here
-var imgs = [Image.load_from_file("res://Assets/images/Hotbar/hotbar-0.jpeg"), Image.load_from_file("res://Assets/images/Hotbar/hotbar-1.jpeg")]
-var hb_unsel = ImageTexture.create_from_image(imgs[0])
-var hb_sel = ImageTexture.create_from_image(imgs[1])
+var imgs = [Image.new(), Image.new()]
+var hb_unsel = imgs[0].load_from_file("res://Assets/images/Hotbar/hotbar_unsel.png")
+var hb_sel = imgs[1].load_from_file("res://Assets/images/Hotbar/hotbar_sel.png")
+
+
+
 
 # Index of current use (selected) hotbar slot
 var selected_slot_index = 0
@@ -62,10 +63,10 @@ func update_hotbar_ui(inventory: Inventory):
 func change_selected_slot_texture():
 	for i in range(hotbar_slots.size()):
 		if i == selected_slot_index:
-			hotbar_slots[i].texture = hb_sel
+			hotbar_slots[i].texture = ImageTexture.create_from_image(hb_sel)
 			print(hotbar_slots[i].texture)
 		else:
-			hotbar_slots[i].texture = hb_unsel
+			hotbar_slots[i].texture = ImageTexture.create_from_image(hb_unsel)
 
 
 # Get the current slot that is highlighted on screen

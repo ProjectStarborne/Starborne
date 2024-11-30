@@ -5,6 +5,7 @@ var player_nearby: bool = false
 @onready var navigation_ui = get_node("/root/Shipinterior/CanvasLayer/Navigation")  # Reference to your navigation UI node
 @onready var player = get_node("/root/Shipinterior/Player")  # Adjust path to your Player node
 @onready var interaction_label = player.get_node("InteractionLabel")  # The label over the player's head
+@onready var world = get_node("/root/Shipinterior")
 
 # Detect when the player enters the navigation computer's area
 func _on_body_entered(body: Node2D) -> void:
@@ -27,8 +28,12 @@ func _process(_delta: float) -> void:
 	if player_nearby and Input.is_action_just_pressed(interact_key):
 		if navigation_ui.visible:
 			navigation_ui.hide()
+			world.menu_open = false
+			world.current_menu = null
 		else:
 			navigation_ui.show()
+			world.menu_open = true
+			world.current_menu = navigation_ui
 		print("Navigation menu toggled.")  
 
 # Show the interaction message over the player's head

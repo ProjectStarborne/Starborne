@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=55 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="19_skswi"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="20_eb7ld"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="21_c3j6w"]
+[ext_resource type="PackedScene" uid="uid://cee145qk5hmmo" path="res://Scenes/UI/notifications.tscn" id="22_0nqhh"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="23_p7xan"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="24_ryqv3"]
 [ext_resource type="Script" path="res://Scripts/Environmental/Meteor/meteor_spawner.gd" id="25_55wwj"]
@@ -1144,6 +1145,7 @@ sources/8 = SubResource("TileSetAtlasSource_iiua8")
 [sub_resource type="Theme" id="Theme_iub4r"]
 default_font = ExtResource("2_qr6hg")
 
+<<<<<<< HEAD
 [sub_resource type="Animation" id="Animation_x043f"]
 length = 0.001
 tracks/0/type = "value"
@@ -1346,20 +1348,7 @@ stream = ExtResource("3_3ffbt")
 volume_db = -10.0
 bus = &"UI"
 
-[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
-visible = false
-offset_top = 492.0
-offset_right = 283.0
-offset_bottom = 532.0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_qr6hg")
-text = "Hello World"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
-libraries = {
-"": SubResource("AnimationLibrary_6h6sd")
-}
+[node name="Notifications" parent="CanvasLayer" instance=ExtResource("22_0nqhh")]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("4_hecyw")]
 visible = false
