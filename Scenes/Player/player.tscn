@@ -526,7 +526,7 @@ script = ExtResource("1_ybtu2")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 3
 y_sort_enabled = true
-texture_filter = 5
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_61hrv")
 position = Vector2(0, -2)
 scale = Vector2(5, 5)

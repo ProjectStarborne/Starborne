@@ -16,8 +16,11 @@ func destroy(item : Item):
 		var speed = animation_weight * item.weight
 		animation_player.play("mine", -1, speed)
 		await animation_player.animation_finished
-		var instance = drop.instantiate()
-		spawn_item()
+		
+		if drop != null :
+			var instance = drop.instantiate()
+			spawn_item()
+		
 		queue_free() # Remove node from scene
 		
 		# Tell connected nodes that this ore was destroyed.

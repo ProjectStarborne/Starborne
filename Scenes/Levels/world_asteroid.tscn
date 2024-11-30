@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=75 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://dbox1x8tn2xcs" path="res://Assets/images/const_worker2.png" id="38_0ymw4"]
 [ext_resource type="Texture2D" uid="uid://douh01kyuwyic" path="res://Assets/images/sleeping_worker.png" id="39_jsxwd"]
 [ext_resource type="Texture2D" uid="uid://dvsdfpkorgt6q" path="res://Assets/images/book_worker.png" id="40_bs131"]
+[ext_resource type="PackedScene" uid="uid://dqe4jrf6g54sb" path="res://Scenes/Items/Minerals/BarrierRock_1.tscn" id="44_u2s3r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5x8q4"]
 shader = ExtResource("1_um8kb")
@@ -841,10 +842,10 @@ script = ExtResource("1_it5gi")
 ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq")])
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = -7826.0
-offset_top = -4786.0
-offset_right = 5424.0
-offset_bottom = 1845.0
+offset_left = -7971.0
+offset_top = -4782.0
+offset_right = 5279.0
+offset_bottom = 1849.0
 color = Color(0.152941, 0.14902, 0.141176, 1)
 
 [node name="FileManager" type="Node" parent="."]
@@ -1200,6 +1201,12 @@ texture_filter = 1
 position = Vector2(1231, -960)
 scale = Vector2(3, 3)
 texture = ExtResource("36_s1pf6")
+
+[node name="BarrierRock1" parent="." instance=ExtResource("44_u2s3r")]
+position = Vector2(1324, 318)
+
+[node name="BarrierRock2" parent="." instance=ExtResource("44_u2s3r")]
+position = Vector2(1326, 250)
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]

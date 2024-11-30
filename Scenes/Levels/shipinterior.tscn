@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=28 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="16_dfmsb"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="17_qq3mm"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="19_abd2d"]
+[ext_resource type="Texture2D" uid="uid://dxp6gwfi30kpf" path="res://Assets/images/exit_sign.png" id="22_ru3qb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fhwrb"]
 shader = ExtResource("2_w4dn6")
@@ -227,12 +228,17 @@ texture = ExtResource("1_yce60")
 6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4, 4, -7, -3, -7, -8, -4)
 12:11/0 = 0
 13:11/0 = 0
+13:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8, -8, -8)
 12:12/0 = 0
+12:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:12/0 = 0
+13:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:11/0 = 0
 14:12/0 = 0
 11:11/0 = 0
+11:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:12/0 = 0
+11:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:12/0 = 0
 0:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:13/0 = 0
@@ -254,8 +260,11 @@ texture = ExtResource("1_yce60")
 3:13/0 = 0
 3:12/0 = 0
 12:10/0 = 0
+12:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:10/0 = 0
+13:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:10/0 = 0
+11:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ool8b"]
@@ -372,6 +381,11 @@ shape = SubResource("SegmentShape2D_vfjot")
 
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("19_abd2d")
+
+[node name="ExitSign" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(145, -22)
+texture = ExtResource("22_ru3qb")
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
