@@ -490,6 +490,8 @@ func use_item(item : Item, index : int):
 				return
 			$Sprite2D/AnimationPlayer.play("health")
 			current_health += item.effect + Globals.medkit_modifier
+			damage_taken.emit()
+			oxygen_changed.emit()
 			print(current_health)
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
