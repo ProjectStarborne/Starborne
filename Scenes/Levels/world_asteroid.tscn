@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=78 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://lxxhhno105nc" path="res://Assets/images/gtexture2-Sheet.png" id="2_mpcfb"]
 [ext_resource type="PackedScene" uid="uid://bdq80nl7vihf3" path="res://Scenes/Items/Minerals/nickel_node.tscn" id="3_hn3xq"]
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="3_lct7p"]
+[ext_resource type="Texture2D" uid="uid://b6ww7ukg7fogb" path="res://Assets/images/space1.png" id="4_5voqj"]
 [ext_resource type="FontFile" uid="uid://bu31gsw3wcg8t" path="res://Assets/fonts/SpaceMono-Regular.ttf" id="4_w767y"]
 [ext_resource type="Texture2D" uid="uid://c5shmns5p5mnb" path="res://Assets/images/Landing_Pad.png" id="4_wyxad"]
 [ext_resource type="Texture2D" uid="uid://c2ruu54g1hh60" path="res://Assets/images/Ship_exterior.png" id="12_ierrj"]
@@ -846,12 +847,12 @@ texture_filter = 1
 script = ExtResource("1_it5gi")
 ore_nodes = Array[PackedScene]([ExtResource("30_jwh3y"), ExtResource("3_hn3xq")])
 
-[node name="Background" type="ColorRect" parent="."]
-offset_left = -7826.0
-offset_top = -4786.0
-offset_right = 5424.0
-offset_bottom = 1845.0
-color = Color(0.152941, 0.14902, 0.141176, 1)
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -6353.0
+offset_top = -3708.0
+offset_right = 6897.0
+offset_bottom = 2923.0
+texture = ExtResource("4_5voqj")
 
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("34_gbrhf")

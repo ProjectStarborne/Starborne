@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://diswrhrsycgti"]
+[gd_scene load_steps=43 format=3 uid="uid://diswrhrsycgti"]
 
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="1_su75u"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="2_nfand"]
@@ -27,6 +27,7 @@
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="21_kixyb"]
 [ext_resource type="Texture2D" uid="uid://chjcnurohxfcx" path="res://Assets/images/noise_texture.png" id="22_v35x2"]
 [ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="25_cq8al"]
+[ext_resource type="Texture2D" uid="uid://be3d5kkgtsg6l" path="res://Assets/images/space3.png" id="26_88tdc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sipe"]
 shader = ExtResource("21_kixyb")
@@ -1116,14 +1117,14 @@ process_mode = 1
 texture_filter = 1
 position = Vector2(-1215, -1627)
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 z_index = -10
 texture_filter = 1
-offset_left = -19145.0
-offset_top = -4915.0
-offset_right = 6447.0
-offset_bottom = 3997.0
-color = Color(0.152941, 0.14902, 0.141176, 1)
+offset_left = -17396.0
+offset_top = -4888.0
+offset_right = 8196.0
+offset_bottom = 4024.0
+texture = ExtResource("26_88tdc")
 
 [node name="Background2" type="ColorRect" parent="."]
 z_index = -10

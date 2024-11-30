@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=57 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="7_qusm8"]
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="7_rs71l"]
 [ext_resource type="Texture2D" uid="uid://coj1c3rdhdtum" path="res://Assets/images/platform.png" id="7_vqgbl"]
+[ext_resource type="Texture2D" uid="uid://qt7pee277cdl" path="res://Assets/images/space2.png" id="8_0v6mj"]
 [ext_resource type="PackedScene" uid="uid://chabragb6rc5h" path="res://Scenes/Environmental/Turret/turret.tscn" id="11_j5eho"]
 [ext_resource type="Texture2D" uid="uid://cjff8vfbpe6kv" path="res://Assets/images/cave_entrance.png" id="14_kopvl"]
 [ext_resource type="Texture2D" uid="uid://fxa0mp6oqly8" path="res://Assets/images/cave_textures.png" id="15_nvu1y"]
@@ -1177,14 +1178,14 @@ grow_vertical = 2
 color = Color(0.092397, 0.0923971, 0.0923971, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 z_index = -10
 texture_filter = 1
-offset_left = -13350.0
-offset_top = -3084.0
-offset_right = 5945.0
-offset_bottom = 3547.0
-color = Color(0.152941, 0.14902, 0.141176, 1)
+offset_left = -13380.0
+offset_top = -3930.0
+offset_right = 5915.0
+offset_bottom = 2701.0
+texture = ExtResource("8_0v6mj")
 
 [node name="Background2" type="ColorRect" parent="."]
 z_index = -10
