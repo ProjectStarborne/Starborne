@@ -1,14 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct6vn0rfh3xr1"]
+[gd_scene load_steps=7 format=3 uid="uid://d00d6eipxndoc"]
 
-[ext_resource type="Texture2D" uid="uid://crohcgrgxuknx" path="res://Assets/images/mineable_rocks.png" id="1_1nmv2"]
-[ext_resource type="Script" path="res://Scripts/Resource System/mining_manager.gd" id="1_ng1l3"]
-[ext_resource type="PackedScene" uid="uid://ckr4phswutb7y" path="res://Scenes/Pickup/pickup_iron.tscn" id="2_kgrfh"]
+[ext_resource type="Texture2D" uid="uid://b1xxvn7gtb6x1" path="res://Assets/images/barrier_rocks.png" id="1_brvkd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4j0"]
-size = Vector2(17.75, 15.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60si0"]
+size = Vector2(32, 28.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_idgao"]
-radius = 21.773
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7heh"]
+radius = 30.0
 
 [sub_resource type="Animation" id="Animation_oej0i"]
 length = 0.001
@@ -47,34 +45,29 @@ _data = {
 "mine": SubResource("Animation_ns4su")
 }
 
-[node name="Ore_node" type="StaticBody2D"]
-scale = Vector2(2, 2)
-script = ExtResource("1_ng1l3")
-drop = ExtResource("2_kgrfh")
+[node name="BarrierRock4" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_1nmv2")
+texture = ExtResource("1_brvkd")
 hframes = 4
 vframes = 4
 frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_1y4j0")
+light_mask = 2
+position = Vector2(0, 3.375)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_60si0")
 
 [node name="Proximity" type="Area2D" parent="."]
-collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
-scale = Vector2(2, 2)
-shape = SubResource("CircleShape2D_idgao")
+position = Vector2(0, 2.5)
+shape = SubResource("CircleShape2D_v7heh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_l7dhu")
 }
-
-[connection signal="body_entered" from="Proximity" to="." method="_on_proximity_body_entered"]
-[connection signal="body_exited" from="Proximity" to="." method="_on_proximity_body_exited"]
