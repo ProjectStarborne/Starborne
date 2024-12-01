@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=30 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]
@@ -392,6 +392,7 @@ script = ExtResource("19_abd2d")
 texture_filter = 1
 position = Vector2(145, -22)
 texture = ExtResource("22_ru3qb")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("23_eij13")
 autoplay = true
