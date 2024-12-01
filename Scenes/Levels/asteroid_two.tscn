@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=60 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -46,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://smkk3jm0pusw" path="res://Scenes/Items/Minerals/Barrier_Rock2.tscn" id="42_reuqe"]
 [ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="42_tk2ri"]
 [ext_resource type="PackedScene" uid="uid://c0dmc133ncinj" path="res://Scenes/Items/Minerals/Barrier_Rock3.tscn" id="43_oqruj"]
+[ext_resource type="AudioStream" uid="uid://c0rlrub2ucukj" path="res://Assets/sounds/asteroid_ambience.ogg" id="47_snujv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i441f"]
 shader = ExtResource("1_43alx")
@@ -1514,6 +1515,11 @@ position = Vector2(2741, -619)
 [node name="BarrierRock8" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2835, -619)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("47_snujv")
+autoplay = true
+parameters/looping = true
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
