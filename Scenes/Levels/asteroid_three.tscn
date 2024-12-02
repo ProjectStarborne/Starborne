@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://diswrhrsycgti"]
+[gd_scene load_steps=49 format=3 uid="uid://diswrhrsycgti"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_jbfc4"]
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="1_su75u"]
@@ -35,6 +35,8 @@
 [ext_resource type="AudioStream" uid="uid://c0rlrub2ucukj" path="res://Assets/sounds/asteroid_ambience.ogg" id="30_3a1xf"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="32_mb4aw"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="33_2btxb"]
+[ext_resource type="PackedScene" uid="uid://d4frqoq0jqq8s" path="res://Scenes/Items/Minerals/platinum_node.tscn" id="36_jnari"]
+[ext_resource type="PackedScene" uid="uid://b7mm4fk34ehg8" path="res://Scenes/Items/Minerals/iridium_node.tscn" id="37_eah5l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sipe"]
 shader = ExtResource("21_kixyb")
@@ -1231,6 +1233,56 @@ visible = false
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-565, -211)
 
+[node name="OreSpot" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-229, 1250)
+
+[node name="OreSpot2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(652, 1623)
+
+[node name="OreSpot3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-1929, 195)
+
+[node name="OreSpot4" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-1789, -873)
+
+[node name="OreSpot5" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-872, -2425)
+
+[node name="OreSpot6" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-766, -2810)
+
+[node name="OreSpot7" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(959, -126)
+
+[node name="OreSpot8" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(2571, 641)
+
+[node name="Ore_node" parent="." instance=ExtResource("36_jnari")]
+position = Vector2(-2804, 1034)
+
+[node name="Ore_node2" parent="." instance=ExtResource("36_jnari")]
+position = Vector2(-2550, 950)
+
+[node name="Ore_node3" parent="." instance=ExtResource("36_jnari")]
+position = Vector2(1396, 1800)
+
+[node name="Ore_node4" parent="." instance=ExtResource("37_eah5l")]
+position = Vector2(-636, -1939)
+
+[node name="Ore_node5" parent="." instance=ExtResource("37_eah5l")]
+position = Vector2(-156, -2406)
+
+[node name="Ore_node6" parent="." instance=ExtResource("37_eah5l")]
+position = Vector2(2152, -1266)
+
+[node name="Ore_node7" parent="." instance=ExtResource("36_jnari")]
+position = Vector2(2479, 892)
+
+[node name="Ore_node8" parent="." instance=ExtResource("37_eah5l")]
+position = Vector2(-11787, 65)
+
+[connection signal="notification" from="BrokenLog" to="." method="notif"]
+[connection signal="notification" from="BrokenLog2" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock6" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock4" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock5" to="." method="notif"]
@@ -1247,3 +1299,11 @@ position = Vector2(-565, -211)
 [connection signal="upgrade_notif" from="BarrierRock17" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock18" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock19" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node2" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node3" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node4" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node5" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node6" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node7" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node8" to="." method="notif"]

@@ -1586,6 +1586,8 @@ position = Vector2(-10615, 468)
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
+[connection signal="notification" from="BrokenLog" to="." method="notif"]
+[connection signal="notification" from="BrokenLog2" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock2" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock3" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock4" to="." method="notif"]
