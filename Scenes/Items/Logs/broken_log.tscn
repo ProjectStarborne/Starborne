@@ -4,6 +4,21 @@
 [ext_resource type="Script" path="res://Scripts/Logs/broken_log.gd" id="1_o3dgo"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="2_ap6qt"]
 
+[sub_resource type="Animation" id="Animation_y4v88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="Animation_nkalp"]
 resource_name = "flashing"
 loop_mode = 2
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [2.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_y4v88"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Light:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ixuae"]
