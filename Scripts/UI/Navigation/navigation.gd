@@ -183,6 +183,8 @@ func determine_level_tag(level: String) -> String:
 			return "world_asteroid"
 		"2":
 			return "asteroid_two"
+		"3":
+			return "asteroid_three"
 		_:
 			return ""
 

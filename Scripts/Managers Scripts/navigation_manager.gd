@@ -6,7 +6,8 @@ extends Node
 const scene_space = preload("res://Scenes/Levels/world_space.tscn")
 const scene_asteroid = preload("res://Scenes/Levels/world_asteroid.tscn")
 const ship_interior = preload("res://Scenes/Levels/shipinterior.tscn")
-const scene_asteroid_two = preload("res://Scenes/Levels/asteroid_two.tscn")  # Adjust path if needed
+const scene_asteroid_two = preload("res://Scenes/Levels/asteroid_two.tscn")
+const scene_asteroid_three = preload("res://Scenes/Levels/asteroid_three.tscn")  # Adjust path if needed
 
 # Game starts -> First level is tutorial when coming out of ship
 var previous_door_tag = "world_asteroid"
@@ -47,6 +48,8 @@ func go_to_level(to_tag, from_tag):
 			scene_to_load = ship_interior
 		"asteroid_two":
 			scene_to_load = scene_asteroid_two
+		"asteroid_three":
+			scene_to_load = scene_asteroid_three
 	
 	if scene_to_load != null:
 		TransitionManager.transition()

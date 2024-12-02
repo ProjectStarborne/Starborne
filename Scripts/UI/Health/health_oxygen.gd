@@ -66,3 +66,7 @@ func update_oxygen_color() -> void:
 
 func _on_player_oxygen_changed() -> void:
 	pass # Replace with function body.
+
+
+func _on_player_damage_taken() -> void:
+	pass # Replace with function body.
