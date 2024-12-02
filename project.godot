@@ -28,8 +28,11 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"air_tank": "res://Characters/air_tank.dch",
 "character": "res://Characters/character.dch",
-"tools": "res://Characters/tools.dch",
+"drill": "res://Characters/drill.dch",
+"duct_tape": "res://Characters/duct_tape.dch",
+"medkit": "res://Characters/medkit.dch",
 "unit_test_character": "res://Tests/Resources/unit_test_character.dch"
 }
 directories/dtl_directory={
