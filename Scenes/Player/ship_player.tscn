@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cc27e2xjnyb86"]
+[gd_scene load_steps=16 format=3 uid="uid://cc27e2xjnyb86"]
 
 [ext_resource type="Script" path="res://Scripts/Player/ship_player.gd" id="1_gut10"]
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="2_ts4vt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0hw5c13gf403" path="res://Scenes/Camera/ship_anchor_detector.tscn" id="6_31l6x"]
 [ext_resource type="Script" path="res://Scripts/Camera/ship_anchor_camera.gd" id="6_mpc02"]
 [ext_resource type="AudioStream" uid="uid://dbekjhlgw6nd0" path="res://Assets/sounds/lego_death.mp3" id="6_tv2j8"]
+[ext_resource type="AudioStream" uid="uid://d0ofk2emu8x8x" path="res://Assets/sounds/metal_footstep.wav" id="8_mlue7"]
 [ext_resource type="Script" path="res://Scripts/Camera/ship_anchor_detector.gd" id="8_u77jm"]
 
 [sub_resource type="Animation" id="Animation_ji7po"]
@@ -136,3 +137,14 @@ script = ExtResource("6_mpc02")
 
 [node name="AnchorDetector2D" parent="." instance=ExtResource("6_31l6x")]
 script = ExtResource("8_u77jm")
+
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -47.7536)
+stream = ExtResource("8_mlue7")
+volume_db = -5.0
+pitch_scale = 0.5
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="Footsteps"]
+wait_time = 0.4
+one_shot = true

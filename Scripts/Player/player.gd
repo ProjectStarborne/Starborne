@@ -523,11 +523,13 @@ func footstep_handler() -> void:
 	match stepping_tile:
 		TileDetector.TerrainType.ROCK:
 			play = true
+		TileDetector.TerrainType.STEEL:
+			play = true
 	
 	if play and audio_timer and audio_timer.time_left <= 0:
 		footstep_player.pitch_scale = randf_range(0.8, 1.0)
 		footstep_player.play()
-		audio_timer.start(0.3)
+		audio_timer.start()
 
 
 ####### LEVEL TRACKING (For later on in the shop) #######
