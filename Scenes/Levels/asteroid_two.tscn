@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=64 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -46,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://smkk3jm0pusw" path="res://Scenes/Items/Minerals/Barrier_Rock2.tscn" id="42_reuqe"]
 [ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="42_tk2ri"]
 [ext_resource type="PackedScene" uid="uid://c0dmc133ncinj" path="res://Scenes/Items/Minerals/Barrier_Rock3.tscn" id="43_oqruj"]
+[ext_resource type="PackedScene" uid="uid://bcjy3lsh4a4y2" path="res://Scenes/Managers/teleporter.tscn" id="44_gygrl"]
 [ext_resource type="AudioStream" uid="uid://c0rlrub2ucukj" path="res://Assets/sounds/asteroid_ambience.ogg" id="47_snujv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i441f"]
@@ -1322,8 +1323,9 @@ unique_name_in_owner = true
 process_mode = 1
 z_index = 0
 y_sort_enabled = true
-position = Vector2(-1476, 154)
+position = Vector2(1912, -1215)
 scale = Vector2(0.84, 0.84)
+collision_layer = 9
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -1568,28 +1570,42 @@ position = Vector2(-6290, 144)
 [node name="BrokenLog2" parent="." instance=ExtResource("42_tk2ri")]
 position = Vector2(-10662, 39)
 
-[node name="BarrierRock2" parent="." instance=ExtResource("42_reuqe")]
+[node name="OutsideCaveTP" parent="." node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+position = Vector2(2288, -1505)
+rotation = 3.14159
+scale = Vector2(5, 7)
+to_teleporter = NodePath("../InsideCaveTP")
+
+[node name="InsideCaveTP" parent="." node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+position = Vector2(-6286, 491)
+scale = Vector2(10, 8)
+to_teleporter = NodePath("../OutsideCaveTP")
+
+[node name="BarrierRocks" type="Node2D" parent="."]
+position = Vector2(9, -25)
+
+[node name="BarrierRock2" parent="BarrierRocks" instance=ExtResource("42_reuqe")]
 position = Vector2(1461, -373)
 
-[node name="BarrierRock3" parent="." instance=ExtResource("42_reuqe")]
+[node name="BarrierRock3" parent="BarrierRocks" instance=ExtResource("42_reuqe")]
 position = Vector2(1551, -373)
 
-[node name="BarrierRock4" parent="." instance=ExtResource("42_reuqe")]
+[node name="BarrierRock4" parent="BarrierRocks" instance=ExtResource("42_reuqe")]
 position = Vector2(1635, -373)
 
-[node name="BarrierRock5" parent="." instance=ExtResource("43_oqruj")]
+[node name="BarrierRock5" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2545, -619)
 
-[node name="BarrierRock6" parent="." instance=ExtResource("43_oqruj")]
+[node name="BarrierRock6" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2643, -619)
 
-[node name="BarrierRock7" parent="." instance=ExtResource("43_oqruj")]
+[node name="BarrierRock7" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2741, -619)
 
-[node name="BarrierRock8" parent="." instance=ExtResource("43_oqruj")]
+[node name="BarrierRock8" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2835, -619)
 

@@ -27,6 +27,8 @@ var friction = Frictions.NORM
 signal damage_taken
 signal oxygen_changed
 
+@onready var camera : Camera2D = $AnchorCamera2D
+
 # Vector to hold the player's knockback velocity (force applied when hit)
 var knockback_velocity = Vector2.ZERO
 # Timer to track how long the knockback effect lasts
@@ -547,6 +549,10 @@ func footstep_handler() -> void:
 # Method to get the current level
 func get_level() -> int:
 	return Globals.current_level
+
+
+func reset_camera() -> void:
+	camera.global_position = self.global_position
 
 
 func stop_movement(arg: String):
