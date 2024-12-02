@@ -326,6 +326,7 @@ texture = ExtResource("2_63qiv")
 13:2/0 = 0
 13:3/0 = 0
 13:4/0 = 0
+13:4/0/custom_data_0 = 7
 14:4/0 = 0
 15:4/0 = 0
 15:3/0 = 0
@@ -334,46 +335,66 @@ texture = ExtResource("2_63qiv")
 15:5/0 = 0
 14:6/0 = 0
 13:6/0 = 0
+13:6/0/custom_data_0 = 7
 12:6/0 = 0
+12:6/0/custom_data_0 = 7
 15:6/0 = 0
 13:5/0 = 0
+13:5/0/custom_data_0 = 7
 12:7/0 = 0
+12:7/0/custom_data_0 = 7
 13:7/0 = 0
 14:7/0 = 0
 13:8/0 = 0
 14:8/0 = 0
 12:8/0 = 0
 11:7/0 = 0
+11:7/0/custom_data_0 = 7
 10:7/0 = 0
+10:7/0/custom_data_0 = 7
 10:8/0 = 0
 11:8/0 = 0
 9:7/0 = 0
 9:8/0 = 0
 11:6/0 = 0
+11:6/0/custom_data_0 = 7
 10:6/0 = 0
+10:6/0/custom_data_0 = 7
 9:6/0 = 0
+9:6/0/custom_data_0 = 7
 8:6/0 = 0
 8:7/0 = 0
 8:8/0 = 0
 9:5/0 = 0
+9:5/0/custom_data_0 = 7
 8:5/0 = 0
 7:5/0 = 0
 6:5/0 = 0
 6:6/0 = 0
 7:6/0 = 0
 10:5/0 = 0
+10:5/0/custom_data_0 = 7
 10:4/0 = 0
+10:4/0/custom_data_0 = 7
 9:4/0 = 0
+9:4/0/custom_data_0 = 7
 8:4/0 = 0
 11:5/0 = 0
+11:5/0/custom_data_0 = 7
 11:4/0 = 0
+11:4/0/custom_data_0 = 7
 10:3/0 = 0
+10:3/0/custom_data_0 = 7
 9:3/0 = 0
 8:3/0 = 0
 12:5/0 = 0
+12:5/0/custom_data_0 = 7
 12:3/0 = 0
+12:3/0/custom_data_0 = 7
 11:3/0 = 0
+11:3/0/custom_data_0 = 7
 12:4/0 = 0
+12:4/0/custom_data_0 = 7
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6m2i8"]
 texture = ExtResource("3_vjbcf")
@@ -1258,7 +1279,7 @@ _data = {
 "fade_out": SubResource("Animation_342be")
 }
 
-[node name="Environment2" type="Node2D"]
+[node name="Environment" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_fe5u2")
@@ -1299,22 +1320,13 @@ offset_right = 5915.0
 offset_bottom = 2701.0
 texture = ExtResource("8_0v6mj")
 
-[node name="Background3" type="ColorRect" parent="."]
-z_index = -10
-texture_filter = 1
-offset_left = -13350.0
-offset_top = -3084.0
-offset_right = -4066.0
-offset_bottom = 3547.0
-color = Color(0.152941, 0.14902, 0.141176, 1)
-
 [node name="Background2" type="ColorRect" parent="."]
 z_index = -10
 texture_filter = 1
-offset_left = -13350.0
-offset_top = -3084.0
-offset_right = -4050.0
-offset_bottom = 3547.0
+offset_left = -13380.0
+offset_top = -3930.0
+offset_right = -4080.0
+offset_bottom = 2701.0
 color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_5nhd7")]
@@ -1507,7 +1519,7 @@ destination_level = "shipinterior"
 destination_door = "asteroid_two"
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(-1583, 224)
+position = Vector2(-1520, 159)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-10662, 39)
@@ -1570,28 +1582,35 @@ position = Vector2(-10662, 39)
 
 [node name="BarrierRock2" parent="." instance=ExtResource("42_reuqe")]
 position = Vector2(1461, -373)
+required_level = 2
 
 [node name="BarrierRock3" parent="." instance=ExtResource("42_reuqe")]
 position = Vector2(1551, -373)
+required_level = 2
 
 [node name="BarrierRock4" parent="." instance=ExtResource("42_reuqe")]
 position = Vector2(1635, -373)
+required_level = 2
 
 [node name="BarrierRock5" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2545, -619)
+required_level = 3
 
 [node name="BarrierRock6" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2643, -619)
+required_level = 3
 
 [node name="BarrierRock7" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2741, -619)
+required_level = 3
 
 [node name="BarrierRock8" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
 position = Vector2(2835, -619)
+required_level = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("47_snujv")
