@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cibxlmib6djil"]
+[gd_scene load_steps=31 format=3 uid="uid://cibxlmib6djil"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/shipinterior.gd" id="1_ewpm4"]
 [ext_resource type="Texture2D" uid="uid://b1y66ma3xv81" path="res://Assets/images/Ship_Interior.png" id="1_yce60"]

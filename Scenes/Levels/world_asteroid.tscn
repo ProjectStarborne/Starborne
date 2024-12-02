@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://b4cymuri5ybfe" path="res://Assets/images/const_worker1.png" id="37_jur8c"]
 [ext_resource type="Texture2D" uid="uid://bfeyo7rwndeu2" path="res://Assets/images/construction.png" id="37_yi6tr"]
 [ext_resource type="Texture2D" uid="uid://dbox1x8tn2xcs" path="res://Assets/images/const_worker2.png" id="38_0ymw4"]
+[ext_resource type="Script" path="res://Scripts/Managers Scripts/chat_detection.gd" id="38_ckfjr"]
 [ext_resource type="Texture2D" uid="uid://douh01kyuwyic" path="res://Assets/images/sleeping_worker.png" id="39_jsxwd"]
 [ext_resource type="Texture2D" uid="uid://dvsdfpkorgt6q" path="res://Assets/images/book_worker.png" id="40_bs131"]
 [ext_resource type="PackedScene" uid="uid://dqe4jrf6g54sb" path="res://Scenes/Items/Minerals/BarrierRock_1.tscn" id="44_u2s3r"]
@@ -646,6 +647,9 @@ _data = {
 radius = 4.7619
 height = 10.9524
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x40ek"]
+radius = 125.2
+
 [sub_resource type="Animation" id="Animation_81ap1"]
 length = 0.001
 tracks/0/type = "value"
@@ -1051,6 +1055,13 @@ position = Vector2(-993, -1)
 scale = Vector2(4.2, 4.2)
 shape = SubResource("CapsuleShape2D_lmvg0")
 
+[node name="ChatDetection" type="Area2D" parent="NPC/Construction_Lead"]
+script = ExtResource("38_ckfjr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Construction_Lead/ChatDetection"]
+position = Vector2(-995, 2)
+shape = SubResource("CircleShape2D_x40ek")
+
 [node name="Medical_Guy" type="StaticBody2D" parent="NPC"]
 
 [node name="Medical_guy" type="Sprite2D" parent="NPC/Medical_Guy"]
@@ -1223,3 +1234,5 @@ parameters/looping = true
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
+[connection signal="body_entered" from="NPC/Construction_Lead/ChatDetection" to="NPC/Construction_Lead/ChatDetection" method="_on_body_entered"]
+[connection signal="body_exited" from="NPC/Construction_Lead/ChatDetection" to="NPC/Construction_Lead/ChatDetection" method="_on_body_exited"]
