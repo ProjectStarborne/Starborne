@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bvgqaw6ccrlpc"]
+[gd_scene load_steps=79 format=3 uid="uid://bvgqaw6ccrlpc"]
 
 [ext_resource type="Texture2D" uid="uid://dua43i7o37n72" path="res://Assets/images/ground_texture-Sheet.png" id="1_0xj0f"]
 [ext_resource type="Texture2D" uid="uid://devnywmplk6sy" path="res://Assets/images/Ice_Paths.png" id="1_404wo"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="13_yb70v"]
 [ext_resource type="AudioStream" uid="uid://dhy2jkewp1xfk" path="res://Assets/sounds/oxygen_warning.ogg" id="14_8fmbm"]
 [ext_resource type="Texture2D" uid="uid://coj1c3rdhdtum" path="res://Assets/images/platform.png" id="15_5npi8"]
-[ext_resource type="PackedScene" uid="uid://dkp1llasnpsyl" path="res://Scenes/Environmental/Rocks/pointy_rocks.tscn" id="15_aj44i"]
 [ext_resource type="PackedScene" uid="uid://cie5bf6jws1py" path="res://Scenes/UI/Inventory/inventory_ui.tscn" id="15_ie1be"]
 [ext_resource type="PackedScene" uid="uid://xvd4qmndtd1j" path="res://Scenes/UI/pause_menu.tscn" id="16_ftpte"]
 [ext_resource type="Script" path="res://Scripts/Environmental/Meteor/meteor_spawner.gd" id="17_bxqg6"]
@@ -983,24 +982,14 @@ blend_mode = 2
 texture = ExtResource("20_dm1r8")
 texture_scale = 2.0
 
-[node name="Marker2D" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+[node name="OreSpot" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-15, -327)
 
-[node name="Marker2D2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+[node name="OreSpot2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-107, 754)
 
-[node name="Marker2D3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+[node name="OreSpot3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(933, -644)
-
-[node name="PointyRocks" parent="." instance=ExtResource("15_aj44i")]
-process_mode = 1
-texture_filter = 1
-position = Vector2(-417, -543)
-
-[node name="PointyRock" parent="." instance=ExtResource("15_aj44i")]
-process_mode = 1
-texture_filter = 1
-position = Vector2(-674, 527)
 
 [node name="MeteorSpawner" type="Node2D" parent="."]
 process_mode = 1

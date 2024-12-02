@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://diswrhrsycgti"]
+[gd_scene load_steps=47 format=3 uid="uid://diswrhrsycgti"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/world.gd" id="1_jbfc4"]
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="1_su75u"]
@@ -957,67 +957,6 @@ sources/7 = SubResource("TileSetAtlasSource_nj08p")
 [sub_resource type="Theme" id="Theme_mc0kk"]
 default_font = ExtResource("6_7ggl8")
 
-[sub_resource type="Animation" id="Animation_x043f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_342be"]
-resource_name = "fade_out"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3.03333, 5, 5.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(5.03333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h6sd"]
-_data = {
-"RESET": SubResource("Animation_x043f"),
-"fade_out": SubResource("Animation_342be")
-}
-
 [node name="Environment" type="Node2D"]
 script = ExtResource("1_jbfc4")
 
@@ -1262,21 +1201,6 @@ bus = &"UI"
 [node name="Oxygen_Leak" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
 stream = ExtResource("14_o7y4a")
 
-[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
-visible = false
-offset_top = 492.0
-offset_right = 283.0
-offset_bottom = 532.0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("6_7ggl8")
-text = "Hello World"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
-libraries = {
-"": SubResource("AnimationLibrary_6h6sd")
-}
-
 [node name="Notifications" parent="CanvasLayer" instance=ExtResource("27_xf673")]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("8_yhs4d")]
@@ -1306,3 +1230,20 @@ visible = false
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-565, -211)
+
+[connection signal="upgrade_notif" from="BarrierRock6" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock4" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock5" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock7" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock8" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock9" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock10" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock11" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock12" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock13" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock14" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock15" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock16" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock17" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock18" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock19" to="." method="notif"]

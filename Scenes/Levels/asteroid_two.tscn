@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=61 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -1219,72 +1219,11 @@ sources/8 = SubResource("TileSetAtlasSource_iiua8")
 [sub_resource type="Theme" id="Theme_iub4r"]
 default_font = ExtResource("2_qr6hg")
 
-[sub_resource type="Animation" id="Animation_x043f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_342be"]
-resource_name = "fade_out"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(3.03333, 5, 5.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(5.03333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h6sd"]
-_data = {
-"RESET": SubResource("Animation_x043f"),
-"fade_out": SubResource("Animation_342be")
-}
-
 [node name="Environment" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_fe5u2")
-ore_nodes = Array[PackedScene]([ExtResource("2_7dht7"), ExtResource("3_itwfd"), ExtResource("4_fiqp2"), ExtResource("5_ml5p0")])
+ore_nodes = Array[PackedScene]([ExtResource("2_7dht7"), ExtResource("3_itwfd")])
 
 [node name="Lighting" type="Node" parent="."]
 
@@ -1315,10 +1254,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Background" type="TextureRect" parent="."]
 z_index = -10
 texture_filter = 1
-offset_left = -13380.0
-offset_top = -3930.0
-offset_right = 5915.0
-offset_bottom = 2701.0
+offset_left = -14800.0
+offset_top = -4398.0
+offset_right = 4495.0
+offset_bottom = 2233.0
 texture = ExtResource("8_0v6mj")
 
 [node name="Background2" type="ColorRect" parent="."]
@@ -1335,7 +1274,7 @@ unique_name_in_owner = true
 process_mode = 1
 z_index = 0
 y_sort_enabled = true
-position = Vector2(1912, -1215)
+position = Vector2(-1517, 163)
 scale = Vector2(0.84, 0.84)
 collision_layer = 9
 
@@ -1427,21 +1366,6 @@ bus = &"UI"
 [node name="Oxygen_Leak" type="AudioStreamPlayer2D" parent="CanvasLayer/OxygenLeakWarning"]
 stream = ExtResource("24_3dsdo")
 
-[node name="ItemPickupNotification" type="Label" parent="CanvasLayer"]
-visible = false
-offset_top = 492.0
-offset_right = 283.0
-offset_bottom = 532.0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_qr6hg")
-text = "Hello World"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ItemPickupNotification"]
-libraries = {
-"": SubResource("AnimationLibrary_6h6sd")
-}
-
 [node name="Notifications" parent="CanvasLayer" instance=ExtResource("22_0nqhh")]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("4_hecyw")]
@@ -1512,6 +1436,24 @@ position = Vector2(-1399, -185)
 
 [node name="OreSpot3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-211, -767)
+
+[node name="OreSpot4" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(895, -350)
+
+[node name="OreSpot5" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(844, 290)
+
+[node name="OreSpot6" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(3234, -433)
+
+[node name="OreSpot7" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(-1888, -1283)
+
+[node name="OreSpot8" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(119, -1842)
+
+[node name="OreSpot9" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
+position = Vector2(587, -1376)
 
 [node name="Doors" type="Node" parent="."]
 
@@ -1593,39 +1535,36 @@ position = Vector2(-6286, 491)
 scale = Vector2(10, 8)
 to_teleporter = NodePath("../OutsideCaveTP")
 
-[node name="BarrierRocks" type="Node2D" parent="."]
-position = Vector2(9, -25)
-
-[node name="BarrierRock2" parent="BarrierRocks" instance=ExtResource("42_reuqe")]
-position = Vector2(1461, -373)
+[node name="BarrierRock2" parent="." instance=ExtResource("42_reuqe")]
+position = Vector2(1470, -398)
 required_level = 2
 
-[node name="BarrierRock3" parent="BarrierRocks" instance=ExtResource("42_reuqe")]
-position = Vector2(1551, -373)
+[node name="BarrierRock3" parent="." instance=ExtResource("42_reuqe")]
+position = Vector2(1560, -398)
 required_level = 2
 
-[node name="BarrierRock4" parent="BarrierRocks" instance=ExtResource("42_reuqe")]
-position = Vector2(1635, -373)
+[node name="BarrierRock4" parent="." instance=ExtResource("42_reuqe")]
+position = Vector2(1644, -398)
 required_level = 2
 
-[node name="BarrierRock5" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
+[node name="BarrierRock5" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2545, -619)
+position = Vector2(2554, -644)
 required_level = 3
 
-[node name="BarrierRock6" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
+[node name="BarrierRock6" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2643, -619)
+position = Vector2(2652, -644)
 required_level = 3
 
-[node name="BarrierRock7" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
+[node name="BarrierRock7" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2741, -619)
+position = Vector2(2750, -644)
 required_level = 3
 
-[node name="BarrierRock8" parent="BarrierRocks" instance=ExtResource("43_oqruj")]
+[node name="BarrierRock8" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2835, -619)
+position = Vector2(2844, -644)
 required_level = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -1633,5 +1572,24 @@ stream = ExtResource("47_snujv")
 autoplay = true
 parameters/looping = true
 
+[node name="Ore_node" parent="." instance=ExtResource("5_ml5p0")]
+position = Vector2(-1410, -1931)
+
+[node name="Ore_node2" parent="." instance=ExtResource("4_fiqp2")]
+position = Vector2(1917, -1840)
+
+[node name="Ore_node3" parent="." instance=ExtResource("4_fiqp2")]
+position = Vector2(-10806, 792)
+
+[node name="Ore_node4" parent="." instance=ExtResource("4_fiqp2")]
+position = Vector2(-10615, 468)
+
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
+[connection signal="upgrade_notif" from="BarrierRock2" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock3" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock4" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock5" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock6" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock7" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock8" to="." method="notif"]
