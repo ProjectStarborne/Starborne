@@ -8,6 +8,7 @@ const scene_asteroid = preload("res://Scenes/Levels/world_asteroid.tscn")
 const ship_interior = preload("res://Scenes/Levels/shipinterior.tscn")
 const scene_asteroid_two = preload("res://Scenes/Levels/asteroid_two.tscn")
 const scene_asteroid_three = preload("res://Scenes/Levels/asteroid_three.tscn")  # Adjust path if needed
+const scene_final_level = preload("res://Scenes/Levels/final_level.tscn")
 
 # Game starts -> First level is tutorial when coming out of ship
 var previous_door_tag = "world_asteroid"
@@ -50,6 +51,9 @@ func go_to_level(to_tag, from_tag):
 			scene_to_load = scene_asteroid_two
 		"asteroid_three":
 			scene_to_load = scene_asteroid_three
+		"final_level":
+			scene_to_load = scene_final_level
+			
 	
 	if scene_to_load != null:
 		TransitionManager.transition()

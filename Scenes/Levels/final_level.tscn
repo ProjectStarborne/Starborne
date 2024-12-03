@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dycfdwfjv6eff"]
+[gd_scene load_steps=7 format=3 uid="uid://dycfdwfjv6eff"]
 
 [ext_resource type="Texture2D" uid="uid://bjbnqttk3u8b4" path="res://Assets/images/final_scene.png" id="1_e2onh"]
+[ext_resource type="Script" path="res://Scenes/Levels/final_level.gd" id="1_ie2v7"]
 [ext_resource type="AudioStream" uid="uid://c7shctst5sfo5" path="res://Assets/sounds/Calm Seashore  - No Copyright Sound Effects - Audio Library [ ezmp3.cc ].mp3" id="2_xxpid"]
 
 [sub_resource type="Animation" id="Animation_2rvjl"]
@@ -112,6 +113,7 @@ _data = {
 }
 
 [node name="FinalLevel" type="Node2D"]
+script = ExtResource("1_ie2v7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(786, 360)
