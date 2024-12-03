@@ -90,7 +90,16 @@ func populate_travel_buttons():
 		else:
 			print("Error: No name found for level ", level_number)
 			continue
-
+		
+				# Specific visibility logic for Level 4
+		if level_number == 4:
+			if !Globals.track_logs[3]:
+				level_box.visible = false
+				print("Level 4 is locked. Story log not found.")
+			else:
+				level_box.visible = true
+				print("Level 4 is unlocked. Story log found.")
+				
 		var press_signal = Callable(self, "_on_travel_button_pressed")
 		if travel_button.is_connected("pressed", press_signal):
 			travel_button.disconnect("pressed", press_signal)
