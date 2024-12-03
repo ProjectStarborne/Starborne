@@ -1015,7 +1015,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("16_luhlj")]
 unique_name_in_owner = true
-position = Vector2(-559, -181)
+position = Vector2(-565, -211)
 collision_layer = 9
 
 [node name="Tilemap" type="TileMap" parent="."]
@@ -1266,54 +1266,52 @@ offset_bottom = 273.5
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(-565, -211)
 
-[node name="Ores" type="Node2D" parent="."]
-
-[node name="OreSpot" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-229, 1250)
 
-[node name="OreSpot2" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot2" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(652, 1623)
 
-[node name="OreSpot3" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot3" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-1929, 195)
 
-[node name="OreSpot4" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot4" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-1789, -873)
 
-[node name="OreSpot5" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot5" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-872, -2425)
 
-[node name="OreSpot6" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot6" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(-766, -2810)
 
-[node name="OreSpot7" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot7" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(959, -126)
 
-[node name="OreSpot8" type="Marker2D" parent="Ores" groups=["Resource Spawn Marker"]]
+[node name="OreSpot8" type="Marker2D" parent="." groups=["Resource Spawn Marker"]]
 position = Vector2(2571, 641)
 
-[node name="Ore_node" parent="Ores" instance=ExtResource("36_jnari")]
+[node name="Ore_node" parent="." instance=ExtResource("36_jnari")]
 position = Vector2(-2804, 1034)
 
-[node name="Ore_node2" parent="Ores" instance=ExtResource("36_jnari")]
+[node name="Ore_node2" parent="." instance=ExtResource("36_jnari")]
 position = Vector2(-2550, 950)
 
-[node name="Ore_node3" parent="Ores" instance=ExtResource("36_jnari")]
+[node name="Ore_node3" parent="." instance=ExtResource("36_jnari")]
 position = Vector2(1396, 1800)
 
-[node name="Ore_node4" parent="Ores" instance=ExtResource("37_eah5l")]
+[node name="Ore_node4" parent="." instance=ExtResource("37_eah5l")]
 position = Vector2(-636, -1939)
 
-[node name="Ore_node5" parent="Ores" instance=ExtResource("37_eah5l")]
+[node name="Ore_node5" parent="." instance=ExtResource("37_eah5l")]
 position = Vector2(-156, -2406)
 
-[node name="Ore_node6" parent="Ores" instance=ExtResource("37_eah5l")]
+[node name="Ore_node6" parent="." instance=ExtResource("37_eah5l")]
 position = Vector2(2152, -1266)
 
-[node name="Ore_node7" parent="Ores" instance=ExtResource("36_jnari")]
+[node name="Ore_node7" parent="." instance=ExtResource("36_jnari")]
 position = Vector2(2479, 892)
 
-[node name="Ore_node8" parent="Ores" instance=ExtResource("37_eah5l")]
+[node name="Ore_node8" parent="." instance=ExtResource("37_eah5l")]
 position = Vector2(-11787, 65)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -1344,11 +1342,11 @@ parameters/looping = true
 [connection signal="notification" from="BrokenLog" to="." method="notif"]
 [connection signal="log_pickup" from="BrokenLog2" to="CanvasLayer/LogsUI" method="reveal_entry"]
 [connection signal="notification" from="BrokenLog2" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node2" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node3" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node4" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node5" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node6" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node7" to="." method="notif"]
-[connection signal="upgrade_notif" from="Ores/Ore_node8" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node2" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node3" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node4" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node5" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node6" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node7" to="." method="notif"]
+[connection signal="upgrade_notif" from="Ore_node8" to="." method="notif"]
