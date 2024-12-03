@@ -28,12 +28,12 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"Characters/air_tank": "res://Scripts/Resource System/Characters/air_tank.dch",
-"Characters/character": "res://Scripts/Resource System/Characters/character.dch",
-"Characters/drill": "res://Scripts/Resource System/Characters/drill.dch",
-"Characters/duct_tape": "res://Scripts/Resource System/Characters/duct_tape.dch",
-"Characters/medkit": "res://Scripts/Resource System/Characters/medkit.dch",
-"Characters/pencil": "res://Scripts/Resource System/Characters/pencil.dch"
+"air_tank": "res://Scripts/Resource System/Characters/air_tank.dch",
+"character": "res://Scripts/Resource System/Characters/character.dch",
+"drill": "res://Scripts/Resource System/Characters/drill.dch",
+"duct_tape": "res://Scripts/Resource System/Characters/duct_tape.dch",
+"medkit": "res://Scripts/Resource System/Characters/medkit.dch",
+"pencil": "res://Scripts/Resource System/Characters/pencil.dch"
 }
 directories/dtl_directory={
 "endscene": "res://Timelines/endscene.dtl",
