@@ -891,6 +891,14 @@ position = Vector2(-935, 272)
 scale = Vector2(0.84, 0.84)
 oxygen_handler = false
 
+[node name="InteractionLabel" type="Label" parent="Player"]
+offset_left = -72.6191
+offset_top = -128.571
+offset_right = 226.381
+offset_bottom = -57.5714
+theme_override_fonts/font = ExtResource("4_w767y")
+theme_override_font_sizes/font_size = 22
+
 [node name="TileMap" type="TileMap" parent="."]
 process_mode = 1
 position = Vector2(10, -4)
