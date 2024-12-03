@@ -7,10 +7,8 @@ extends Control
 @onready var ship_storage_ui: Control = $"../ShipStorageUI"
 
 # Images for hotbar is loaded here
-var imgs = [Image.new(), Image.new()]
-var hb_unsel = imgs[0].load_from_file("res://Assets/images/Hotbar/hotbar_unsel.tga")
-var hb_sel = imgs[1].load_from_file("res://Assets/images/Hotbar/hotbar_sel.tga")
-
+@onready var hb_unsel: CompressedTexture2D = preload("res://Assets/images/Hotbar/hotbar_unsel.tga")
+@onready var hb_sel: CompressedTexture2D = preload("res://Assets/images/Hotbar/hotbar_sel.tga")
 
 
 
@@ -63,10 +61,10 @@ func update_hotbar_ui(inventory: Inventory):
 func change_selected_slot_texture():
 	for i in range(hotbar_slots.size()):
 		if i == selected_slot_index:
-			hotbar_slots[i].texture = ImageTexture.create_from_image(hb_sel)
+			hotbar_slots[i].texture = hb_sel
 			print(hotbar_slots[i].texture)
 		else:
-			hotbar_slots[i].texture = ImageTexture.create_from_image(hb_unsel)
+			hotbar_slots[i].texture = hb_unsel
 
 
 # Get the current slot that is highlighted on screen
