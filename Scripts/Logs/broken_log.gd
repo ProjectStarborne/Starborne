@@ -15,5 +15,8 @@ func _ready() -> void:
 
 func on_pickup(body: Node2D) -> void:
 	log_pickup.emit(log_number)
-	notification.emit(null, "Picked up Log #" + str(log_number + 1) + "!")
+	
+	notification.emit(null, "Picked up Log #" + str(log_number + 1) + "!\n")
+	if log_number == 0:
+		notification.emit(null, "Press " + InputMap.action_get_events("toggle_story")[0].as_text() + " to access your PDA\n")
 	queue_free()
