@@ -15,5 +15,5 @@ func _ready() -> void:
 
 func on_pickup(body: Node2D) -> void:
 	log_pickup.emit(log_number)
-	notification.emit("Picked up Log #" + str(log_number) + "!")
+	notification.emit(null, "Picked up Log #" + str(log_number) + "!")
 	queue_free()

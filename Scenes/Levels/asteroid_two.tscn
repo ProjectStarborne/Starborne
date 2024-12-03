@@ -1220,7 +1220,7 @@ sources/8 = SubResource("TileSetAtlasSource_iiua8")
 [sub_resource type="Theme" id="Theme_iub4r"]
 default_font = ExtResource("2_qr6hg")
 
-[node name="Environment2" type="Node2D"]
+[node name="Environment" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_fe5u2")
