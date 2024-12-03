@@ -195,6 +195,7 @@ theme_override_font_sizes/font_size = 26
 text = "Launch"
 
 [node name="Level5" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 210
 
@@ -226,6 +227,7 @@ text = "Launch
 "
 
 [node name="Level6" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 160
 
@@ -256,6 +258,7 @@ theme_override_font_sizes/font_size = 26
 text = "Launch"
 
 [node name="Level7" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 120
 
@@ -286,6 +289,7 @@ theme_override_font_sizes/font_size = 26
 text = "Launch"
 
 [node name="Level8" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 290
 
@@ -316,6 +320,7 @@ theme_override_font_sizes/font_size = 26
 text = "Launch"
 
 [node name="Level9" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 290
 
@@ -346,6 +351,7 @@ theme_override_font_sizes/font_size = 26
 text = "Launch"
 
 [node name="Level10" type="HBoxContainer" parent="TabContainer/Navigation/ScrollContainer/GridContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 290
 

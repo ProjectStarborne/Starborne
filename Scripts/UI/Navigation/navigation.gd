@@ -185,6 +185,8 @@ func determine_level_tag(level: String) -> String:
 			return "asteroid_two"
 		"3":
 			return "asteroid_three"
+		"4":
+			return "final_level"
 		_:
 			return ""
 

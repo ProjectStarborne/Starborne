@@ -27,18 +27,8 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={
-"air_tank": "res://Scripts/Resource System/Characters/air_tank.dch",
-"character": "res://Scripts/Resource System/Characters/character.dch",
-"drill": "res://Scripts/Resource System/Characters/drill.dch",
-"duct_tape": "res://Scripts/Resource System/Characters/duct_tape.dch",
-"medkit": "res://Scripts/Resource System/Characters/medkit.dch",
-"pencil": "res://Scripts/Resource System/Characters/pencil.dch"
-}
-directories/dtl_directory={
-"endscene": "res://Timelines/endscene.dtl",
-"overseer_timeline": "res://Timelines/overseer_timeline.dtl"
-}
+directories/dch_directory={}
+directories/dtl_directory={}
 glossary/default_case_sensitive=true
 layout/style_list=[]
 layout/default_style=""
