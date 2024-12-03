@@ -892,10 +892,10 @@ scale = Vector2(0.84, 0.84)
 oxygen_handler = false
 
 [node name="InteractionLabel" type="Label" parent="Player"]
-offset_left = -72.6191
-offset_top = -128.571
-offset_right = 226.381
-offset_bottom = -57.5714
+offset_left = -123.81
+offset_top = -129.762
+offset_right = 175.19
+offset_bottom = -58.7619
 theme_override_fonts/font = ExtResource("4_w767y")
 theme_override_font_sizes/font_size = 22
 

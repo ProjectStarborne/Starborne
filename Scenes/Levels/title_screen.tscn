@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cuhyx4pc6o35c"]
+[gd_scene load_steps=32 format=3 uid="uid://cuhyx4pc6o35c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_063et"]
 [ext_resource type="Texture2D" uid="uid://dhpblh1nuy6gd" path="res://Assets/images/bg.png" id="1_ag1il"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://uc77xtew1qmy" path="res://Assets/images/astronaut_character1.png" id="4_j0dum"]
 [ext_resource type="Texture2D" uid="uid://qdfqutlq3foi" path="res://Assets/images/flashlight.png" id="5_8s8d8"]
 [ext_resource type="Script" path="res://Scripts/UI/Pause Menu/settings.gd" id="7_j0iyu"]
+[ext_resource type="AudioStream" uid="uid://cx5cfmwu1bm4c" path="res://Assets/sounds/main_menu.wav" id="8_h38ji"]
 
 [sub_resource type="Animation" id="Animation_ahaw0"]
 length = 0.001
@@ -555,6 +556,11 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_lgjv6")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_h38ji")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="item_selected" from="Settings/VBoxContainer/OptionsContainer/WindowSizeOptionButton" to="Settings" method="_on_window_size_option_button_item_selected"]
 [connection signal="toggled" from="Settings/VBoxContainer/OptionsContainer/FullscreenButton" to="Settings" method="_on_fullscreen_button_toggled"]
