@@ -86,7 +86,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
-text = "Level 1"
+text = "Aeternum 12"
 
 [node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level1/VBoxContainer"]
 layout_mode = 2
@@ -116,7 +116,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
-text = "Level 2"
+text = "Xerophon 84-C"
 
 [node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level2/VBoxContainer"]
 layout_mode = 2
@@ -146,7 +146,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
-text = "Level 3"
+text = "Stellarion 9"
 
 [node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level3/VBoxContainer"]
 layout_mode = 2
@@ -176,7 +176,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 26
-text = "Level 4"
+text = "Elysara Prime"
 
 [node name="Upgrade" type="Label" parent="TabContainer/Navigation/ScrollContainer/GridContainer/Level4/VBoxContainer"]
 layout_mode = 2
