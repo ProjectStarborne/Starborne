@@ -98,7 +98,7 @@ func save_to_global():
 func save():
 	var save_dict = {
 		"name" : "ShipStorageUI",
-		"ship_inv" : ship_inv.to_dict()
+		"ship_inv" : Globals.ship_inventory.to_dict()
 	}
 	
 	return save_dict
