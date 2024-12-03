@@ -272,10 +272,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Shop" type="VBoxContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("1_vkafb")
 metadata/_tab_index = 0
@@ -793,6 +792,7 @@ libraries = {
 }
 
 [node name="Upgrades" type="VBoxContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("3_8qqdd")
 metadata/_tab_index = 1

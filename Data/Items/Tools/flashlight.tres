@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="Tool" load_steps=2 format=3 uid="uid://dy3k0dav7wp7m"]
+[gd_resource type="Resource" script_class="Tool" load_steps=3 format=3 uid="uid://dy3k0dav7wp7m"]
 
+[ext_resource type="Texture2D" uid="uid://dipn47y42gyr8" path="res://Assets/Tools/Transparent/flashlight_transparent.png" id="1_6lo6o"]
 [ext_resource type="Script" path="res://Scripts/Resource System/tool.gd" id="1_7s2ep"]
 
 [resource]
 script = ExtResource("1_7s2ep")
 charge = 0.0
 level = 0
+upgrade_price = 0
 name = "Flashlight"
 type = ""
+icon = ExtResource("1_6lo6o")
 price = 0
 weight = 0
 description = "Illuminate the darkest corners of the asteroid with your trusty Flashlight. Whether navigating through shadowy tunnels or working in low-light conditions, this tool ensures you maintain visibility and continue your exploration safely."

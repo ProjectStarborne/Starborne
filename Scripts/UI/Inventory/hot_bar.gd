@@ -8,8 +8,8 @@ extends Control
 
 # Images for hotbar is loaded here
 var imgs = [Image.new(), Image.new()]
-var hb_unsel = imgs[0].load_from_file("res://Assets/images/Hotbar/hotbar_unsel.png")
-var hb_sel = imgs[1].load_from_file("res://Assets/images/Hotbar/hotbar_sel.png")
+var hb_unsel = imgs[0].load_from_file("res://Assets/images/Hotbar/hotbar_unsel.tga")
+var hb_sel = imgs[1].load_from_file("res://Assets/images/Hotbar/hotbar_sel.tga")
 
 
 
