@@ -51,32 +51,14 @@ func get_shop_items_for_level(level: int) -> Array[Item]:
 	var items_for_level: Array[Item] = []
 
 	# Define items for different levels
-	if level == 1 or level == 2:
-		# Load items for levels 1-2
-		items_for_level.append(load("res://Data/Items/Minerals/iron.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/nickel.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/duct_tape.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/oxygen_tank.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/medkit.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Tools/drill.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
-		
-	elif level == 3 or level == 4:
-		# Load items for levels 3-4
-		items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/oxygen.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/duct_tape.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/oxygen_tank.tres") as Item)
-	else:
-		# Fallback for other levels or general items
-		items_for_level.append(load("res://Data/Items/Minerals/iron.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/nickel.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/duct_tape.tres") as Item)
-		items_for_level.append(load("res://Data/Items/Consumables/oxygen_tank.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Minerals/iron.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Minerals/nickel.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Consumables/duct_tape.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Consumables/oxygen_tank.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Consumables/medkit.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Tools/drill.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Minerals/iridium.tres") as Item)
+	items_for_level.append(load("res://Data/Items/Minerals/platinum.tres") as Item)
 
 	return items_for_level
 
