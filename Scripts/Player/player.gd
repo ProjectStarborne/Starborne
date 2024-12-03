@@ -498,6 +498,7 @@ func use_item(item : Item, index : int):
 				return
 			$Sprite2D/AnimationPlayer.play("duct_tape")
 			fix_oxygen_leak()
+			inventory.remove_from_hotbar(index)
 			
 		"Medkit":
 			print(current_health)
@@ -507,15 +508,16 @@ func use_item(item : Item, index : int):
 			current_health += item.effect + Globals.medkit_modifier
 			damage_taken.emit()
 			oxygen_changed.emit()
+			inventory.remove_from_hotbar(index)
 			print(current_health)
 		"Oxygen Tank":
 			if current_oxygen == max_oxygen:
 				return
 			$Sprite2D/AnimationPlayer.play("oxygen")
 			current_oxygen += item.effect + Globals.oxygen_modifier
+			inventory.remove_from_hotbar(index)
 	
-	if item.consumable:
-		inventory.remove_from_hotbar(index)
+	
 	
 	hotbar.update_hotbar_ui(inventory)
 	damage_taken.emit()
