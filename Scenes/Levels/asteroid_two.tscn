@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://b4lh75ukpk6wa"]
+[gd_scene load_steps=62 format=3 uid="uid://b4lh75ukpk6wa"]
 
 [ext_resource type="PackedScene" uid="uid://cg1n3hs12k8ko" path="res://Scenes/Player/player.tscn" id="1_5nhd7"]
 [ext_resource type="Shader" path="res://Scripts/Lighting/fog.gdshader" id="1_43alx"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://chdv7oq5t6ggr" path="res://Scenes/Environmental/Meteor/falling_meteor.tscn" id="26_2wbn7"]
 [ext_resource type="PackedScene" uid="uid://bqo5rymsaj0sf" path="res://Scenes/Environmental/Meteor/impact_indicator.tscn" id="27_mojhb"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="29_scf7e"]
+[ext_resource type="PackedScene" uid="uid://bbnjnupb8xnst" path="res://Scenes/UI/Logs/logs_ui.tscn" id="33_j2r28"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="35_jqmhs"]
 [ext_resource type="Texture2D" uid="uid://dvf6waq6s36vp" path="res://Assets/images/camp.png" id="38_xe66f"]
 [ext_resource type="Texture2D" uid="uid://5thd34jl3vli" path="res://Assets/images/frozen_guy.png" id="40_rwq86"]
@@ -1392,6 +1393,19 @@ visible = false
 
 [node name="ShipStorageUI" parent="CanvasLayer" instance=ExtResource("23_p7xan")]
 visible = false
+
+[node name="LogsUI" parent="CanvasLayer" instance=ExtResource("33_j2r28")]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -506.0
+offset_top = -273.5
+offset_right = 506.0
+offset_bottom = 273.5
 
 [node name="Extra Lights" type="Node" parent="."]
 
