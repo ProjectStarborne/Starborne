@@ -386,7 +386,7 @@ visible = false
 visible = false
 script = null
 
-[node name="ShipStorageUI" parent="CanvasLayer" groups=["Persist", "UI"] instance=ExtResource("17_qq3mm")]
+[node name="ShipStorageUI" parent="CanvasLayer" groups=["UI"] instance=ExtResource("17_qq3mm")]
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
