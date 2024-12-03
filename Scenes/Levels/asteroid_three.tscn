@@ -1177,7 +1177,7 @@ parameters/looping = true
 [node name="Door_S" parent="Doors" instance=ExtResource("32_mb4aw")]
 position = Vector2(-705, -215)
 destination_level = "shipinterior"
-destination_door = "asteroid_two"
+destination_door = "asteroid_three"
 
 [node name="FileManager" type="Node" parent="."]
 script = ExtResource("33_2btxb")
@@ -1284,6 +1284,8 @@ position = Vector2(2479, 892)
 [node name="Ore_node8" parent="." instance=ExtResource("37_eah5l")]
 position = Vector2(-11787, 65)
 
+[connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
+[connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
 [connection signal="notification" from="BrokenLog" to="." method="notif"]
 [connection signal="notification" from="BrokenLog2" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock6" to="." method="notif"]
