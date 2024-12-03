@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://cfqgd4nx47m4a" path="res://Scenes/Items/Logs/broken_log.tscn" id="25_cq8al"]
 [ext_resource type="Texture2D" uid="uid://be3d5kkgtsg6l" path="res://Assets/images/space3.png" id="26_88tdc"]
 [ext_resource type="PackedScene" uid="uid://d00d6eipxndoc" path="res://Scenes/Items/Minerals/Barrier_Rock4.tscn" id="27_pouaf"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/notifications.tscn" id="27_xf673"]
+[ext_resource type="PackedScene" uid="uid://cee145qk5hmmo" path="res://Scenes/UI/notifications.tscn" id="27_xf673"]
 [ext_resource type="AudioStream" uid="uid://c0rlrub2ucukj" path="res://Assets/sounds/asteroid_ambience.ogg" id="30_3a1xf"]
 [ext_resource type="PackedScene" uid="uid://jddmg7s5g5ms" path="res://Scenes/Managers/door.tscn" id="32_mb4aw"]
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/file_manager.gd" id="33_2btxb"]
@@ -1319,6 +1319,7 @@ position = Vector2(-11787, 65)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("30_3a1xf")
 autoplay = true
+bus = &"SFX"
 parameters/looping = true
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
