@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="19_skswi"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="20_eb7ld"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="21_c3j6w"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/notifications.tscn" id="22_0nqhh"]
+[ext_resource type="PackedScene" uid="uid://cee145qk5hmmo" path="res://Scenes/UI/notifications.tscn" id="22_0nqhh"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="23_p7xan"]
 [ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="24_3dsdo"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="24_ryqv3"]
@@ -1609,6 +1609,7 @@ position = Vector2(-10615, 468)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("47_snujv")
 autoplay = true
+bus = &"SFX"
 parameters/looping = true
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
