@@ -298,7 +298,7 @@ offset_bottom = 371.0
 color = Color(0, 0, 0, 1)
 
 [node name="TileMap" type="TileMap" parent="."]
-texture_filter = 5
+texture_filter = 1
 position = Vector2(1, 1)
 tile_set = SubResource("TileSet_ool8b")
 format = 2

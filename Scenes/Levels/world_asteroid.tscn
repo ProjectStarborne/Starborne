@@ -893,7 +893,6 @@ oxygen_handler = false
 
 [node name="TileMap" type="TileMap" parent="."]
 process_mode = 1
-texture_filter = 5
 position = Vector2(10, -4)
 scale = Vector2(5, 5)
 tile_set = SubResource("TileSet_1gcu8")
