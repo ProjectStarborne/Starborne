@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_8yvsm")
 effect = 0.0
+upgrade_price = 25
 name = "Duct Tape"
 scene = ExtResource("2_isu1q")
 type = ""

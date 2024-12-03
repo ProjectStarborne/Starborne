@@ -6,13 +6,13 @@
 
 [resource]
 script = ExtResource("1_01wqb")
-effect = 10.0
-upgrade_price = 0
+effect = 20.0
+upgrade_price = 25
 name = "Medkit"
 scene = ExtResource("2_dk8fi")
 type = ""
 icon = ExtResource("1_72ne6")
-price = 0
+price = 10
 weight = 0
 description = "Your personal first aid kit, the Medkit is vital for treating injuries sustained during exploration. Quickly restores health and keeps you in the game, allowing you to recover from booboos and continue your mission without delay."
 stackable = false
