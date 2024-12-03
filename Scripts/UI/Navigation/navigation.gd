@@ -21,6 +21,14 @@ var update_timer: Timer  # A timer to update the shader's time parameter
 # Variable to track elapsed time manually
 var elapsed_time = 0.0
 
+var level_names = {
+	1: "Terra Training Site",
+	2: "Xerophon 84-C",
+	3: "Stellarion 9",
+	4: "Elysara Prime"
+}
+
+
 func _ready():
 	# Populate travel buttons
 	populate_travel_buttons()
@@ -74,7 +82,14 @@ func populate_travel_buttons():
 			continue
 
 		var level_label = vbox_container.get_node("Level") as Label
-		travel_button.set_meta("level", level_label.text)
+				# Map the index to the level name and set the label text
+		var level_number = i + 1  # Assuming level numbering starts at 1
+		if level_names.has(level_number):
+			level_label.text = level_names[level_number]
+			travel_button.set_meta("level", level_number)  # Use numeric level as metadata
+		else:
+			print("Error: No name found for level ", level_number)
+			continue
 
 		var press_signal = Callable(self, "_on_travel_button_pressed")
 		if travel_button.is_connected("pressed", press_signal):
@@ -87,7 +102,7 @@ func populate_travel_buttons():
 # Handle button pressed logic
 func _on_travel_button_pressed(travel_button: Button) -> void:
 	var level_label = travel_button.get_meta("level")
-	var level = level_label.replace("Level ", "")
+	var level = int(level_label)  # Use the numeric level directly
 	
 	# Check if the player is already at the selected level
 	if Globals.current_level == int(level):  # Compare against the selected level
@@ -96,36 +111,37 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 	
 	# Check for required upgrades for each level
 	match level:
-		"1":
+		1:
 			if !Globals.upgrades_purchased["Warp Engine V.1"]:
 				display_popup_message("You need Warp Engine V.1 to travel to Level 1.")
 				return
-		"2":
+		2:
 			if !Globals.upgrades_purchased["Fuel Efficiency Module V.1"]:
 				display_popup_message("You need Fuel Efficiency Module V.1 to travel to Level 2.")
 				return
-		"3":
+		3:
 			if !Globals.upgrades_purchased["Stellar Cartography Module"]:
 				display_popup_message("You need Stellar Cartography Module to travel to Level 3.")
 				return
-		"4":
+		4:
 			if !Globals.upgrades_purchased["Reinforced Hull Plating"]:
 				display_popup_message("You need Reinforced Hull Plating to travel to Level 4.")
 				return
-		"5":
+		5:
 			if !Globals.upgrades_purchased["Warp Engine V.2"]:
 				display_popup_message("You need Warp Engine V.2 to travel to Level 5.")
 				return
-		"6":
+		6:
 			if !Globals.upgrades_purchased["Deep Space Scanners"]:
 				display_popup_message("You need Deep Space Scanners to travel to Level 6.")
 				return
-		"7":
+		7:
 			if !Globals.upgrades_purchased["Dark Matter Fuel Cells"]:
 				display_popup_message("You need Dark Matter Fuel Cells to travel to Level 7.")
 				return
 		_:
 			display_popup_message("Invalid level or no upgrade needed for this level.")
+			print("Level: " + str(level))
 			return
 	
 	# Close the navigation menu
@@ -145,7 +161,7 @@ func _on_travel_button_pressed(travel_button: Button) -> void:
 	
 	# Update the current level in Globals to the new level
 	Globals.current_level = int(level)
-	display_popup_message("Traveling to level " + level + "...")
+	display_popup_message("Traveling to level " + str(level) + "...")
 	
 	# Start the wormhole effect
 	start_travel_effect()
@@ -177,18 +193,19 @@ func _process(delta: float) -> void:
 		Globals.is_shaking = false  # Reset is_shaking when shake is complete
 
 # Helper function to determine the level tag based on the level number
-func determine_level_tag(level: String) -> String:
+func determine_level_tag(level: int) -> String:
 	match level:
-		"1":
+		1:
 			return "world_asteroid"
-		"2":
+		2:
 			return "asteroid_two"
-		"3":
+		3:
 			return "asteroid_three"
-		"4":
+		4:
 			return "final_level"
 		_:
 			return ""
+
 
 # Handle mouse entered (hover) logic
 func _on_travel_button_mouse_entered(travel_button: Button) -> void:
