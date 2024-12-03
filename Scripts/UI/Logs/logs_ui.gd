@@ -6,11 +6,18 @@ var current_visible_entry: ScrollContainer
 
 func _ready() -> void:
 	connect_buttons()
+	
+	for i in range(Globals.track_logs.size()):
+		var log = Globals.track_logs[i]
+		if log:
+			reveal_entry(i)
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_story"):
 		self.visible = !self.visible
 		get_tree().paused = !get_tree().paused
+
 
 func connect_buttons() -> void:
 	# Connect each of the slots "pressed" signal to our function
@@ -40,3 +47,4 @@ func on_entry_pressed(log: Control) -> void:
 
 func reveal_entry(entry_number: int) -> void:
 	entries[entry_number].visible = true
+	Globals.track_logs[entry_number] = true

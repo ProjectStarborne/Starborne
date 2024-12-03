@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://xvd4qmndtd1j" path="res://Scenes/UI/pause_menu.tscn" id="5_xua0y"]
 [ext_resource type="PackedScene" uid="uid://wao56x3434b3" path="res://Scenes/UI/Inventory/hot_bar.tscn" id="6_2omem"]
 [ext_resource type="Texture2D" uid="uid://cqb5fo7cto3xd" path="res://Assets/images/ground_texture2-Sheet.png" id="7_qusm8"]
-[ext_resource type="Script" path="res://Scenes/Levels/tile_detector.gd" id="7_rs71l"]
+[ext_resource type="Script" path="res://Scripts/Managers Scripts/tile_detector.gd" id="7_rs71l"]
 [ext_resource type="Texture2D" uid="uid://coj1c3rdhdtum" path="res://Assets/images/platform.png" id="7_vqgbl"]
 [ext_resource type="Texture2D" uid="uid://qt7pee277cdl" path="res://Assets/images/space2.png" id="8_0v6mj"]
 [ext_resource type="PackedScene" uid="uid://chabragb6rc5h" path="res://Scenes/Environmental/Turret/turret.tscn" id="11_j5eho"]
@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dqb0pah3befw8" path="res://Scenes/UI/Navigation/navigation.tscn" id="19_skswi"]
 [ext_resource type="PackedScene" uid="uid://buifb6ja46nvx" path="res://Scenes/UI/Shop/ship_upgrades.tscn" id="20_eb7ld"]
 [ext_resource type="PackedScene" uid="uid://lg14sjybef0q" path="res://Scenes/UI/GameOver/GameOver.tscn" id="21_c3j6w"]
-[ext_resource type="PackedScene" uid="uid://cee145qk5hmmo" path="res://Scenes/UI/notifications.tscn" id="22_0nqhh"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/notifications.tscn" id="22_0nqhh"]
 [ext_resource type="PackedScene" uid="uid://bnmm6lh1tfvil" path="res://Scenes/UI/Inventory/ship_storage_ui.tscn" id="23_p7xan"]
 [ext_resource type="AudioStream" uid="uid://dougqdjgsb2a3" path="res://Assets/sounds/starborne_airleak.mp3" id="24_3dsdo"]
 [ext_resource type="Texture2D" uid="uid://hahvnrqkfw2y" path="res://Assets/images/circle_light.png" id="24_ryqv3"]
@@ -1229,7 +1229,6 @@ ore_nodes = Array[PackedScene]([ExtResource("2_7dht7"), ExtResource("3_itwfd")])
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Darkener" type="CanvasModulate" parent="Lighting"]
-visible = false
 position = Vector2(9.53674e-07, -2.38419e-07)
 color = Color(0.273873, 0.273873, 0.273873, 1)
 
@@ -1275,7 +1274,7 @@ unique_name_in_owner = true
 process_mode = 1
 z_index = 0
 y_sort_enabled = true
-position = Vector2(-1517, 163)
+position = Vector2(-1523, 153)
 scale = Vector2(0.84, 0.84)
 collision_layer = 9
 
@@ -1537,17 +1536,31 @@ position = Vector2(-6290, 144)
 
 [node name="BrokenLog2" parent="." instance=ExtResource("42_tk2ri")]
 position = Vector2(-10662, 39)
+log_number = 1
 
-[node name="OutsideCaveTP" parent="." node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
-position = Vector2(2288, -1505)
-rotation = 3.14159
-scale = Vector2(5, 7)
-to_teleporter = NodePath("../InsideCaveTP")
-
-[node name="InsideCaveTP" parent="." node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+[node name="Teleporters" type="Node2D" parent="."]
 position = Vector2(-6286, 491)
 scale = Vector2(10, 8)
-to_teleporter = NodePath("../OutsideCaveTP")
+
+[node name="TentOutsideTP" parent="Teleporters" node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+position = Vector2(857.4, -249.5)
+rotation = 3.14159
+scale = Vector2(0.5, 0.875)
+to_teleporter = NodePath("../TentInsideTP")
+
+[node name="TentInsideTP" parent="Teleporters" node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+to_teleporter = NodePath("../TentOutsideTP")
+
+[node name="CaveOutsideTP" parent="Teleporters" node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+position = Vector2(898.4, -151.375)
+rotation = 3.14159
+scale = Vector2(2, 1)
+to_teleporter = NodePath("../CaveInsideTP")
+
+[node name="CaveInsideTP" parent="Teleporters" node_paths=PackedStringArray("to_teleporter") instance=ExtResource("44_gygrl")]
+position = Vector2(-441.4, 205.625)
+scale = Vector2(2, 1)
+to_teleporter = NodePath("../CaveOutsideTP")
 
 [node name="BarrierRock2" parent="." instance=ExtResource("42_reuqe")]
 position = Vector2(1470, -398)
@@ -1563,28 +1576,23 @@ required_level = 2
 
 [node name="BarrierRock5" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2554, -644)
+position = Vector2(2559, -609)
 required_level = 3
 
 [node name="BarrierRock6" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2652, -644)
+position = Vector2(2657, -609)
 required_level = 3
 
 [node name="BarrierRock7" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2750, -644)
+position = Vector2(2755, -609)
 required_level = 3
 
 [node name="BarrierRock8" parent="." instance=ExtResource("43_oqruj")]
 z_index = 1
-position = Vector2(2844, -644)
+position = Vector2(2849, -609)
 required_level = 3
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("47_snujv")
-autoplay = true
-parameters/looping = true
 
 [node name="Ore_node" parent="." instance=ExtResource("5_ml5p0")]
 position = Vector2(-1410, -1931)
@@ -1598,9 +1606,16 @@ position = Vector2(-10806, 792)
 [node name="Ore_node4" parent="." instance=ExtResource("4_fiqp2")]
 position = Vector2(-10615, 468)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("47_snujv")
+autoplay = true
+parameters/looping = true
+
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
+[connection signal="log_pickup" from="BrokenLog" to="CanvasLayer/LogsUI" method="reveal_entry"]
 [connection signal="notification" from="BrokenLog" to="." method="notif"]
+[connection signal="log_pickup" from="BrokenLog2" to="CanvasLayer/LogsUI" method="reveal_entry"]
 [connection signal="notification" from="BrokenLog2" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock2" to="." method="notif"]
 [connection signal="upgrade_notif" from="BarrierRock3" to="." method="notif"]

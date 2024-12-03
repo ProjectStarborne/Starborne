@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcjy3lsh4a4y2"]
+[gd_scene load_steps=4 format=3 uid="uid://bcjy3lsh4a4y2"]
 
 [ext_resource type="Script" path="res://Scripts/Managers Scripts/teleporter.gd" id="1_m2at1"]
+[ext_resource type="PackedScene" uid="uid://23126pgcyind" path="res://Scenes/Managers/transition_manager.tscn" id="2_cj2w4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_582yn"]
 
@@ -15,5 +16,7 @@ debug_color = Color(0.700272, 0.492052, 0, 0.42)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -21)
+
+[node name="TransitionManager" parent="." instance=ExtResource("2_cj2w4")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

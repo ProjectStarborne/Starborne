@@ -13,6 +13,7 @@ var upgrades_purchased = {
 	"Dark Matter Fuel Cells": false
 }
 
+var track_logs: Array[bool] = [0, 0, 0, 0]
 
 var inventory : Inventory = Inventory.new()
 var ship_inventory : Inventory = Inventory.new()

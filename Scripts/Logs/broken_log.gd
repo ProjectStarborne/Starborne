@@ -9,6 +9,8 @@ signal notification(msg)
 
 func _ready() -> void:
 	animation_player.play("flashing")
+	if Globals.track_logs[log_number]:
+		queue_free()
 
 
 func on_pickup(body: Node2D) -> void:
