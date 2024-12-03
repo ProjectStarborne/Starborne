@@ -1037,6 +1037,70 @@ layer_5/z_index = 10
 layer_5/tile_data = PackedInt32Array(-262156, 327684, 6, -196620, 327684, 7, -131084, 327684, 8, -65548, 327684, 9, -327691, 393220, 5, -262155, 393220, 6, -196619, 393220, 7, -131083, 393220, 8, -65547, 393220, 9, -11, 393220, 10, -327690, 458756, 5, -262154, 458756, 6, -196618, 458756, 7, -131082, 458756, 8, -65546, 458756, 9, -10, 458756, 10, -262153, 524292, 6, -196617, 524292, 7, -131081, 524292, 8, -65545, 524292, 9)
 script = ExtResource("12_shssp")
 
+[node name="BarrierRock6" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(-25, 1352)
+required_level = 4
+
+[node name="BarrierRock4" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(88, 1178)
+required_level = 4
+
+[node name="BarrierRock5" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(40, 1265)
+required_level = 4
+
+[node name="BarrierRock7" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(753, 1897)
+required_level = 4
+
+[node name="BarrierRock8" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(753, 1985)
+required_level = 4
+
+[node name="BarrierRock9" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(1636, 596)
+required_level = 4
+
+[node name="BarrierRock10" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(1539, 596)
+required_level = 4
+
+[node name="BarrierRock11" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(2268, 176)
+required_level = 4
+
+[node name="BarrierRock12" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(2336, 269)
+required_level = 4
+
+[node name="BarrierRock13" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(787, -891)
+required_level = 4
+
+[node name="BarrierRock14" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(736, -983)
+required_level = 4
+
+[node name="BarrierRock15" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(660, -1082)
+required_level = 4
+
+[node name="BarrierRock16" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(570, -2461)
+required_level = 4
+
+[node name="BarrierRock17" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(668, -2461)
+required_level = 4
+
+[node name="BarrierRock18" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(765, -2461)
+required_level = 4
+
+[node name="BarrierRock19" parent="." instance=ExtResource("27_pouaf")]
+position = Vector2(864, -2461)
+required_level = 4
+
 [node name="Hazards" type="Node2D" parent="."]
 position = Vector2(-1788, -1690)
 
@@ -1097,70 +1161,6 @@ position = Vector2(-363, -180)
 
 [node name="Mine3" parent="Hazards" instance=ExtResource("20_usoqs")]
 position = Vector2(-363, -774)
-
-[node name="BarrierRock6" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(1763, 3042)
-required_level = 4
-
-[node name="BarrierRock4" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(1876, 2868)
-required_level = 4
-
-[node name="BarrierRock5" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(1828, 2955)
-required_level = 4
-
-[node name="BarrierRock7" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2541, 3587)
-required_level = 4
-
-[node name="BarrierRock8" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2541, 3675)
-required_level = 4
-
-[node name="BarrierRock9" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(3424, 2286)
-required_level = 4
-
-[node name="BarrierRock10" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(3327, 2286)
-required_level = 4
-
-[node name="BarrierRock11" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(4056, 1866)
-required_level = 4
-
-[node name="BarrierRock12" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(4124, 1959)
-required_level = 4
-
-[node name="BarrierRock13" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2575, 799)
-required_level = 4
-
-[node name="BarrierRock14" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2524, 707)
-required_level = 4
-
-[node name="BarrierRock15" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2448, 608)
-required_level = 4
-
-[node name="BarrierRock16" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2358, -771)
-required_level = 4
-
-[node name="BarrierRock17" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2456, -771)
-required_level = 4
-
-[node name="BarrierRock18" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2553, -771)
-required_level = 4
-
-[node name="BarrierRock19" parent="Hazards" instance=ExtResource("27_pouaf")]
-position = Vector2(2652, -771)
-required_level = 4
 
 [node name="BrokenLog" parent="." instance=ExtResource("25_cq8al")]
 position = Vector2(-289, 235)
@@ -1324,22 +1324,22 @@ parameters/looping = true
 
 [connection signal="damage_taken" from="Player" to="CanvasLayer/HealthOxygen" method="update_health"]
 [connection signal="oxygen_changed" from="Player" to="CanvasLayer/HealthOxygen" method="update_oxygen"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock6" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock4" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock5" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock7" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock8" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock9" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock10" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock11" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock12" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock13" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock14" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock15" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock16" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock17" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock18" to="." method="notif"]
-[connection signal="upgrade_notif" from="Hazards/BarrierRock19" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock6" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock4" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock5" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock7" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock8" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock9" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock10" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock11" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock12" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock13" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock14" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock15" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock16" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock17" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock18" to="." method="notif"]
+[connection signal="upgrade_notif" from="BarrierRock19" to="." method="notif"]
 [connection signal="log_pickup" from="BrokenLog" to="CanvasLayer/LogsUI" method="reveal_entry"]
 [connection signal="notification" from="BrokenLog" to="." method="notif"]
 [connection signal="log_pickup" from="BrokenLog2" to="CanvasLayer/LogsUI" method="reveal_entry"]
