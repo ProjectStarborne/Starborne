@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func on_pickup(body: Node2D) -> void:
 	log_pickup.emit(log_number)
+	emit_signal("log_pickup", log_number)  # emit signal to start meteor shower if #4
 	
 	notification.emit(null, "Picked up Log #" + str(log_number + 1) + "!\n")
 	if log_number == 0:

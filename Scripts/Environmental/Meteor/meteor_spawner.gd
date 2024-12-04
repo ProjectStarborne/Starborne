@@ -21,7 +21,41 @@ var possible_directions = ["top", "bottom", "left", "right"]
 # Called when the node is added to the scene
 func _ready() -> void:
 	randomize()  # Randomize the seed for random number generation
-	#start_event_timer()  # Start the timer for the first meteor event
+	update_meteor_settings()  # Update settings based on the current level
+	start_event_timer()  # Start the timer for the first meteor event
+
+# Connect to the log pickup signal for log #4
+	if Globals.current_level == 3:
+		var log_node = get_node("../BrokenLog2") 
+		if log_node:
+			log_node.connect("log_pickup", Callable(self, "_on_log_pickup"))
+			print("log node connected")
+
+func _on_log_pickup(log_number: int) -> void:
+	if log_number == 3 and Globals.current_level == 3:
+		print("Log #4 picked up! Starting massive meteor shower.")
+		start_massive_meteor_shower()
+
+
+# Function to update meteor spawn settings based on the current level
+func update_meteor_settings():
+	match Globals.current_level:
+		2:  # Asteroid Two
+			min_meteors_per_event = 5
+			max_meteors_per_event = 10
+			min_time_between_events = 30
+			max_time_between_events = 60
+		3:  # Asteroid Three
+			min_meteors_per_event = 5
+			max_meteors_per_event = 25
+			min_time_between_events = 20
+			max_time_between_events = 50
+		_:
+			# Default settings (other levels)
+			min_meteors_per_event = 5
+			max_meteors_per_event = 50
+			min_time_between_events = 5.0
+			max_time_between_events = 15.0
 
 
 # Function to start a timer for the next meteor event
@@ -178,3 +212,40 @@ func get_random_point_in_area(area: Area2D) -> Vector2:
 
 	print("Failed to find a valid point within the polygon after max attempts.")
 	return area.global_position  # Default to the center if no valid point found
+
+
+func start_massive_meteor_shower():
+	print("Massive meteor shower triggered!")
+
+	# Save original settings
+	var original_min_meteors = min_meteors_per_event
+	var original_max_meteors = max_meteors_per_event
+	var original_min_time = min_time_between_events
+	var original_max_time = max_time_between_events
+	var original_spawn_interval = meteor_spawn_interval  # Save the current spawn interval
+
+	# Override settings for the massive meteor shower
+	min_meteors_per_event = 100
+	max_meteors_per_event = 200
+	min_time_between_events = 0.5  # Reduced interval between meteor events
+	max_time_between_events = 1.5
+	meteor_spawn_interval = 0.25  # Faster meteor spawn interval
+
+	# Start the meteor event with reduced intervals
+	start_meteor_event()
+
+	# Start a timer to reset settings after 2 minutes
+	var reset_timer = Timer.new()
+	reset_timer.wait_time = 120  # 2 minutes
+	reset_timer.one_shot = true
+	reset_timer.timeout.connect(func():
+		# Restore original settings
+		min_meteors_per_event = original_min_meteors
+		max_meteors_per_event = original_max_meteors
+		min_time_between_events = original_min_time
+		max_time_between_events = original_max_time
+		meteor_spawn_interval = original_spawn_interval  # Restore spawn interval
+		print("Meteor shower ended. Restored original settings.")
+	)
+	add_child(reset_timer)
+	reset_timer.start()
