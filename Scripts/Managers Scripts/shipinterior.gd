@@ -9,6 +9,8 @@ extends Node2D
 var paused : bool = false
 # Ship Upgrades UI variable
 @onready var ship_upgrades_ui = $CanvasLayer/ShipUpgrades
+# Label for first-time boot message
+@onready var instruction_label: Label = $Player/InstructionLabel  
 
 @onready var hot_bar: Control = %HotBar
 
@@ -22,6 +24,10 @@ var current_menu = null
 func _ready() -> void:
 	file_manager.load_game()	# Will return immediately if no save file is available
 	hot_bar.update_hotbar_ui(Globals.inventory)
+	
+	# Show first-time instruction if no save file exists
+	if is_first_time_boot():
+		show_instruction_message()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,3 +50,21 @@ func _process(_delta: float) -> void:
 		current_menu.hide()
 		menu_open = false
 		current_menu = null
+
+# Function to check if the save file exists
+func is_first_time_boot() -> bool:
+	return not FileAccess.file_exists("user://savegame.save")
+
+
+func show_instruction_message():
+	instruction_label.text = """
+Use WASD to move around your ship.
+To use items, drag them from your inventory to your hot bar,
+then left-click to use. Speak to the overseer outside.
+"""
+	instruction_label.visible = true  # Make the label visible
+	print("First-time boot detected. Showing instructions.")
+
+	# Hide the label after 10 seconds
+	await get_tree().create_timer(15.0).timeout
+	instruction_label.visible = false

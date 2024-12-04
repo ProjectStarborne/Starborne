@@ -3,7 +3,7 @@ extends Node
 var dialogue = {
 	"Overseer" : {
 		0 : "Overseer:  Ah, you're the new recruit. Welcome, Miner 808-A! I am overseer 6241-O, 
-		responsible for Asteroid 0923-D. TERRA admin said you'd be landing here for onboarding. 
+		responsible for the training Asteroid 0923-D. TERRA admin said you'd be landing here for onboarding. 
 		According to TERRA company policy 1.3.4-B , I will go over the daily tasks that you will 
 		be responsible for while you search for our new home.",
 		1 : "Overseer: As you know, the ship you just exited will be your home for the next few 

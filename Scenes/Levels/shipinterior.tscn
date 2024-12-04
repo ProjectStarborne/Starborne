@@ -326,6 +326,16 @@ theme_override_fonts/font = ExtResource("5_s2tnd")
 theme_override_font_sizes/font_size = 100
 visible_characters_behavior = 1
 
+[node name="InstructionLabel" type="Label" parent="Player"]
+offset_left = -67.0
+offset_top = -32.0
+offset_right = 229.0
+offset_bottom = 68.0
+scale = Vector2(0.05, 0.05)
+theme_override_fonts/font = ExtResource("5_s2tnd")
+theme_override_font_sizes/font_size = 125
+visible_characters_behavior = 1
+
 [node name="Navigation" parent="." instance=ExtResource("3_0okt1")]
 position = Vector2(9, -133)
 
