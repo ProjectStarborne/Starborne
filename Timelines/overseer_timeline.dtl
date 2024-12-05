@@ -1,4 +1,4 @@
-[signal arg="false"]
+[signal arg="In Dialogue"]
 join character center
 character: Ah, you're the new recruit. Welcome, Miner 808-A! I am overseer 6241-O, responsible for Asteroid 0923-D.
 character: TERRA admin said you'd be landing here for onboarding. According to TERRA company policy 1.3.4-A , I will go over the daily tasks that you will be responsible for while you search for our new home.
@@ -29,4 +29,4 @@ leave drill [animation="Slide In Up" length="1.0"]
 character: If you find any logs on your journey, you can play them in your PDA. They might hold useful information—or just keep you entertained.
 character: I’ll need to attend to my own work, so the others will teach you the rest. The medical team is to your upper right. The lead engineer below them.
 character: Remember\: Dig deeper. Mine faster. Hit the numbers. you are our last hope to finding a suitable planet to call home. Good luck!
-[signal arg="true"]
+[signal arg="End Dialogue"]

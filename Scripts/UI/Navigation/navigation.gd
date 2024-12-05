@@ -225,6 +225,8 @@ func _on_travel_button_mouse_exited(travel_button: Button) -> void:
 	pass
 
 func _on_close_button_pressed() -> void:
+	ship_interior_node.menu_open = false
+	ship_interior_node.current_menu = null
 	hide()
 
 # Display a message in the popup label

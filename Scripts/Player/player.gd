@@ -128,7 +128,7 @@ func _ready() -> void:
 	if !in_level:
 		current_speed = SPEED / 4
 		
-	Dialogic.signal_event.connect(stop_movement)
+	Dialogic.signal_event.connect(enter_dialogue)
 	
 	warning_audio.volume_db = -25  # Adjust volume in decibels (lower is quieter)
 	leak_audio.volume_db = -35  # Adjust volume in decibels
@@ -557,11 +557,13 @@ func reset_camera() -> void:
 	camera.global_position = self.global_position
 
 
-func stop_movement(arg: String):
-	if arg == "false":
+func enter_dialogue(arg: String):
+	if arg == "In Dialogue":
 		allowed_to_move = false
-	elif arg == "true":
+		world.disable_menu_opening(true)
+	elif arg == "End Dialogue":
 		allowed_to_move = true
+		world.disable_menu_opening(false)
 
 ####### Save Information #######
 

@@ -33,13 +33,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	# Handle Inventory UI
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory") and !menu_open and (current_menu == inventory or current_menu == null):
 		if inventory.visible:
 			inventory.close()
-			menu_open = false
 		else:
 			inventory.open(player.inventory)
-			menu_open = true
 			current_menu = inventory
 	
 	# Handle Pause UI
@@ -50,6 +48,9 @@ func _process(_delta: float) -> void:
 		current_menu.hide()
 		menu_open = false
 		current_menu = null
+
+func disable_menu_opening(open : bool):
+	menu_open = open
 
 # Function to check if the save file exists
 func is_first_time_boot() -> bool:

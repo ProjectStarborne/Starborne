@@ -8,6 +8,7 @@ extends Control
 var inv : Inventory
 var ship_inv : Inventory = Inventory.new()
 
+
 # Open ship storage UI and populate the grid container slots for both sides
 func open(inventory : Inventory = Globals.inventory, storage : Inventory = Globals.ship_inventory):
 	inv = inventory

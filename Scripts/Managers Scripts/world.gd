@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# Handle Inventory UI
-	if Input.is_action_just_pressed("inventory") and !ship_upgrades_ui.visible :
+	if Input.is_action_just_pressed("inventory"):
 		if inventory.visible:
 			inventory.close()
 			menu_open = false
@@ -53,6 +53,9 @@ func _process(_delta: float) -> void:
 		pause_menu.pause()
 		paused = !paused
 
+
+func disable_menu_opening(open : bool):
+	menu_open = open
 
 #Close the ship upgrades UI if it's open
 func close_ship_upgrades():
