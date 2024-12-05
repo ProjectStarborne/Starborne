@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 			current_menu = inventory
 	
 	# Handle Pause UI
-	if Input.is_action_just_pressed("escape") and !paused && !menu_open:
+	if Input.is_action_just_pressed("escape") and !paused and !menu_open:
 		close_ship_upgrades()
 		pause_menu.pause()
 		paused = !paused
