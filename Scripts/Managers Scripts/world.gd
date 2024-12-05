@@ -17,6 +17,8 @@ extends Node2D
 var paused : bool = false
 var menu_open : bool = false
 
+var current_menu = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -39,19 +41,22 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# Handle Inventory UI
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("inventory") and !menu_open and (current_menu == inventory or current_menu == null):
 		if inventory.visible:
 			inventory.close()
-			menu_open = false
 		else:
 			inventory.open(player.inventory)
-			menu_open = true
+			current_menu = inventory
 	
 	# Handle Pause UI
 	if Input.is_action_just_pressed("escape") and !paused && !menu_open:
 		close_ship_upgrades()
 		pause_menu.pause()
 		paused = !paused
+	elif Input.is_action_just_pressed("escape") and !paused and menu_open:
+		current_menu.hide()
+		menu_open = false
+		current_menu = null
 
 
 func disable_menu_opening(open : bool):

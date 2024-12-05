@@ -6,10 +6,11 @@ var player_in_area = false
 
 @onready var player = get_node("/root/Environment2/Player")  # Update this path to your actual scene structure
 @onready var interaction_label = player.get_node("InteractionLabel")  # Label above the player's head
+@onready var inventory_ui: Control = $"../../../CanvasLayer/InventoryUI"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if player_in_area:
+	if player_in_area && !inventory_ui.visible:
 		if Input.is_action_just_pressed(interact_key):
 			# Run Dialogue
 			if dialogue_name != "":
