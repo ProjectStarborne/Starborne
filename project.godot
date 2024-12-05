@@ -37,6 +37,8 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "endscene": "res://Timelines/endscene.dtl",
+"engineer_timeline": "res://Timelines/engineer_timeline.dtl",
+"medical_timeline": "res://Timelines/medical_timeline.dtl",
 "overseer_timeline": "res://Timelines/overseer_timeline.dtl"
 }
 glossary/default_case_sensitive=true

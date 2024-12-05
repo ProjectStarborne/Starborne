@@ -26,7 +26,7 @@ leave air_tank [animation="Slide Out Down" length="1.0"]
 join drill center [animation="Slide In Up" length="1.0"]
 character: Anyways, you will need to buy a TERRA Drill from the shop to start mining for ore. Once you have a TERRA Drill, you can put yourself to work.
 leave drill [animation="Slide In Up" length="1.0"]
-character: One last thing. If you find any logs on your journey, you can play them in your PDA.
-character: That's all I got for you, you are our last hope to finding a suitable planet to call home.
-character: Remember\: Dig deeper. Mine faster. Hit the numbers. Good luck!
+character: If you find any logs on your journey, you can play them in your PDA. They might hold useful information—or just keep you entertained.
+character: I’ll need to attend to my own work, so the others will teach you the rest. The medical team is to your upper right. The lead engineer below them.
+character: Remember\: Dig deeper. Mine faster. Hit the numbers. you are our last hope to finding a suitable planet to call home. Good luck!
 [signal arg="true"]

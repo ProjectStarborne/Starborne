@@ -44,10 +44,9 @@ grow_vertical = 2
 theme_override_colors/font_selected_color = Color(0, 0.666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_1g7un")
 theme_override_font_sizes/font_size = 20
-current_tab = 1
+current_tab = 0
 
 [node name="Navigation" type="VBoxContainer" parent="TabContainer"]
-visible = false
 custom_minimum_size = Vector2(1036, 655)
 layout_mode = 2
 script = ExtResource("1_i81kw")
@@ -383,6 +382,7 @@ theme_override_font_sizes/font_size = 26
 text = "Launch"
 
 [node name="Upgrades" type="VBoxContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("3_kqf6p")
 metadata/_tab_index = 1

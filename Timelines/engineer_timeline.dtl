@@ -1,0 +1,13 @@
+[signal arg="false"]
+join character center
+character: Oh, great. Another miner who doesn't know how to use a drill. Alright, listen up. I'm only going to explain this once.
+character: Equip your drill in your hotbar. That's the row of slots at the bottom of your screen, in case you're too clueless to notice.
+character: Once it's equipped, just left-click to start drilling. Not complicated.
+character: Some ores are stronger than others. That little starter drill of yours? It'll be useless on the tougher stuff.
+character: So, eventually, you'll need to upgrade it. Yeah, upgrades cost money. No, I don't care if you don't have enough right now.
+character: You can buy an upgraded drill from the shop in your ship. If you lose your drill? That's on you.
+character: I saw an ore deposit in the middle of the training site earlier. Go buy a drill from your ship and give it a try.
+character: TERRA doesn't reimburse for "user error," and those things aren't cheap. So don’t come crying to me about it.
+character: Now, unless you’ve got something useful to say, get lost. I’ve got real work to do.
+[signal arg="true"]
+

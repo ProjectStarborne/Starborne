@@ -1,0 +1,11 @@
+[signal arg="false"]
+join character center
+character: Hello there, miner. I'm the medical officer assigned to this training site. Let me give you a quick rundown on staying alive out here.
+character: If your health is getting low, you’ll need to use a medkit. Drag one into your hotbar, select it, and left-click to apply it.
+character: Be aware, though, that the standard medkits TERRA provides in the shop aren’t very strong. They’ll do the job for minor injuries, but you’ll want to upgrade them later for better effectiveness.
+character: And another thing—watch your oxygen! Oxygen deprivation is no joke, especially in deep space.
+character: Here at the TERRA Training Site, we’ve got an artificial atmosphere, so you won’t need to worry too much while you’re here.
+character: But out there? You’ll need to keep a close eye on your O2 levels. Your suit will warn you when things get critical, but don’t push your luck.
+character: Stay safe out there, and remember—your health and oxygen are your lifelines. Good luck!
+[signal arg="true"]
+
