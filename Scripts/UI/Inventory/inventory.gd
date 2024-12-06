@@ -48,6 +48,14 @@ func remove_item(index : int):
 		_content[index] = null
 		size -= 1
 	
+
+# You died? Lose all your minerals dummy
+func lose_items():
+	for i in range(_content.size()):
+		if _content[i].type == "Mineral":
+			remove_item(i)
+			
+
 # Get inventory items in the form of an array
 func get_items() -> Array[Item]:
 	var items: Array[Item] = []

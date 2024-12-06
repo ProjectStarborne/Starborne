@@ -16,6 +16,7 @@ func to_dict() -> Dictionary:
 	return {
 		"name" : name,
 		"scene_path" : scene.resource_path,
+		"type" : type,
 		"icon" : icon.resource_path,
 		"price" : price,
 		"weight" : weight,
@@ -43,6 +44,7 @@ static func from_dict(data: Dictionary) -> Item:
 			if data.has("scene_path") and data["scene_path"] != "":
 				instance.scene = load(data["scene_path"])	# load the scene as packed scene
 			
+			instance.type = data["type"]
 			instance.icon = load(data["icon"]) as Texture
 			instance.price = data["price"]
 			instance.weight = data["weight"]
