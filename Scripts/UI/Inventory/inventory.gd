@@ -88,6 +88,10 @@ func has_item(item: Item) -> bool:
 	for inv_item in _content.values():
 		if inv_item != null and inv_item.name == item.name:
 			return true
+			
+	for hot_bar_item in _hotbar.values():
+		if hot_bar_item != null and hot_bar_item.name == item.name:
+			return true
 	return false
 	
 	

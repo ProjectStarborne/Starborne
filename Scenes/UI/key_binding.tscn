@@ -194,25 +194,6 @@ toggle_mode = true
 script = ExtResource("3_n1lls")
 action = "inventory"
 
-[node name="PauseLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_wcmxc")
-theme_override_font_sizes/font_size = 20
-text = "Pause"
-
-[node name="PausePrimaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
-layout_mode = 2
-toggle_mode = true
-script = ExtResource("3_n1lls")
-action = "pause"
-primary = true
-
-[node name="PauseSecondaryButton" type="Button" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
-layout_mode = 2
-toggle_mode = true
-script = ExtResource("3_n1lls")
-action = "pause"
-
 [node name="FlashlightLabel" type="Label" parent="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wcmxc")
@@ -276,8 +257,6 @@ text = "Back"
 [connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/ActionSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/ActionSecondaryButton" method="_on_toggled"]
 [connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventoryPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventoryPrimaryButton" method="_on_toggled"]
 [connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventorySecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/InventorySecondaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PausePrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PausePrimaryButton" method="_on_toggled"]
-[connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PauseSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PauseSecondaryButton" method="_on_toggled"]
 [connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashPrimaryButton" method="_on_toggled"]
 [connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashSecondaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/FlashSecondaryButton" method="_on_toggled"]
 [connection signal="toggled" from="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PDAPrimaryButton" to="ColorRect/ScrollContainer/VBoxContainer/ControlsContainer/PDAPrimaryButton" method="_on_toggled"]
