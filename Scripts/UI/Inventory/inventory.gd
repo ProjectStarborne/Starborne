@@ -76,13 +76,11 @@ func get_hotbar_items() -> Array[Item]:
 	
 
 # Add item from _content to _hotbar by index. Used for when dragging and dropping items into slots
-func add_to_hotbar(slot_index: int, hotbar_index : int) -> bool:
+func add_to_hotbar(slot_index: int, hotbar_index : int):
 	if _content.has(slot_index):
 		# Find the first available hotbar slot
 		if _hotbar[hotbar_index] == null or !_hotbar.has(hotbar_index):
 			_hotbar[hotbar_index] = _content[slot_index]
-			return true
-	return false
 	
 	
 # Remove item from _hotbar by index

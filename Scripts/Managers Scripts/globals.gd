@@ -35,7 +35,7 @@ var medkit_modifier = 0
 
 ##### CURRENCY SYSTEM #####
 # Global credits variable to persist across levels
-var credits: int = 150
+var credits: int = 250000
 
 # Functions to manage credits
 func add_credits(amount: int) -> void:
